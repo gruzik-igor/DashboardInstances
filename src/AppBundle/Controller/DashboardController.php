@@ -18,7 +18,10 @@ class DashboardController extends Controller
     {
         $serverInfoService = $this->get('app.server_info.service');
 
-        return $this->render('@App/dashboard/index.html.twig', ['meminfo'=> $serverInfoService->getSystemMemInfo()]);
+        return $this->render('@App/dashboard/index.html.twig', [
+            'meminfo'=> $serverInfoService->getSystemMemInfo(),
+            'diskinfo' => $serverInfoService->getSystemHddInfo()
+            ]);
     }
 
     /**

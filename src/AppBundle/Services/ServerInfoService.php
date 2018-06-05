@@ -19,6 +19,17 @@ class ServerInfoService
         return $meminfo;
         
     }
+
+    public function getSystemHddInfo() {
+	
+        $disktotal = disk_total_space ('/');
+        $diskfree  = disk_free_space  ('/');
+        $diskInfo['DisckTotal'] = $disktotal;
+        $diskInfo['DisckUsed'] = $disktotal - $diskfree;
+
+        return $diskInfo;
+        
+    }
 }
 
 ?>
