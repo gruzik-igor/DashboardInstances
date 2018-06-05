@@ -12,8 +12,8 @@ class ServerInfoService
         $mem = explode(" ", $free_arr[1]);
         $mem = array_filter($mem);
         $mem = array_merge($mem);
-        $meminfo['MemUsed'] = $mem[1];
-        $meminfo['MemFree'] = $mem[2];
+        $meminfo['MemTotal'] = $mem[1];
+        $meminfo['MemUsed'] = $mem[2];
 
 
         return $meminfo;
