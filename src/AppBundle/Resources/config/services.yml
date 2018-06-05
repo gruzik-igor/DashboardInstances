@@ -12,3 +12,7 @@ services:
     app.user_provider:
         class: AppBundle\Security\Authentication\AppUserProvider
         arguments: ['@doctrine.orm.entity_manager']
+
+    app.server_info.service:
+        class: AppBundle\Services\ServerInfoService 
+        public: true

@@ -16,8 +16,9 @@ class DashboardController extends Controller
      */
     public function indexAction(Request $request)
     {
-        // replace this example code with whatever you need
-        return $this->render('@App/dashboard/index.html.twig');
+        $serverInfoService = $this->get('app.server_info.service');
+
+        return $this->render('@App/dashboard/index.html.twig', ['meminfo'=> $serverInfoService->getSystemMemInfo()]);
     }
 
     /**
