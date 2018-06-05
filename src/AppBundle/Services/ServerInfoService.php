@@ -30,6 +30,14 @@ class ServerInfoService
         return $diskInfo;
         
     }
+
+    function getSystemCpuInfo($coreCount = 1, $interval = 1) {
+        $rs = sys_getloadavg();
+        $interval = $interval >= 1 && 3 <= $interval ? $interval : 1;
+        $load = $rs[$interval];
+        $cpuinfo = round(($load * 100) / $coreCount,2);
+        return $cpuinfo;
+    }
 }
 
 ?>
