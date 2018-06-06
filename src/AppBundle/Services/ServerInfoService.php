@@ -33,39 +33,20 @@ class ServerInfoService
 
     public function getSystemCpuInfo() {
         
-        $data = file('/proc/stat');
-        $cores = array();
-        foreach( $data as $line ) {
-            if( preg_match('/^cpu[0-9]/', $line) )
-            {
-                $info = explode(' ', $line );
-                $cores[] = array(
-                    'user' => $info[1],
-                    'nice' => $info[2],
-                    'sys' => $info[3],
-                    'idle' => $info[4]
-                );
-            }
-            $stat1 = $cores;
-            $stat2 = $cores; 
-        }
+        $stat1 = file('/proc/stat'); 
+        sleep(1); 
+        $stat2 = file('/proc/stat'); 
+        $info1 = explode(" ", preg_replace("!cpu +!", "", $stat1[0])); 
+        $info2 = explode(" ", preg_replace("!cpu +!", "", $stat2[0])); 
+        $dif = array(); 
+        $dif['user'] = $info2[0] - $info1[0]; 
+        $dif['nice'] = $info2[1] - $info1[1]; 
+        $dif['sys'] = $info2[2] - $info1[2]; 
+        $dif['idle'] = $info2[3] - $info1[3]; 
+        $total = array_sum($dif); 
+        $cpuinfo = array(); 
+        foreach($dif as $x=>$y) $cpu[$x] = round($y / $total * 100, 1);
 
-        return $stat1;$stat2;
-        if( count($stat1) !== count($stat2) ) {
-            return;
-        }
-        $cpuinfo = array();
-        for( $i = 0, $l = count($stat1); $i < $l; $i++) {
-            $dif = array();
-            $dif['user'] = $stat2[$i]['user'] - $stat1[$i]['user'];
-            $dif['nice'] = $stat2[$i]['nice'] - $stat1[$i]['nice'];
-            $dif['sys'] = $stat2[$i]['sys'] - $stat1[$i]['sys'];
-            $dif['idle'] = $stat2[$i]['idle'] - $stat1[$i]['idle'];
-            $total = array_sum($dif);
-            $cpu = array();
-            foreach($dif as $x=>$y) $cpu[$x] = round($y / $total * 100, 1);
-            $cpuinfo['cpu' . $i] = $cpu;
-        }
         return $cpuinfo;
     }
 
