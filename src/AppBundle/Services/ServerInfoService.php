@@ -24,8 +24,8 @@ class ServerInfoService
 	
         $disktotal = disk_total_space ('/');
         $diskfree  = disk_free_space  ('/');
-        $diskInfo['DisckTotal'] = ($disktotal / 8) / 2048;
-        $diskInfo['DisckUsed'] = (($disktotal - $diskfree)/8)/2048;
+        $diskInfo['DisckTotal'] = $disktotal;
+        $diskInfo['DisckUsed'] = $disktotal - $diskfree;
 
         return $diskInfo;
         
@@ -35,7 +35,7 @@ class ServerInfoService
         $rs = sys_getloadavg();
         $interval = $interval >= 1 && 3 <= $interval ? $interval : 1;
         $load = $rs[$interval];
-        $cpuinfo = $load ;
+        $cpuinfo = ($load * 100)/ $coreCount;
        // $cpuinfo = round(($load * 100) / $coreCount,2);
         return $cpuinfo;
     }
