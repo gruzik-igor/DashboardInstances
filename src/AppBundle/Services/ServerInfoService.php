@@ -44,11 +44,14 @@ class ServerInfoService
                     'idle' => $info[4]
                 );
             }
+            $stat1 = $cores;
+            $stat2 = $cores; 
         }
-        return $cores;
+        return $stat1;$stat2;
     }
 
-    
+  
+
     public function getSystemCpuInfo($stat1, $stat2) {
         if( count($stat1) !== count($stat2) ) {
             return;
