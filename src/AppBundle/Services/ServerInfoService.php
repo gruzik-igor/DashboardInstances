@@ -48,9 +48,7 @@ class ServerInfoService
         return $cores;
     }
 
-    var $stat1 = GetCoreInformation();
-    var $stat1 = GetCoreInformation();
-
+    
     public function getSystemCpuInfo($stat1, $stat2) {
         if( count($stat1) !== count($stat2) ) {
             return;
@@ -69,6 +67,8 @@ class ServerInfoService
         }
         return $cpuinfo;
     }
+
+    
 }
 
 ?>
