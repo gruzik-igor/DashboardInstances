@@ -45,7 +45,7 @@ class ServerInfoService
         $dif['idle'] = $info2[3] - $info1[3]; 
         $total = array_sum($dif); 
         $cpuinfo = array(); 
-        foreach($dif as $x=>$y) $cpu[$x] = round($y / $total * 100, 1);
+        foreach($dif as $x=>$y) $cpuinfo[$x] = round($y / $total * 100, 1);
 
         return $cpuinfo;
     }
