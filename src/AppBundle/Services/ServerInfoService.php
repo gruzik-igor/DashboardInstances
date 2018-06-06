@@ -35,7 +35,7 @@ class ServerInfoService
         $rs = sys_getloadavg();
         $interval = $interval >= 1 && 3 <= $interval ? $interval : 1;
         $load = $rs[$interval];
-        $cpuinfo = ($load * 100)/ $coreCount;
+        $cpuinfo = $load * 100;
        // $cpuinfo = round(($load * 100) / $coreCount,2);
         return $cpuinfo;
     }
