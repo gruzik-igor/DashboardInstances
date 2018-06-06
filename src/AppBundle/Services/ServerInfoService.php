@@ -30,7 +30,11 @@ class ServerInfoService
         return $diskInfo;
         
     }
-    public function GetCoreInformation() {
+
+    public function getSystemCpuInfo($stat1, $stat2) {
+        if( count($stat1) !== count($stat2) ) {
+            return;
+        }
         $data = file('/proc/stat');
         $cores = array();
         foreach( $data as $line ) {
@@ -47,15 +51,9 @@ class ServerInfoService
             $stat1 = $cores;
             $stat2 = $cores; 
         }
+
         return $stat1;$stat2;
-    }
 
-  
-
-    public function getSystemCpuInfo($stat1, $stat2) {
-        if( count($stat1) !== count($stat2) ) {
-            return;
-        }
         $cpuinfo = array();
         for( $i = 0, $l = count($stat1); $i < $l; $i++) {
             $dif = array();
