@@ -31,10 +31,8 @@ class ServerInfoService
         
     }
 
-    public function getSystemCpuInfo($stat1, $stat2) {
-        if( count($stat1) !== count($stat2) ) {
-            return;
-        }
+    public function getSystemCpuInfo() {
+        
         $data = file('/proc/stat');
         $cores = array();
         foreach( $data as $line ) {
@@ -53,7 +51,9 @@ class ServerInfoService
         }
 
         return $stat1;$stat2;
-
+        if( count($stat1) !== count($stat2) ) {
+            return;
+        }
         $cpuinfo = array();
         for( $i = 0, $l = count($stat1); $i < $l; $i++) {
             $dif = array();
