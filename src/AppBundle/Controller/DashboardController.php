@@ -21,7 +21,8 @@ class DashboardController extends Controller
         return $this->render('@App/dashboard/index.html.twig', [
             'meminfo'=> $serverInfoService->getSystemMemInfo(),
             'diskinfo' => $serverInfoService->getSystemHddInfo(),
-            'cpuinfo' => $serverInfoService->getSystemCpuInfo()
+            'cpuinfo' => $serverInfoService->getSystemCpuInfo(),
+            'uptime' => $serverInfoService->getServerUptime()
             ]);
     }
 

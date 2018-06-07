@@ -31,12 +31,20 @@ class ServerInfoService
         
     }
     
-    public  function getSystemCpuInfo($coreCount = 2, $interval = 1) {
+    public  function getSystemCpuInfo($coreCount = 1, $interval = 1) {
             $rs = sys_getloadavg();
             $interval = $interval >= 1 && 3 <= $interval ? $interval : 1;
             $load = $rs[$interval];
             $cpuinfo = ($load * 100) / $coreCount;
             return $cpuinfo;
+        }
+
+    public   function getServerUptime() {
+	
+            $uptime = floor(preg_replace ('/\.[0-9]+/', '', file_get_contents('/proc/uptime')) / 86400);
+            
+            return $uptime;
+            
         }
 
     
