@@ -40,9 +40,18 @@ class ServerInfoService
         }
 
     public   function getServerUptime() {
-	
-            $uptime = floor(preg_replace ('/\.[0-9]+/', '', file_get_contents('/proc/uptime')) / 86400);
-            
+        $time = @file_get_contents( "/proc/uptime");
+
+        $time = explode(" ",$time);
+        $time = $time[0];
+        $days = explode(".",(($time % 31556926) / 86400));
+        $hours = explode(".",((($time % 31556926) % 86400) / 3600));
+        $minutes = explode(".",(((($time % 31556926) % 86400) % 3600) / 60));
+        $seconds = explode(".",((((($time % 31556926) % 86400) % 3600) / 60) / 60));
+    
+        $uptime = $days[0].":".$hours[0].":".$minutes[0].":".$seconds[0];
+    
+          
             return $uptime;
             
         }
