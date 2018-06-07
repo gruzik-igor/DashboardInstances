@@ -109,9 +109,9 @@ var myPieChart = new Chart(ctx, {
 });
 
 
-var ctx = document.getElementById("activeInstancesChart");
+// var ctx = document.getElementById("activeInstancesChart");
 
-var myLineChart1 = new Chart(ctx, {
+var config1 = {
   type: 'line',
   data: {
     labels: ["Mar 1", "Mar 2", "Mar 3", "Mar 4", "Mar 5", "Mar 6", "Mar 7", "Mar 8", "Mar 9", "Mar 10", "Mar 11", "Mar 12", "Mar 13"],
@@ -158,4 +158,14 @@ var myLineChart1 = new Chart(ctx, {
       display: false
     }
   }
-});
+};
+
+window.onload = function() {
+  var ctx2 = document.getElementById("activeInstancesChart").getContext("2d");
+ window.myLine = new Chart(ctx2, config1);
+
+
+  // var ctx = document.getElementById("canvas1").getContext("2d");
+  // window.myLine = new Chart(ctx, config2);
+
+}
