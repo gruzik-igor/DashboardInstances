@@ -694,7 +694,7 @@
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
   
 
 <script type="text/javascript">
@@ -702,17 +702,17 @@
       google.charts.load('current', {'packages':['corechart']});
 
       // Draw the pie chart for Sarah's pizza when Charts is loaded.
-      google.charts.setOnLoadCallback(drawSarahChart);
+      {# google.charts.setOnLoadCallback(drawSarahChart); #}
       google.charts.setOnLoadCallback(drawSarahCharta);
       google.charts.setOnLoadCallback(drawSarahChartb);
       google.charts.setOnLoadCallback(drawSarahChartc);
       google.charts.setOnLoadCallback(drawSarahChartd);
 
       // Draw the pie chart for the Anthony's pizza when Charts is loaded.
-      google.charts.setOnLoadCallback(drawAnthonyChart);
+      {# google.charts.setOnLoadCallback(drawAnthonyChart); #}
 
       // Callback that draws the pie chart for Sarah's pizza.
-      function drawSarahChart() {
+      {# function drawSarahChart() {
 
         // Create the data table for Sarah's pizza.
          var data = google.visualization.arrayToDataTable([
@@ -731,7 +731,7 @@
         // Instantiate and draw the chart for Sarah's pizza.
         var chart = new google.visualization.AreaChart(document.getElementById('Sarah_chart_div'));
         chart.draw(data, options);
-      }
+      } #}
 function drawSarahCharta() {
 
         // Create the data table for Sarah's pizza.
@@ -815,7 +815,7 @@ function drawSarahChartd() {
 
 
       // Callback that draws the pie chart for Anthony's pizza.
-      function drawAnthonyChart() {
+      {# function drawAnthonyChart() {
 
         // Create the data table for Anthony's pizza.
          var data = google.visualization.arrayToDataTable([
@@ -834,7 +834,7 @@ function drawSarahChartd() {
         // Instantiate and draw the chart for Anthony's pizza.
         var chart = new google.visualization.AreaChart(document.getElementById('Anthony_chart_div'));
         chart.draw(data, options);
-      }
+      } #}
   </script>
 
 
