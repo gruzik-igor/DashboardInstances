@@ -1,37 +1,61 @@
-// Load Charts and the corechart and barchart packages.
-google.charts.load('current', {'packages':['corechart']});
+      // Load Charts and the corechart package.
+      google.charts.load('current', {'packages':['corechart']});
 
-// Draw the pie chart and bar chart when Charts is loaded.
-google.charts.setOnLoadCallback(drawChart);
+      // Draw the pie chart for Sarah's pizza when Charts is loaded.
+      google.charts.setOnLoadCallback(drawSarahChart);
 
-function drawChart() {
+      // Draw the pie chart for the Anthony's pizza when Charts is loaded.
+      google.charts.setOnLoadCallback(drawAnthonyChart);
 
-  var data = new google.visualization.DataTable();
-  data.addColumn('string', 'Topping');
-  data.addColumn('number', 'Slices');
-  data.addRows([
-    ['Mushrooms', 3],
-    ['Onions', 1],
-    ['Olives', 1],
-    ['Zucchini', 1],
-    ['Pepperoni', 2]
-  ]);
+      // Callback that draws the pie chart for Sarah's pizza.
+      function drawSarahChart() {
 
-  var piechart_options = {title:'Pie Chart: How Much Pizza I Ate Last Night',
-                 width:400,
-                 height:300};
-  var piechart = new google.visualization.PieChart(document.getElementById('piechart_div'));
-  piechart.draw(data, piechart_options);
+        // Create the data table for Sarah's pizza.
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Topping');
+        data.addColumn('number', 'Slices');
+        data.addRows([
+          ['Mushrooms', 1],
+          ['Onions', 1],
+          ['Olives', 2],
+          ['Zucchini', 2],
+          ['Pepperoni', 1]
+        ]);
 
-  var barchart_options = {title:'Barchart: How Much Pizza I Ate Last Night',
-                 width:400,
-                 height:300,
-                 legend: 'none'};
-  var barchart = new google.visualization.BarChart(document.getElementById('barchart_div'));
-  barchart.draw(data, barchart_options);
-}
+        // Set options for Sarah's pie chart.
+        var options = {title:'How Much Pizza Sarah Ate Last Night',
+                       width:400,
+                       height:300};
 
+        // Instantiate and draw the chart for Sarah's pizza.
+        var chart = new google.visualization.PieChart(document.getElementById('Sarah_chart_div'));
+        chart.draw(data, options);
+      }
 
+      // Callback that draws the pie chart for Anthony's pizza.
+      function drawAnthonyChart() {
+
+        // Create the data table for Anthony's pizza.
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Topping');
+        data.addColumn('number', 'Slices');
+        data.addRows([
+          ['Mushrooms', 2],
+          ['Onions', 2],
+          ['Olives', 2],
+          ['Zucchini', 0],
+          ['Pepperoni', 3]
+        ]);
+
+        // Set options for Anthony's pie chart.
+        var options = {title:'How Much Pizza Anthony Ate Last Night',
+                       width:400,
+                       height:300};
+
+        // Instantiate and draw the chart for Anthony's pizza.
+        var chart = new google.visualization.PieChart(document.getElementById('Anthony_chart_div'));
+        chart.draw(data, options);
+      }
 
 
 // // Chart.js scripts
