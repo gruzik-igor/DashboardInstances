@@ -30,25 +30,14 @@ class ServerInfoService
         return $diskInfo;
         
     }
-
-    public function getSystemCpuInfo() {
-        
-        $stat1 = file('/proc/stat'); 
-        sleep(1); 
-        $stat2 = file('/proc/stat'); 
-        $info1 = explode(" ", preg_replace("!cpu +!", "", $stat1[0])); 
-        $info2 = explode(" ", preg_replace("!cpu +!", "", $stat2[0])); 
-        $dif = array(); 
-        $dif['user'] = $info2[0] - $info1[0]; 
-        $dif['nice'] = $info2[1] - $info1[1]; 
-        $dif['sys'] = $info2[2] - $info1[2]; 
-        $dif['idle'] = $info2[3] - $info1[3]; 
-        $total = array_sum($dif); 
-        $cpuinfo = array(); 
-        foreach($dif as $x=>$y) $cpuinfo[$x] = round($y / $total * 100, 1);
-
-        return $cpuinfo;
-    }
+    
+    public  function getSystemCpuInfo($coreCount = 2, $interval = 1) {
+            $rs = sys_getloadavg();
+            $interval = $interval >= 1 && 3 <= $interval ? $interval : 1;
+            $load = $rs[$interval];
+            $cpuinfo = round(($load * 100) / $coreCount,2);
+            return $cpuinfo;
+        }
 
     
 }
