@@ -4,7 +4,18 @@ Chart.defaults.global.defaultFontFamily = '-apple-system,system-ui,BlinkMacSyste
 Chart.defaults.global.defaultFontColor = '#292b2c';
 // -- Area Chart Example
 
-var ctx = document.getElementById("myAreaChart");
+window.onload = function() {
+  var ctx2 = document.getElementById("myAreaChart").getContext("2d");
+ window.myLine = new Chart(ctx2, config1);
+
+
+  // var ctx = document.getElementById("canvas1").getContext("2d");
+  // window.myLine = new Chart(ctx, config2);
+
+}
+
+
+//var ctx = document.getElementById("myAreaChart");
 var myLineChart = new Chart(ctx, {
   type: 'line',
   data: {
@@ -160,12 +171,3 @@ var config1 = {
   }
 };
 
-window.onload = function() {
-  var ctx2 = document.getElementById("activeInstancesChart").getContext("2d");
- window.myLine = new Chart(ctx2, config1);
-
-
-  // var ctx = document.getElementById("canvas1").getContext("2d");
-  // window.myLine = new Chart(ctx, config2);
-
-}
