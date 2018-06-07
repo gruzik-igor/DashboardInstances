@@ -560,7 +560,7 @@
                             </div>
                             <table class="columns">
                                     <tr>
-                                        <td><div id="Sarah_chart_div" style="border: 1px solid #ccc"></div></td>
+                                        <td><div id="Sarah_chart_div_a" style="border: 1px solid #ccc"></div></td>
                                     </tr>
                                 </table> 
                         </div>
@@ -576,7 +576,7 @@
                             </div>
                             <table class="columns">
                                     <tr>
-                                        <td><div id="Sarah_chart_div2" style="border: 1px solid #ccc"></div></td>
+                                        <td><div id="Sarah_chart_div_b" style="border: 1px solid #ccc"></div></td>
                                     </tr>
                                 </table>     
                         </div>
@@ -592,7 +592,7 @@
                             </div>
                             <table class="columns">
                                     <tr>
-                                        <td><div id="Sarah_chart_div3" style="border: 1px solid #ccc"></div></td>
+                                        <td><div id="Sarah_chart_div_c" style="border: 1px solid #ccc"></div></td>
                                     </tr>
                                 </table> 
                         </div>
@@ -608,7 +608,7 @@
                             </div>
                             <table class="columns">
                                     <tr>
-                                        <td><div id="Sarah_chart_div4" style="border: 1px solid #ccc"></div></td>
+                                        <td><div id="Sarah_chart_div_d" style="border: 1px solid #ccc"></div></td>
                                     </tr>
                                 </table>     
                         </div>
@@ -703,10 +703,10 @@
 
       // Draw the pie chart for Sarah's pizza when Charts is loaded.
       google.charts.setOnLoadCallback(drawSarahChart);
-      google.charts.setOnLoadCallback(drawSarahChart1);
-      google.charts.setOnLoadCallback(drawSarahChart2);
-      google.charts.setOnLoadCallback(drawSarahChart3);
-      google.charts.setOnLoadCallback(drawSarahChart4);
+      google.charts.setOnLoadCallback(drawSarahCharta);
+      google.charts.setOnLoadCallback(drawSarahChartb);
+      google.charts.setOnLoadCallback(drawSarahChartc);
+      google.charts.setOnLoadCallback(drawSarahChartd);
 
       // Draw the pie chart for the Anthony's pizza when Charts is loaded.
       google.charts.setOnLoadCallback(drawAnthonyChart);
@@ -732,7 +732,7 @@
         var chart = new google.visualization.AreaChart(document.getElementById('Sarah_chart_div'));
         chart.draw(data, options);
       }
-function drawSarahChart1() {
+function drawSarahCharta() {
 
         // Create the data table for Sarah's pizza.
          var data = google.visualization.arrayToDataTable([
@@ -749,10 +749,10 @@ function drawSarahChart1() {
           vAxis: {minValue: 0}
         };
         // Instantiate and draw the chart for Sarah's pizza.
-        var chart = new google.visualization.AreaChart(document.getElementById('Sarah_chart_div1'));
+        var chart = new google.visualization.AreaChart(document.getElementById('Sarah_chart_div_a'));
         chart.draw(data, options);
       }
-function drawSarahChart2() {
+function drawSarahChartb() {
 
         // Create the data table for Sarah's pizza.
          var data = google.visualization.arrayToDataTable([
@@ -769,10 +769,10 @@ function drawSarahChart2() {
           vAxis: {minValue: 0}
         };
         // Instantiate and draw the chart for Sarah's pizza.
-        var chart = new google.visualization.AreaChart(document.getElementById('Sarah_chart_div2'));
+        var chart = new google.visualization.AreaChart(document.getElementById('Sarah_chart_div_b'));
         chart.draw(data, options);
       }
-function drawSarahChart3() {
+function drawSarahChartc() {
 
         // Create the data table for Sarah's pizza.
          var data = google.visualization.arrayToDataTable([
@@ -789,10 +789,10 @@ function drawSarahChart3() {
           vAxis: {minValue: 0}
         };
         // Instantiate and draw the chart for Sarah's pizza.
-        var chart = new google.visualization.AreaChart(document.getElementById('Sarah_chart_div3'));
+        var chart = new google.visualization.AreaChart(document.getElementById('Sarah_chart_div_c'));
         chart.draw(data, options);
       }
-function drawSarahChart4() {
+function drawSarahChartd() {
 
         // Create the data table for Sarah's pizza.
          var data = google.visualization.arrayToDataTable([
@@ -809,7 +809,7 @@ function drawSarahChart4() {
           vAxis: {minValue: 0}
         };
         // Instantiate and draw the chart for Sarah's pizza.
-        var chart = new google.visualization.AreaChart(document.getElementById('Sarah_chart_div4'));
+        var chart = new google.visualization.AreaChart(document.getElementById('Sarah_chart_div_d'));
         chart.draw(data, options);
       }
 
