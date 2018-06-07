@@ -49,7 +49,7 @@ class ServerInfoService
         $minutes = explode(".",(((($time % 31556926) % 86400) % 3600) / 60));
         $seconds = explode(".",((((($time % 31556926) % 86400) % 3600) / 60) / 60));
     
-        $uptime = $days[0].":".$hours[0].":".$minutes[0].":".$seconds[0];
+        $uptime = $days[0]." days, ".$hours[0]." hours, ".$minutes[0]." minutes ";
     
           
             return $uptime;
