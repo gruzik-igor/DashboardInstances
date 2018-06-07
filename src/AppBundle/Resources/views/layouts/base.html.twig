@@ -38,6 +38,10 @@
 
       // Draw the pie chart for Sarah's pizza when Charts is loaded.
       google.charts.setOnLoadCallback(drawSarahChart);
+      {# google.charts.setOnLoadCallback(drawSarahChart1);
+      google.charts.setOnLoadCallback(drawSarahChart2);
+      google.charts.setOnLoadCallback(drawSarahChart3);
+      google.charts.setOnLoadCallback(drawSarahChart4); #}
 
       // Draw the pie chart for the Anthony's pizza when Charts is loaded.
       google.charts.setOnLoadCallback(drawAnthonyChart);
@@ -61,6 +65,14 @@
         };
         // Instantiate and draw the chart for Sarah's pizza.
         var chart = new google.visualization.AreaChart(document.getElementById('Sarah_chart_div'));
+        chart.draw(data, options);
+        var chart = new google.visualization.AreaChart(document.getElementById('Sarah_chart_div1'));
+        chart.draw(data, options);
+        var chart = new google.visualization.AreaChart(document.getElementById('Sarah_chart_div2'));
+        chart.draw(data, options);
+        var chart = new google.visualization.AreaChart(document.getElementById('Sarah_chart_div3'));
+        chart.draw(data, options);
+        var chart = new google.visualization.AreaChart(document.getElementById('Sarah_chart_div4'));
         chart.draw(data, options);
       }
 
