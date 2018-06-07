@@ -3,9 +3,19 @@
 Chart.defaults.global.defaultFontFamily = '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
 Chart.defaults.global.defaultFontColor = '#292b2c';
 // -- Area Chart Example
+window.onload = function(){ 
+  var ctx = document.getElementById("activeInstancesChart").getContext("2d");
+  window.myBar1 = new Chart(ctx).Bar(myLineChart2, {
+      responsive : true
+  });
+  var ctx2 = document.getElementById("myAreaChart").getContext("2d");
+  window.myBar2 = new Chart(ctx2).Bar(myLineChart1, {
+      responsive : true
+  });
 
-var ctx = document.getElementById("myAreaChart");
-var myLineChart = new Chart(ctx, {
+}
+//var ctx = document.getElementById("myAreaChart");
+var myLineChart1 =  {
   type: 'line',
   data: {
     labels: ["Mar 1", "Mar 2", "Mar 3", "Mar 4", "Mar 5", "Mar 6", "Mar 7", "Mar 8", "Mar 9", "Mar 10", "Mar 11", "Mar 12", "Mar 13"],
@@ -52,7 +62,7 @@ var myLineChart = new Chart(ctx, {
       display: false
     }
   }
-});
+};
 // -- Bar Chart Example
 var ctx = document.getElementById("myBarChart");
 var myLineChart = new Chart(ctx, {
@@ -109,9 +119,9 @@ var myPieChart = new Chart(ctx, {
 });
 
 
-var ctx = document.getElementById("activeInstancesChart");
+//var ctx = document.getElementById("activeInstancesChart");
 
-window.myLineChart = new Chart(ctx, {
+var myLineChart2 =  {
   responsive:true,
   type: 'line',
   data: {
@@ -161,4 +171,5 @@ window.myLineChart = new Chart(ctx, {
     
   }
   
-});
+};
+
