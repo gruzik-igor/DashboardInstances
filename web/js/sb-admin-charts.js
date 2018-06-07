@@ -4,19 +4,8 @@ Chart.defaults.global.defaultFontFamily = '-apple-system,system-ui,BlinkMacSyste
 Chart.defaults.global.defaultFontColor = '#292b2c';
 // -- Area Chart Example
 
-window.onload = function() {
-  var ctx2 = document.getElementById("myAreaChart").getContext("2d");
- window.myLine = new Chart(ctx2, config1);
-
-
-  // var ctx = document.getElementById("canvas1").getContext("2d");
-  // window.myLine = new Chart(ctx, config2);
-
-}
-
-
 //var ctx = document.getElementById("myAreaChart");
-var myLineChart = new Chart(ctx, {
+new Chart(document.getElementById("myAreaChart"), {
   type: 'line',
   data: {
     labels: ["Mar 1", "Mar 2", "Mar 3", "Mar 4", "Mar 5", "Mar 6", "Mar 7", "Mar 8", "Mar 9", "Mar 10", "Mar 11", "Mar 12", "Mar 13"],
@@ -120,9 +109,9 @@ var myPieChart = new Chart(ctx, {
 });
 
 
-// var ctx = document.getElementById("activeInstancesChart");
+//var ctx = document.getElementById("activeInstancesChart");
 
-var config1 = {
+new Chart( document.getElementById("activeInstancesChart"), {
   type: 'line',
   data: {
     labels: ["Mar 1", "Mar 2", "Mar 3", "Mar 4", "Mar 5", "Mar 6", "Mar 7", "Mar 8", "Mar 9", "Mar 10", "Mar 11", "Mar 12", "Mar 13"],
@@ -169,5 +158,4 @@ var config1 = {
       display: false
     }
   }
-};
-
+});
