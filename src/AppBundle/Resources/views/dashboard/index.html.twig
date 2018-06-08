@@ -698,21 +698,23 @@
   
 
 <script type="text/javascript">
+
+$(document).ready(function(){
 // Load Charts and the corechart package.
       google.charts.load('current', {'packages':['corechart']});
 
       // Draw the pie chart for Sarah's pizza when Charts is loaded.
-      {# google.charts.setOnLoadCallback(drawSarahChart); #}
+      google.charts.setOnLoadCallback(drawSarahChart);
       google.charts.setOnLoadCallback(drawSarahCharta);
       google.charts.setOnLoadCallback(drawSarahChartb);
       google.charts.setOnLoadCallback(drawSarahChartc);
       google.charts.setOnLoadCallback(drawSarahChartd);
 
       // Draw the pie chart for the Anthony's pizza when Charts is loaded.
-      {# google.charts.setOnLoadCallback(drawAnthonyChart); #}
+      google.charts.setOnLoadCallback(drawAnthonyChart);
 
       // Callback that draws the pie chart for Sarah's pizza.
-      {# function drawSarahChart() {
+      function drawSarahChart() {
 
         // Create the data table for Sarah's pizza.
          var data = google.visualization.arrayToDataTable([
@@ -731,7 +733,7 @@
         // Instantiate and draw the chart for Sarah's pizza.
         var chart = new google.visualization.AreaChart(document.getElementById('Sarah_chart_div'));
         chart.draw(data, options);
-      } #}
+      }
 function drawSarahCharta() {
 
         // Create the data table for Sarah's pizza.
@@ -740,7 +742,7 @@ function drawSarahCharta() {
           ['2013',  1000,      400],
           ['2014',  1170,      460],
           ['2015',  660,       1120],
-          ['2016',  1030,      540]
+          ['2016',  1030,      1340]
         ]);
 
         var options = {
@@ -759,8 +761,8 @@ function drawSarahChartb() {
           ['Year', 'Sales', 'Expenses'],
           ['2013',  1000,      400],
           ['2014',  1170,      460],
-          ['2015',  660,       1120],
-          ['2016',  1030,      540]
+          ['2015',  1200,       1120],
+          ['2016',  1330,      1240]
         ]);
 
         var options = {
@@ -780,7 +782,7 @@ function drawSarahChartc() {
           ['2013',  1000,      400],
           ['2014',  1170,      460],
           ['2015',  660,       1120],
-          ['2016',  1030,      540]
+          ['2016',  1030,      1340]
         ]);
 
         var options = {
@@ -800,7 +802,7 @@ function drawSarahChartd() {
           ['2013',  1000,      400],
           ['2014',  1170,      460],
           ['2015',  660,       1120],
-          ['2016',  1030,      540]
+          ['2016',  1030,      1340]
         ]);
 
         var options = {
@@ -815,7 +817,7 @@ function drawSarahChartd() {
 
 
       // Callback that draws the pie chart for Anthony's pizza.
-      {# function drawAnthonyChart() {
+      function drawAnthonyChart() {
 
         // Create the data table for Anthony's pizza.
          var data = google.visualization.arrayToDataTable([
@@ -834,7 +836,9 @@ function drawSarahChartd() {
         // Instantiate and draw the chart for Anthony's pizza.
         var chart = new google.visualization.AreaChart(document.getElementById('Anthony_chart_div'));
         chart.draw(data, options);
-      } #}
+      }
+
+});
   </script>
 
 
