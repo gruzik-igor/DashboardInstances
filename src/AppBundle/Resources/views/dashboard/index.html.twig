@@ -1019,17 +1019,17 @@ var myLineChart5 =  {
   }
   
 };
-window.onload = function(){ 
-  var ctx = document.getElementById("totalRevenuesChart").getContext("2d");
-  window.myBar = new Chart(ctx).Bar(myLineChart5, {
+$(document).ready(function(){ 
+  var ctx5 = document.getElementById("totalRevenuesChart").getContext("2d");
+  window.myBar = new Chart(ctx5).Bar(myLineChart5, {
       responsive : true
   });
-  var ctx = document.getElementById("issuedLicensesChart").getContext("2d");
-  window.myBar = new Chart(ctx).Bar(myLineChart4, {
+  var ctx4 = document.getElementById("issuedLicensesChart").getContext("2d");
+  window.myBar = new Chart(ctx4).Bar(myLineChart4, {
       responsive : true
   });
-  var ctx = document.getElementById("suspendedInstancesChart").getContext("2d");
-  window.myBar = new Chart(ctx).Bar(myLineChart3, {
+  var ctx3 = document.getElementById("suspendedInstancesChart").getContext("2d");
+  window.myBar = new Chart(ctx3).Bar(myLineChart3, {
       responsive : true
   });
   var ctx = document.getElementById("activeInstancesChart").getContext("2d");
@@ -1041,7 +1041,7 @@ window.onload = function(){
       responsive : true
   });
 
-}
+});
 
 // Load Charts and the corechart package.
       google.charts.load('current', {'packages':['corechart']});
