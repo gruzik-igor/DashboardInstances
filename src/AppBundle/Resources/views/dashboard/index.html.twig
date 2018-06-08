@@ -1,159 +1,5 @@
 {% extends '@App/layouts/base.html.twig' %}
 
-{% block head %}
-
- <!-- Bootstrap core JavaScript-->
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
- <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-  <script type="text/javascript">
-$(document).ready(function(){
-// Load Charts and the corechart package.
-      google.charts.load('current', {'packages':['corechart']});
-
-      // Draw the pie chart for Sarah's pizza when Charts is loaded.
-      google.charts.setOnLoadCallback(drawSarahChart);
-      google.charts.setOnLoadCallback(drawSarahCharta);
-      google.charts.setOnLoadCallback(drawSarahChartb);
-      google.charts.setOnLoadCallback(drawSarahChartc);
-      google.charts.setOnLoadCallback(drawSarahChartd);
-
-      // Draw the pie chart for the Anthony's pizza when Charts is loaded.
-      google.charts.setOnLoadCallback(drawAnthonyChart);
-
-      // Callback that draws the pie chart for Sarah's pizza.
-      function drawSarahChart() {
-
-        // Create the data table for Sarah's pizza.
-         var data = google.visualization.arrayToDataTable([
-          ['Year', 'Sales', 'Expenses'],
-          ['2013',  1000,      400],
-          ['2014',  1170,      460],
-          ['2015',  660,       1120],
-          ['2016',  1030,      540]
-        ]);
-
-        var options = {
-          title: 'Company Performance',
-          hAxis: {title: 'Year',  titleTextStyle: {color: '#333'}},
-          vAxis: {minValue: 0}
-        };
-        // Instantiate and draw the chart for Sarah's pizza.
-        var chart = new google.visualization.AreaChart(document.getElementById('Sarah_chart_div'));
-        chart.draw(data, options);
-      }
-function drawSarahCharta() {
-
-        // Create the data table for Sarah's pizza.
-         var data = google.visualization.arrayToDataTable([
-          ['Year', 'Sales', 'Expenses'],
-          ['2013',  1000,      400],
-          ['2014',  1170,      460],
-          ['2015',  660,       1120],
-          ['2016',  1030,      1340]
-        ]);
-
-        var options = {
-          title: 'Company Performance1',
-          hAxis: {title: 'Year',  titleTextStyle: {color: '#333'}},
-          vAxis: {minValue: 0}
-        };
-        // Instantiate and draw the chart for Sarah's pizza.
-        var chart = new google.visualization.AreaChart(document.getElementById('Sarah_chart_div_a'));
-        chart.draw(data, options);
-      }
-function drawSarahChartb() {
-
-        // Create the data table for Sarah's pizza.
-         var data = google.visualization.arrayToDataTable([
-          ['Year', 'Sales', 'Expenses'],
-          ['2013',  1000,      400],
-          ['2014',  1170,      460],
-          ['2015',  1200,       1120],
-          ['2016',  1330,      1240]
-        ]);
-
-        var options = {
-          title: 'Company Performance2',
-          hAxis: {title: 'Year',  titleTextStyle: {color: '#333'}},
-          vAxis: {minValue: 0}
-        };
-        // Instantiate and draw the chart for Sarah's pizza.
-        var chart = new google.visualization.AreaChart(document.getElementById('Sarah_chart_div_b'));
-        chart.draw(data, options);
-      }
-function drawSarahChartc() {
-
-        // Create the data table for Sarah's pizza.
-         var data = google.visualization.arrayToDataTable([
-          ['Year', 'Sales', 'Expenses'],
-          ['2013',  1000,      400],
-          ['2014',  1170,      460],
-          ['2015',  660,       1120],
-          ['2016',  1030,      1340]
-        ]);
-
-        var options = {
-          title: 'Company Performance3',
-          hAxis: {title: 'Year',  titleTextStyle: {color: '#333'}},
-          vAxis: {minValue: 0}
-        };
-        // Instantiate and draw the chart for Sarah's pizza.
-        var chart = new google.visualization.AreaChart(document.getElementById('Sarah_chart_div_c'));
-        chart.draw(data, options);
-      }
-function drawSarahChartd() {
-
-        // Create the data table for Sarah's pizza.
-         var data = google.visualization.arrayToDataTable([
-          ['Year', 'Sales', 'Expenses'],
-          ['2013',  1000,      400],
-          ['2014',  1170,      460],
-          ['2015',  660,       1120],
-          ['2016',  1030,      1340]
-        ]);
-
-        var options = {
-          title: 'Company Performance4',
-          hAxis: {title: 'Year',  titleTextStyle: {color: '#333'}},
-          vAxis: {minValue: 0}
-        };
-        // Instantiate and draw the chart for Sarah's pizza.
-        var chart = new google.visualization.AreaChart(document.getElementById('Sarah_chart_div_d'));
-        chart.draw(data, options);
-      }
-
-
-      // Callback that draws the pie chart for Anthony's pizza.
-      function drawAnthonyChart() {
-
-        // Create the data table for Anthony's pizza.
-         var data = google.visualization.arrayToDataTable([
-          ['Year', 'Sales', 'Expenses'],
-          ['2013',  1589,      400],
-          ['2014',  1250,      460],
-          ['2015',  880,       1120],
-          ['2016',  1890,      540]
-        ]);
-
-        var options = {
-          title: 'Company Performance',
-          hAxis: {title: 'Year',  titleTextStyle: {color: '#ccc'}},
-          vAxis: {minValue: 0}
-        };
-        // Instantiate and draw the chart for Anthony's pizza.
-        var chart = new google.visualization.AreaChart(document.getElementById('Anthony_chart_div'));
-        chart.draw(data, options);
-      }
-
-});
-  </script>
-
-{% endblock %}
-
 {% block body %}
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
     <a class="navbar-brand" href="index.html">Dashboard instances</a>
@@ -844,9 +690,157 @@ function drawSarahChartd() {
     </div>
 </div>
 <div>    
-   
+    <!-- Bootstrap core JavaScript-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+// Load Charts and the corechart package.
+      google.charts.load('current', {'packages':['corechart']});
+
+      // Draw the pie chart for Sarah's pizza when Charts is loaded.
+      google.charts.setOnLoadCallback(drawSarahChart);
+      google.charts.setOnLoadCallback(drawSarahCharta);
+      google.charts.setOnLoadCallback(drawSarahChartb);
+      google.charts.setOnLoadCallback(drawSarahChartc);
+      google.charts.setOnLoadCallback(drawSarahChartd);
+
+      // Draw the pie chart for the Anthony's pizza when Charts is loaded.
+      google.charts.setOnLoadCallback(drawAnthonyChart);
+
+      // Callback that draws the pie chart for Sarah's pizza.
+      function drawSarahChart() {
+
+        // Create the data table for Sarah's pizza.
+         var data = google.visualization.arrayToDataTable([
+          ['Year', 'Sales', 'Expenses'],
+          ['2013',  1000,      400],
+          ['2014',  1170,      460],
+          ['2015',  660,       1120],
+          ['2016',  1030,      540]
+        ]);
+
+        var options = {
+          title: 'Company Performance',
+          hAxis: {title: 'Year',  titleTextStyle: {color: '#333'}},
+          vAxis: {minValue: 0}
+        };
+        // Instantiate and draw the chart for Sarah's pizza.
+        var chart = new google.visualization.AreaChart(document.getElementById('Sarah_chart_div'));
+        chart.draw(data, options);
+      }
+function drawSarahCharta() {
+
+        // Create the data table for Sarah's pizza.
+         var data = google.visualization.arrayToDataTable([
+          ['Year', 'Sales', 'Expenses'],
+          ['2013',  1000,      400],
+          ['2014',  1170,      460],
+          ['2015',  660,       1120],
+          ['2016',  1030,      1340]
+        ]);
+
+        var options = {
+          title: 'Company Performance1',
+          hAxis: {title: 'Year',  titleTextStyle: {color: '#333'}},
+          vAxis: {minValue: 0}
+        };
+        // Instantiate and draw the chart for Sarah's pizza.
+        var chart = new google.visualization.AreaChart(document.getElementById('Sarah_chart_div_a'));
+        chart.draw(data, options);
+      }
+function drawSarahChartb() {
+
+        // Create the data table for Sarah's pizza.
+         var data = google.visualization.arrayToDataTable([
+          ['Year', 'Sales', 'Expenses'],
+          ['2013',  1000,      400],
+          ['2014',  1170,      460],
+          ['2015',  1200,       1120],
+          ['2016',  1330,      1240]
+        ]);
+
+        var options = {
+          title: 'Company Performance2',
+          hAxis: {title: 'Year',  titleTextStyle: {color: '#333'}},
+          vAxis: {minValue: 0}
+        };
+        // Instantiate and draw the chart for Sarah's pizza.
+        var chart = new google.visualization.AreaChart(document.getElementById('Sarah_chart_div_b'));
+        chart.draw(data, options);
+      }
+function drawSarahChartc() {
+
+        // Create the data table for Sarah's pizza.
+         var data = google.visualization.arrayToDataTable([
+          ['Year', 'Sales', 'Expenses'],
+          ['2013',  1000,      400],
+          ['2014',  1170,      460],
+          ['2015',  660,       1120],
+          ['2016',  1030,      1340]
+        ]);
+
+        var options = {
+          title: 'Company Performance3',
+          hAxis: {title: 'Year',  titleTextStyle: {color: '#333'}},
+          vAxis: {minValue: 0}
+        };
+        // Instantiate and draw the chart for Sarah's pizza.
+        var chart = new google.visualization.AreaChart(document.getElementById('Sarah_chart_div_c'));
+        chart.draw(data, options);
+      }
+function drawSarahChartd() {
+
+        // Create the data table for Sarah's pizza.
+         var data = google.visualization.arrayToDataTable([
+          ['Year', 'Sales', 'Expenses'],
+          ['2013',  1000,      400],
+          ['2014',  1170,      460],
+          ['2015',  660,       1120],
+          ['2016',  1030,      1340]
+        ]);
+
+        var options = {
+          title: 'Company Performance4',
+          hAxis: {title: 'Year',  titleTextStyle: {color: '#333'}},
+          vAxis: {minValue: 0}
+        };
+        // Instantiate and draw the chart for Sarah's pizza.
+        var chart = new google.visualization.AreaChart(document.getElementById('Sarah_chart_div_d'));
+        chart.draw(data, options);
+      }
 
 
+      // Callback that draws the pie chart for Anthony's pizza.
+      function drawAnthonyChart() {
+
+        // Create the data table for Anthony's pizza.
+         var data = google.visualization.arrayToDataTable([
+          ['Year', 'Sales', 'Expenses'],
+          ['2013',  1589,      400],
+          ['2014',  1250,      460],
+          ['2015',  880,       1120],
+          ['2016',  1890,      540]
+        ]);
+
+        var options = {
+          title: 'Company Performance',
+          hAxis: {title: 'Year',  titleTextStyle: {color: '#ccc'}},
+          vAxis: {minValue: 0}
+        };
+        // Instantiate and draw the chart for Anthony's pizza.
+        var chart = new google.visualization.AreaChart(document.getElementById('Anthony_chart_div'));
+        chart.draw(data, options);
+      }
+
+});
+  </script>
 
 
 {% endblock %}
