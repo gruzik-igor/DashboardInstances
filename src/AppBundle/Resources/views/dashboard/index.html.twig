@@ -691,15 +691,18 @@
 </div>
 <div>    
     <!-- Bootstrap core JavaScript-->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-  
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 
 <script type="text/javascript">
 
+$(function () {
+    $('#myTab li:last-child a').tab('show')
+  });
 $(document).ready(function(){
 // Load Charts and the corechart package.
       google.charts.load('current', {'packages':['corechart']});
@@ -728,6 +731,8 @@ $(document).ready(function(){
 
         var options = {
           title: 'Company Performance',
+          width:400,
+          height:300,
           hAxis: {title: 'Year',  titleTextStyle: {color: '#333'}},
           vAxis: {minValue: 0}
         };
@@ -748,6 +753,8 @@ function drawSarahCharta() {
 
         var options = {
           title: 'Company Performance1',
+          width:400,
+          height:300,
           hAxis: {title: 'Year',  titleTextStyle: {color: '#333'}},
           vAxis: {minValue: 0}
         };
@@ -768,6 +775,8 @@ function drawSarahChartb() {
 
         var options = {
           title: 'Company Performance2',
+          width:400,
+          height:300,
           hAxis: {title: 'Year',  titleTextStyle: {color: '#333'}},
           vAxis: {minValue: 0}
         };
@@ -775,6 +784,7 @@ function drawSarahChartb() {
         var chart = new google.visualization.AreaChart(document.getElementById('Sarah_chart_div_b'));
         chart.draw(data, options);
       }
+
 function drawSarahChartc() {
 
         // Create the data table for Sarah's pizza.
@@ -788,6 +798,8 @@ function drawSarahChartc() {
 
         var options = {
           title: 'Company Performance3',
+          width:400,
+          height:300,
           hAxis: {title: 'Year',  titleTextStyle: {color: '#333'}},
           vAxis: {minValue: 0}
         };
@@ -808,6 +820,8 @@ function drawSarahChartd() {
 
         var options = {
           title: 'Company Performance4',
+          width:400,
+          height:300,
           hAxis: {title: 'Year',  titleTextStyle: {color: '#333'}},
           vAxis: {minValue: 0}
         };
