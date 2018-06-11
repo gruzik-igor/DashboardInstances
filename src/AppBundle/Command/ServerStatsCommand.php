@@ -21,7 +21,7 @@ class ServerStatsCommand extends EndlessContainerAwareCommand
     {
         $filePath = $this->getContainer()->get('kernel')->getRootDir() . '/../web/reports';
 
-        $reportFile = fopen($filePath.'/report.json', 'wr');
+        $reportFile = fopen($filePath.'/report.json', 'w+');
         
         $serverStatServices = $this->getContainer()->get('app.server_info.service');
 
@@ -29,8 +29,8 @@ class ServerStatsCommand extends EndlessContainerAwareCommand
         $today = $today->format('m-d H:i:s');
         $cpuReport = fread($reportFile, filesize($filePath));
 
-        $cpuPercentage = $serverStatServices->getSystemCpuInfo();
-        $cpuPercentage = $cpuPercentage['sysstat']['hosts'][0]['statistics'][0]['cpu-load'][0]['usr'] + $cpuPercentage['sysstat']['hosts'][0]['statistics'][0]['cpu-load'][0]['sys'];
+        $cpuPercentage = intval(100 - $serverStatServices->getSystemCpuInfo()['sysstat']['hosts'][0]['statistics'][0]['cpu-load'][0]['idle']);
+        
         if ($cpuReport) {
             $cpuInfoArray = array_merge(json_decode($cpuReport, true), [$today, $cpuPercentage]);
         }
