@@ -32,11 +32,7 @@ class ServerInfoService
     }
     
     public  function getSystemCpuInfo($coreCount = 1, $interval = 1) {
-            $rs = sys_getloadavg();
-            $interval = $interval >= 1 && 3 <= $interval ? $interval : 1;
-            $load = $rs[$interval];
-            $cpuinfo = ($load * 100) / $coreCount;
-            return $cpuinfo;
+            return shell_exec("echo $[100-$(vmstat 1 2|tail -1|awk '{print $15}')]");
         }
 
     public   function getServerUptime() {

@@ -21,16 +21,13 @@ class ServerStatsCommand extends EndlessContainerAwareCommand
 	{
         $filePath = $this->getContainer()->get('kernel')->getRootDir() . '/../web/reports';
 
-        $reportFile = fopen($filePath.'/report.json', 'w');
+        $reportFile = fopen($filePath.'/report.json', 'wr');
         
         $serverStatServices = $this->getContainer()->get('app.server_info.service');
         $today = new \DateTime();
         $today = $today->format('m-d H:i:s');
-
-        $cpuInfoArray = [
-            ['Period', 'CPU'],
-            [$today, $serverStatServices->getSystemCpuInfo()]
-        ];
+        $cpuReport = fread($reportFile);
+        $cpuInfoArray = array_merge(json_decode($cpuReport), [$today, $serverStatServices->getSystemCpuInfo()]);
         
         fwrite($reportFile, json_encode($cpuInfoArray));
         fclose($reportFile);
