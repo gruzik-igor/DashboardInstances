@@ -29,7 +29,7 @@ class ServerStatsCommand extends EndlessContainerAwareCommand
         $today = $today->format('m-d H:i:s');
         $cpuReport = fread($reportFile, filesize($filePath));
 
-        $cpuPercentage = $serverStatServices->getSystemCpuInfo()['sysstat']['hosts'][0]['cpu-load'][0]['usr'];
+        $cpuPercentage = $serverStatServices->getSystemCpuInfo()['sysstat']['hosts'][0]['statistics'][0]['cpu-load'][0]['usr'];
         if ($cpuReport) {
             $cpuInfoArray = array_merge(json_decode($cpuReport, true), [$today, $cpuPercentage]);
         }
