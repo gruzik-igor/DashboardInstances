@@ -32,7 +32,9 @@ class ServerInfoService
     }
     
     public  function getSystemCpuInfo($coreCount = 1, $interval = 1) {
-            return exec('echo $[100-$(vmstat 1 2|tail -1|awk \'{print $15}\')]');
+           $cpuInfo = json_decode(exec('mpstat -o JSON'), true);
+
+           return $cpuInfo;
         }
 
     public   function getServerUptime() {
