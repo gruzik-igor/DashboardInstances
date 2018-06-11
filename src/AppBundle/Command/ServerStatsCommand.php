@@ -36,7 +36,7 @@ class ServerStatsCommand extends EndlessContainerAwareCommand
         if ($tempArray) {
             $tempArray[] = $cpuInfoArray;
         }else {
-            $tempArray = $cpuInfoArray;
+            $tempArray = [$cpuInfoArray];
         }
         
         file_put_contents($filePath.'/report.json', json_encode($tempArray));        
