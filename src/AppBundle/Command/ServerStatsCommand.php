@@ -19,16 +19,10 @@ class ServerStatsCommand extends EndlessCommand
 	// Execute will be called in a endless loop
 	protected function execute(InputInterface $input, OutputInterface $output)
 	{
-		// Tell the user what we're going to do.
-		// This will be a NullOutput if the user doesn't want any output at all,
-		//  so you don't have to do any checks, just always write to the output.
-		$output->write('Updating timestamp... ');
-
-		// Do some work
-		file_put_contents( '/tmp/acme-timestamp.txt', time() );
-
-		// Tell the user we're done
-		$output->writeln('done');
+        $reportFile = fopen('reports/report.json', 'w');
+        $serverStatServices = $this->getContainer()->get('app.server_info.service');
+        var_dump($serverStatServices);
+        
     }
     
 }
