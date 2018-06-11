@@ -29,14 +29,15 @@ class ServerStatsCommand extends EndlessContainerAwareCommand
 
         $cpuPercentage = intval(100 - $serverStatServices->getSystemCpuInfo()['sysstat']['hosts'][0]['statistics'][0]['cpu-load'][0]['idle']);
         
-        $cpuInfoArray = [[$today, $cpuPercentage]];
+        $cpuInfoArray = [$today, $cpuPercentage];
 
         $inp = file_get_contents($filePath.'/report.json');
         $tempArray = json_decode($inp, true);
         if ($tempArray) {
             array_push($tempArray, $cpuInfoArray);
         }
-        file_put_contents($filePath.'/report.json', json_encode($cpuInfoArray), FILE_APPEND);        
+        
+        file_put_contents($filePath.'/report.json', json_encode($tempArray), FILE_APPEND);        
     }
     
 }
