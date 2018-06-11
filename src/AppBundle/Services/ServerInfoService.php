@@ -32,9 +32,11 @@ class ServerInfoService
     }
     
     public  function getSystemCpuInfo($coreCount = 1, $interval = 1) {
-           $cpuInfo = json_decode(shell_exec('mpstat -o JSON'), true);
-
-           return $cpuInfo;
+            $rs = sys_getloadavg();
+            $interval = $interval >= 1 && 3 <= $interval ? $interval : 1;
+            $load = $rs[$interval];
+            $cpuinfo = ($load * 100) / $coreCount;
+            return $cpuinfo;
         }
 
     public   function getServerUptime() {
