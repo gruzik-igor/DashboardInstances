@@ -27,7 +27,7 @@ class ServerStatsCommand extends EndlessContainerAwareCommand
         $today = new \DateTime();
         $today = $today->format('m-d H:i:s');
 
-        $cpuPercentage = intval(100 - $serverStatServices->getSystemCpuInfo()['sysstat']['hosts'][0]['statistics'][0]['cpu-load'][0]['idle']);
+        $cpuPercentage = round(100 - $serverStatServices->getSystemCpuInfo()['sysstat']['hosts'][0]['statistics'][0]['cpu-load'][0]['idle'],2);
         
         $cpuInfoArray = [$today, $cpuPercentage];
 

@@ -686,20 +686,13 @@ $(function () {
 
       // Callback that draws the pie chart for Sarah's pizza.
       function drawResoursesChart() {
-
+      var jsonData = $.ajax({
+          url: "http://cubereviews.com/reports/report.json",
+          dataType: "json",
+          async: false
+          }).responseText;
         // Create the data table for Sarah's pizza.
-         var data = google.visualization.arrayToDataTable([
-          ['Period', 'CPU', 'HDD', 'RAM'],
-          ['01.01',  0.4,      400,   250],
-          ['01.02',  0.2,      460,   189],
-          ['01.03',  0.6,      1120,  358],
-          ['01.04',  0.3,      550,   225],
-          ['01.05',  0.4,      240,   248],
-          ['01.06',  0.4,      450,   255],
-          ['01.07',  0.5,      388,   320],
-          ['01.08',  0.2,      400,   189],
-          ['01.09',  0.3,      230,   283]
-        ]);
+         var data = google.visualization.arrayToDataTable(jsonData);
 
         var options = {
          // title: 'CPU, RAM and HDD usage:',
