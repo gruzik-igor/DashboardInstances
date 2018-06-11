@@ -2,6 +2,10 @@
 
 namespace AppBundle\Command;
 
+use Wrep\Daemonizable\Command\EndlessCommand;
+use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Input\InputInterface;
+
 class ServerStatsCommand extends EndlessCommand
 
 {
