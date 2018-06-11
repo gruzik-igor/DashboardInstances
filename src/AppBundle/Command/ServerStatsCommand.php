@@ -2,11 +2,11 @@
 
 namespace AppBundle\Command;
 
-use Wrep\Daemonizable\Command\EndlessCommand;
+use Wrep\Daemonizable\Command\EndlessContainerAwareCommand;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Input\InputInterface;
 
-class ServerStatsCommand extends EndlessCommand
+class ServerStatsCommand extends EndlessContainerAwareCommand
 
 {
 	// This is just a normal Command::configure() method
