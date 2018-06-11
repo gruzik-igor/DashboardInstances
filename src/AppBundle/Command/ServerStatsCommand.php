@@ -24,16 +24,16 @@ class ServerStatsCommand extends EndlessContainerAwareCommand
         $reportFile = fopen($filePath.'/report.json', 'wr');
         
         $serverStatServices = $this->getContainer()->get('app.server_info.service');
-        var_dump($serverStatServices->getSystemCpuInfo()); die;
 
         $today = new \DateTime();
         $today = $today->format('m-d H:i:s');
         $cpuReport = fread($reportFile, filesize($filePath));
+        $cpuPercentage = $serverStatServices->getSystemCpuInfo()['cp-load'][0]['usr'];
         if ($cpuReport) {
-            $cpuInfoArray = array_merge(json_decode($cpuReport, true), [$today, $serverStatServices->getSystemCpuInfo()]);
+            $cpuInfoArray = array_merge(json_decode($cpuReport, true), [$today, $cpuPercentage]);
         }
         else {
-            $cpuInfoArray = [$today, $serverStatServices->getSystemCpuInfo()];
+            $cpuInfoArray = [$today, $cpuPercentage];
         }
         
         fwrite($reportFile, json_encode($cpuInfoArray));
