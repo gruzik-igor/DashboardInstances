@@ -2,9 +2,11 @@
 
 namespace AppBundle\Command;
 
+use Cronfig\Sysinfo\AbstractOs;
 use Wrep\Daemonizable\Command\EndlessContainerAwareCommand;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Input\InputInterface;
+use Cronfig\Sysinfo\System;
 
 class ServerStatsCommand extends EndlessContainerAwareCommand
 
@@ -19,25 +21,21 @@ class ServerStatsCommand extends EndlessContainerAwareCommand
 	// Execute will be called in a endless loop
 	protected function execute(InputInterface $input, OutputInterface $output)
     {
+        $system = new System;
+        $os = $system->getOs();
+
         $filePath = $this->getContainer()->get('kernel')->getRootDir() . '/../web/reports';
 
-        
-        $serverStatServices = $this->getContainer()->get('app.server_info.service');
-
         $today = new \DateTime();
-        $today = $today->format('m-d H:i:s');
+        $today = $today->format('H:i:s');
 
-        $cpuPercentage = intval(100 - $serverStatServices->getSystemCpuInfo()['sysstat']['hosts'][0]['statistics'][0]['cpu-load'][0]['idle']);
+        $cpuPercentage = $os->getLoadPercentage(AbstractOs::TIMEFRAME_1_MIN);
         
-        $cpuInfoArray = [$today, $cpuPercentage];
+        $cpuInfoArray = ['c' => [['v' => $today, 'f' => null], ['v' => $cpuPercentage, 'f' => null]]];
 
         $inp = file_get_contents($filePath.'/report.json');
         $tempArray = json_decode($inp, true);
-        if ($tempArray) {
-            $tempArray[] = $cpuInfoArray;
-        }else {
-            $tempArray = [$cpuInfoArray];
-        }
+        $tempArray['rows'][] = $cpuInfoArray;
         
         file_put_contents($filePath.'/report.json', json_encode($tempArray));        
     }
