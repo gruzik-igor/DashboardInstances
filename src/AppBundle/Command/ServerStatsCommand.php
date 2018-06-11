@@ -19,12 +19,13 @@ class ServerStatsCommand extends EndlessContainerAwareCommand
 	// Execute will be called in a endless loop
 	protected function execute(InputInterface $input, OutputInterface $output)
     {
-        var_dump($serverStatServices->getSystemCpuInfo()); die;
         $filePath = $this->getContainer()->get('kernel')->getRootDir() . '/../web/reports';
 
         $reportFile = fopen($filePath.'/report.json', 'wr');
         
         $serverStatServices = $this->getContainer()->get('app.server_info.service');
+        var_dump($serverStatServices->getSystemCpuInfo()); die;
+
         $today = new \DateTime();
         $today = $today->format('m-d H:i:s');
         $cpuReport = fread($reportFile, filesize($filePath));
