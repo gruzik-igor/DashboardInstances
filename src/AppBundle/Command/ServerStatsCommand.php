@@ -26,7 +26,7 @@ class ServerStatsCommand extends EndlessContainerAwareCommand
         $serverStatServices = $this->getContainer()->get('app.server_info.service');
         $today = new \DateTime();
         $today = $today->format('m-d H:i:s');
-        $cpuReport = fread($reportFile);
+        $cpuReport = fread($reportFile, filesize($filePath));
         $cpuInfoArray = array_merge(json_decode($cpuReport), [$today, $serverStatServices->getSystemCpuInfo()]);
         
         fwrite($reportFile, json_encode($cpuInfoArray));
