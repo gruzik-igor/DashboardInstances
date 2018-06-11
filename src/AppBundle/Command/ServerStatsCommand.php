@@ -19,8 +19,8 @@ class ServerStatsCommand extends EndlessContainerAwareCommand
 	// Execute will be called in a endless loop
 	protected function execute(InputInterface $input, OutputInterface $output)
 	{
-        $rootDir = $this->getParameter('kernel.root_dir');
-        $reportFile = fopen($rootDir.'/reports/report.json', 'w');
+        //$rootDir = $this->getParameter('kernel.root_dir');
+        //$reportFile = fopen($rootDir.'/reports/report.json', 'w');
         $serverStatServices = $this->getContainer()->get('app.server_info.service');
         var_dump($serverStatServices);
         
