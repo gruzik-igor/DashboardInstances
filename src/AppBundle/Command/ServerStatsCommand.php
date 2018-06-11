@@ -33,7 +33,9 @@ class ServerStatsCommand extends EndlessContainerAwareCommand
 
         $inp = file_get_contents($filePath.'/report.json');
         $tempArray = json_decode($inp);
-        array_push($tempArray, $cpuInfoArray);
+        if ($tempArray) {
+            array_push($tempArray, $cpuInfoArray);
+        }
         file_put_contents($filePath.'/report.json', json_encode($cpuInfoArray), FILE_APPEND);        
     }
     
