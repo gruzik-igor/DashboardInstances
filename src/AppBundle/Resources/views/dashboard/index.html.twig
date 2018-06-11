@@ -215,7 +215,7 @@
       </ol>
       <!-- Icon Cards-->
 
-        <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <ul class="nav nav-tabs mb-3" id="myTab" role="tablist">
 
             <li class="nav-item">
                 <a class="nav-link active" id="summary-tab" data-toggle="tab" href="#summary" role="tab" aria-controls="summary" aria-selected="false">Summary</a>
@@ -238,9 +238,9 @@
             
                 <div class="tab-pane fade show active" id="summary" role="tabpanel" aria-labelledby="summary-tab">
                     
-                    <div class="col-xl-12 col-sm-12 mb-12">
+                    <div class="col-xl-12 col-sm-12 mb-2">
                         <div class="card-body alert alert-info" role="alert">
-                            <p>You have 5 active instances, 2 suspended instances and 2 instances that requared your attention.</p>
+                            <span>You have 5 active instances, 2 suspended instances and 2 instances that requared your attention.</span>
                         </div>    
                     </div>
                     
@@ -690,21 +690,21 @@ $(function () {
         // Create the data table for Sarah's pizza.
          var data = google.visualization.arrayToDataTable([
           ['Period', 'CPU', 'HDD', 'RAM'],
-          ['01.01.2017',  0.4,      400,   250],
-          ['01.02.2017',  0.2,      460,   189],
-          ['01.03.2017',  0.6,      1120,  358],
-          ['01.04.2017',  0.3,      550,   225],
-          ['01.05.2017',  0.4,      240,   248],
-          ['01.06.2017',  0.4,      450,   255],
-          ['01.07.2017',  0.5,      388,   320],
-          ['01.08.2017',  0.2,      400,   189],
-          ['01.09.2017',  0.3,      230,   283]
+          ['01.01',  0.4,      400,   250],
+          ['01.02',  0.2,      460,   189],
+          ['01.03',  0.6,      1120,  358],
+          ['01.04',  0.3,      550,   225],
+          ['01.05',  0.4,      240,   248],
+          ['01.06',  0.4,      450,   255],
+          ['01.07',  0.5,      388,   320],
+          ['01.08',  0.2,      400,   189],
+          ['01.09',  0.3,      230,   283]
         ]);
 
         var options = {
          // title: 'CPU, RAM and HDD usage:',
           height:300,
-          hAxis: {title: 'Year',  titleTextStyle: {color: '#333'}},
+          hAxis: {title: 'Year 2017',  titleTextStyle: {color: '#333'}},
           vAxis: {minValue: 0}
         };
         // Instantiate and draw the chart for Sarah's pizza.
