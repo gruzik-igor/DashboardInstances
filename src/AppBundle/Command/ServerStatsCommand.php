@@ -83,13 +83,17 @@ class ServerStatsCommand extends EndlessContainerAwareCommand
         $today = new \DateTime();
         $today = $today->format('H:i:s');
 
-        $HDD = shell_exec('df -h');
+        //$HDD = shell_exec('df -h');
         // $tempHDD = (array)trim($HDD);
-        $tempHDD = explode(" ", $HDD);
-        $tempHDD = explode("/", $tempHDD[0]);
-        $tempHDD = array_filter($tempHDD);
-        $hddUsage = array_merge($tempHDD);
-           var_dump($hddUsage);die;
+        $disktotal = disk_total_space ('/');
+        $diskfree  = disk_free_space  ('/');
+        // $tempHDD = explode(" ", $HDD);
+        // $tempHDD = explode("/", $tempHDD);
+        // $tempHDD = array_filter($tempHDD);
+        // $hddUsage = array_merge($tempHDD);
+        $hddUsage = $disktotal - $diskfree;
+        $hddUsage = $os->$hddUsage;
+           //var_dump($hddUsage);die;
         // $hddUsage = $this->$os->$hddUsage['MemTotal'];
         
         $hddInfoArray = ['c' => [['v' => $today, 'f' => null], ['v' => $hddUsage.'GB', 'f' => null]]];
