@@ -84,14 +84,15 @@ class ServerStatsCommand extends EndlessContainerAwareCommand
         $today = $today->format('H:i:s');
 
         $HDD = shell_exec('df -h');
-
-        $tempHDD = explode(" ", $HDD);
+        $tempHDD = (string)trim($HDD);
+        $tempHDD = explode("\n",$tempHDD);
+        $tempHDD = explode(" ", $tempHDD);
         $tempHDD = array_filter($tempHDD);
-
+        $hddUsage = array_merge($tempHDD);
         //var_dump($tempHDD);die;
         //$hddUsage = $this->formatBytes($os->getCurrentMemoryUsage());
         
-        $hddInfoArray = ['c' => [['v' => $today, 'f' => null], ['v' => $tempHDD.'GB', 'f' => null]]];
+        $hddInfoArray = ['c' => [['v' => $today, 'f' => null], ['v' => $hddUsage.'GB', 'f' => null]]];
 
         $inp = file_get_contents($filePath.'/reportHDD.json');
         $tempArray = json_decode($inp, true);
