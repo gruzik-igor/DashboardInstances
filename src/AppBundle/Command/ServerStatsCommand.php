@@ -84,7 +84,7 @@ class ServerStatsCommand extends EndlessContainerAwareCommand
         $today = $today->format('H:i:s');
 
         $HDD = shell_exec('df -h');
-        $tempHDD = (string)trim($HDD);
+        $tempHDD = (array)trim($HDD);
         $tempHDD = explode("\n",$tempHDD);
         $tempHDD = explode(" ", $tempHDD[1]);
         $tempHDD = array_filter($tempHDD);
