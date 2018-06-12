@@ -31,7 +31,7 @@ class ServerInfoService
         
     }
     
-    public  function getSystemCpuInfo($coreCount = 1, $interval = 1) {
+    public  function getSystemCpuInfo() {
         $cpuInfo = json_decode(shell_exec('mpstat -o JSON'), true);
 
         return $cpuInfo;
