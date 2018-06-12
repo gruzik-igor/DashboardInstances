@@ -23,8 +23,11 @@ class ServerStatsCommand extends EndlessContainerAwareCommand
     {
         $this->reportCPU();
         $this->reportRAM();
+        $this->reportHDD();
+        
     }
 
+    // CPU resourses usage 
     protected function reportCPU()
     {
         $system = new System;
@@ -37,7 +40,7 @@ class ServerStatsCommand extends EndlessContainerAwareCommand
 
         $cpuPercentage = $os->getLoadPercentage(AbstractOs::TIMEFRAME_1_MIN);
         
-        $cpuInfoArray = ['c' => [['v' => $today, 'f' => null], ['v' => $cpuPercentage, 'f' => null]]];
+        $cpuInfoArray = ['c' => [['v' => $today, 'f' => null], ['v' => $cpuPercentage.' %', 'f' => null]]];
 
         $inp = file_get_contents($filePath.'/reportCPU.json');
         $tempArray = json_decode($inp, true);
@@ -46,6 +49,8 @@ class ServerStatsCommand extends EndlessContainerAwareCommand
         file_put_contents($filePath.'/reportCPU.json', json_encode($tempArray)); 
              
     }
+
+    // RAM resourses usage 
     protected function reportRAM()
     {
         $system = new System;
@@ -58,7 +63,7 @@ class ServerStatsCommand extends EndlessContainerAwareCommand
 
         $ramUsage = $this->formatBytes($os->getCurrentMemoryUsage());
         
-        $ramInfoArray = ['c' => [['v' => $today, 'f' => null], ['v' => $ramUsage, 'f' => null]]];
+        $ramInfoArray = ['c' => [['v' => $today, 'f' => null], ['v' => $ramUsage.'MB', 'f' => null]]];
 
         $inp = file_get_contents($filePath.'/reportRAM.json');
         $tempArray = json_decode($inp, true);
@@ -66,6 +71,36 @@ class ServerStatsCommand extends EndlessContainerAwareCommand
         
         file_put_contents($filePath.'/reportRAM.json', json_encode($tempArray));        
     }
+
+     // HDD resourses usage 
+    protected function reportHDD()
+    {
+        $system = new System;
+        $os = $system->getOs();
+        
+        $filePath = $this->getContainer()->get('kernel')->getRootDir() . '/../web/reports';
+
+        $today = new \DateTime();
+        $today = $today->format('H:i:s');
+
+        $HDD = shell_exec('df -h');
+
+        $tempHDD = explode(" ", $HDD);
+        $tempHDD = array_filter($tempHDD);
+
+        var_dump($tempHDD);die;
+        $hddUsage = $this->formatBytes($os->getCurrentMemoryUsage());
+        
+        $hddInfoArray = ['c' => [['v' => $today, 'f' => null], ['v' => $ramUsage.'GB', 'f' => null]]];
+
+        $inp = file_get_contents($filePath.'/reportHDD.json');
+        $tempArray = json_decode($inp, true);
+        $tempArray['rows'][] = $hddInfoArray;
+        
+        file_put_contents($filePath.'/reportHDD.json', json_encode($tempArray));        
+    }
+
+    // Convert from bytes
     private function formatBytes($size, $precision = 2)
     {
         $base = log($size, 1024);
