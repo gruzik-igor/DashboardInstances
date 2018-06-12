@@ -93,7 +93,7 @@ class ServerStatsCommand extends EndlessContainerAwareCommand
         // $hddUsage = array_merge($tempHDD);
         $hddUsage = $disktotal - $diskfree;
         
-           //var_dump($hddUsage);die;
+           var_dump($hddUsage);die;
         // $hddUsage = $this->$os->$hddUsage['MemTotal'];
         
         $hddInfoArray = ['c' => [['v' => $today, 'f' => null], ['v' => $hddUsage.'GB', 'f' => null]]];
