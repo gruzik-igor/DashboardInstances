@@ -88,8 +88,8 @@ class ServerStatsCommand extends EndlessContainerAwareCommand
         $tempHDD = explode(" ", $HDD);
         $tempHDD = array_filter($tempHDD);
 
-        var_dump($tempHDD);die;
-        $hddUsage = $this->formatBytes($os->getCurrentMemoryUsage());
+        //var_dump($tempHDD);die;
+        //$hddUsage = $this->formatBytes($os->getCurrentMemoryUsage());
         
         $hddInfoArray = ['c' => [['v' => $today, 'f' => null], ['v' => $ramUsage.'GB', 'f' => null]]];
 
