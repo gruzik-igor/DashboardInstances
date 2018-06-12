@@ -84,9 +84,9 @@ class ServerStatsCommand extends EndlessContainerAwareCommand
         $today = $today->format('H:i:s');
 
         $HDD = shell_exec('df -h');
-        $tempHDD = (array)trim($HDD);
-        $tempHDD = explode("\n",$tempHDD);
-        $tempHDD = explode(" ", $tempHDD[1]);
+        // $tempHDD = (array)trim($HDD);
+        // $tempHDD = explode("\n",$tempHDD);
+        $tempHDD = explode(" ", $HDD);
         $tempHDD = array_filter($tempHDD);
         $hddUsage = array_merge($tempHDD);
         $hddUsage['MemTotal'] = $hddUsage[1];
