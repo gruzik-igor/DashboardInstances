@@ -43,7 +43,8 @@ class ServerStatsCommand extends EndlessContainerAwareCommand
         $tempArray = json_decode($inp, true);
         $tempArray['rows'][] = $cpuInfoArray;
         
-        file_put_contents($filePath.'/reportCPU.json', json_encode($tempArray));        
+        file_put_contents($filePath.'/reportCPU.json', json_encode($tempArray)); 
+             
     }
     protected function reportRAM()
     {
@@ -55,15 +56,22 @@ class ServerStatsCommand extends EndlessContainerAwareCommand
         $today = new \DateTime();
         $today = $today->format('H:i:s');
 
-        $cpuPercentage = $os->getCurrentMemoryUsage();
+        $ramUsage = $this->formatBytes($os->getCurrentMemoryUsage());
         
-        $cpuInfoArray = ['c' => [['v' => $today, 'f' => null], ['v' => $cpuPercentage, 'f' => null]]];
+        $ramInfoArray = ['c' => [['v' => $today, 'f' => null], ['v' => $ramUsage, 'f' => null]]];
 
         $inp = file_get_contents($filePath.'/reportRAM.json');
         $tempArray = json_decode($inp, true);
-        $tempArray['rows'][] = $cpuInfoArray;
+        $tempArray['rows'][] = $ramInfoArray;
         
         file_put_contents($filePath.'/reportRAM.json', json_encode($tempArray));        
     }
+    private function formatBytes($size, $precision = 2)
+    {
+        $base = log($size, 1024);
+        $suffixes = array('', 'K', 'M', 'G', 'T');   
+    
+        return round(pow(1024, $base - floor($base)), $precision);
+    } 
     
 }
