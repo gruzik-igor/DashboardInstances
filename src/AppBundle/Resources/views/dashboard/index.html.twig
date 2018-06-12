@@ -272,13 +272,26 @@
 
                 <div class="col-xl-12 col-sm-12 mb-12">
                     <div class="row">
-                        <div class="col-lg-12">
+                        <div class="col-lg-6">
                             <div class="card mb-3">
                                 <div class="card-header">
-                                    <i class="fa fa-area-chart"></i> CPU, RAM and HDD usage:
+                                    <i class="fa fa-area-chart"></i> CPU usage:
                                 </div>
                                 <div class="card-body">
                                     <div id="CPU_chart_div"></div>
+                                    {# <canvas id="myAreaChart" width="100%" height="40"></canvas> #}
+                                </div>
+
+                                <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="card mb-3">
+                                <div class="card-header">
+                                    <i class="fa fa-area-chart"></i> RAM  usage:
+                                </div>
+                                <div class="card-body">
+                                    <div id="RAM_chart_div"></div>
                                     {# <canvas id="myAreaChart" width="100%" height="40"></canvas> #}
                                 </div>
 
@@ -289,7 +302,7 @@
                             <!-- Example Bar Chart Card-->
                             <div class="card mb-3">
                                 <div class="card-header">
-                                    <i class="fa fa-bar-chart"></i> Server usage:
+                                    <i class="fa fa-bar-chart"></i> Instance usage:
                                 </div>
                                 <div class="card-body">
                                     <div class="row">
@@ -315,6 +328,7 @@
                                         <div class="col-sm-3 text-center my-auto">    
                                             <div class="h5 mb-0 text-success">100 GB of 250 GBs</div>
                                             <div class="small text-muted">HDD Backup Spaces</div>
+                                            <hr>
                                         </div>
                                     </div>
                                 </div>
@@ -698,167 +712,132 @@
         </div>
     </div>
     <div>
-        <!-- Bootstrap core JavaScript-->
+<!-- Bootstrap core JavaScript-->
 
-        <script src="vendor/jquery/jquery.min.js"></script>
-        <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-        <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
 
-        <script type="text/javascript">
+<script type="text/javascript">
 
 
-            $(function () {
-                $('#myTab li:last-child a').tab({event: "onclick"});
+$(function () {
+
+    $('#myTab li:last-child a').tab({event: "onclick"});
 
 
 // Load Charts and the corechart package.
-                google.charts.load('current', {'packages': ['corechart']});
+    google.charts.load('current', {'packages': ['corechart']});
 
-                // Draw the pie chart for Sarah's pizza when Charts is loaded.
-                google.charts.setOnLoadCallback(drawCPUChart);
-                google.charts.setOnLoadCallback(drawSarahCharta);
-                google.charts.setOnLoadCallback(drawSarahChartb);
-                google.charts.setOnLoadCallback(drawSarahChartc);
-                google.charts.setOnLoadCallback(drawSarahChartd);
-
-                // Draw the pie chart for the Anthony's pizza when Charts is loaded.
-                google.charts.setOnLoadCallback(drawAnthonyChart);
-
-                // Callback that draws the pie chart for Sarah's pizza.
-                function drawCPUChart() {
-                    var jsonData = $.ajax({
-                        url: "http://cubereviews.com/reports/report.json",
-                        dataType: "json",
-                        async: false
-                    }).responseText;
-                    var data = new google.visualization.DataTable(jsonData);
-
-                    var chart = new google.visualization.AreaChart(document.getElementById('CPU_chart_div'));
-                    chart.draw(data);
-                }
-
-                function drawSarahCharta() {
-
-                    // Create the data table for Sarah's pizza.
-                    var data = google.visualization.arrayToDataTable([
-                        ['Year', 'Sales', 'Expenses'],
-                        ['2013', 1000, 400],
-                        ['2014', 1170, 460],
-                        ['2015', 660, 1120],
-                        ['2016', 1030, 1340]
-                    ]);
-
-                    var options = {
-                        title: 'Company Performance1',
-                        height: 300,
-                        hAxis: {title: 'Year', titleTextStyle: {color: '#333'}},
-                        vAxis: {minValue: 0}
-                    };
-                    // Instantiate and draw the chart for Sarah's pizza.
-                    var chart = new google.visualization.AreaChart(document.getElementById('Sarah_chart_div_a'));
-                    chart.draw(data, options);
-                }
-
-                function drawSarahChartb() {
-
-                    // Create the data table for Sarah's pizza.
-                    var data = google.visualization.arrayToDataTable([
-                        ['Year', 'Sales', 'Expenses'],
-                        ['2013', 1000, 400],
-                        ['2014', 1170, 460],
-                        ['2015', 1200, 1120],
-                        ['2016', 1330, 1240]
-                    ]);
-
-                    var options = {
-                        title: 'Company Performance2',
-                        height: 300,
-                        hAxis: {title: 'Year', titleTextStyle: {color: '#333'}},
-                        vAxis: {minValue: 0}
-                    };
-                    // Instantiate and draw the chart for Sarah's pizza.
-                    var chart = new google.visualization.AreaChart(document.getElementById('Sarah_chart_div_b'));
-                    chart.draw(data, options);
-                }
-
-                function drawSarahChartc() {
-
-                    // Create the data table for Sarah's pizza.
-                    var data = google.visualization.arrayToDataTable([
-                        ['Year', 'Sales', 'Expenses'],
-                        ['2013', 1000, 400],
-                        ['2014', 1170, 460],
-                        ['2015', 660, 1120],
-                        ['2016', 1030, 1340]
-                    ]);
-
-                    var options = {
-                        title: 'Company Performance3',
-                        height: 300,
-                        hAxis: {title: 'Year', titleTextStyle: {color: '#333'}},
-                        vAxis: {minValue: 0}
-                    };
-                    // Instantiate and draw the chart for Sarah's pizza.
-                    var chart = new google.visualization.AreaChart(document.getElementById('Sarah_chart_div_c'));
-                    chart.draw(data, options);
-                }
-
-                function drawSarahChartd() {
-
-                    // Create the data table for Sarah's pizza.
-                    var data = google.visualization.arrayToDataTable([
-                        ['Year', 'Sales', 'Expenses'],
-                        ['2013', 1000, 400],
-                        ['2014', 1170, 460],
-                        ['2015', 660, 1120],
-                        ['2016', 1030, 1340]
-                    ]);
-
-                    var options = {
-                        title: 'Company Performance4',
-                        height: 300,
-                        hAxis: {title: 'Year', titleTextStyle: {color: '#333'}},
-                        vAxis: {minValue: 0}
-                    };
-                    // Instantiate and draw the chart for Sarah's pizza.
-                    var chart = new google.visualization.AreaChart(document.getElementById('Sarah_chart_div_d'));
-                    chart.draw(data, options);
-                }
+    // Draw the pie chart for Sarah's pizza when Charts is loaded.
+    google.charts.setOnLoadCallback(drawCPUChart);
+    google.charts.setOnLoadCallback(drawRAMChart);
+    google.charts.setOnLoadCallback(drawSarahChartb);
+    google.charts.setOnLoadCallback(drawSarahChartc);
+    google.charts.setOnLoadCallback(drawSarahChartd);
 
 
-                // Callback that draws the pie chart for Anthony's pizza.
-                function drawAnthonyChart() {
+    // Callback that draws the pie chart for Sarah's pizza.
+    function drawCPUChart() {
+        var jsonData = $.ajax({
+            url: "http://cubereviews.com/reports/reportCPU.json",
+            dataType: "json",
+            async: false
+        }).responseText;
+        var data = new google.visualization.DataTable(jsonData);
 
-                    // Create the data table for Anthony's pizza.
-                    var data = google.visualization.arrayToDataTable([
-                        ['Year', 'Sales', 'Expenses'],
-                        ['2013', 1589, 400],
-                        ['2014', 1250, 460],
-                        ['2015', 880, 1120],
-                        ['2016', 1890, 540]
-                    ]);
+        var chart = new google.visualization.AreaChart(document.getElementById('CPU_chart_div'));
+        chart.draw(data);
+    }
 
-                    var options = {
-                        title: 'Company Performance',
-                        hAxis: {title: 'Year', titleTextStyle: {color: '#ccc'}},
-                        vAxis: {minValue: 0}
-                    };
-                    // Instantiate and draw the chart for Anthony's pizza.
-                    var chart = new google.visualization.AreaChart(document.getElementById('Anthony_chart_div'));
-                    chart.draw(data, options);
-                }
+    function drawRAMChart() {
+        var jsonData = $.ajax({
+            url: "http://cubereviews.com/reports/reportRAM.json",
+            dataType: "json",
+            async: false
+        }).responseText;
+        var data = new google.visualization.DataTable(jsonData);
 
-            });
+        var chart = new google.visualization.AreaChart(document.getElementById('RAM_chart_div'));
+        chart.draw(data);
+    }
+
+    function drawSarahChartb() {
+
+        // Create the data table for Sarah's pizza.
+        var data = google.visualization.arrayToDataTable([
+            ['Year', 'Sales', 'Expenses'],
+            ['2013', 1000, 400],
+            ['2014', 1170, 460],
+            ['2015', 1200, 1120],
+            ['2016', 1330, 1240]
+        ]);
+
+        var options = {
+            title: 'Company Performance2',
+            height: 300,
+            hAxis: {title: 'Year', titleTextStyle: {color: '#333'}},
+            vAxis: {minValue: 0}
+        };
+        // Instantiate and draw the chart for Sarah's pizza.
+        var chart = new google.visualization.AreaChart(document.getElementById('Sarah_chart_div_b'));
+        chart.draw(data, options);
+    }
+
+    function drawSarahChartc() {
+
+        // Create the data table for Sarah's pizza.
+        var data = google.visualization.arrayToDataTable([
+            ['Year', 'Sales', 'Expenses'],
+            ['2013', 1000, 400],
+            ['2014', 1170, 460],
+            ['2015', 660, 1120],
+            ['2016', 1030, 1340]
+        ]);
+
+        var options = {
+            title: 'Company Performance3',
+            height: 300,
+            hAxis: {title: 'Year', titleTextStyle: {color: '#333'}},
+            vAxis: {minValue: 0}
+        };
+        // Instantiate and draw the chart for Sarah's pizza.
+        var chart = new google.visualization.AreaChart(document.getElementById('Sarah_chart_div_c'));
+        chart.draw(data, options);
+    }
+
+    function drawSarahChartd() {
+
+        // Create the data table for Sarah's pizza.
+        var data = google.visualization.arrayToDataTable([
+            ['Year', 'Sales', 'Expenses'],
+            ['2013', 1000, 400],
+            ['2014', 1170, 460],
+            ['2015', 660, 1120],
+            ['2016', 1030, 1340]
+        ]);
+
+        var options = {
+            title: 'Company Performance4',
+            height: 300,
+            hAxis: {title: 'Year', titleTextStyle: {color: '#333'}},
+            vAxis: {minValue: 0}
+        };
+        // Instantiate and draw the chart for Sarah's pizza.
+        var chart = new google.visualization.AreaChart(document.getElementById('Sarah_chart_div_d'));
+        chart.draw(data, options);
+    }
+});
 
 
-        </script>
+</script>
 
 
-        {% endblock %}
+{% endblock %}
 
 
-        {% block stylesheets %}
+{% block stylesheets %}
 
 {% endblock %}

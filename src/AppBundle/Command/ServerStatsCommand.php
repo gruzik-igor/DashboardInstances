@@ -21,6 +21,12 @@ class ServerStatsCommand extends EndlessContainerAwareCommand
 	// Execute will be called in a endless loop
 	protected function execute(InputInterface $input, OutputInterface $output)
     {
+        $this->reportCPU();
+        $this->reportRAM();
+    }
+
+    protected function reportCPU()
+    {
         $system = new System;
         $os = $system->getOs();
 
@@ -33,11 +39,31 @@ class ServerStatsCommand extends EndlessContainerAwareCommand
         
         $cpuInfoArray = ['c' => [['v' => $today, 'f' => null], ['v' => $cpuPercentage, 'f' => null]]];
 
-        $inp = file_get_contents($filePath.'/report.json');
+        $inp = file_get_contents($filePath.'/reportCPU.json');
         $tempArray = json_decode($inp, true);
         $tempArray['rows'][] = $cpuInfoArray;
         
-        file_put_contents($filePath.'/report.json', json_encode($tempArray));        
+        file_put_contents($filePath.'/reportCPU.json', json_encode($tempArray));        
+    }
+    protected function reportRAM()
+    {
+        $system = new System;
+        $os = $system->getOs();
+
+        $filePath = $this->getContainer()->get('kernel')->getRootDir() . '/../web/reports';
+
+        $today = new \DateTime();
+        $today = $today->format('H:i:s');
+
+        $cpuPercentage = $os->getCurrentMemoryUsage();
+        
+        $cpuInfoArray = ['c' => [['v' => $today, 'f' => null], ['v' => $cpuPercentage, 'f' => null]]];
+
+        $inp = file_get_contents($filePath.'/reportRAM.json');
+        $tempArray = json_decode($inp, true);
+        $tempArray['rows'][] = $cpuInfoArray;
+        
+        file_put_contents($filePath.'/reportRAM.json', json_encode($tempArray));        
     }
     
 }
