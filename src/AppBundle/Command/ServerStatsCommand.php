@@ -83,17 +83,35 @@ class ServerStatsCommand extends EndlessContainerAwareCommand
         $today = new \DateTime();
         $today = $today->format('H:i:s');
 
-        //$HDD = shell_exec('df -h');
-        // $tempHDD = (array)trim($HDD);
-        $disktotal = disk_total_space ('/');
-        $diskfree  = disk_free_space  ('/');
-        // $tempHDD = explode(" ", $HDD);
-        // $tempHDD = explode("/", $tempHDD);
-        // $tempHDD = array_filter($tempHDD);
-        // $hddUsage = array_merge($tempHDD);
-        $hddUsage = $disktotal - $diskfree;
+        $dir = '/';
+        // get disk space free (in bytes)
+        $disk_free = disk_free_space($dir);
+
+        // get disk space total (in bytes)
+        $disk_total = disk_total_space($dir);
+
+        // calculate the disk space used (in bytes)
+        $disk_used = $disk_total - $disk_free;
+
+        // percentage of disk used
+        $disk_used_p = sprintf('%.2f',($disk_used / $disk_total) * 100);
+
+        // this function will convert bytes value to KB, MB, GB and TB
+        function convertSize( $bytes )
+        {
+            $sizes = array( 'B', 'KB', 'MB', 'GB', 'TB' );
+            for( $i = 0; $bytes >= 1024 && $i < ( count( $sizes ) -1 ); $bytes /= 1024, $i++ );
+                    return( round( $bytes, 2 ) . " " . $sizes[$i] );
+        }
+
+        // format the disk sizes using the function (B, KB, MB, GB and TB)
+        $disk_free = convertSize($disk_free);
+        $disk_used = convertSize($disk_used);
+        $disk_total = convertSize($disk_total);
+
+        $hddUsage = $disk_used;
         
-           var_dump($hddUsage);die;
+        //var_dump($hddUsage);die;
         // $hddUsage = $this->$os->$hddUsage['MemTotal'];
         
         $hddInfoArray = ['c' => [['v' => $today, 'f' => null], ['v' => $hddUsage.'GB', 'f' => null]]];
