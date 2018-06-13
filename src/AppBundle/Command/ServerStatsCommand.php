@@ -40,7 +40,7 @@ class ServerStatsCommand extends EndlessContainerAwareCommand
 
         $cpuPercentage = $os->getLoadPercentage(AbstractOs::TIMEFRAME_1_MIN);
         
-        $cpuInfoArray = ['c' => [['v' => $today, 'f' => null], ['v' => $cpuPercentage.' %', 'f' => null]]];
+        $cpuInfoArray = ['c' => [['v' => $today, 'f' => null], ['v' => $cpuPercentage, 'f' => null]]];
 
         $inp = file_get_contents($filePath.'/reportCPU.json');
         $tempArray = json_decode($inp, true);
@@ -63,7 +63,7 @@ class ServerStatsCommand extends EndlessContainerAwareCommand
 
         $ramUsage = $this->formatBytes($os->getCurrentMemoryUsage());
         
-        $ramInfoArray = ['c' => [['v' => $today, 'f' => null], ['v' => $ramUsage.'MB', 'f' => null]]];
+        $ramInfoArray = ['c' => [['v' => $today, 'f' => null], ['v' => $ramUsage, 'f' => null]]];
 
         $inp = file_get_contents($filePath.'/reportRAM.json');
         $tempArray = json_decode($inp, true);
@@ -114,7 +114,7 @@ class ServerStatsCommand extends EndlessContainerAwareCommand
         //var_dump($hddUsage);die;
         //$hddUsage = $this->$os->$disk_used;
         
-        $hddInfoArray = ['c' => [['v' => $today, 'f' => null], ['v' => $disk_used.'GB', 'f' => null]]];
+        $hddInfoArray = ['c' => [['v' => $today, 'f' => null], ['v' => $disk_used, 'f' => null]]];
 
         $inp = file_get_contents($filePath.'/reportHDD.json');
         $tempArray = json_decode($inp, true);
