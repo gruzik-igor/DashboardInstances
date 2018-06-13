@@ -28,7 +28,7 @@ class DashboardController extends Controller
             'diskinfo' => $serverInfoService->getSystemHddInfo(),
             'cpuinfo' => $os->getLoadPercentage(AbstractOs::TIMEFRAME_1_MIN),
             'uptime' => $serverInfoService->getServerUptime(),
-            'sysinfo' => $serverInfoService->getSystenInfo()
+            'sysinfo' => $serverInfoService->getSystemInfo()
             ]);
     }
 
