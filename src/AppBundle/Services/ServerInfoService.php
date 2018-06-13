@@ -58,6 +58,7 @@ class ServerInfoService
     public function getSystemInfo() 
     {   
         $free = shell_exec('cat /proc/cpuinfo');
+        var_dump($free); die;
         $mem = explode(":", $free);
         $mem = array_filter($mem);
         $sysinfo = array_merge($mem);
