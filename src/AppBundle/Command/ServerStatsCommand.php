@@ -112,9 +112,9 @@ class ServerStatsCommand extends EndlessContainerAwareCommand
        // $hddUsage = $disk_used;
         
         //var_dump($hddUsage);die;
-        $hddUsage = $this->$os->$disk_used;
+        //$hddUsage = $this->$os->$disk_used;
         
-        $hddInfoArray = ['c' => [['v' => $today, 'f' => null], ['v' => $hddUsage.'GB', 'f' => null]]];
+        $hddInfoArray = ['c' => [['v' => $today, 'f' => null], ['v' => $disk_used.'GB', 'f' => null]]];
 
         $inp = file_get_contents($filePath.'/reportHDD.json');
         $tempArray = json_decode($inp, true);
