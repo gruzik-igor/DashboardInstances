@@ -59,7 +59,7 @@ class ServerInfoService
     {   
         $free = shell_exec('cat /proc/cpuinfo');
         $free_arr = explode(" ", $free);
-        $mem = explode(":", $free_arr[1]);
+        $mem = explode(":", $free_arr);
         $mem = array_filter($mem);
         $sysinfo = array_merge($mem);
 
