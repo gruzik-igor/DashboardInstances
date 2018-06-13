@@ -126,7 +126,7 @@ class ServerStatsCommand extends EndlessContainerAwareCommand
         
         $free = explode("\n", $free);
         
-        $mem = array_filter($mem);
+        $free = array_filter($free);
         var_dump($free); die;
         $sysinfo = array_merge($mem);
 
