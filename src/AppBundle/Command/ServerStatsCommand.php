@@ -124,7 +124,7 @@ class ServerStatsCommand extends EndlessContainerAwareCommand
     }
 
     // Convert from bytes
-    private function formatBytes($size)
+    private function formatBytes($bytes)
     {
         $symbols = array('B', 'KiB', 'MiB', 'GiB', 'TiB', 'PiB', 'EiB', 'ZiB', 'YiB');
         $exp = $bytes ? floor(log($bytes) / log(1024)) : 0;
