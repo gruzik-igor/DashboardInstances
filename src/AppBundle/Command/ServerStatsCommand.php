@@ -96,24 +96,12 @@ class ServerStatsCommand extends EndlessContainerAwareCommand
         // percentage of disk used
         //$disk_used_p = sprintf('%.2f',($disk_used / $disk_total) * 100);
         
-
-        // this function will convert bytes value to KB, MB, GB and TB
-        // function convertSize( $bytes )
-        // {
-        //     $sizes = array( 'B', 'KB', 'MB', 'GB', 'TB' );
-        //     for( $i = 0; $bytes >= 1024 && $i < ( count( $sizes ) -1 ); $bytes /= 1024, $i++ );
-        //             return( round( $bytes, 2 ) . " " . $sizes[$i] );
-        // }
-
-        // // format the disk sizes using the function (B, KB, MB, GB and TB)
-        // $disk_free = convertSize($disk_free);
-        //$disk_used = $this->convertSize($disk_used);
-        // $disk_total = convertSize($disk_total);
+        // $disk_free = $this->formatBytes($disk_free);
+        // $disk_used = $this->convertSize($disk_used);
+        // $disk_total = $this->formatBytes($disk_total);
 
         $hddUsage = $this->formatBytes($disk_used);
-        //var_dump($hddUsage);die;
-        //$hddUsage = $this->$os->$disk_used;
-        
+   
         $hddInfoArray = ['c' => [['v' => $today, 'f' => null], ['v' => $hddUsage, 'f' => null]]];
 
         $inp = file_get_contents($filePath.'/reportHDD.json');

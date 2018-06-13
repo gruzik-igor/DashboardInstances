@@ -24,8 +24,9 @@ class ServerInfoService
 	
         $disktotal = disk_total_space ('/');
         $diskfree  = disk_free_space  ('/');
-        $diskInfo['DisckTotal'] = round(((($disktotal/8)/1024)/1024)/1024,2);
-        $diskInfo['DisckUsed'] = round((((($disktotal - $diskfree)/8)/1024)/1024)/1024,2);
+        $diskInfo['DisckTotal'] = round((($disktotal/1024)/1024)/1024,2);
+        $diskUsage = $disktotal - $diskfree;
+        $diskInfo['DisckUsed'] = round((($diskUsage/1024)/1024)/1024,2);
 
         return $diskInfo;
         
