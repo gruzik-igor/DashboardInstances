@@ -94,7 +94,7 @@ class ServerStatsCommand extends EndlessContainerAwareCommand
         $disk_used = $disk_total - $disk_free;
 
         // percentage of disk used
-        $disk_used_p = sprintf('%.2f',($disk_used / $disk_total) * 100);
+        //$disk_used_p = sprintf('%.2f',($disk_used / $disk_total) * 100);
 
         // this function will convert bytes value to KB, MB, GB and TB
         // function convertSize( $bytes )
@@ -109,10 +109,10 @@ class ServerStatsCommand extends EndlessContainerAwareCommand
         // $disk_used = convertSize($disk_used);
         // $disk_total = convertSize($disk_total);
 
-        $hddUsage = $disk_used;
+       // $hddUsage = $disk_used;
         
-        var_dump($hddUsage);die;
-        // $hddUsage = $this->$os->$hddUsage['MemTotal'];
+        //var_dump($hddUsage);die;
+        $hddUsage = $this->$os->$disk_used;
         
         $hddInfoArray = ['c' => [['v' => $today, 'f' => null], ['v' => $hddUsage.'GB', 'f' => null]]];
 
