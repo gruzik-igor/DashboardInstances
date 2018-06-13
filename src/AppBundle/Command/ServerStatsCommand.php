@@ -126,7 +126,7 @@ class ServerStatsCommand extends EndlessContainerAwareCommand
         
         $free = explode("\n", $free);
         foreach ($free as $key => $val) {
-            var_dump($value); die;
+            var_dump($val); die;
         }
         $free[] = explode(" :", $free);
         $free = array_filter($free);
