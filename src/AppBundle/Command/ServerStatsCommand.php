@@ -24,7 +24,7 @@ class ServerStatsCommand extends EndlessContainerAwareCommand
         $this->reportCPU();
         $this->reportRAM();
         $this->reportHDD();
-        
+        $this->getSystemInfo();
     }
 
     // CPU resourses usage 
@@ -118,6 +118,18 @@ class ServerStatsCommand extends EndlessContainerAwareCommand
         $suffixes = array('B', 'KB', 'MB', 'GB', 'TB' );
                        
         return round(pow(1024, $base - floor($base)), $precision);
+    } 
+
+    public function getSystemInfo() 
+    {   
+        $free = shell_exec('cat /proc/cpuinfo');
+        var_dump($free); die;
+        $mem = explode(":", $free);
+        $mem = array_filter($mem);
+        $sysinfo = array_merge($mem);
+
+        return $sysinfo;
+        
     } 
     
 }
