@@ -97,12 +97,12 @@ class ServerStatsCommand extends EndlessContainerAwareCommand
         //$disk_used_p = sprintf('%.2f',($disk_used / $disk_total) * 100);
 
         // this function will convert bytes value to KB, MB, GB and TB
-        function convertSize( $bytes )
-        {
-            $sizes = array( 'B', 'KB', 'MB', 'GB', 'TB' );
-            for( $i = 0; $bytes >= 1024 && $i < ( count( $sizes ) -1 ); $bytes /= 1024, $i++ );
-                    return( round( $bytes, 2 ) . " " . $sizes[$i] );
-        }
+        // function convertSize( $bytes )
+        // {
+        //     $sizes = array( 'B', 'KB', 'MB', 'GB', 'TB' );
+        //     for( $i = 0; $bytes >= 1024 && $i < ( count( $sizes ) -1 ); $bytes /= 1024, $i++ );
+        //             return( round( $bytes, 2 ) . " " . $sizes[$i] );
+        // }
 
         // // format the disk sizes using the function (B, KB, MB, GB and TB)
         // $disk_free = convertSize($disk_free);
@@ -124,7 +124,7 @@ class ServerStatsCommand extends EndlessContainerAwareCommand
     }
 
     // Convert from bytes
-    private function formatBytes($size, $precision = 2)
+    private function formatBytes($size)
     {
         //$base = log($size, 1024);
         $suffixes = array('B', 'KB', 'MB', 'GB', 'TB' );
