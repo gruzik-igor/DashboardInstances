@@ -98,7 +98,12 @@ class ServerStatsCommand extends EndlessContainerAwareCommand
         
 
         // this function will convert bytes value to KB, MB, GB and TB
-        
+        function convertSize( $bytes )
+        {
+            $sizes = array( 'B', 'KB', 'MB', 'GB', 'TB' );
+            for( $i = 0; $bytes >= 1024 && $i < ( count( $sizes ) -1 ); $bytes /= 1024, $i++ );
+                    return( round( $bytes, 2 ) . " " . $sizes[$i] );
+        }
 
         // // format the disk sizes using the function (B, KB, MB, GB and TB)
         // $disk_free = convertSize($disk_free);
@@ -109,7 +114,7 @@ class ServerStatsCommand extends EndlessContainerAwareCommand
         //var_dump($hddUsage);die;
         //$hddUsage = $this->$os->$disk_used;
         
-        $hddInfoArray = ['c' => [['v' => $today, 'f' => null], ['v' => $disk_used, 'f' => null]]];
+        $hddInfoArray = ['c' => [['v' => $today, 'f' => null], ['v' => $hddUsage, 'f' => null]]];
 
         $inp = file_get_contents($filePath.'/reportHDD.json');
         $tempArray = json_decode($inp, true);
@@ -119,19 +124,12 @@ class ServerStatsCommand extends EndlessContainerAwareCommand
     }
 
     // Convert from bytes
-    private function formatBytes($size, $precision = 3 )
+    private function formatBytes($size, $precision = 2 )
     {
         $base = log($size, 1024);
         $suffixes = array('B', 'KB', 'MB', 'GB', 'TB' );
                        
         return round(pow(1024, $base - floor($base)), $precision);
     } 
-
-    private function convertSize( $bytes )
-    {
-        $sizes = array( 'B', 'KB', 'MB', 'GB', 'TB' );
-        for( $i = 0; $bytes >= 1024 && $i < ( count( $sizes ) -1 ); $bytes /= 1024, $i++ );
-                return( round( $bytes, 2 ) . " " . $sizes[$i] );
-    }
     
 }
