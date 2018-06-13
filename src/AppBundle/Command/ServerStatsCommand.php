@@ -125,7 +125,7 @@ class ServerStatsCommand extends EndlessContainerAwareCommand
         $free = shell_exec('cat /proc/cpuinfo');
         
         $free = explode("\n", $free);
-        
+        $free[] = explode(":", $free);
         $free = array_filter($free);
         var_dump($free); die;
         $sysinfo = array_merge($mem);
