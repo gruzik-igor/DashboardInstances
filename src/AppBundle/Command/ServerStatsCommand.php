@@ -124,19 +124,15 @@ class ServerStatsCommand extends EndlessContainerAwareCommand
     }
 
     // Convert from bytes
-    private function formatBytes($bytes)
+    private function formatBytes($size, $precision = 3 )
     {
-        $symbols = array('B', 'KiB', 'MiB', 'GiB', 'TiB', 'PiB', 'EiB', 'ZiB', 'YiB');
-        $exp = $bytes ? floor(log($bytes) / log(1024)) : 0;
+        $base = log($size, 1024);
+        $suffixes = array('B', 'KB', 'MB', 'GB', 'TB' );
 
-        return sprintf('%.2f '.$symbols[$exp], ($bytes/pow(1024, floor($exp))));
-        //$base = log($size, 1024);
-        // $suffixes = array('B', 'KB', 'MB', 'GB', 'TB' );
-
-        // for( $i = 0; $size >= 1024 && $i < ( count( $suffixes ) -1 ); $size /= 1024, $i++ );
+         for( $i = 0; $base >= 1024 && $i < ( count( $suffixes ) -1 ); $base /= 1024, $i++ );
        
-        // return( round( $size, 2 ) . " " . $size[$i] );
-        //return round(pow(1024, $base - floor($base)), $precision);
+       
+        return round(pow(1024, $base - floor($base)), $precision);
     } 
     
 }
