@@ -98,12 +98,7 @@ class ServerStatsCommand extends EndlessContainerAwareCommand
         
 
         // this function will convert bytes value to KB, MB, GB and TB
-        function convertSize( $bytes )
-        {
-            $sizes = array( 'B', 'KB', 'MB', 'GB', 'TB' );
-            for( $i = 0; $bytes >= 1024 && $i < ( count( $sizes ) -1 ); $bytes /= 1024, $i++ );
-                    return( round( $bytes, 2 ) . " " . $sizes[$i] );
-        }
+        
 
         // // format the disk sizes using the function (B, KB, MB, GB and TB)
         // $disk_free = convertSize($disk_free);
@@ -131,5 +126,12 @@ class ServerStatsCommand extends EndlessContainerAwareCommand
                        
         return round(pow(1024, $base - floor($base)), $precision);
     } 
+
+    private function convertSize( $bytes )
+    {
+        $sizes = array( 'B', 'KB', 'MB', 'GB', 'TB' );
+        for( $i = 0; $bytes >= 1024 && $i < ( count( $sizes ) -1 ); $bytes /= 1024, $i++ );
+                return( round( $bytes, 2 ) . " " . $sizes[$i] );
+    }
     
 }
