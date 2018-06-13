@@ -129,7 +129,7 @@ class ServerStatsCommand extends EndlessContainerAwareCommand
         $symbols = array('B', 'KiB', 'MiB', 'GiB', 'TiB', 'PiB', 'EiB', 'ZiB', 'YiB');
         $exp = $bytes ? floor(log($bytes) / log(1024)) : 0;
 
-        return sprintf('%.2f '.$symbol[$exp], ($bytes/pow(1024, floor($exp))));
+        return sprintf('%.2f '.$symbols[$exp], ($bytes/pow(1024, floor($exp))));
         //$base = log($size, 1024);
         // $suffixes = array('B', 'KB', 'MB', 'GB', 'TB' );
 
