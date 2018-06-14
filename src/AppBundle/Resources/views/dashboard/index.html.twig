@@ -756,7 +756,7 @@ $(function () {
             dataType: "json",
             async: false
         }).responseText;
-        var data = new google.visualization.DataView(jsonData);
+        var data = new google.visualization.DataTable(jsonData);
 
         var chart = new google.visualization.AreaChart(document.getElementById('HDD_chart_div'));
         chart.draw(data);
