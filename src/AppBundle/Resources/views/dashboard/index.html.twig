@@ -678,12 +678,6 @@
                     </div>
                     <div class="col-lg-4">
                         <div class="card-body">
-                            {# <ul>{% for val in sysinfo %} 
-                                    <li>{{ val }}</li>
-                                        $info =explode(":",$val);
-                                        $serverCharName = trim($info[0]);
-                                {% endfor %}
-                            </ul> #}
                             <p>Server configuration:</p>
                             <ul>
                                 <li>Intel Xeon 2.26Ghz @ 8 cores</li>
@@ -742,7 +736,7 @@
 <script type="text/javascript">
 
 
-$(function() {
+$(function () {
 
     $('#myTab li:last-child a').tab({event: "onclick"});
 
@@ -751,7 +745,7 @@ $(function() {
     google.charts.load('current', {'packages': ['corechart']});
 
     // Draw the pie chart for Sarah's pizza when Charts is loaded.
-    //google.charts.setOnLoadCallback(drawCPUChart);
+    google.charts.setOnLoadCallback(drawCPUChart);
     google.charts.setOnLoadCallback(drawRAMChart);
     google.charts.setOnLoadCallback(drawHDDChart);
     google.charts.setOnLoadCallback(drawSarahChartc);
@@ -759,63 +753,37 @@ $(function() {
 
 
     // Callback that draws the pie chart for Sarah's pizza.
-   //function drawCPUChart() {
-    //    var jsonData = $.ajax({
-    //        url: "http://cubereviews.com/reports/reportCPU.json",
-    //        dataType: "json",
-    //        async: false
-    //    }).responseText;
+    function drawCPUChart() {
+        var jsonData = $.ajax({
+            url: "http://cubereviews.com/reports/reportCPU.json",
+            dataType: "json",
+            async: false
+        }).responseText;
+        var data = new google.visualization.DataTable(jsonData);
 
-     //   var data = new google.visualization.DataTable(jsonData);
-        
-    //    var chart = new google.visualization.AreaChart(document.getElementById('CPU_chart_div'));
-    //    chart.draw(data);
-
-    //}
-    var data = new google.visualization.DataTable();
-data.addColumn('string', 'Employee Name');
-data.addColumn('date', 'Start Date');
-data.addRows(6);
-data.setCell(0, 0, 'Mike');
-data.setCell(0, 1, new Date(2008, 1, 28));
-data.setCell(1, 0, 'Bob');
-data.setCell(1, 1, new Date(2007, 5, 1));
-data.setCell(2, 0, 'Alice');
-data.setCell(2, 1, new Date(2006, 7, 16));
-data.setCell(3, 0, 'Frank');
-data.setCell(3, 1, new Date(2007, 11, 28));
-data.setCell(4, 0, 'Floyd');
-data.setCell(4, 1, new Date(2005, 3, 13));
-data.setCell(5, 0, 'Fritz');
-data.setCell(5, 1, new Date(2007, 9, 2));
-
-// Create a view that shows everyone hired since 2007.
-var view = new google.visualization.DataView(data);
-view.setRows(view.getFilteredRows([{column: 1, minValue: new Date(2007, 0, 1)}]));
-var table = new google.visualization.Table(document.getElementById('CPU_chart_div'));
-table.draw(view, {sortColumn: 1});
+        var chart = new google.visualization.AreaChart(document.getElementById('CPU_chart_div'));
+        chart.draw(data);
+    }
 
     function drawRAMChart() {
-        var jsonData1 = $.ajax({
+        var jsonData = $.ajax({
             url: "http://cubereviews.com/reports/reportRAM.json",
             dataType: "json",
             async: false
         }).responseText;
-
-        var data = new google.visualization.DataTable(jsonData1);
+        var data = new google.visualization.DataTable(jsonData);
 
         var chart = new google.visualization.AreaChart(document.getElementById('RAM_chart_div'));
         chart.draw(data);
     }
 
     function drawHDDChart() {
-   var jsonData2 = $.ajax({
+   var jsonData = $.ajax({
             url: "http://cubereviews.com/reports/reportHDD.json",
             dataType: "json",
             async: false
         }).responseText;
-
-        var data = new google.visualization.DataTable(jsonData2);
+        var data = new google.visualization.DataTable(jsonData);
 
         var chart = new google.visualization.AreaChart(document.getElementById('HDD_chart_div'));
         chart.draw(data);

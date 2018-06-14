@@ -44,13 +44,9 @@ class ServerStatsCommand extends EndlessContainerAwareCommand
 
         $inp = file_get_contents($filePath.'/reportCPU.json');
         $tempArray = json_decode($inp, true);
-        $tempTable = json_encode(array(
-            'cols' => '',
-            'rows' => $cpuInfoArray
-        ), JSON_NUMERIC_CHECK);
-        // $tempArray['rows'][] = $cpuInfoArray;
+        $tempArray['rows'][] = $cpuInfoArray;
         
-        file_put_contents($filePath.'/reportCPU.json', $tempTable); 
+        file_put_contents($filePath.'/reportCPU.json', json_encode($tempArray)); 
              
     }
 
@@ -100,12 +96,24 @@ class ServerStatsCommand extends EndlessContainerAwareCommand
         // percentage of disk used
         //$disk_used_p = sprintf('%.2f',($disk_used / $disk_total) * 100);
         
-        // $disk_free = $this->formatBytes($disk_free);
-        // $disk_used = $this->convertSize($disk_used);
-        // $disk_total = $this->formatBytes($disk_total);
+
+        // this function will convert bytes value to KB, MB, GB and TB
+        // function convertSize( $bytes )
+        // {
+        //     $sizes = array( 'B', 'KB', 'MB', 'GB', 'TB' );
+        //     for( $i = 0; $bytes >= 1024 && $i < ( count( $sizes ) -1 ); $bytes /= 1024, $i++ );
+        //             return( round( $bytes, 2 ) . " " . $sizes[$i] );
+        // }
+
+        // // format the disk sizes using the function (B, KB, MB, GB and TB)
+        // $disk_free = convertSize($disk_free);
+        //$disk_used = $this->convertSize($disk_used);
+        // $disk_total = convertSize($disk_total);
 
         $hddUsage = $this->formatBytes($disk_used);
-   
+        //var_dump($hddUsage);die;
+        //$hddUsage = $this->$os->$disk_used;
+        
         $hddInfoArray = ['c' => [['v' => $today, 'f' => null], ['v' => $hddUsage, 'f' => null]]];
 
         $inp = file_get_contents($filePath.'/reportHDD.json');
@@ -123,7 +131,5 @@ class ServerStatsCommand extends EndlessContainerAwareCommand
                        
         return round(pow(1024, $base - floor($base)), $precision);
     } 
-
-    
     
 }

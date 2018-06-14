@@ -2,8 +2,6 @@
 
 namespace AppBundle\Controller;
 
-use Cronfig\Sysinfo\AbstractOs;
-use Cronfig\Sysinfo\System;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -18,17 +16,13 @@ class DashboardController extends Controller
      */
     public function indexAction(Request $request)
     {
-        $system = new System;
-        $os = $system->getOs();
-
         $serverInfoService = $this->get('app.server_info.service');
 
         return $this->render('@App/dashboard/index.html.twig', [
             'meminfo'=> $serverInfoService->getSystemMemInfo(),
             'diskinfo' => $serverInfoService->getSystemHddInfo(),
-            'cpuinfo' => $os->getLoadPercentage(AbstractOs::TIMEFRAME_1_MIN),
+            'cpuinfo' => $serverInfoService->getSystemCpuInfo(),
             'uptime' => $serverInfoService->getServerUptime()
-            //'sysinfo' => $serverInfoService->getSystemInfo()
             ]);
     }
 
