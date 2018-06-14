@@ -734,7 +734,7 @@ $(function () {
         }).responseText;
         var data = new google.visualization.DataTable(jsonData);
 
-        var chart = new google.visualization.AreaChart(document.getElementById('CPU_chart_div'));
+        var chart = new google.visualization.AreaChart(document.getElementById('Sarah_chart_div_c'));
         chart.draw(data);
     }
 
@@ -780,7 +780,7 @@ $(function () {
             vAxis: {minValue: 0}
         };
         // Instantiate and draw the chart for Sarah's pizza.
-        var chart = new google.visualization.AreaChart(document.getElementById('Sarah_chart_div_c'));
+        var chart = new google.visualization.AreaChart(document.getElementById('Sarah_chart_div_a'));
         chart.draw(data, options);
     }
 
