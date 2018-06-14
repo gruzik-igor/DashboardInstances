@@ -24,16 +24,18 @@ class ServerInfoService
 	
         $disktotal = disk_total_space ('/');
         $diskfree  = disk_free_space  ('/');
-        $diskInfo['DisckTotal'] = round(((($disktotal/8)/1024)/1024)/1024,2);
-        $diskInfo['DisckUsed'] = round((((($disktotal - $diskfree)/8)/1024)/1024)/1024,2);
+        $diskInfo['DisckTotal'] = round((($disktotal/1024)/1024)/1024,2);
+        $diskUsage = $disktotal - $diskfree;
+        $diskInfo['DisckUsed'] = round((($diskUsage/1024)/1024)/1024,2);
 
         return $diskInfo;
         
     }
     
-    public  function getSystemCpuInfo($coreCount = 1, $interval = 1) {
-            return shell_exec("echo $[100-$(vmstat 1 2|tail -1|awk '{print $15}')]
-            ");
+    public  function getSystemCpuInfo() {
+        $cpuInfo = json_decode(shell_exec('mpstat -o JSON'), true);
+
+        return $cpuInfo;
         }
 
     public   function getServerUptime() {
@@ -51,7 +53,20 @@ class ServerInfoService
           
             return $uptime;
             
-        }
+    }
+
+    // public function getSystemInfo() 
+    // {   
+    //     $free = shell_exec('cat /proc/cpuinfo');
+        
+    //     $free = explode("\n", $free);
+        
+      
+    //     $sysinfo = $free;
+
+    //     return $sysinfo;
+        
+    // } 
 
     
 }

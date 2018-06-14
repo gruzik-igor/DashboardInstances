@@ -277,7 +277,7 @@
                                 <div class="card-header">
                                     <i class="fa fa-area-chart"></i> CPU, % usage:
                                 </div>
-                                <div class="card-body">
+                                <div>
                                     <div id="CPU_chart_div"></div>
                                     {# <canvas id="myAreaChart" width="100%" height="40"></canvas> #}
                                 </div>
@@ -290,7 +290,7 @@
                                 <div class="card-header">
                                     <i class="fa fa-area-chart"></i> RAM, MB  usage:
                                 </div>
-                                <div class="card-body">
+                                <div>
                                     <div id="RAM_chart_div"></div>
                                     {# <canvas id="myAreaChart" width="100%" height="40"></canvas> #}
                                 </div>
@@ -303,7 +303,7 @@
                                 <div class="card-header">
                                     <i class="fa fa-area-chart"></i> HDD, GB usage:
                                 </div>
-                                <div class="card-body">
+                                <div>
                                     <div id="HDD_chart_div"></div>
                                     {# <canvas id="myAreaChart" width="100%" height="40"></canvas> #}
                                 </div>
@@ -678,6 +678,12 @@
                     </div>
                     <div class="col-lg-4">
                         <div class="card-body">
+                            <ul>{% for val in sysinfo %} 
+                                    <li>{{ val }}</li>
+                                        $info =explode(":",$val);
+                                        $serverCharName = trim($info[0]);
+                                {% endfor %}
+                            </ul>
                             <p>Server configuration:</p>
                             <ul>
                                 <li>Intel Xeon 2.26Ghz @ 8 cores</li>
