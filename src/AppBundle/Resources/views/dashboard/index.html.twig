@@ -678,8 +678,8 @@
                     </div>
                     <div class="col-lg-4">
                         <div class="card-body">
-                            <ul>{% for val in sysinfo %} 
-                                    <li>{{ val[4] }}</li>
+                            <ul>{% for val,index in sysinfo %} 
+                                    <li>{{ val index  }}</li>
                                         {# $info =explode(":",$val); #}
                                         {# $serverCharName = trim($info[0]); #}
                                 {% endfor %}
