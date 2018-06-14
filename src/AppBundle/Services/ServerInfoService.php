@@ -55,18 +55,18 @@ class ServerInfoService
             
     }
 
-    // public function getSystemInfo() 
-    // {   
-    //     $free = shell_exec('cat /proc/cpuinfo');
+    public function getSystemInfo() 
+    {   
+        $free = shell_exec('cat /proc/cpuinfo');
         
-    //     $free = explode("\n", $free);
+        $free = explode("\n", $free);
         
       
-    //     $sysinfo = $free;
+        $sysinfo = $free;
 
-    //     return $sysinfo;
+        return $sysinfo;
         
-    // } 
+    } 
 
     
 }
