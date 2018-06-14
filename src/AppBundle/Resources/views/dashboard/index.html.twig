@@ -678,9 +678,9 @@
                     </div>
                     <div class="col-lg-4">
                         <div class="card-body">
-                            <ul>{% for val,index in sysinfo %} 
-                                        {% set info = val|split(':')  %}
-                                    <li>{{ info }}</li>
+                            <ul>{% for val  in sysinfo %} 
+                                       
+                                    <li> {% val|split(':')  %}</li>
                                         {# $info =explode(":",$val); #}
                                         {# $serverCharName = trim($info[0]); #}
                                 {% endfor %}
