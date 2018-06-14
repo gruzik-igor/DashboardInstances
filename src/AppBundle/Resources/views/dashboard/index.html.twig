@@ -680,7 +680,7 @@
                         <div class="card-body">
                             <ul>{% for val  in sysinfo %} 
                                        
-                                    <li> {% val|split(':')  %}</li>
+                                    <li> {{ val|split(':')  }}</li>
                                         {# $info =explode(":",$val); #}
                                         {# $serverCharName = trim($info[0]); #}
                                 {% endfor %}
