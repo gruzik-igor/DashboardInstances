@@ -737,7 +737,7 @@
 <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+{# <script type="text/javascript" src="https://www.google.com/jsapi"></script> #}
 
 <script type="text/javascript">
 
@@ -766,9 +766,11 @@ $(function() {
             async: false
         }).responseText;
         var data = new google.visualization.DataTable(jsonData);
-
+        
         var chart = new google.visualization.AreaChart(document.getElementById('CPU_chart_div'));
         chart.draw(data);
+
+        console.log(data); die();
     }
 
     function drawRAMChart() {
