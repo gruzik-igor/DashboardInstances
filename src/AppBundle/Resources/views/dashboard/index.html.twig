@@ -759,7 +759,7 @@ $(function() {
 
 
     // Callback that draws the pie chart for Sarah's pizza.
-   function drawCPUChart() {
+   //function drawCPUChart() {
     //    var jsonData = $.ajax({
     //        url: "http://cubereviews.com/reports/reportCPU.json",
     //        dataType: "json",
@@ -770,6 +770,8 @@ $(function() {
         
     //    var chart = new google.visualization.AreaChart(document.getElementById('CPU_chart_div'));
     //    chart.draw(data);
+
+    //}
     var data = new google.visualization.DataTable();
 data.addColumn('string', 'Employee Name');
 data.addColumn('date', 'Start Date');
@@ -792,7 +794,6 @@ var view = new google.visualization.DataView(data);
 view.setRows(view.getFilteredRows([{column: 1, minValue: new Date(2007, 0, 1)}]));
 var table = new google.visualization.Table(document.getElementById('CPU_chart_div'));
 table.draw(view, {sortColumn: 1});
-    }
 
     function drawRAMChart() {
         var jsonData1 = $.ajax({
