@@ -772,24 +772,24 @@ $(function() {
     }
 
     function drawRAMChart() {
-        var jsonData = $.ajax({
+        var jsonData1 = $.ajax({
             url: "http://cubereviews.com/reports/reportRAM.json",
             dataType: "json",
             async: false
         }).responseText;
-        var data = google.visualization.DataTable(jsonData);
+        var data = new google.visualization.DataTable(jsonData1);
 
         var chart = new google.visualization.AreaChart(document.getElementById('RAM_chart_div'));
         chart.draw(data);
     }
 
     function drawHDDChart() {
-   var jsonData = $.ajax({
+   var jsonData2 = $.ajax({
             url: "http://cubereviews.com/reports/reportHDD.json",
             dataType: "json",
             async: false
         }).responseText;
-        var data = new google.visualization.DataTable(jsonData);
+        var data = new google.visualization.DataTable(jsonData2);
 
         var chart = new google.visualization.AreaChart(document.getElementById('HDD_chart_div'));
         chart.draw(data);
