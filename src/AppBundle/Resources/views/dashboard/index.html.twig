@@ -680,8 +680,8 @@
                         <div class="card-body">
                             <ul>{% for val in sysinfo %} 
                                     <li>{{ val }}</li>
-                                        $info =explode(":",$val);
-                                        $serverCharName = trim($info[0]);
+                                        {# $info =explode(":",$val); #}
+                                        {# $serverCharName = trim($info[0]); #}
                                 {% endfor %}
                             </ul>
                             <p>Server configuration:</p>

@@ -59,11 +59,8 @@ class ServerInfoService
     {   
         $free = shell_exec('cat /proc/cpuinfo');
         
-        $free = explode("\n", $free);
+        $sysinfo = explode("\n", $free);
         
-      
-        $sysinfo = $free;
-
         return $sysinfo;
         
     } 
