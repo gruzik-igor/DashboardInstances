@@ -1,1 +1,1 @@
-{"cols":[{"id":"","label":"Load","pattern":"","type":"string","p":{"role":"interval"}},{"id":"","label":"CPU","pattern":"","type":"number","p":{"role":"interval"}}],"rows":[]}
+{"cols":[{"id":"","label":"Load","pattern":"","type":"string"},{"id":"","label":"CPU","pattern":"","type":"number"}],"rows":[]}
