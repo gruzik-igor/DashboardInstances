@@ -737,7 +737,7 @@ $(function () {
         data.addColumn('number', 'CPU'); // Implicit data column.
         data.addColumn({type:'number', role:'interval'});
         data.addColumn({type:'number', role:'interval'});
-        data.addRows(jsonData);
+        //data.addRows(jsonData);
 
         var chart = new google.visualization.AreaChart(document.getElementById('CPU_chart_div'));
         chart.draw(data);
