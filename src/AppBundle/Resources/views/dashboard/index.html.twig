@@ -734,7 +734,7 @@ $(function () {
         }).responseText;
         var data = new google.visualization.DataTable(jsonData);
         data.addColumn('string', 'Load'); 
-        data.addColumn('float', 'CPU'); 
+        data.addColumn('number', 'CPU'); 
 
         var chart = new google.visualization.AreaChart(document.getElementById('CPU_chart_div'));
         chart.draw(data);
