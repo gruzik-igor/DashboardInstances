@@ -733,11 +733,12 @@ $(function () {
             async: false
         }).responseText;
         var data = new google.visualization.DataTable(jsonData);
-        data.addColumn('string', 'Period'); 
-        data.addColumn('number', 'CPU');
+        
 
         var chart = new google.visualization.AreaChart(document.getElementById('CPU_chart_div'));
         chart.draw(data);
+        chart.addColumn('string', 'Period'); 
+        chart.addColumn('number', 'CPU');
     }
 
     function drawRAMChart() {
