@@ -60,17 +60,20 @@ class ServerInfoService
         $free = shell_exec('cat /proc/cpuinfo');
         
         $sysinfo = explode("\n", $free);
-        var_dump($sysinfo);die;
+
+        var_dump($sysinfo);
+
         $new_array = array();
         array_walk($sysinfo,  function ($val, $key){
             $nums = explode(': ',$val);
+        var_dump($nums);die;
+            
             if (array_key_exists(1, $nums)) {
                 $new_array[$nums[0]] = $nums[1];
             } 
 
         } , $new_array);
 
-       
         var_dump($new_array);die;
         return $new_array;
     } 
