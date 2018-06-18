@@ -66,7 +66,9 @@ class ServerInfoService
         $new_array = array();
         array_walk($sysinfo,  function ($val, $key){
             $nums = explode(': ',$val);
-        var_dump($nums);die;
+            $new_array[$nums[0]] = $nums[1];
+            
+            var_dump($new_array);die;
             
             if (array_key_exists(1, $nums)) {
                 $new_array[$nums[0]] = $nums[1];
