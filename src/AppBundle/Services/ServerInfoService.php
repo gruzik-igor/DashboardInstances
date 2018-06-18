@@ -51,7 +51,7 @@ class ServerInfoService
         $uptime = $days[0]." days, ".$hours[0]." hours, ".$minutes[0]." minutes ";
     
           
-            return $uptime;
+        return $uptime;
             
     }
 
@@ -60,6 +60,7 @@ class ServerInfoService
         $free = shell_exec('cat /proc/cpuinfo');
         
         $sysinfo = explode("\n", $free);
+        var_dump($sysinfo);die;
         $new_array = array();
         array_walk($sysinfo,  function ($val, $key){
             $nums = explode(': ',$val);
