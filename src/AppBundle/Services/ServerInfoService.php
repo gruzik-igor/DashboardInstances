@@ -63,6 +63,7 @@ class ServerInfoService
         $new_array = array();
         array_walk($sysinfo,  function ($val, $key, &$new_array){
             $nums = explode(':',$val);
+            var_dump($val); die;
             $new_array[trim($nums[0])] = trim($nums[1]);
 
         } , $new_array);
