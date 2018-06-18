@@ -64,8 +64,9 @@ class ServerInfoService
         //var_dump($sysinfo);
         //$new_array = array();
         
-
+        echo'<pre>';
         while (list ($key, $val) = each ($sysinfo) ) var_dump($n_arr = explode(': ',$val)).'<br>'; die; 
+        echo'</pre>';
         
         
 
