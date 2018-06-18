@@ -65,11 +65,10 @@ class ServerInfoService
         //$new_array = array();
         
 
-        while (list ($key, $val) = each ($sysinfo) );
+        while (list ($key, $val) = each ($sysinfo) ) echo'<pre>'; echo $val; echo'<pre>';
         
-        echo'<pre>';
-        print_r($val);
-        echo'</pre>';
+        
+
 
         // $num_key = 0;
         // while ($num_key <= count($sysinfo)):
