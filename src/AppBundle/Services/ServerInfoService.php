@@ -63,7 +63,7 @@ class ServerInfoService
         $new_array = array();
         array_walk($sysinfo,  function ($val, $key, &$new_array){
             $nums = explode(': ',$val);
-            if (count($nums) > 2) {
+            if (count($nums) >= 2) {
                 $new_array[trim($nums[0])] = trim($nums[1]);
             } 
 
