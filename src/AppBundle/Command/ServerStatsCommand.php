@@ -40,7 +40,7 @@ class ServerStatsCommand extends EndlessContainerAwareCommand
 
         $cpuPercentage = $os->getLoadPercentage(AbstractOs::TIMEFRAME_1_MIN);
         
-        $cpuInfoArray = ['c' => [['v' => $today, 'f' => null], ['v' => $cpuPercentage, 'f' => null]]];
+        $cpuInfoArray = ['c' => [['v' => $today, 'f' => null], ['v' => $cpuPercentage , 'f' => null]]];
 
         $inp = file_get_contents($filePath.'/reportCPU.json');
         $tempArray = json_decode($inp, true);

@@ -700,7 +700,8 @@
     <div>
 <!-- Bootstrap core JavaScript-->
 
-<script src="vendor/jquery/jquery.min.js"></script>
+{# <script src="vendor/jquery/jquery.min.js"></script> #}
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
@@ -749,7 +750,7 @@ $(function () {
         var data = new google.visualization.DataTable(jsonData);
 
         var chart = new google.visualization.AreaChart(document.getElementById('RAM_chart_div'));
-        chart.draw(data);
+        chart.draw(data, {width: 400, height: 240});
     }
 
     function drawHDDChart() {
