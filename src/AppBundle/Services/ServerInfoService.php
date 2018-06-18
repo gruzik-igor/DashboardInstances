@@ -66,7 +66,7 @@ class ServerInfoService
         
         while (list ($key, $val) = each ($sysinfo)) $new_array = array_merge($new_array,  explode(': ',$val));
         
-        var_dump($new_array); die;
+        //var_dump($new_array); die;
         return $new_array;
         
         
