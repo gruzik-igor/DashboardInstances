@@ -65,9 +65,10 @@ class ServerInfoService
         //$new_array = array();
         
 
-        while (list ($key, $val) = each ($sysinfo) ) echo $val;
+        while (list ($key, $val) = each ($sysinfo) );
         
-        var_dump($val);die;
+
+        var_dump('<br>'.$val);  die;
 
 
         // $num_key = 0;
