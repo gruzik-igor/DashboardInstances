@@ -67,7 +67,7 @@ class ServerInfoService
         foreach($sysinfo as $val) {
             $valArray = explode(':', $val);
             
-            $new_array[trim($val[0])] = trim($val[1]);
+            $new_array[trim($valArray[0])] = trim($valArray[1]);
         }
         
         //var_dump($new_array); die;
