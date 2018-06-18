@@ -73,11 +73,11 @@ class ServerInfoService
             // if (array_key_exists(1, $nums)) {
             //     $new_array[$nums[0]] = $nums[1];
             // } 
-
+            return $new_array;
         } , $new_array);
 
         var_dump($new_array);die;
-        return $new_array;
+       
     } 
 
     
