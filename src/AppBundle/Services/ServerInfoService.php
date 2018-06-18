@@ -67,9 +67,9 @@ class ServerInfoService
 
         while (list ($key, $val) = each ($sysinfo) );
         
-
-        var_dump('<br>'.$val);  die;
-
+        echo'<pre>';
+        var_dump($val);  die;
+        echo'</pre>';
 
         // $num_key = 0;
         // while ($num_key <= count($sysinfo)):
