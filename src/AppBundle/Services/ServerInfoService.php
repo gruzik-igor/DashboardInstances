@@ -65,25 +65,27 @@ class ServerInfoService
 
         $new_array = array();
         
-        array_walk($sysinfo, replace_arr() , $new_array);    
+        function replace_arr ($val, $key){
+            $nums = explode(': ',$val);
+           return $new_array[$nums[0]] = $nums[1];
+            
+            //var_dump($new_array);die;
+            
+            // if (array_key_exists(1, $nums)) {
+            //     $new_array[$nums[0]] = $nums[1];
+            // } 
+            
+        }
+
+        array_walk($sysinfo, 'replace_arr' , $new_array);    
         
-        
+        var_dump($new_array);die;
        
     } 
 
     
 
-    public function replace_arr ($val, $key){
-        $nums = explode(': ',$val);
-       return $new_array[$nums[0]] = $nums[1];
-        
-        //var_dump($new_array);die;
-        
-        // if (array_key_exists(1, $nums)) {
-        //     $new_array[$nums[0]] = $nums[1];
-        // } 
-        var_dump($new_array);die;
-    }
+    
 
     
 }
