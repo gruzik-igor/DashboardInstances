@@ -65,10 +65,13 @@ class ServerInfoService
 
         $new_array = array();
         
-        $arr_n = array_walk($sysinfo, replace_arr($sysinfo, $new_array) , $new_array);
+        array_walk($sysinfo, replace_arr() , $new_array);    
+        
         
        
     } 
+
+    
 
     public function replace_arr ($val, $key){
         $nums = explode(': ',$val);
@@ -79,7 +82,7 @@ class ServerInfoService
         // if (array_key_exists(1, $nums)) {
         //     $new_array[$nums[0]] = $nums[1];
         // } 
-        var_dump($arr_n);die;
+        var_dump($new_array);die;
     }
 
     
