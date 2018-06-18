@@ -65,7 +65,7 @@ class ServerInfoService
         //$new_array = array();
         
 
-        while (list ($key, $val) = each ($sysinfo) ) echo'<pre>'; echo $val; echo'<pre>';
+        while (list ($key, $val) = each ($sysinfo) ) echo'<pre>'; echo $val; echo'<pre>'; die;
         
         
 
