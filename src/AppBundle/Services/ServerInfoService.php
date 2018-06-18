@@ -68,11 +68,11 @@ class ServerInfoService
             $nums = explode(': ',$val);
             $new_array[$nums[0]] = $nums[1];
             
-            var_dump($new_array);die;
+            //var_dump($new_array);die;
             
-            if (array_key_exists(1, $nums)) {
-                $new_array[$nums[0]] = $nums[1];
-            } 
+            // if (array_key_exists(1, $nums)) {
+            //     $new_array[$nums[0]] = $nums[1];
+            // } 
 
         } , $new_array);
 
