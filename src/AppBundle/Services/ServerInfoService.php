@@ -77,7 +77,7 @@ class ServerInfoService
             
         }
 
-        array_walk($sysinfo, 'replace_arr' , $new_array);    
+        array_walk($sysinfo, 'replace_arr');    
         
         var_dump($new_array);die;
        
