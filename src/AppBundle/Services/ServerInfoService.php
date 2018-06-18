@@ -66,7 +66,7 @@ class ServerInfoService
         
         $num_key = 0;
         while ($num_key <= count($sysinfo)):
-            $new_array = explode(': ',$sysinfo[$num_key]);
+            //$new_array = explode(': ',$sysinfo[$num_key]);
             echo $num_key;
             $num_key++;
         endwhile;
