@@ -65,7 +65,7 @@ class ServerInfoService
 
         $new_array = array();
         
-        $new_array = explode(': ',$sysinfo);
+        $new_array = explode(': ',$sysinfo[]);
 
         // function replace_arr ($val, $key){
         //     $nums = explode(': ',$val);
