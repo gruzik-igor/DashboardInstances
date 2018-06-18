@@ -64,7 +64,11 @@ class ServerInfoService
         //var_dump($sysinfo);
         $new_array = [];
         
-        while (list ($key, $val) = each ($sysinfo)) $new_array = array_merge($new_array,  explode(': ',$val));
+        foreach($sysinfo as $val) {
+            $valArray = explode(':', $val);
+            
+            $new_array[trim($val[0])] = trim($val[1]);
+        }
         
         //var_dump($new_array); die;
         return $new_array;
