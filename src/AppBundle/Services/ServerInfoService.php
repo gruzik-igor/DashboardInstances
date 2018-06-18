@@ -62,14 +62,17 @@ class ServerInfoService
         $sysinfo = explode("\n", $free);
 
         //var_dump($sysinfo);
-        $new_array = array();
+        //$new_array = array();
         
-        $num_key = 0;
-        while ($num_key <= count($sysinfo)):
-            //$new_array = explode(': ',$sysinfo[$num_key]);
-            echo $num_key;
-            $num_key++;
-        endwhile;
+
+        while (list ($key, $val) = each ($sysinfo) ) echo $val;
+
+        // $num_key = 0;
+        // while ($num_key <= count($sysinfo)):
+        //     //$new_array = explode(': ',$sysinfo[$num_key]);
+        //     echo $num_key;
+        //     $num_key++;
+        // endwhile;
         
         // function replace_arr ($val, $key){
         //     $nums = explode(': ',$val);
@@ -85,7 +88,7 @@ class ServerInfoService
 
         // array_walk($sysinfo, 'replace_arr');    
         
-        var_dump($new_array);die;
+        //var_dump($new_array);die;
        
     } 
 
