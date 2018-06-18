@@ -65,7 +65,7 @@ class ServerInfoService
 
         $new_array = array();
         
-        array_walk($sysinfo, replace_arr() , $new_array);
+        $arr_n = array_walk($sysinfo, replace_arr($sysinfo, $new_array) , $new_array);
         
         function replace_arr ($val, $key){
             $nums = explode(': ',$val);
@@ -79,7 +79,7 @@ class ServerInfoService
             
         }
 
-        var_dump($new_array);die;
+        var_dump($arr_n);die;
        
     } 
 
