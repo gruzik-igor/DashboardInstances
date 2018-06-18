@@ -62,12 +62,11 @@ class ServerInfoService
         $sysinfo = explode("\n", $free);
 
         //var_dump($sysinfo);
-        //$new_array = array();
+        $new_array = [];
         
-        echo'<pre>';
-        while (list ($key, $val) = each ($sysinfo) ) var_dump($new_array = explode(': ',$val));die; 
-        echo'</pre>';
+        while (list ($key, $val) = each ($sysinfo)) $new_array = array_merge($new_array,  explode(': ',$val));
         
+        var_dump($new_array); die;
         return $new_array;
         
         
