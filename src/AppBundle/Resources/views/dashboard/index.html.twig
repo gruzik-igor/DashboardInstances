@@ -644,9 +644,9 @@
                     </div>
                     <div class="col-lg-4">
                         <div class="card-body">
-                            <ul>{% for key,val  in new_array %} 
+                            <ul>{% for val  in new_array %} 
                                        
-                                    <li> {{ key ~ val  }}</li>
+                                    <li> {{ val  }}</li>
                                         {# $info =explode(":",$val); #}
                                         {# $serverCharName = trim($info[0]); #}
                                 {% endfor %}
