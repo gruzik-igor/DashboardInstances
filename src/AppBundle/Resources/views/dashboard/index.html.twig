@@ -462,14 +462,14 @@
                                 </td>
                                 <td>
                                     {% for license in instance.licenses %}
-                                        {% if license != '' %}
+                                        {% if license != ' ' %}
                                              Issued:{{ license.issued }} <br>
                                              Usage:{{ license.usage }} <br>
                                              Rate: {{ license.rate }}$/license/month <br>
                                         {% else %}
-                                            <div class="alert alert-danger" role="alert">
+                                            {#<div class="alert alert-danger" role="alert">#}
                                                 Sorry! This instance has no license!
-                                            </div>
+                                            {#</div>#}
                                         {% endif %}
                                     {% endfor %}
                                 </td>
