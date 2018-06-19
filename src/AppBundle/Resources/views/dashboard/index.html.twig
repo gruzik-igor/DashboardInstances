@@ -463,9 +463,9 @@
                                 <td>
                                     {% for license in instance.licenses %}
                                         {% if license %}
-                                             Issued:{{ license.license.issued }} <br>
-                                             Usage:{{ license.license.usage }} <br>
-                                             Rate: {{ license.license.rate }}$/license/month <br>
+                                             Issued:{{ license.issued }} <br>
+                                             Usage:{{ license.usage }} <br>
+                                             Rate: {{ license.rate }}$/license/month <br>
                                         {% else %}
                                             <div class="alert alert-danger" role="alert">
                                                 Sorry! This instance has no license!
