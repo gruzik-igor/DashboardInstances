@@ -462,9 +462,9 @@
                                 </td>
                                 <td>
                                     {% for license in instance.licenses %}
-                                        {% if license != ' ' %}
-                                             Issued:{{ license.issued }} <br>
-                                             Usage:{{ license.usage }} <br>
+                                        {% if license  %}
+                                             Issued: {{ license.issued }} <br>
+                                             Usage: {{ license.usage }} <br>
                                              Rate: {{ license.rate }}$/license/month <br>
                                         {% else %}
                                             {#<div class="alert alert-danger" role="alert">#}
@@ -474,9 +474,11 @@
                                     {% endfor %}
                                 </td>
                                 <td>
-                                    300$ @ 01/01/2018<br>
-                                    Status: paid<br>
-                                    Next invoice: 02/01/2018
+                                    {% for invoice in instance.invoices %}
+                                    {{ invoice.price }}$ @ {{ invoice.creation_date }}<br>
+                                    Status: {{ invoice.status }}<br>
+                                    Next invoice: {{ invoice.expiration_date }}
+                                    {% endfor %}
                                 </td>
                                 <td>
                                     <a class="btn btn-primary btn-block" href="#">Suspended</a>
