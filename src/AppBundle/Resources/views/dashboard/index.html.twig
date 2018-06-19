@@ -440,9 +440,9 @@
                                     Average HDD: 2345 Mb
                                 </td>
                                 <td>
-                                    CPU: 30%<br>
-                                    RAM: 512 Mb<br>
-                                    HDD: 4096 Mb
+                                    {% for resource in instance.resources %}
+                                        {{ resource.resource.name }}: {{ resource.resource.value }} <br>
+                                    {% endfor %}
                                 </td>
                                 <td>
                                     Issued:25<br>
