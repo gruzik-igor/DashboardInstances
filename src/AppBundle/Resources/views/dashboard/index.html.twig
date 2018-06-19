@@ -462,7 +462,7 @@
                                 </td>
                                 <td>
                                     {% for license in instance.licenses %}
-                                        {% if license.value %}
+                                        {% if license %}
                                              Issued:{{ license.license.issued }} <br>
                                              Usage:{{ license.license.usage }} <br>
                                              Rate: {{ license.license.rate }}$/license/month <br>
