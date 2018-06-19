@@ -36,7 +36,7 @@ class Invoice
     protected $price;
 
     /**
-     * @ORM\Column(type="datetime", nullable=true)
+     * @ORM\Column(type="date", nullable=true)
      */
     protected $creationDate;
 
