@@ -443,15 +443,17 @@
                                 </td>
                                 <td>
                                     {% for resource in instance.resources %}
-
-                                            {% if resource.resource.name.RAM %}
+                                        {% if resource.value %}
+                                            {% if resource.resource.name == 'RAM' %}
                                                 {{ resource.resource.name }}: {{ resource.value }} MB  <br>
-                                            {% elseif resource.resource.name.CPU %}
+                                            {% elseif resource.resource.name == 'CPU' %}
                                                 {{ resource.resource.name }}: {{ resource.value }} %  <br>
-                                            {% elseif resource.resource.name.HDD %}
+                                            {% elseif resource.resource.name == 'HDD' %}
                                                 {{ resource.resource.name }}: {{ resource.value }} GB  <br>
                                             {% endif %}
-
+                                        {% else %}
+                                            {{ resource.resource.name }}: {{ resource.resource.defaultValue }} mb <br>
+                                        {% endif %}
                                     {% endfor %}
                                 </td>
                                 <td>
