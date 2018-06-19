@@ -37,7 +37,7 @@ class DashboardController extends Controller
      */
     public function infoAction()
     {
-        $name = 'Ivan Petrov';
+        $name = 'Ivan Ivanenko';
 
         return new Response('<html><body>Whoo: ' . $name . '</body></html>');
     }
