@@ -445,11 +445,11 @@
                                     {% for resource in instance.resources %}
 
                                             {% if resource.resource.name == 'RAM' %}
-                                                {{ resource.resource.name }}: {{ resource.value }} MB  <br>
+                                                {{ resource.resource.name }}: {{ resource.resource.value }} MB  <br>
                                             {% elseif resource.resource.name == 'CPU' %}
-                                                {{ resource.resource.name }}: {{ resource.value }} %  <br>
+                                                {{ resource.resource.name }}: {{ resource.resource.value }} %  <br>
                                             {% elseif resource.resource.name == 'HDD' %}
-                                                {{ resource.resource.name }}: {{ resource.value }} GB  <br>
+                                                {{ resource.resource.name }}: {{ resource.resource.value }} GB  <br>
                                             {% endif %}
 
                                     {% endfor %}
