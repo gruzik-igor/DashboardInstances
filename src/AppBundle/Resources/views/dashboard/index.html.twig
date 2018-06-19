@@ -418,6 +418,7 @@
                             </div>
                         </div>
                         <table class="table table-bordered" id="marketing_masters" width="100%" cellspacing="0">
+                            {% for instance in instances %}
                             <thead>
                             <tr>
                                 <th>Instance</th>
@@ -425,15 +426,11 @@
                                 <th>Resources limits:</th>
                                 <th>Licenses:</th>
                                 <th>Latest invoice:</th>
-                                {% for instance in instances %}
-                                    <th>Instance status: {{ instance.status }} </th>
-                                {% endfor %}
+                                <th>Instance status: {{ instance.status }} </th>
                             </tr>
                             </thead>
                             <tbody>
                             <tr>
-                                {% for instance in instances %}
-
 
                                 <td>{{ instance.name }}</td>
                                 <td>
@@ -454,7 +451,6 @@
                                         {% else %}
                                             {{ resource.resource.name }}: {{ resource.resource.defaultValue }} mb <br>
                                         {% endif %}
-                                    {% endfor %}
                                 </td>
                                 <td>
                                     Issued:25<br>
