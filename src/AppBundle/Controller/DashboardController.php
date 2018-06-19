@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
-class DashboardController extends Controller
+class DashboardController extends BaseController
 {
     /**
      * @Route("/", name="dashboard")
@@ -28,7 +28,8 @@ class DashboardController extends Controller
             'diskinfo' => $serverInfoService->getSystemHddInfo(),
             'cpuinfo' => $os->getLoadPercentage(AbstractOs::TIMEFRAME_1_MIN),
             'uptime' => $serverInfoService->getServerUptime(),
-            'servinfo' => $serverInfoService->getSystemInfo()
+            'servinfo' => $serverInfoService->getSystemInfo(),
+            'instances' => $this->findBy('AppBundle:Instance', [])
             ]);
     }
 
