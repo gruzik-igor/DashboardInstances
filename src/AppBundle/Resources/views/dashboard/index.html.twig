@@ -444,18 +444,14 @@
                                 <td>
                                     {% for resource in instance.resources %}
                                         {% if resource.value %}
-                                            {% if resource.resource.name == 'RAM'  %}
+                                            {% if resource.name.RAM %}
                                                 {{ resource.resource.name }}: {{ resource.value }} MB  <br>
-                                            {% else %}
-                                                {{ resource.resource.name }}: {{ resource.resource.defaultValue }}  <br>
-                                            {% elseif resource.resource.name == 'CPU' %}
+                                            {% elseif resource.name.CPU %}
                                                 {{ resource.resource.name }}: {{ resource.value }} %  <br>
-                                            {% else %}
-                                                {{ resource.resource.name }}: {{ resource.resource.defaultValue }}  <br>
-                                            {% elseif resource.resource.name == 'HDD' %}
+                                            {% elseif resource.name.HDD %}
                                                 {{ resource.resource.name }}: {{ resource.value }} GB  <br>
-
-                                            {% else %}
+                                            {% endif %}
+                                        {% else %}
                                             {{ resource.resource.name }}: {{ resource.resource.defaultValue }}  <br>
                                         {% endif %}
                                     {% endfor %}
