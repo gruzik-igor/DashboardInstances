@@ -6,11 +6,10 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Invoices.
+ * Invoice.
  *
  * @ORM\Entity()
  * @ORM\HasLifecycleCallbacks()
- * @ORM\EntityListeners({"AppBundle\EventListener\UserEntityListener"})
  */
 class Invoice 
 {
@@ -22,6 +21,12 @@ class Invoice
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Instance", inversedBy="invoices")
+     * @ORM\JoinColumn(name="instance_id", referencedColumnName="id")
+     */
+    protected $instance;
 
     /**
      * @ORM\Column(type="float", length=255, nullable=false)
@@ -36,8 +41,7 @@ class Invoice
     protected $creationDate;
 
     /**
-     * @ORM\Column(type="enum", length=255, nullable=false)
-     * @Assert\Status()
+     * @ORM\Column(type="string", length=255, nullable=false)
      * @Assert\NotBlank()
      * @Assert\Length(max="255")
      */
@@ -60,14 +64,13 @@ class Invoice
     }
 
     /**
-     * Set Price.
+     * Set price
      *
      * @param float $price
      *
      * @return Invoice
      */
-    
-     public function setPrice($price)
+    public function setPrice($price)
     {
         $this->price = $price;
 
@@ -77,7 +80,7 @@ class Invoice
     /**
      * Get price
      *
-     * @return string
+     * @return float
      */
     public function getPrice()
     {
@@ -85,54 +88,21 @@ class Invoice
     }
 
     /**
-     * Set Status.
+     * Set creationDate
      *
-     * @param enum $status
+     * @param \DateTime $creationDate
      *
      * @return Invoice
      */
-    
-    public function setStatus($status)
+    public function setCreationDate($creationDate)
     {
-        $this->status = $status;
+        $this->creationDate = $creationDate;
 
         return $this;
     }
 
     /**
-     * Returns the status granted to the invoice.
-     *
-     * <code>
-     * public function getStatus()
-     * {
-     *     return array('IN_PROCESS');
-     * }
-     * </code>
-     *
-     *
-     * @return (Status|enum)[] The invoice status
-     */
-    public function getStatus()
-    {
-        return array($this->status ? $this->status : 'IN_PROCESS');
-    }
-
-    /**
-     * Set CreationDate
-     *
-     * @ORM\PrePersist()
-     *
-     * @return Invoice
-     */
-    public function setCreationDate($creationDate = null)
-    {
-        $this->creationDate = new \DateTime('now');
-
-        return $this;
-    }
-
-    /**
-     * Get CreationDate
+     * Get creationDate
      *
      * @return \DateTime
      */
@@ -141,11 +111,34 @@ class Invoice
         return $this->creationDate;
     }
 
+    /**
+     * Set status
+     *
+     * @param string $status
+     *
+     * @return Invoice
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * Get status
+     *
+     * @return string
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
 
     /**
      * Set expirationDate
      *
-     * @param datetime $expirationDate
+     * @param \DateTime $expirationDate
      *
      * @return Invoice
      */
@@ -159,11 +152,34 @@ class Invoice
     /**
      * Get expirationDate
      *
-     * @return datetime
+     * @return \DateTime
      */
     public function getExpirationDate()
     {
         return $this->expirationDate;
     }
 
+    /**
+     * Set instance
+     *
+     * @param \AppBundle\Entity\Instance $instance
+     *
+     * @return Invoice
+     */
+    public function setInstance(\AppBundle\Entity\Instance $instance = null)
+    {
+        $this->instance = $instance;
+
+        return $this;
+    }
+
+    /**
+     * Get instance
+     *
+     * @return \AppBundle\Entity\Instance
+     */
+    public function getInstance()
+    {
+        return $this->instance;
+    }
 }

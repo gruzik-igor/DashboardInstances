@@ -31,7 +31,7 @@ class Resource
     protected $name;
 
     /**
-     * @ORM\Column(type="enum",  length=255, nullable=true)
+     * @ORM\Column(type="string",  length=255, nullable=true)
      */
     protected $type;
 
@@ -53,14 +53,13 @@ class Resource
     }
 
     /**
-     * Set Name.
+     * Set name
      *
      * @param string $name
      *
      * @return Resource
      */
-    
-     public function setName($name)
+    public function setName($name)
     {
         $this->name = $name;
 
@@ -68,7 +67,7 @@ class Resource
     }
 
     /**
-     * Get Name.
+     * Get name
      *
      * @return string
      */
@@ -78,13 +77,12 @@ class Resource
     }
 
     /**
-     * Set Type.
+     * Set type
      *
-     * @param enum $type
+     * @param string $type
      *
      * @return Resource
      */
-    
     public function setType($type)
     {
         $this->type = $type;
@@ -93,24 +91,22 @@ class Resource
     }
 
     /**
-     * Get Type
+     * Get type
      *
-     * @return enum
+     * @return string
      */
     public function getType()
     {
         return $this->type;
     }
 
-
     /**
-     * Set DefaultValue.
+     * Set defaultValue
      *
-     * @param integer $defaultValue
+     * @param string $defaultValue
      *
      * @return Resource
      */
-    
     public function setDefaultValue($defaultValue)
     {
         $this->defaultValue = $defaultValue;
@@ -119,13 +115,12 @@ class Resource
     }
 
     /**
-     * Get DefaultValue.
+     * Get defaultValue
      *
-     * @return integer
+     * @return string
      */
     public function getDefaultValue()
     {
         return $this->defaultValue;
     }
-
 }

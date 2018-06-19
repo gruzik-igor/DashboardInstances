@@ -24,9 +24,8 @@ class License
     protected $id;
 
     /**
-     * @ORM\Column(type="ManyToOne", length=255, nullable=false)
-     * @Assert\Length(max="255")
-     * @Assert\NotBlank()
+     * @ORM\ManyToOne(targetEntity="Instance")
+     * @ORM\JoinColumn(name="instance_id", referencedColumnName="id")
      */
     protected $instance;
 
@@ -59,38 +58,12 @@ class License
     }
 
     /**
-     * Set Instance.
-     *
-     * @param ManyToOne $instance
-     *
-     * @return License
-     */
-    
-     public function setInstance($instance)
-    {
-        $this->instance = $instance;
-
-        return $this;
-    }
-
-    /**
-     * Get Instance.
-     *
-     * @return ManyToOne
-     */
-    public function getInstance()
-    {
-        return $this->instance;
-    }
-
-    /**
-     * Set Issued.
+     * Set issued
      *
      * @param integer $issued
      *
      * @return License
      */
-    
     public function setIssued($issued)
     {
         $this->issued = $issued;
@@ -99,7 +72,7 @@ class License
     }
 
     /**
-     * Get Issued
+     * Get issued
      *
      * @return integer
      */
@@ -108,15 +81,13 @@ class License
         return $this->issued;
     }
 
-
     /**
-     * Set Usage.
+     * Set usage
      *
      * @param integer $usage
      *
      * @return License
      */
-    
     public function setUsage($usage)
     {
         $this->usage = $usage;
@@ -125,7 +96,7 @@ class License
     }
 
     /**
-     * Get Usage
+     * Get usage
      *
      * @return integer
      */
@@ -135,13 +106,12 @@ class License
     }
 
     /**
-     * Set Rate.
+     * Set rate
      *
      * @param integer $rate
      *
      * @return License
      */
-    
     public function setRate($rate)
     {
         $this->rate = $rate;
@@ -150,7 +120,7 @@ class License
     }
 
     /**
-     * Get Rate.
+     * Get rate
      *
      * @return integer
      */
@@ -159,5 +129,27 @@ class License
         return $this->rate;
     }
 
+    /**
+     * Set instance
+     *
+     * @param \AppBundle\Entity\Instance $instance
+     *
+     * @return License
+     */
+    public function setInstance(\AppBundle\Entity\Instance $instance = null)
+    {
+        $this->instance = $instance;
 
+        return $this;
+    }
+
+    /**
+     * Get instance
+     *
+     * @return \AppBundle\Entity\Instance
+     */
+    public function getInstance()
+    {
+        return $this->instance;
+    }
 }

@@ -6,13 +6,12 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Invoices.
+ * InstanceResource.
  *
  * @ORM\Entity()
  * @ORM\HasLifecycleCallbacks()
- * @ORM\EntityListeners({"AppBundle\EventListener\UserEntityListener"})
  */
-class InstanceResources 
+class InstanceResource
 {
     /**
      * @var int
@@ -24,16 +23,14 @@ class InstanceResources
     protected $id;
 
     /**
-     * @ORM\Column(type="ManyToOne", length=255, nullable=false)
-     * @Assert\Length(max="255")
-     * @Assert\NotBlank()
+     * @ORM\ManyToOne(targetEntity="Instance")
+     * @ORM\JoinColumn(name="instance_id", referencedColumnName="id")
      */
     protected $instance;
 
     /**
-     * @ORM\Column(type="ManyToOne",  length=255, nullable=true)
-     * @Assert\Length(max="255")
-     * @Assert\NotBlank()
+     * @ORM\ManyToOne(targetEntity="Resource")
+     * @ORM\JoinColumn(name="resource_id", referencedColumnName="id")
      */
     protected $resource;
 
@@ -48,14 +45,13 @@ class InstanceResources
     }
 
     /**
-     * Set Instance.
+     * Set instance
      *
-     * @param ManyToOne $instance
+     * @param \AppBundle\Entity\Instance $instance
      *
-     * @return InstanceResources
+     * @return InstanceResource
      */
-    
-     public function setInstance($instance)
+    public function setInstance(\AppBundle\Entity\Instance $instance = null)
     {
         $this->instance = $instance;
 
@@ -63,9 +59,9 @@ class InstanceResources
     }
 
     /**
-     * Get Instance.
+     * Get instance
      *
-     * @return ManyToOne
+     * @return \AppBundle\Entity\Instance
      */
     public function getInstance()
     {
@@ -73,14 +69,13 @@ class InstanceResources
     }
 
     /**
-     * Set Resource.
+     * Set resource
      *
-     * @param ManyToOne $resource
+     * @param \AppBundle\Entity\Resource $resource
      *
-     * @return InstanceResources
+     * @return InstanceResource
      */
-    
-    public function setResource($resource)
+    public function setResource(\AppBundle\Entity\Resource $resource = null)
     {
         $this->resource = $resource;
 
@@ -88,13 +83,12 @@ class InstanceResources
     }
 
     /**
-     * Get Resource
+     * Get resource
      *
-     * @return ManyToOne
+     * @return \AppBundle\Entity\Resource
      */
-    public function geResource()
+    public function getResource()
     {
         return $this->resource;
     }
-
 }

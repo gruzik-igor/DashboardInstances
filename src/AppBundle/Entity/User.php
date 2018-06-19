@@ -446,4 +446,28 @@ class User implements UserInterface
     }
 
    
+
+    /**
+     * Set instagram
+     *
+     * @param integer $instagram
+     *
+     * @return User
+     */
+    public function setInstagram($instagram)
+    {
+        $this->instagram = $instagram;
+
+        return $this;
+    }
+
+    /**
+     * Get instagram
+     *
+     * @return integer
+     */
+    public function getInstagram()
+    {
+        return $this->instagram;
+    }
 }
