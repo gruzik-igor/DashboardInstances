@@ -66,9 +66,9 @@ class ServerInfoService
         foreach($sysinfo as $val) {
             $valArray = explode(':', $val);
             
-            $cpuinfo[trim($valArray[0])] = @trim($valArray[1]);
+            $servinfo[trim($valArray[0])] = @trim($valArray[1]);
         }
-        return $cpuinfo;
+        return $servinfo;
        
     } 
 
