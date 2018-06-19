@@ -22,7 +22,7 @@ class DashboardController extends BaseController
         $os = $system->getOs();
 
         $serverInfoService = $this->get('app.server_info.service');
-
+        var_dump($this->findBy('AppBundle:Instance', [])); die;
         return $this->render('@App/dashboard/index.html.twig', [
             'meminfo'=> $serverInfoService->getSystemMemInfo(),
             'diskinfo' => $serverInfoService->getSystemHddInfo(),
