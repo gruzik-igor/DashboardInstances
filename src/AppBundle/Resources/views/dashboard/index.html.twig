@@ -441,7 +441,11 @@
                                 </td>
                                 <td>
                                     {% for resource in instance.resources %}
-                                        {{ resource.resource.name }}: {{ resource.resource.value }} <br>
+                                        {% if resource.value %}
+                                            {{ resource.resource.name }}: {{ resource.value }} <br>
+                                        {% else %}
+                                            {{ resource.resource.name }}: {{ resource.resource.defaultValue }} <br>
+                                        {% endif %}
                                     {% endfor %}
                                 </td>
                                 <td>

@@ -35,6 +35,13 @@ class InstanceResource
     protected $resource;
 
     /**
+     * @ORM\Column(type="string", length=255, nullable=false)
+     * @Assert\NotBlank()
+     * @Assert\Length(max="255")
+     */
+    protected $value;
+
+    /**
      * Get id
      *
      * @return integer
@@ -90,5 +97,29 @@ class InstanceResource
     public function getResource()
     {
         return $this->resource;
+    }
+
+    /**
+     * Set value
+     *
+     * @param string $value
+     *
+     * @return InstanceResource
+     */
+    public function setValue($value)
+    {
+        $this->value = $value;
+
+        return $this;
+    }
+
+    /**
+     * Get value
+     *
+     * @return string
+     */
+    public function getValue()
+    {
+        return $this->value;
     }
 }
