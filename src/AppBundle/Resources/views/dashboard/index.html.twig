@@ -450,7 +450,14 @@
                                                 {{ resource.resource.name }}: {{ resource.value }} GB  <br>
                                             {% endif %}
                                         {% else %}
-                                            {{ resource.resource.name }}: {{ resource.resource.defaultValue }} mb <br>
+                                            {% if resource.resource.name == 'RAM' %}
+                                                {{ resource.resource.name }}: {{ resource.defaultValue }} MB  <br>
+                                            {% elseif resource.resource.name == 'CPU' %}
+                                                {{ resource.resource.name }}: {{ resource.defaultValue }} %  <br>
+                                            {% elseif resource.resource.name == 'HDD' %}
+                                                {{ resource.resource.name }}: {{ resource.defaultValue }} GB  <br>
+                                            {% endif %}
+
                                         {% endif %}
                                     {% endfor %}
                                 </td>
