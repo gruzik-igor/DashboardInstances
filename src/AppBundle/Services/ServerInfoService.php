@@ -61,43 +61,14 @@ class ServerInfoService
         
         $sysinfo = explode("\n", $free);
 
-        //var_dump($sysinfo);
         $new_array = [];
         
         foreach($sysinfo as $val) {
             $valArray = explode(':', $val);
             
-            $new_array[trim($valArray[0])] = @trim($valArray[1]);
+            $cpuinfo[trim($valArray[0])] = @trim($valArray[1]);
         }
-        
-        //var_dump($new_array); die;
-        return $new_array;
-        
-        
-
-
-        // $num_key = 0;
-        // while ($num_key <= count($sysinfo)):
-        //     //$new_array = explode(': ',$sysinfo[$num_key]);
-        //     echo $num_key;
-        //     $num_key++;
-        // endwhile;
-        
-        // function replace_arr ($val, $key){
-        //     $nums = explode(': ',$val);
-        //    return $new_array[$nums[0]] = $nums[1];
-            
-        //     var_dump($new_array);die;
-            
-        //     if (array_key_exists(1, $nums)) {
-        //         $new_array[$nums[0]] = $nums[1];
-        //     } 
-            
-        // }
-
-        // array_walk($sysinfo, 'replace_arr');    
-        
-        //var_dump($new_array);die;
+        return $cpuinfo;
        
     } 
 

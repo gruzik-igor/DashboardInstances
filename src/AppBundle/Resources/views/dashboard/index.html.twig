@@ -644,7 +644,7 @@
                     </div>
                     <div class="col-lg-4">
                         <div class="card-body">
-                            <ul>{% for key, val  in new_array %} 
+                            <ul>{% for key, val  in cpuinfo %} 
                                        
                                     <li> {{ key }} {{ val  }}</li>
                                         {# $info =explode(":",$val); #}
@@ -653,7 +653,8 @@
                             </ul>
                             <p>Server configuration:</p>
                             <ul>
-                                <li>{{new_array['model name']}}</li>
+                                <li>{{cpuinfo['model name']}}</li>
+                                <li>cpu cores:{{cpuinfo['cpu core']}}</li>
                                 <li>64 GB DDR 3 RAM</li>
                                 <li>1 TB HDD RAID 0+1</li>
                             </ul>
