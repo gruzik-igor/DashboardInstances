@@ -451,13 +451,12 @@
                                             {% endif %}
                                         {% else %}
                                             {% if resource.resource.name == 'RAM' %}
-                                                {{ resource.resource.name }}: {{ resource.defaultValue }} MB  <br>
+                                                {{ resource.resource.name }}: {{ resource.resource.defaultValue }} MB  <br>
                                             {% elseif resource.resource.name == 'CPU' %}
-                                                {{ resource.resource.name }}: {{ resource.defaultValue }} %  <br>
+                                                {{ resource.resource.name }}: {{ resource.resource.defaultValue }} %  <br>
                                             {% elseif resource.resource.name == 'HDD' %}
-                                                {{ resource.resource.name }}: {{ resource.defaultValue }} GB  <br>
+                                                {{ resource.resource.name }}: {{ resource.resource.defaultValue }} GB  <br>
                                             {% endif %}
-
                                         {% endif %}
                                     {% endfor %}
                                 </td>
