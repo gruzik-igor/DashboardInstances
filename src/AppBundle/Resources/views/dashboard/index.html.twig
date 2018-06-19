@@ -461,9 +461,12 @@
                                     {% endfor %}
                                 </td>
                                 <td>
-                                    Issued:25<br>
-                                    Usage:23<br>
-                                    Rate: 12$/license/month
+                                    {% for license in instance.licenses %}
+                                        {% if license.value %}
+                                             Issued:{{ license.license.issued }} <br>
+                                             Usage:{{ license.license.usage }} <br>
+                                             Rate: {{ license.license.rate }}$/license/month
+                                    {% endfor %}
                                 </td>
                                 <td>
                                     300$ @ 01/01/2018<br>

@@ -29,7 +29,8 @@ class DashboardController extends BaseController
             'cpuinfo' => $os->getLoadPercentage(AbstractOs::TIMEFRAME_1_MIN),
             'uptime' => $serverInfoService->getServerUptime(),
             'servinfo' => $serverInfoService->getSystemInfo(),
-            'instances' => $this->findBy('AppBundle:Instance', [])
+            'instances' => $this->findBy('AppBundle:Instance', []),
+            'licenses' => $this->findBy('AppBundle:License', [])
             ]);
     }
 
