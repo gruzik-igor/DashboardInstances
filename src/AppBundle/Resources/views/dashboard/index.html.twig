@@ -465,7 +465,12 @@
                                         {% if license.value %}
                                              Issued:{{ license.license.issued }} <br>
                                              Usage:{{ license.license.usage }} <br>
-                                             Rate: {{ license.license.rate }}$/license/month
+                                             Rate: {{ license.license.rate }}$/license/month <br>
+                                        {% else %}
+                                            <div class="alert alert-danger" role="alert">
+                                                Sorry! This instance has no license!
+                                            </div>
+                                        {% endif %}
                                     {% endfor %}
                                 </td>
                                 <td>
