@@ -279,7 +279,9 @@
                                     {% endfor %}
 
                                     {% if instance.licenses is empty %}
+                                    <div class="alert alert-warning" role="alert">
                                         Sorry! This instance has no license!
+                                    </div>
                                     {% endif %}
                                 </td>
                                 <td>
