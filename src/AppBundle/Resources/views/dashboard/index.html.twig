@@ -330,7 +330,9 @@
                                     <p>Licenses used: <span id="license-usage">0</span></p>
                                 {% endif %}
 
-                                <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#changeLicense">Change licenses value</button>
+                                <button type="button" class="btn btn-primary btn-block" data-toggle="modal"
+                                        data-target="#changeLicense">Change licenses value
+                                </button>
 
                             </div>
                             <div class="col-lg-3">
@@ -466,8 +468,9 @@
             </a>
 
             <!-- Modal -->
-            <div class="modal fade" id="changeLicense" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
-                <div class="modal-dialog" role="document" >
+            <div class="modal fade" id="changeLicense" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                 aria-hidden="true">
+                <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="exampleModalLabel">Change licenses</h5>
@@ -478,23 +481,34 @@
                         <div class="modal-body">
                             <form action="/licenses" method="POST">
                                 <div class="form-row">
-                                    {#{% for license in instances[0].license %}#}
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label for="issuedValue">License issued:</label>
-                                                <input name="license[][issuedValue]" type="text" readonly
-                                                       value="" id="issuedValue" class="form-control">
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="usageValue">License usage</label>
-                                                <input type="text" name="license[][usageValue]"
-                                                       id="usageValue" value="" class="form-control">
-                                            </div>
+                                    {% for license in instances[0].license %}
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="issuedValue">License issued:</label>
+                                            <input name="license[][issuedValue]" type="text"
+                                                   value="" id="issuedValue" class="form-control">
                                         </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="usageValue">License usage:</label>
+                                            <input type="text" name="license[][usageValue]"
+                                                   id="usageValue" value="" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="rateValue">License rate:</label>
+                                            <input type="text" name="license[][rateValue]"
+                                                   id="rateValue" value="" class="form-control">
+                                        </div>
+                                    </div>
 
-                                    {#{% endfor %}#}
-                                    <div class="modal-footer">
-                                        <button id="btn-cancel" type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                    {% endfor %}
+                                    <div class="col-md-6 modal-footer">
+                                        <button id="btn-cancel" type="button" class="btn btn-secondary"
+                                                data-dismiss="modal">Cancel
+                                        </button>
                                         <button type="button" class="btn btn-success btn-block">Save changes</button>
                                     </div>
                                 </div>
@@ -511,9 +525,9 @@
 
 {% block javascripts %}
     <script>
-        $('document').ready(function(){
+        $('document').ready(function () {
             $('#select-instance').change(function (e) {
-                $.get('/api/licenses/'+e.target.value, function (data) {
+                $.get('/api/licenses/' + e.target.value, function (data) {
                     let issued = $('#license-issued');
                     let usage = $('#license-usage');
                     let rate = $('#license-rate');
@@ -535,11 +549,11 @@
                 modal.find('.modal-body input').val(recipient)
             })
             // $("#changeLicense").click(function () {
-                //     $("#modal-changeLicense").show(500);
-                // });
-                // $("#btn-cancel").click(function() {
-                //     $("#modal-changeLicense").hide('slow');
-                // })
+            //     $("#modal-changeLicense").show(500);
+            // });
+            // $("#btn-cancel").click(function() {
+            //     $("#modal-changeLicense").hide('slow');
+            // })
 
         });
     </script>
