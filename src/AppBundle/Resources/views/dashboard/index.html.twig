@@ -312,9 +312,9 @@
                         <div class="col-lg-2">
                             <label>Select instance:</label><br>
                             <select class="form-control">
-                                <option>Marketing Masters</option>
-                                <option>SEO Agency</option>
-                                <option>YourBiz</option>
+                                {% for instance in instances  %}
+                                    <option>{{ instance.name }}</option>
+                                {% endfor %}
                             </select>
                         </div>
                         <div class="col-lg-2">
