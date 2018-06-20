@@ -345,7 +345,6 @@
                                                 <form action="/licenses" method="POST">
                                                     <div class="form-row">
                                                         {% for license in instances[0].license %}
-
                                                             <div class="col-md-4">
                                                                 <div class="form-group">
                                                                     <label for="issuedValue">License issued:</label>
@@ -542,8 +541,10 @@
                 })
             });
 
-            $( "#changeLicense" ).modal();
 
+            $("#changeLicense").click(function() {
+                $(".modal").css("display", "block");
+            });
         });
     </script>
 {% endblock %}
