@@ -4,21 +4,23 @@
     <div class="content-wrapper">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-6">
+
                     <form action="/resources" method="POST">
                         {% for resource in resources %}
-                            <div class="form-group">
-                                <label for="resourceName">Resource name:</label>
-                                <input  name="resources[{{ loop.index }}][resourceName]" type="text" readonly value="{{ resource.name }}" id="resourceName" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label for="defaultValue">Default value:</label>
-                                <input type="text" name="resources[{{ loop.index }}][defaultValue]" id="defaultValue" value="{{ resource.defaultValue }}" class="form-control">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="resourceName">Resource name:</label>
+                                    <input  name="resources[{{ loop.index }}][resourceName]" type="text" readonly value="{{ resource.name }}" id="resourceName" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="defaultValue">Default value:</label>
+                                    <input type="text" name="resources[{{ loop.index }}][defaultValue]" id="defaultValue" value="{{ resource.defaultValue }}" class="form-control">
+                                </div>
                             </div>
                         {% endfor %}
                         <button type="submit" class="btn btn-primary">Save</button>
+
                     </form>
-                </div>
             </div>
         </div>
     </div>
