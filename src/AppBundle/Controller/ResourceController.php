@@ -10,13 +10,16 @@ use AppBundle\Form\UserForm;
 use AppBundle\Entity\User;
 
 
-class ResourceController extends Controller
+class ResourceController extends BaseController
 {
     /**
      * @Route("/resources", name="resources")
      */
     public function resourcesAction(Request $request)
     {
-        return $this->render('@App/resources/index.html.twig');
+        return $this->render('@App/resources/index.html.twig',
+            [
+                'resources' => $this->findBy('AppBundle:Resource', [])
+            ]);
     }
 }
