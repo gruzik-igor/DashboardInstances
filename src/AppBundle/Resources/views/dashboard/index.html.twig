@@ -475,9 +475,9 @@
                                 </td>
                                 <td>
                                     {% for invoice in instance.invoices %}
-                                    {{ invoice.price }}$ @ {{ invoice.creation_date }}<br>
+                                    {{ invoice.price }}$ @ {{ invoice }}<br>
                                     Status: {{ invoice.status }}<br>
-                                    Next invoice: {{ invoice.expiration_date }}
+                                    Next invoice: {{ invoice }}
                                     {% endfor %}
                                 </td>
                                 <td>
