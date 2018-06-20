@@ -23,8 +23,7 @@ class License
     protected $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Instance")
-     * @ORM\JoinColumn(name="instance_id", referencedColumnName="id")
+     * @ORM\OneToOne(targetEntity="Instance", mappedBy="license")
      */
     protected $instance;
 

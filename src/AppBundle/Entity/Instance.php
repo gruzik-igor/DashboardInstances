@@ -35,9 +35,10 @@ class Instance
     protected $resources;
 
     /**
-     * @ORM\OneToMany(targetEntity="License", mappedBy="instance")
+     * @ORM\OneToOne(targetEntity="License", inversedBy="instance")
+     * @ORM\JoinColumn(name="license_id", referencedColumnName="id")
      */
-    protected $licenses;
+    protected $license;
 
     /**
      * @ORM\OneToMany(targetEntity="Invoice", mappedBy="instance")
@@ -57,7 +58,6 @@ class Instance
     {
         $this->resources = new \Doctrine\Common\Collections\ArrayCollection();
         $this->licenses = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->invoices = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -153,40 +153,6 @@ class Instance
     }
 
     /**
-     * Add license
-     *
-     * @param \AppBundle\Entity\License $license
-     *
-     * @return Instance
-     */
-    public function addLicense(\AppBundle\Entity\License $license)
-    {
-        $this->licenses[] = $license;
-
-        return $this;
-    }
-
-    /**
-     * Remove license
-     *
-     * @param \AppBundle\Entity\License $license
-     */
-    public function removeLicense(\AppBundle\Entity\License $license)
-    {
-        $this->licenses->removeElement($license);
-    }
-
-    /**
-     * Get licenses
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getLicenses()
-    {
-        return $this->licenses;
-    }
-
-    /**
      * Add invoice
      *
      * @param \AppBundle\Entity\Invoice $invoice
@@ -218,5 +184,29 @@ class Instance
     public function getInvoices()
     {
         return $this->invoices;
+    }
+
+    /**
+     * Set license
+     *
+     * @param \AppBundle\Entity\License $license
+     *
+     * @return Instance
+     */
+    public function setLicense(\AppBundle\Entity\License $license = null)
+    {
+        $this->license = $license;
+
+        return $this;
+    }
+
+    /**
+     * Get license
+     *
+     * @return \AppBundle\Entity\License
+     */
+    public function getLicense()
+    {
+        return $this->license;
     }
 }

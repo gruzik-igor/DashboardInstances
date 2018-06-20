@@ -231,73 +231,76 @@
                         <table class="table table-bordered" id="marketing_masters" width="100%" cellspacing="0">
                             {% for instance in instances %}
 
-                            <thead>
-                            <tr>
-                                <th>Instance</th>
-                                <th>Resources used:</th>
-                                <th>Resources limits:</th>
-                                <th>Licenses:</th>
-                                <th>Latest invoice:</th>
-                                <th>Instance status: {{ instance.status }} </th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
+                                <thead>
+                                <tr>
+                                    <th>Instance</th>
+                                    <th>Resources used:</th>
+                                    <th>Resources limits:</th>
+                                    <th>Licenses:</th>
+                                    <th>Latest invoice:</th>
+                                    <th>Instance status: {{ instance.status }} </th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
 
-                                <td>{{ instance.name }}</td>
-                                <td>
-                                    Average CPU:25%<br>
-                                    Average RAM: 256 Mb<br>
-                                    Average HDD: 2345 Mb
-                                </td>
-                                <td>
-                                    {% for resource in instance.resources %}
-                                        {% if resource.value %}
-                                            {% if resource.resource.name == 'RAM' %}
-                                                {{ resource.resource.name }}: {{ resource.value }} MB  <br>
-                                            {% elseif resource.resource.name == 'CPU' %}
-                                                {{ resource.resource.name }}: {{ resource.value }} %  <br>
-                                            {% elseif resource.resource.name == 'HDD' %}
-                                                {{ resource.resource.name }}: {{ resource.value }} GB  <br>
+                                    <td>{{ instance.name }}</td>
+                                    <td>
+                                        Average CPU:25%<br>
+                                        Average RAM: 256 Mb<br>
+                                        Average HDD: 2345 Mb
+                                    </td>
+                                    <td>
+                                        {% for resource in instance.resources %}
+                                            {% if resource.value %}
+                                                {% if resource.resource.name == 'RAM' %}
+                                                    {{ resource.resource.name }}: {{ resource.value }} MB  <br>
+                                                {% elseif resource.resource.name == 'CPU' %}
+                                                    {{ resource.resource.name }}: {{ resource.value }} %  <br>
+                                                {% elseif resource.resource.name == 'HDD' %}
+                                                    {{ resource.resource.name }}: {{ resource.value }} GB  <br>
+                                                {% endif %}
+                                            {% else %}
+                                                {% if resource.resource.name == 'RAM' %}
+                                                    {{ resource.resource.name }}: {{ resource.resource.defaultValue }} MB
+                                                    <br>
+                                                {% elseif resource.resource.name == 'CPU' %}
+                                                    {{ resource.resource.name }}: {{ resource.resource.defaultValue }} %
+                                                    <br>
+                                                {% elseif resource.resource.name == 'HDD' %}
+                                                    {{ resource.resource.name }}: {{ resource.resource.defaultValue }} GB
+                                                    <br>
+                                                {% endif %}
                                             {% endif %}
-                                        {% else %}
-                                            {% if resource.resource.name == 'RAM' %}
-                                                {{ resource.resource.name }}: {{ resource.resource.defaultValue }} MB  <br>
-                                            {% elseif resource.resource.name == 'CPU' %}
-                                                {{ resource.resource.name }}: {{ resource.resource.defaultValue }} %  <br>
-                                            {% elseif resource.resource.name == 'HDD' %}
-                                                {{ resource.resource.name }}: {{ resource.resource.defaultValue }} GB  <br>
-                                            {% endif %}
+                                        {% endfor %}
+                                    </td>
+                                    <td>
+                                        {% for license in instance.licenses %}
+                                            Issued: {{ license.issued }} <br>
+                                            Usage: {{ license.usage }} <br>
+                                            Rate: {{ license.rate }}$/license/month <br>
+                                        {% endfor %}
+
+                                        {% if instance.licenses is empty %}
+                                            <div class="alert alert-warning" role="alert">
+                                                Sorry! This instance has no license!
+                                            </div>
                                         {% endif %}
-                                    {% endfor %}
-                                </td>
-                                <td>
-                                    {% for license in instance.licenses %}
-                                        Issued: {{ license.issued }} <br>
-                                        Usage: {{ license.usage }} <br>
-                                        Rate: {{ license.rate }}$/license/month <br>
-                                    {% endfor %}
+                                    </td>
+                                    <td>
+                                        {% for invoice in instance.invoices %}
+                                            {{ invoice.price }}$ @ {{ invoice.creationDate|date("Y-m-d") }}<br>
+                                            Status: {{ invoice.status }}<br>
+                                            Next invoice: {{ invoice.expirationDate|date("Y-m-d") }}
+                                        {% endfor %}
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-primary btn-block" href="#">Suspended</a>
+                                        <a class="btn btn-primary btn-block" href="#">Terminate</a>
+                                    </td>
+                                </tr>
 
-                                    {% if instance.licenses is empty %}
-                                    <div class="alert alert-warning" role="alert">
-                                        Sorry! This instance has no license!
-                                    </div>
-                                    {% endif %}
-                                </td>
-                                <td>
-                                    {% for invoice in instance.invoices %}
-                                    {{ invoice.price }}$ @ {{ invoice.creationDate|date("Y-m-d") }}<br>
-                                    Status: {{ invoice.status }}<br>
-                                    Next invoice: {{ invoice.expirationDate|date("Y-m-d") }}
-                                    {% endfor %}
-                                </td>
-                                <td>
-                                    <a class="btn btn-primary btn-block" href="#">Suspended</a>
-                                    <a class="btn btn-primary btn-block" href="#">Terminate</a>
-                                </td>
-                            </tr>
-
-                            </tbody>
+                                </tbody>
 
                             {% endfor %}
                         </table>
@@ -312,19 +315,33 @@
                         <div class="col-lg-2">
                             <label>Select instance:</label><br>
                             <select class="form-control">
-                                {% for instance in instances  %}
+                                {% for instance in instances %}
                                     <option>{{ instance.name }}</option>
                                 {% endfor %}
                             </select>
                         </div>
                         <div class="col-lg-2">
-                            <p>Licenses issued: 25</p>
-                            <p>Licenses used: 23</p>
+                            {% if instances|length > 0 and instances.license is not empty %}
+                                <p id="licenses-issued">Licenses issued: <span
+                                            id="license-issued">{{ instances[0].license.issued }}</span></p>
+                                <p>Licenses used: <span id="license-usage">{{ instances[0].license.usage }}</span></p>
+                            {% else %}
+                                <p id="licenses-issued">Licenses issued: <span
+                                            id="license-issued">0</span></p>
+                                <p>Licenses used: <span id="license-usage">0</span></p>
+                            {% endif %}
+
                             <button class=" btn btn-primary btn-block"> Change licenses value</button>
                         </div>
                         <div class="col-lg-2">
-                            <p>Monthly rate, $ 12</p><br>
-                            <p></p>
+                            {% if instances|length > 0 and instances.license is not empty %}
+                                <p>Monthly rate, $ <span id="license-rate">{{ instances[0].license.rate }}</span></p><br>
+                                <p></p>
+                            {% else %}
+                                <p>Monthly rate, $ <span id="license-rate">0</span></p><br>
+                                <p></p>
+                            {% endif %}
+
                             <button class=" btn btn-primary btn-block"> Change rate</button>
                         </div>
                         <div class="col-lg-2">
