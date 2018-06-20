@@ -541,7 +541,7 @@
 
                 })
             });
-
+            $( function() {
             dialog = $( "#modal-changeLicense" ).dialog({
                 autoOpen: false,
                 height: 400,
@@ -557,7 +557,7 @@
                     form[ 0 ].reset();
                     allFields.removeClass( "ui-state-error" );
                 }
-            });
+            }); });
 
             $( "#changeLicense" ).button().on( "click", function() {
                 dialog.dialog( "open" );
