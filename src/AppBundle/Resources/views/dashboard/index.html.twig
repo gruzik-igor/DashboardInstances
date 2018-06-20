@@ -543,7 +543,7 @@
             });
 
             $( "#changeLicense" ).button().on( "click", function() {
-                dialog = $( "#modal-changeLicense" ).dialog({
+                dialog = $( "#changeLicense" ).modal({
                     autoOpen: false,
                     height: 400,
                     width: 350,
@@ -560,7 +560,7 @@
                     }
                 });
 
-                dialog.dialog( "open" );
+                dialog.modal( "open" );
             });
         });
     </script>
