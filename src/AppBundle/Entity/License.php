@@ -4,10 +4,10 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
-
+use JMS\Serializer\Annotation as JMS;
 /**
  * Invoices.
- *
+ * @JMS\ExclusionPolicy("all")
  * @ORM\Entity()
  * @ORM\HasLifecycleCallbacks()
  */
@@ -15,7 +15,8 @@ class License
 {
     /**
      * @var int
-     *
+     * @JMS\Expose
+     * @JMS\Groups({"default"})
      * @ORM\Id
      * @ORM\Column(name="id", type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -28,11 +29,15 @@ class License
     protected $instance;
 
     /**
+     * @JMS\Expose
+     * @JMS\Groups({"default"})
      * @ORM\Column(type="integer",  length=255, nullable=true)
      */
     protected $issued;
 
     /**
+     * @JMS\Expose
+     * @JMS\Groups({"default"})
      * @ORM\Column(type="integer", length=255, nullable=false)
      * @Assert\NotBlank()
      * @Assert\Length(max="255")
@@ -40,6 +45,8 @@ class License
     protected $usage;
 
     /**
+     * @JMS\Expose
+     * @JMS\Groups({"default"})
      * @ORM\Column(type="integer", length=255, nullable=true)
      * @Assert\Length(max="255")
      */

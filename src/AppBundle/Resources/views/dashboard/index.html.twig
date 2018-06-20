@@ -491,7 +491,11 @@
     <script>
         $('document').ready(function(){
             $('#select-instance').change(function (e) {
-                console.log(e.target.value);
+                $.get('/api/licenses/'+e.target.value, function (data) {
+                    var issued = $('#license-issued');
+                    var usage = $('#license-usage');
+                    console.log(data);
+                })
             })
         });
     </script>

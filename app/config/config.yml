@@ -19,7 +19,7 @@ framework:
     form: ~
     csrf_protection: ~
     validation: { enable_annotations: true }
-    #serializer: { enable_annotations: true }
+    serializer: { enable_annotations: true }
     default_locale: '%locale%'
     trusted_hosts: ~
     session:
@@ -77,3 +77,13 @@ doctrine_migrations:
     name: Application Migrations
     organize_migrations: false # Version >= 1.2, possible values are: "BY_YEAR", "BY_YEAR_AND_MONTH", false
     custom_template: ~ # Version >= 1.2, path to your custom migrations template
+
+fos_rest:
+    routing_loader:
+        default_format: json
+    view:
+        view_response_listener: true
+        formats:
+                xml: true
+                json : true
+    param_fetcher_listener: true
