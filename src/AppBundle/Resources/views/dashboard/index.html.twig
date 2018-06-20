@@ -478,10 +478,11 @@
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
+                        {% for license in instances[0].license %}
                         <div class="modal-body">
                             <form action="/licenses" method="POST">
                                 <div class="form-row">
-                                    {% for license in instances[0].license %}
+
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label for="issuedValue">License issued:</label>
@@ -504,7 +505,6 @@
                                         </div>
                                     </div>
 
-                                    {% endfor %}
                                     <div class="col-md-6 modal-footer">
                                         <button id="btn-cancel" type="button" class="btn btn-secondary"
                                                 data-dismiss="modal">Cancel
@@ -514,6 +514,7 @@
                                 </div>
                             </form>
                         </div>
+                        {% endfor %}
                     </div>
                 </div>
             </div>
