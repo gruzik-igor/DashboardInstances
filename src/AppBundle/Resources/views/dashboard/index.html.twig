@@ -523,7 +523,10 @@
                 })
             });
 
-            $('#changeLicense').modal()
+            //$('#changeLicense').modal()
+            $( "#changeLicense" ).button().on( "click", function() {
+                dialog.dialog( "open" );
+            });
         });
     </script>
 {% endblock %}
