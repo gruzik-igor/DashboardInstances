@@ -482,13 +482,13 @@
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label for="issuedValue">License issued:</label>
-                                                <input name="license[{{ loop.index }}][issuedValue]" type="text" readonly
-                                                       value="{{ license.issued }}" id="issuedValue" class="form-control">
+                                                <input name="license[][issuedValue]" type="text" readonly
+                                                       value="" id="issuedValue" class="form-control">
                                             </div>
                                             <div class="form-group">
                                                 <label for="usageValue">License usage</label>
-                                                <input type="text" name="license[{{ loop.index }}][usageValue]"
-                                                       id="usageValue" value="{{ license.usage }}" class="form-control">
+                                                <input type="text" name="license[][usageValue]"
+                                                       id="usageValue" value="" class="form-control">
                                             </div>
                                         </div>
 
