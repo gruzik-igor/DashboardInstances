@@ -319,7 +319,7 @@
                             </select>
                         </div>
                         <div class="col-lg-2">
-                            {% if instances|length > 0 and instances.license is not empty %}
+                            {% if instances|length > 0 and instances[0].license is not empty %}
                                 <p id="licenses-issued">Licenses issued: <span
                                             id="license-issued">{{ instances[0].license.issued }}</span></p>
                                 <p>Licenses used: <span id="license-usage">{{ instances[0].license.usage }}</span></p>
