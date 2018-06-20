@@ -275,16 +275,14 @@
                                         {% endfor %}
                                     </td>
                                     <td>
-                                        {% for license in instance.licenses %}
-                                            Issued: {{ license.issued }} <br>
-                                            Usage: {{ license.usage }} <br>
-                                            Rate: {{ license.rate }}$/license/month <br>
-                                        {% endfor %}
-
-                                        {% if instance.licenses is empty %}
+                                        {% if instance.license is empty %}
                                             <div class="alert alert-warning" role="alert">
                                                 Sorry! This instance has no license!
                                             </div>
+                                        {% else %}
+                                            Issued: {{ instance.license.issued }} <br>
+                                            Usage: {{ instance.license.usage }} <br>
+                                            Rate: {{ instance.license.rate }}$/license/month <br>
                                         {% endif %}
                                     </td>
                                     <td>
@@ -335,7 +333,8 @@
                         </div>
                         <div class="col-lg-2">
                             {% if instances|length > 0 and instances.license is not empty %}
-                                <p>Monthly rate, $ <span id="license-rate">{{ instances[0].license.rate }}</span></p><br>
+                                <p>Monthly rate, $ <span id="license-rate">{{ instances[0].license.rate }}</span></p>
+                                <br>
                                 <p></p>
                             {% else %}
                                 <p>Monthly rate, $ <span id="license-rate">0</span></p><br>
