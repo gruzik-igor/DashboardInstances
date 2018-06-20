@@ -9,7 +9,7 @@
                         {% for resource in resources %}
                             <div class="form-group">
                                 <label for="resourceName">Resource name:</label>
-                                <input type="text" readonly value="{{ resource.name }}" id="resourceName" class="form-control">
+                                <input  name="resources[{{ loop.index }}][resourceName]" type="text" readonly value="{{ resource.name }}" id="resourceName" class="form-control">
                             </div>
                             <div class="form-group">
                                 <label for="defaultValue">Default value:</label>
