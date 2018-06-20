@@ -330,7 +330,7 @@
                                     <p>Licenses used: <span id="license-usage">0</span></p>
                                 {% endif %}
 
-                                <button id="changeLicense" class="btn btn-primary btn-block" data-toggle="modal" data-target="#changeLicense">Change licenses value</button>
+                                <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#changeLicense">Change licenses value</button>
 
                             </div>
                             <div class="col-lg-3">
@@ -467,10 +467,10 @@
 
             <!-- Modal -->
             <div class="modal fade" id="changeLicense" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
-                <div class="modal-dialog modal-dialog-centered" >
+                <div class="modal-dialog" role="document" >
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLongTitle">Change licenses</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">Change licenses</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
