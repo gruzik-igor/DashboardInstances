@@ -314,7 +314,7 @@
                                 <label>Select instance:</label><br>
                                 <select class="form-control" id="select-instance">
                                     {% for instance in instances %}
-                                        <option value="{{ instance.id }}">{{ instance.name }}</option>
+                                        <option value="{{ instance.license.id }}">{{ instance.name }}</option>
                                     {% endfor %}
                                 </select>
                             </div>
@@ -492,9 +492,10 @@
         $('document').ready(function(){
             $('#select-instance').change(function (e) {
                 $.get('/api/licenses/'+e.target.value, function (data) {
-                    var issued = $('#license-issued');
-                    var usage = $('#license-usage');
-                    console.log(data);
+                    let issued = $('#license-issued');
+                    let usage = $('#license-usage');
+                    issued.textContent = data.issued;
+                    usage.textContent = data.usage;
                 })
             })
         });
