@@ -318,7 +318,7 @@
                                     {% endfor %}
                                 </select>
                             </div>
-                            <div class="col-lg-2">
+                            <div class="col-lg-3">
                                 {% if instances|length > 0 and instances[0].license is not empty %}
                                     <p id="licenses-issued">Licenses issued: <span
                                                 id="license-issued">{{ instances[0].license.issued }}</span></p>
@@ -330,9 +330,29 @@
                                     <p>Licenses used: <span id="license-usage">0</span></p>
                                 {% endif %}
 
-                                <button class=" btn btn-primary btn-block"> Change licenses value</button>
+                                <button class=" btn btn-primary btn-block" data-toggle="modal" data-target="#changeLicense"> Change licenses value</button>
+                                <!-- Modal -->
+                                <div class="modal fade" id="changeLicense" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                ...test
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                <button type="button" class="btn btn-primary">Save changes</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="col-lg-2">
+                            <div class="col-lg-3">
                                 {% if instances|length > 0 and instances[0].license is not empty %}
                                     <p>Monthly rate, $ <span id="license-rate">{{ instances[0].license.rate }}</span>
                                     </p>
@@ -345,7 +365,7 @@
 
                                 <button class=" btn btn-primary btn-block"> Change rate</button>
                             </div>
-                            <div class="col-lg-2">
+                            <div class="col-lg-3">
                                 <p>This month revenue: 300$</p>
                                 <p>Next month revenue: 300$</p>
                                 <button class=" btn btn-primary btn-block"> Generate</button>
@@ -501,7 +521,9 @@
                     rate.text(data.rate);
 
                 })
-            })
+            });
+
+            $('#changeLicense').modal('toggle')
         });
     </script>
 {% endblock %}
