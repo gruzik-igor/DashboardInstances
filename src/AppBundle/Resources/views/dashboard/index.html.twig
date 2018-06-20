@@ -478,7 +478,6 @@
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        {% for license in instances[0].license %}
                         <div class="modal-body">
                             <form action="/licenses" method="POST">
                                 <div class="form-row">
@@ -487,21 +486,21 @@
                                         <div class="form-group">
                                             <label for="issuedValue">License issued:</label>
                                             <input name="license[][issuedValue]" type="text"
-                                                   value="" id="issuedValue" class="form-control">
+                                                   value="{{ instances[0].license.issued  }}" id="issuedValue" class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label for="usageValue">License usage:</label>
                                             <input type="text" name="license[][usageValue]"
-                                                   id="usageValue" value="" class="form-control">
+                                                   id="usageValue" value="{{ instances[0].license.usage  }}" class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label for="rateValue">License rate:</label>
                                             <input type="text" name="license[][rateValue]"
-                                                   id="rateValue" value="" class="form-control">
+                                                   id="rateValue" value="{{ instances[0].license.rate  }}" class="form-control">
                                         </div>
                                     </div>
 
@@ -514,7 +513,7 @@
                                 </div>
                             </form>
                         </div>
-                        {% endfor %}
+
                     </div>
                 </div>
             </div>
