@@ -494,8 +494,8 @@
                 $.get('/api/licenses/'+e.target.value, function (data) {
                     let issued = $('#license-issued');
                     let usage = $('#license-usage');
-                    issued.textContent = data.issued;
-                    usage.textContent = data.usage;
+                    issued.text = data.issued;
+                    usage.text = data.usage;
                 })
             })
         });
