@@ -4,10 +4,6 @@ services:
         arguments: ['@security.password_encoder', '@security.token_storage']
         tags:
             - { name: doctrine.orm.entity_listener }
-        date:
-                format: d.m.Y, H:i:s
-                interval_format: '%%d days'
-                timezone: Europe/Kyiv
     form_authenticator:
         class: AppBundle\Security\FormAuthenticator
         arguments: ["@router", "@security.password_encoder"]
