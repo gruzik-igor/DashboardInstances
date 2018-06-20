@@ -10,7 +10,6 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @ORM\Entity()
  * @ORM\HasLifecycleCallbacks()
- * @ORM\EntityListeners({"AppBundle\EventListener\UserEntityListener"})
  */
 class License 
 {
