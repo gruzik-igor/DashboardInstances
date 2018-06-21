@@ -537,12 +537,12 @@
                     let issued = $('#license-issued');
                     let usage = $('#license-usage');
                     let rate = $('#license-rate');
-                    //let price = $('#invoice-price');
+                    let price = $('#invoice-price');
 
                     issued.text(data.issued);
                     usage.text(data.usage);
                     rate.text(data.rate);
-                   // price.text(data.price);
+                    price.text(data.price);
                 });
 
                 $.get('/api/invoices/' + e.target.value, function (data) {
