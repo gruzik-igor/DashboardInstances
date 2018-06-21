@@ -546,16 +546,16 @@
                     price.text(data.price);
                 });
 
-                $.get('/api/invoices/' + e.target.value, function (data) {
-                    let price = $('#invoice-price');
-                    //let $creationDate = $('#invoice-creationDate');
-                    //let $expirationDate = $('#invoice-expirationDate');
-
-                    price.text(data.price);
-                    //usage.text(data.usage);
-                    //rate.text(data.rate);
-
-                })
+                // $.get('/api/invoices/' + e.target.value, function (data) {
+                //     let price = $('#invoice-price');
+                //     //let $creationDate = $('#invoice-creationDate');
+                //     //let $expirationDate = $('#invoice-expirationDate');
+                //
+                //     price.text(data.price);
+                //     //usage.text(data.usage);
+                //     //rate.text(data.rate);
+                //
+                // })
             });
 
             $('#changeLicense').on('show.bs.modal', function (event) {
