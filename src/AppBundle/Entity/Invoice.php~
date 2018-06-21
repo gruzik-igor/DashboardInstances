@@ -159,28 +159,4 @@ class Invoice
         return $this->expirationDate;
     }
 
-
-    /**
-     * Set instance
-     *
-     * @param \AppBundle\Entity\Instance $instance
-     *
-     * @return Invoice
-     */
-    public function setInstance(\AppBundle\Entity\Instance $instance = null)
-    {
-        $this->instance = $instance;
-
-        return $this;
-    }
-
-    /**
-     * Get instance
-     *
-     * @return \AppBundle\Entity\Instance
-     */
-    public function getInstance()
-    {
-        return $this->instance;
-    }
 }

@@ -210,28 +210,4 @@ class Instance
     {
         return $this->license;
     }
-
-    /**
-     * Set invoice
-     *
-     * @param \AppBundle\Entity\Invoice $invoice
-     *
-     * @return Instance
-     */
-    public function setInvoice(\AppBundle\Entity\Invoice $invoice = null)
-    {
-        $this->invoice = $invoice;
-
-        return $this;
-    }
-
-    /**
-     * Get invoice
-     *
-     * @return \AppBundle\Entity\Invoice
-     */
-    public function getInvoice()
-    {
-        return $this->invoice;
-    }
 }
