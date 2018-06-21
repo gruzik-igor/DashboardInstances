@@ -350,7 +350,7 @@
                             </div>
                             <div class="col-lg-3">
                                 {% if invoice|length > 0 and instances[0].invoice is not empty %}
-                                    {{ dump(instances.invoice[0]) }}
+
                                 <p>This month revenue: <spann id="invoice-price">{{ invoice[0].price }} $</spann></p>
                                 <p>Next month revenue: <spann id="invoice-price">{{ invoice[0].price }} $</spann></p>
                                 {% else %}
