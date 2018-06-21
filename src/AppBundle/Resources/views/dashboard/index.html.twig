@@ -545,11 +545,11 @@
                 });
 
                 $.get('/api/invoices/' + e.target.value, function (data) {
-                    let paid = $('#invoice-paid');
+                    let price = $('#invoice-price');
                     //let $creationDate = $('#invoice-creationDate');
                     //let $expirationDate = $('#invoice-expirationDate');
 
-                    paid.text(data.paid);
+                    paid.text(data.price);
                     //usage.text(data.usage);
                     //rate.text(data.rate);
 
