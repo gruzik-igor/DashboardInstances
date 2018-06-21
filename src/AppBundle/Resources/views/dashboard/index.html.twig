@@ -349,8 +349,12 @@
                                 <button class=" btn btn-primary btn-block"> Change rate</button>
                             </div>
                             <div class="col-lg-3">
-                                <p>This month revenue: 300$</p>
-                                <p>Next month revenue: 300$</p>
+                                {% if instances|length > 0 and instances[0].invoice is not empty %}
+                                <p>This month revenue: <spann id="invoice-price">{{ instances[0].invoice.price }} $</spann></p>
+                                <p>Next month revenue: <spann id="invoice-price">{{ instances[0].invoice.price }} $</spann></p>
+                                {% else %}
+                                <p>This month revenue: <span id="invoice-price">0 $</span></p><br>
+                                <p>Next month revenue: <spann id="invoice-price">0 $</spann></p>
                                 <button class=" btn btn-primary btn-block"> Generate</button>
                             </div>
                         </div>
@@ -536,6 +540,17 @@
                     usage.text(data.usage);
                     rate.text(data.rate);
 
+                });
+
+                $.get('/api/invoices/' + e.target.value, function (data) {
+                    let paid = $('#invoice-paid');
+                    //let $creationDate = $('#invoice-creationDate');
+                    //let $expirationDate = $('#invoice-expirationDate');
+
+                    paid.text(data.paid);
+                    //usage.text(data.usage);
+                    //rate.text(data.rate);
+
                 })
             });
 
@@ -547,12 +562,6 @@
                 var modal = $(this)
                 modal.find('.modal-body input').val(recipient)
             })
-            // $("#changeLicense").click(function () {
-            //     $("#modal-changeLicense").show(500);
-            // });
-            // $("#btn-cancel").click(function() {
-            //     $("#modal-changeLicense").hide('slow');
-            // })
 
         });
     </script>
