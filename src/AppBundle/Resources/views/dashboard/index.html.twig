@@ -351,10 +351,10 @@
                             <div class="col-lg-3">
                                 {% if instances|length > 0 and instances[0].invoice is not empty %}
 
-                                <p>This month revenue: <spann id="invoice-price">{{ instances[0].invoice.price }} $</spann></p>
+                                <p id="invoice-price" >This month revenue: <spann id="invoice-price">{{ instances[0].invoice.price }} $</spann></p>
                                 <p>Next month revenue: <spann id="invoice-price">{{ instances[0].invoice.price }} $</spann></p>
                                 {% else %}
-                                <p>This month revenue: <span id="invoice-price">0 $</span></p><br>
+                                <p id="invoice-price">This month revenue: <span id="invoice-price">0 $</span></p><br>
                                 <p>Next month revenue: <spann id="invoice-price">0 $</spann></p>
                                 {% endif %}
 
@@ -534,7 +534,7 @@
     <script>
         $('document').ready(function () {
             $('#select-instance').change(function (e) {
-                $.get('/api/licenses/' + e.target.value, function (data) {
+                $.get('/api/invoices/' + e.target.value, function (data) {
                     let issued = $('#license-issued');
                     let usage = $('#license-usage');
                     let rate = $('#license-rate');
