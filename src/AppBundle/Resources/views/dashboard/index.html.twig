@@ -351,11 +351,11 @@
                             <div class="col-lg-3">
                                 {% if instances|length > 0 and instances[0].invoice is not empty %}
 
-                                <p id="invoice-price" >This month revenue: <spann id="invoice-price">{{ instances[0].invoice.price }} $</spann></p>
-                                <p>Next month revenue: <spann id="invoice-price">{{ instances[0].invoice.price }} $</spann></p>
+                                <p>This month revenue: <span class="invoice-price">{{ instances[0].invoice.price }} $</span></p>
+                                <p>Next month revenue: <span class="invoice-price">{{ instances[0].invoice.price }} $</span></p>
                                 {% else %}
-                                <p id="invoice-price">This month revenue: <span id="invoice-price">0 $</span></p><br>
-                                <p>Next month revenue: <spann id="invoice-price">0 $</spann></p>
+                                <p >This month revenue: <span class="invoice-price">0 $</span></p><br>
+                                <p>Next month revenue: <span class="invoice-price">0 $</span></p>
                                 {% endif %}
 
                                 <button class=" btn btn-primary btn-block"> Generate</button>
@@ -547,11 +547,13 @@
                 });
 
                 $.get('/api/invoices/' + e.target.value, function (data) {
-                    let price = $('#invoice-price');
+                    let price = $('.invoice-price');
                     //let $creationDate = $('#invoice-creationDate');
                     //let $expirationDate = $('#invoice-expirationDate');
 
-                    price.text(data.price);
+                    price.each(function (element) {
+                        $(element).text(data.price)
+                    });
                     //usage.text(data.usage);
                     //rate.text(data.rate);
 
