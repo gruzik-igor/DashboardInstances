@@ -547,15 +547,9 @@
                 });
 
                 $.get('/api/invoices/' + e.target.value, function (data) {
-                    let price = $('.invoice-price');
-                    //let $creationDate = $('#invoice-creationDate');
-                    //let $expirationDate = $('#invoice-expirationDate');
-
-                    price.each(function (element) {
-                        $(element).text(data.price)
+                    $('.invoice-price').each(function(index, element){
+                        $(element).text(data.price);
                     });
-                    //usage.text(data.usage);
-                    //rate.text(data.rate);
 
                 })
             });
