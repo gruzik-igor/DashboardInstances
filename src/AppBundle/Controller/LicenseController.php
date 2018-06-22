@@ -23,11 +23,12 @@ class LicenseController extends BaseController
         $form = $this->createForm(LicenseForm::class, $license);
         $form->handleRequest($request);
 
-        if ($request->getMethod() === 'POST' && $form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($license);
             $em->flush();
         }
+
 
         return $this->redirectToRoute('dashboard');
     }
