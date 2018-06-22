@@ -29,6 +29,8 @@ class Invoice
     protected $instance;
 
     /**
+     * @JMS\Expose
+     * @JMS\Groups({"default"})
      * @ORM\Column(type="float", length=255, nullable=false)
      * @Assert\Length(max="255")
      * @Assert\NotBlank()

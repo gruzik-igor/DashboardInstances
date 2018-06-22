@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller\API;
 
+use AppBundle\Entity\Instance;
 use AppBundle\Entity\Invoice;
 use AppBundle\Entity\Resource;
 use FOS\RestBundle\Controller\FOSRestController;
@@ -20,8 +21,8 @@ class InvoiceController extends FOSRestController
      *
      * @Rest\View(serializerGroups={"default"})
      */
-    public function getAction(Invoice $invoice)
+    public function getAction(Instance $instance)
     {
-        return $invoice;
+        return $instance->getInvoice();
     }
 }

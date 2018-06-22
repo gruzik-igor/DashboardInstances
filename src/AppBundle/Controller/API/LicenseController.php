@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller\API;
 
+use AppBundle\Entity\Instance;
 use AppBundle\Entity\License;
 use AppBundle\Entity\Resource;
 use FOS\RestBundle\Controller\FOSRestController;
@@ -20,8 +21,8 @@ class LicenseController extends FOSRestController
      *
      * @Rest\View(serializerGroups={"default"})
      */
-    public function getAction(License $license)
+    public function getAction(Instance $instance)
     {
-        return $license;
+        return $instance->getLicense();
     }
 }

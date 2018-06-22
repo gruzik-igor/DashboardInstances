@@ -154,40 +154,6 @@ class Instance
     }
 
     /**
-     * Add invoice
-     *
-     * @param \AppBundle\Entity\Invoice $invoice
-     *
-     * @return Instance
-     */
-    public function addInvoice(\AppBundle\Entity\Invoice $invoice)
-    {
-        $this->invoices[] = $invoice;
-
-        return $this;
-    }
-
-    /**
-     * Remove invoice
-     *
-     * @param \AppBundle\Entity\Invoice $invoice
-     */
-    public function removeInvoice(\AppBundle\Entity\Invoice $invoice)
-    {
-        $this->invoices->removeElement($invoice);
-    }
-
-    /**
-     * Get invoices
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getInvoices()
-    {
-        return $this->invoices;
-    }
-
-    /**
      * Set license
      *
      * @param \AppBundle\Entity\License $license
