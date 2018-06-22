@@ -541,13 +541,13 @@
 
 
                     issued.text(data.issued);
-                    $('input[name="license[issuedValue]"]').val(data.issued);
+                    document.getElementById("issuedValue").value = data.issued;
 
                     usage.text(data.usage);
-                    $('input[name="license[usageValue]"]').val(data.usage);
+                    document.getElementById("usageValue").value = data.usage;
 
                     rate.text(data.rate);
-                    $('input[name="license[rateValue]"]').val(data.rate);
+                    document.getElementById("rateValue").value = data.rate;
 
                     let changeLicensesValueForm = $('#change-licenses-value');
 
