@@ -8,8 +8,6 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class LicenseForm extends AbstractType
 {
-
-    
     /**
      * {@inheritdoc}
      */
