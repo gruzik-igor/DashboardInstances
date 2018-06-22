@@ -28,6 +28,7 @@ class LicenseForm extends AbstractType
         $resolver->setDefaults(array(
             'data_class' => 'AppBundle\Entity\License',
             'allow_extra_fields' => true,
+            'csrf_protection'   => false,
         ));
     }
 

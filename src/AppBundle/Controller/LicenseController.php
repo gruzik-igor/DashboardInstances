@@ -30,6 +30,7 @@ class LicenseController extends BaseController
         }
 
 
+
         return $this->redirectToRoute('dashboard');
     }
 }
