@@ -485,8 +485,8 @@
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <div class="modal-body" id="change-licenses-value">
-                            <form action="#" method="POST">
+                        <div class="modal-body">
+                            <form action="#" method="POST" id="change-licenses-value">
                                 <div class="form-row">
 
                                     <div class="col-md-4">
@@ -541,13 +541,13 @@
 
 
                     issued.text(data.issued);
-                    $('#issuedValue').val(data.issued);
+                    $('input[name="license[issuedValue]"]').val(data.issued);
 
                     usage.text(data.usage);
-                    $('#usageValue').val(data.usage);
+                    $('input[name="license[usageValue]"]').val(data.usage);
 
                     rate.text(data.rate);
-                    $('#rateValue').val(data.rate);
+                    $('input[name="license[rateValue]"]').val(data.rate);
 
                     let changeLicensesValueForm = $('#change-licenses-value');
 
