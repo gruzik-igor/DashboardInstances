@@ -485,14 +485,14 @@
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <div class="modal-body">
-                            <form action="/licenses" method="POST">
+                        <div class="modal-body" id="change-licenses-value">
+                            <form action="#" method="POST">
                                 <div class="form-row">
 
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label for="issuedValue">License issued:</label>
-                                            <input name="license[][issuedValue]" type="text"
+                                            <input name="license[issuedValue]" type="text"
                                                    value="{{ instances[0].license.issued  }}" id="issuedValue" class="form-control">
                                         </div>
                                     </div>
@@ -541,8 +541,18 @@
 
 
                     issued.text(data.issued);
+                    $('#issuedValue').val(data.issued);
+
                     usage.text(data.usage);
+                    $('#usageValue').val(data.usage);
+
                     rate.text(data.rate);
+                    $('#rateValue').val(data.rate);
+
+                    let changeLicensesValueForm = $('#change-licenses-value');
+
+                    changeLicensesValueForm.setAttribute('action', '/licenses/'+data.id);
+
 
                 });
 
@@ -552,6 +562,9 @@
                     });
 
                 })
+
+
+
             });
 
             $('#changeLicense').on('show.bs.modal', function (event) {
