@@ -61,5 +61,10 @@ class InstanceEntityListener
 
         $em->persist($license);
         $em->flush();
+
+        $instance->setLicense($license);
+
+        $em->persist($instance);
+        $em->flush();
     }
 }
