@@ -53,6 +53,17 @@ class Instance
      * @Assert\Length(max="255")
      */
     protected $status = 'pending';
+
+    /**
+     * @Assert\NotBlank()
+     */
+    protected $licenseRate;
+
+    /**
+     * @Assert\NotBlank()
+     */
+    protected $licenseIssued;
+
     /**
      * Constructor
      */
@@ -200,5 +211,29 @@ class Instance
     public function getInvoice()
     {
         return $this->invoice;
+    }
+
+    public function setLicenseRate($licenseRate)
+    {
+        $this->licenseRate = $licenseRate;
+
+        return $this;
+    }
+
+    public function getLicenseRate()
+    {
+        return $this->licenseRate;
+    }
+
+    public function setLicenseIssued($licenseIssued)
+    {
+        $this->licenseIssued = $licenseIssued;
+
+        return $this;
+    }
+
+    public function getLicenseIssued()
+    {
+        return $this->licenseIssued;
     }
 }

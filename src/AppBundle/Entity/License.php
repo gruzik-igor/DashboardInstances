@@ -38,8 +38,7 @@ class License
     /**
      * @JMS\Expose
      * @JMS\Groups({"default"})
-     * @ORM\Column(type="integer", length=255, nullable=false)
-     * @Assert\NotBlank()
+     * @ORM\Column(type="integer", length=255, nullable=true)
      * @Assert\Length(max="255")
      */
     protected $usage;
