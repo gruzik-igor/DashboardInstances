@@ -2,8 +2,6 @@
 
 namespace AppBundle\Form;
 
-use AppBundle\Entity\License;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -21,10 +19,6 @@ class InstanceForm extends AbstractType
     {
         $builder
             ->add('name', TextType::class)
-            ->add('license', EntityType::class, array(
-                'class' => License::class,
-                'by_reference'=>'id'
-            ))
             ->add('submit', SubmitType::class);
 
 

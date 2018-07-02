@@ -10,6 +10,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @ORM\Entity()
  * @ORM\HasLifecycleCallbacks()
+ * @ORM\EntityListeners({"AppBundle\EventListener\InstanceEntityListener"})
  */
 class Instance 
 {
