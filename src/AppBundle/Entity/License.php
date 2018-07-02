@@ -41,7 +41,7 @@ class License
      * @ORM\Column(type="integer", length=255, nullable=true)
      * @Assert\Length(max="255")
      */
-    protected $used;
+    protected $used = 0;
 
     /**
      * @JMS\Expose
