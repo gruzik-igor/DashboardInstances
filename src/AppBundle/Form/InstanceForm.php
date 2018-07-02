@@ -18,9 +18,9 @@ class InstanceForm extends AbstractType
     {
         $builder
             ->add('name',TextType::class)
-            ->add('resourse_limits_cpu',TextType::class)
-            ->add('resourse_limits_ram',TextType::class)
-            ->add('resourse_limits_hdd',TextType::class)
+            ->add('getSystemCpuInfo',TextType::class)
+            ->add('getSystemMemInfo',TextType::class)
+            ->add('getSystemHddInfo',TextType::class)
             ->add('submit',SubmitType::class);
 
 
