@@ -12,13 +12,6 @@ use Doctrine\Common\Persistence\Event\LifecycleEventArgs;
 class InstanceEntityListener
 {
 
-    private $em;
-
-    public function __construct(EntityManagerInterface $entityManager)
-    {
-        $this->em = $entityManager;
-    }
-
     /**
      *
      * @param Instance      $instance
