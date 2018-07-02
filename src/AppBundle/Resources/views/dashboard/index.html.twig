@@ -565,10 +565,11 @@
                     });
 
                 });
-                $('.nav-tabs a').on('shown.bs.tab', function(event){
-                    var x = $(event.target).text();         // active tab
-                    var y = $(event.relatedTarget).text();  // previous tab
-                });
+                $("ul#myTab li.active");
+                var activeTab = null;
+                $('a[data-toggle="tab"]').on('shown', function (e) {
+                    activeTab = e.target;
+                })
 
             });
 
