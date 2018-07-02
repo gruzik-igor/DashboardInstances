@@ -51,7 +51,7 @@ class Instance
      * @Assert\NotBlank()
      * @Assert\Length(max="255")
      */
-    protected $status;  
+    protected $status = 'pending';
     /**
      * Constructor
      */
