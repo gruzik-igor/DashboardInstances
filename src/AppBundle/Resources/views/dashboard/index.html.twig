@@ -16,7 +16,7 @@
             <ul class="nav nav-tabs mb-3" id="myTab" role="tablist">
 
                 <li class="nav-item">
-                    <a class="nav-link" id="summary-tab" data-toggle="tab" href="#summary" role="tab"
+                    <a class="nav-link active" id="summary-tab" data-toggle="tab" href="#summary" role="tab"
                        aria-controls="summary" aria-selected="false">Summary</a>
                 </li>
                 <li class="nav-item">
@@ -533,9 +533,7 @@
 {% block javascripts %}
     <script>
 
-        $(document).ready(function() {
-            $('.nav-tabs a:last').tab('show')
-        });
+
         $('document').ready(function () {
 
             $('#select-instance').change(function (e) {
@@ -566,8 +564,11 @@
                         $(element).text(data.price);
                     });
 
-                })
-
+                });
+                $('.nav-tabs a').on('shown.bs.tab', function(event){
+                    var x = $(event.target).text();         // active tab
+                    var y = $(event.relatedTarget).text();  // previous tab
+                });
 
             });
 
