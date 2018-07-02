@@ -23,7 +23,7 @@ class InstanceForm extends AbstractType
             ->add('name', TextType::class)
             ->add('license', EntityType::class, array(
                 'class' => License::class,
-                'property'=>'id'
+                'by_reference'=>'id'
             ))
             ->add('submit', SubmitType::class);
 
