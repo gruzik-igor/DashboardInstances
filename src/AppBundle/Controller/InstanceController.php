@@ -28,10 +28,12 @@ class InstanceController extends BaseController
             $em = $this->getDoctrine()->getManager();
             $em->persist($instance);
             $em->flush();
+
+            $response = $this->redirectToRoute('dashboard');
+        }else {
+            $response = $this->render('@App/instance/add.html.twig', ['form' => $form->createView()]);
         }
 
-
-
-        return $this->render('@App/instance/add.html.twig', ['form' => $form->createView()]);
+        return ;
     }
 }
