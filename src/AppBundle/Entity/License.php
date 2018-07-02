@@ -41,7 +41,7 @@ class License
      * @ORM\Column(type="integer", length=255, nullable=true)
      * @Assert\Length(max="255")
      */
-    protected $usage;
+    protected $used;
 
     /**
      * @JMS\Expose
@@ -85,28 +85,30 @@ class License
         return $this->issued;
     }
 
+
+
     /**
-     * Set usage
+     * Set used
      *
-     * @param integer $usage
+     * @param integer $used
      *
      * @return License
      */
-    public function setUsage($usage)
+    public function setUsed($used)
     {
-        $this->usage = $usage;
+        $this->used = $used;
 
         return $this;
     }
 
     /**
-     * Get usage
+     * Get used
      *
      * @return integer
      */
-    public function getUsage()
+    public function getUsed()
     {
-        return $this->usage;
+        return $this->used;
     }
 
     /**
