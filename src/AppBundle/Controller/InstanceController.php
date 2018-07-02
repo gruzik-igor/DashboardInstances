@@ -34,6 +34,6 @@ class InstanceController extends BaseController
             $response = $this->render('@App/instance/add.html.twig', ['form' => $form->createView()]);
         }
 
-        return ;
+        return $response;
     }
 }
