@@ -281,7 +281,7 @@
                                                 </div>
                                             {% else %}
                                                 Issued: {{ instance.license.issued }} <br>
-                                                Usage: {{ instance.license.usage }} <br>
+                                                Usage: {{ instance.license.used }} <br>
                                                 Rate: {{ instance.license.rate }}$/license/month <br>
                                             {% endif %}
                                         </td>
@@ -322,7 +322,7 @@
                                 {% if instances|length > 0 and instances[0].license is not empty %}
                                     <p id="licenses-issued">Licenses issued: <span
                                                 id="license-issued">{{ instances[0].license.issued }}</span></p>
-                                    <p>Licenses used: <span id="license-usage">{{ instances[0].license.usage }}</span>
+                                    <p>Licenses used: <span id="license-usage">{{ instances[0].license.used }}</span>
                                     </p>
                                 {% else %}
                                     <p id="licenses-issued">Licenses issued: <span
@@ -500,7 +500,7 @@
                                         <div class="form-group">
                                             <label for="usageValue">License usage:</label>
                                             <input type="text" name="appbundle_license[usage]"
-                                                   id="usageValue" value="{{ instances[0].license.usage  }}" class="form-control">
+                                                   id="usageValue" value="{{ instances[0].license.used  }}" class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-md-4">
@@ -543,8 +543,8 @@
                     issued.text(data.issued);
                     document.getElementById("issuedValue").value = data.issued;
 
-                    usage.text(data.usage);
-                    document.getElementById("usageValue").value = data.usage;
+                    usage.text(data.used);
+                    document.getElementById("usageValue").value = data.used;
 
                     rate.text(data.rate);
                     document.getElementById("rateValue").value = data.rate;
