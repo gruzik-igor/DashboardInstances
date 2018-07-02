@@ -569,7 +569,10 @@
             });
 
             $(function () {
-                $('#myTab li:last-child a active').tab('show')
+                $('#myTab li:last-child a').on('hide.bs.tab', function (e) {
+                    e.target // newly activated tab
+                    e.relatedTarget // previous active tab
+                })
             })
 
 
