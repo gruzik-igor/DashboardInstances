@@ -137,29 +137,29 @@ class Instance
     {
         return $this->status;
     }
-//    /**
-//     * Set domain
-//     *
-//     * @param string $domain
-//     *
-//     * @return Instance
-//     */
-//    public function setDomain($domain)
-//    {
-//        $this->domain = $domain;
-//
-//        return $this;
-//    }
-//
-//    /**
-//     * Get domain
-//     *
-//     * @return string
-//     */
-//    public function getDomain()
-//    {
-//        return $this->domain;
-//    }
+    /**
+     * Set domain
+     *
+     * @param string $domain
+     *
+     * @return Instance
+     */
+    public function setDomain($domain)
+    {
+        $this->domain = $domain;
+
+        return $this;
+    }
+
+    /**
+     * Get domain
+     *
+     * @return string
+     */
+    public function getDomain()
+    {
+        return $this->domain;
+    }
     /**
      * Add resource
      *

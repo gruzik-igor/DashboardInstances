@@ -5,6 +5,7 @@ namespace AppBundle\Twig;
 
 
 use AppBundle\Entity\Instance;
+use Curl\Curl;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
 
