@@ -29,8 +29,8 @@ class AppExtension extends AbstractExtension
             $curl->get($apiUrl);
 
             $result = $curl->response;
-            var_dump($result);die;
-            return $result->businessesCount;
+            
+            return $result;
         }
 
 
