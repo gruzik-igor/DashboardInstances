@@ -565,14 +565,14 @@
                     });
 
                 });
-                $("#myTab").tabs();
-                $('#myTab').click(function() {
-                    var selected = $("#tabs").tabs("option", "selected");
-                    $("#tabs").tabs("option", "selected", selected + 1);
-                });
+
 
             });
-
+            $("#myTab").tabs();
+            $('#myTab').click(function() {
+                var selected = $("#tabs").tabs("option", "selected");
+                $("#tabs").tabs("option", "selected", selected + 1);
+            });
 
         });
 
