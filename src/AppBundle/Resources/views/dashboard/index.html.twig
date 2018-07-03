@@ -16,36 +16,31 @@
             <ul class="nav nav-tabs mb-3" id="myTab" role="tablist">
 
                 <li class="nav-item">
-                    <a class="nav-link active" id="summary-tab" data-toggle="tab" href="#summary" role="tab"
-                       aria-controls="summary" aria-selected="false"
+                    <a class="nav-link active" id="summary-tab" data-toggle="tab" href="#summary"
                        data-tab-history="true"
                        data-tab-history-changer="push"
                        data-tab-history-update-url="true">Summary</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="instances-tab" data-toggle="tab" href="#instances" role="tab"
-                       aria-controls="instances" aria-selected="false"
+                    <a class="nav-link" id="instances-tab" data-toggle="tab" href="#instances"
                        data-tab-history="true"
                        data-tab-history-changer="push"
                        data-tab-history-update-url="true">Instances</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="licenses-tab" data-toggle="tab" href="#licenses" role="tab"
-                       aria-controls="licenses" aria-selected="false"
+                    <a class="nav-link" id="licenses-tab" data-toggle="tab" href="#licenses"
                        data-tab-history="true"
                        data-tab-history-changer="push"
                        data-tab-history-update-url="true">Licenses</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="reports-tab" data-toggle="tab" href="#reports" role="tab"
-                       aria-controls="reports" aria-selected="true"
+                    <a class="nav-link" id="reports-tab" data-toggle="tab" href="#reports"
                        data-tab-history="true"
                        data-tab-history-changer="push"
                        data-tab-history-update-url="true">Reports</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="server_health-tab" data-toggle="tab" href="#server_health" role="tab"
-                       aria-controls="server_health" aria-selected="false"
+                    <a class="nav-link" id="server_health-tab" data-toggle="tab" href="#server_health"
                        data-tab-history="true"
                        data-tab-history-changer="push"
                        data-tab-history-update-url="true">Server Health</a>
@@ -54,7 +49,7 @@
 
             <div class="tab-content" id="myTabContent">
 
-                <div class="tab-pane fade active show" id="summary" role="tabpanel" aria-labelledby="summary-tab">
+                <div class="tab-pane fade active show" id="summary">
 
                     <div class="col-xl-12 col-sm-12 mb-2">
                         <div class="card-body alert alert-info" role="alert">
@@ -230,8 +225,7 @@
 
                     </div>
                 </div>
-
-                <div class="tab-pane fade" id="instances" role="tabpanel" aria-labelledby="instances-tab">
+                <div class="tab-pane fade" id="instances">
                     <div class="col-xl-12 col-sm-12 mb-12">
 
                         <div class="card-body">
@@ -322,7 +316,7 @@
                     <div>
                     </div>
                 </div>
-                <div class="tab-pane fade" id="licenses" role="tabpanel" aria-labelledby="licenses-tab">
+                <div class="tab-pane fade" id="licenses">
                     <div class="card-body">
                         <div class="row padd">
                             <div class="col-lg-2">
@@ -381,7 +375,7 @@
                     </div>
 
                 </div>
-                <div class="tab-pane fade" id="reports" role="tabpanel" aria-labelledby="reports-tab">
+                <div class="tab-pane fade" id="reports">
                     <div class="row padd">
                         <div class="col-lg-6">
                             <div class="card mb-3">
@@ -433,7 +427,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="tab-pane fade" id="server_health" role="tabpanel" aria-labelledby="server_health-tab">
+                <div class="tab-pane fade" id="server_health">
                     <div class="col-xl-12 col-sm-12 mb-12 padd">
                         <div class="card-body">
                             <p>Server uptime: {{ uptime }}</p>
