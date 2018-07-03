@@ -30,7 +30,7 @@ class AppExtension extends AbstractExtension
 
             $result = $curl->response;
 
-            return $result->getUsageLicenseCount;
+            return $result->businessesCount;
         }
 
 
