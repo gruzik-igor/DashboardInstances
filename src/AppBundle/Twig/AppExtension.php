@@ -3,35 +3,28 @@
 
 namespace AppBundle\Twig;
 
-use AppBundle\Entity\Instance;
+
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
 
 class AppExtension extends AbstractExtension
 {
-    public function getFilters(Instance $instance)
+    public function getFilters()
     {
 
-        $apiUrl = '/api/businessesCount.json';
+
+        return array(
+            $apiUrl = '/api/businessesCount.json';
         $curl = new Curl();
         $curl->get($instance->getDomain() . $apiUrl);
 
         $result = $curl->response;
-        return array(
+        $result->businessesCount;
             new TwigFilter('businessesCount', array($this, 'getUsageLicenseCount')),
         );
     }
 
-    public function getUsageLicenseCount(Instance $instance)
-        {
-            $apiUrl = '/api/businessesCount.json';
-            $curl = new Curl();
-            $curl->get($instance->getDomain() . $apiUrl);
 
-            $result = $curl->response;
-
-            return $result->businessesCount;
-        }
 
 
 
