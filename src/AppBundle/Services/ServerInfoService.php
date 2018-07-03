@@ -28,6 +28,7 @@ class ServerInfoService
         $diskInfo['DisckTotal'] = round((($disktotal/1024)/1024)/1024,2);
         $diskUsage = $disktotal - $diskfree;
         $diskInfo['DisckUsed'] = round((($diskUsage/1024)/1024)/1024,2);
+        $diskInfo['DisckTotalTb'] = round(((($disktotal/1024)/1024)/1024)/1024,2);
 
         return $diskInfo;
         

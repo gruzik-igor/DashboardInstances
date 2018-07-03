@@ -113,7 +113,7 @@
                                             </div>
                                             <div class="col-sm-3 text-center my-auto">
                                                 <div class="h5 mb-0 text-warning">{{ meminfo.MemUsed }} MB
-                                                    of {{ meminfo.MemTotal  }} MBs {{ meminfo.MemTotalGb }}
+                                                    of {{ meminfo.MemTotal  }} MBs
                                                 </div>
                                                 <div class="small text-muted">RAM</div>
                                                 <hr>
@@ -461,8 +461,8 @@
                                 <ul>
                                     <li>{{ servinfo['model name'] }}</li>
                                     <li>cpu cores:{{ servinfo['cpu cores'] }}</li>
-                                    <li>64 GB DDR 3 RAM</li>
-                                    <li>1 TB HDD RAID 0+1</li>
+                                    <li> {{ meminfo.MemTotalGb }} GB DDR 3 RAM</li>
+                                    <li>{{ diskinfo.DisckTotalTb }} TB HDD </li>
                                 </ul>
                             </div>
                         </div>
