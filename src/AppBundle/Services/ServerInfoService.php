@@ -14,7 +14,7 @@ class ServerInfoService
         $mem = array_merge($mem);
         $meminfo['MemTotal'] = $mem[1];
         $meminfo['MemUsed'] = $mem[2];
-        $meminfo['MemTotalGb'] = $mem[1]/ 1024 ;
+        $meminfo['MemTotalGb'] = round($mem[1]/ 1024,2) ;
 
 
         return $meminfo;
