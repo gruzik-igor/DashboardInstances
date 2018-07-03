@@ -14,17 +14,21 @@ class AppExtension extends AbstractExtension
 
 
         return array(
-            $apiUrl = '/api/businessesCount.json';
-        $curl = new Curl();
-        $curl->get($instance->getDomain() . $apiUrl);
 
-        $result = $curl->response;
-        $result->businessesCount;
-            new TwigFilter('businessesCount', array($this, 'getUsageLicenseCount')),
+            new TwigFilter('getUsageLicenseCount', array($this, 'getUsageLicenseCount')),
         );
     }
 
+    public function getUsageLicenseCount(Instance $instance)
+        {
+            $apiUrl = '/api/businessesCount.json';
+            $curl = new Curl();
+            $curl->get($instance->getDomain() . $apiUrl);
 
+            $result = $curl->response;
+
+            return $result->getUsageLicenseCount;
+        }
 
 
 

@@ -290,7 +290,7 @@
                                                 </div>
                                             {% else %}
                                                 Issued: {{ instance.license.issued }} <br>
-                                                Usage: {{ instance|businessesCount }} <br>
+                                                Usage: {{ instance|getUsageLicenseCount }} <br>
                                                 Rate: {{ instance.license.rate }}$/license/month <br>
                                             {% endif %}
                                         </td>
