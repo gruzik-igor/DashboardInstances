@@ -16,7 +16,7 @@
             <ul class="nav nav-tabs mb-3" id="myTab" role="tablist">
 
                 <li class="nav-item">
-                    <a class="nav-link active" id="summary-tab" data-toggle="tab" href="#summary" role="tab"
+                    <a class="nav-link" id="summary-tab" data-toggle="tab" href="#summary" role="tab"
                        aria-controls="summary" aria-selected="false">Summary</a>
                 </li>
                 <li class="nav-item">
@@ -39,7 +39,7 @@
 
             <div class="tab-content" id="myTabContent">
 
-                <div class="tab-pane fade show active" id="summary" role="tabpanel" aria-labelledby="summary-tab">
+                <div class="tab-pane fade show" id="summary" role="tabpanel" aria-labelledby="summary-tab">
 
                     <div class="col-xl-12 col-sm-12 mb-2">
                         <div class="card-body alert alert-info" role="alert">
@@ -565,11 +565,11 @@
                     });
 
                 });
-                $("ul#myTab li.active");
-                var activeTab = null;
-                $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-                    activeTab = e.target;
-                })
+                $("#myTab").tabs();
+                $('#myTab').click(function() {
+                    var selected = $("#tabs").tabs("option", "selected");
+                    $("#tabs").tabs("option", "selected", selected + 1);
+                });
 
             });
 
