@@ -25,11 +25,12 @@ class AppExtension extends AbstractExtension
     public function getUsageLicenseCount(Instance $instance)
         {
             $apiUrl = '/api/businessesCount.json';
-            $curl = new Curl($instance->getDomain());
-            $curl->get($apiUrl);
+//            $curl = new Curl($instance->getDomain());
+//            $curl->get($apiUrl);
+//
+//            $result = $curl->response;
+            $result = json_decode(file_get_contents($apiUrl))['businessesCount'];
 
-            $result = $curl->response;
-            
             return $result;
         }
 
