@@ -4,10 +4,11 @@
 namespace AppBundle\Twig;
 
 
-use Twig\Extension\AbstractExtension;
+
+use AppBundle\Controller\BaseController;
 use Twig\TwigFilter;
 
-class AppExtension extends AbstractExtension
+class AppExtension extends BaseController
 {
     public function getFilters()
     {
