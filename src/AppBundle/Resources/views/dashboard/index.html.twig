@@ -17,23 +17,38 @@
 
                 <li class="nav-item">
                     <a class="nav-link" id="summary-tab" data-toggle="tab" href="#summary" role="tab"
-                       aria-controls="summary" aria-selected="false">Summary</a>
+                       aria-controls="summary" aria-selected="false"
+                       data-tab-history="true"
+                       data-tab-history-changer="push"
+                       data-tab-history-update-url="true">Summary</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" id="instances-tab" data-toggle="tab" href="#instances" role="tab"
-                       aria-controls="instances" aria-selected="false">Instances</a>
+                       aria-controls="instances" aria-selected="false"
+                       data-tab-history="true"
+                       data-tab-history-changer="push"
+                       data-tab-history-update-url="true">Instances</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" id="licenses-tab" data-toggle="tab" href="#licenses" role="tab"
-                       aria-controls="licenses" aria-selected="false">Licenses</a>
+                       aria-controls="licenses" aria-selected="false"
+                       data-tab-history="true"
+                       data-tab-history-changer="push"
+                       data-tab-history-update-url="true">Licenses</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" id="reports-tab" data-toggle="tab" href="#reports" role="tab"
-                       aria-controls="reports" aria-selected="true">Reports</a>
+                       aria-controls="reports" aria-selected="true"
+                       data-tab-history="true"
+                       data-tab-history-changer="push"
+                       data-tab-history-update-url="true">Reports</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" id="server_health-tab" data-toggle="tab" href="#server_health" role="tab"
-                       aria-controls="server_health" aria-selected="false">Server Health</a>
+                       aria-controls="server_health" aria-selected="false"
+                       data-tab-history="true"
+                       data-tab-history-changer="push"
+                       data-tab-history-update-url="true">Server Health</a>
                 </li>
             </ul>
 
@@ -351,11 +366,13 @@
                             <div class="col-lg-3">
                                 {% if instances|length > 0 and instances[0].invoice is not empty %}
 
-                                <p>This month revenue: $<span class="invoice-price">{{ instances[0].invoice.price }}</span></p>
-                                <p>Next month revenue: $<span class="invoice-price">{{ instances[0].invoice.price }}</span></p>
+                                    <p>This month revenue: $<span
+                                                class="invoice-price">{{ instances[0].invoice.price }}</span></p>
+                                    <p>Next month revenue: $<span
+                                                class="invoice-price">{{ instances[0].invoice.price }}</span></p>
                                 {% else %}
-                                <p >This month revenue: $<span class="invoice-price">0</span></p><br>
-                                <p>Next month revenue: $<span class="invoice-price">0</span></p>
+                                    <p>This month revenue: $<span class="invoice-price">0</span></p><br>
+                                    <p>Next month revenue: $<span class="invoice-price">0</span></p>
                                 {% endif %}
 
                                 <button class=" btn btn-primary btn-block"> Generate</button>
@@ -486,28 +503,32 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <form action="/licenses/{{ instances[0].license.id }}" method="POST" id="change-licenses-value">
+                            <form action="/licenses/{{ instances[0].license.id }}" method="POST"
+                                  id="change-licenses-value">
                                 <div class="form-row">
 
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label for="issuedValue">License issued:</label>
                                             <input name="appbundle_license[issued]" type="text"
-                                                   value="{{ instances[0].license.issued  }}" id="issuedValue" class="form-control">
+                                                   value="{{ instances[0].license.issued }}" id="issuedValue"
+                                                   class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label for="usageValue">License usage:</label>
                                             <input type="text" name="appbundle_license[usage]"
-                                                   id="usageValue" value="{{ instances[0].license.used  }}" class="form-control">
+                                                   id="usageValue" value="{{ instances[0].license.used }}"
+                                                   class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label for="rateValue">License rate:</label>
                                             <input type="text" name="appbundle_license[rate]"
-                                                   id="rateValue" value="{{ instances[0].license.rate  }}" class="form-control">
+                                                   id="rateValue" value="{{ instances[0].license.rate }}"
+                                                   class="form-control">
                                         </div>
                                     </div>
 
@@ -533,9 +554,7 @@
 {% block javascripts %}
     <script>
 
-
         $('document').ready(function () {
-
             $('#select-instance').change(function (e) {
                 $.get('/api/licenses/' + e.target.value, function (data) {
                     let issued = $('#license-issued');
@@ -554,13 +573,13 @@
 
                     let changeLicensesValueForm = $('#change-licenses-value');
 
-                    changeLicensesValueForm.attr('action', '/licenses/'+data.id);
+                    changeLicensesValueForm.attr('action', '/licenses/' + data.id);
 
 
                 });
 
                 $.get('/api/invoices/' + e.target.value, function (data) {
-                    $('.invoice-price').each(function(index, element){
+                    $('.invoice-price').each(function (index, element) {
                         $(element).text(data.price);
                     });
 
@@ -568,54 +587,7 @@
 
 
             });
-
-            $(window).tabHistory('table', '.navbar-nav');
-
-            $.fn.tabHistory = function(defaultTab, selectorPrefix){
-                // Handle tabs, page reloads & browser forward/back history.
-                var History = window.History;
-                $(selectorPrefix+' a[href="#' + State.data.tab + '"]').tab('show');
-
-                if (!History.enabled) {
-                    return false;
-                }
-
-                $(window).bind('load statechange', function (event) {
-                    var State = History.getState();
-                    var hash  = History.getHash();
-
-                    // Our default tab.
-                    if (!State.data || !State.data.tab) {
-                        if (hash) {
-                            State.data.tab = hash;
-                            window.location.hash = '';
-                        } else {
-                            State.data.tab = defaultTab;
-                        }
-                    }
-
-                    $(selectorPrefix+'a[href="#' + State.data.tab + '"]').tab('show');
-                    if(event.type == 'load')
-                        History.replaceState({tab: State.data.tab}, null, State.url);
-                });
-
-                $('a[data-toggle="tab"]').on('shown.bs.tab', function (event) {
-
-                    // Set the selected tab to be the current state. But don't update the URL.
-                    var url = event.target.href.split("#")[0];
-                    var tab = event.target.href.split("#")[1];
-
-                    var State = History.getState();
-
-                    // Don't set the state if we haven't changed tabs.
-                    if (State.data.tab != tab) {
-                        History.pushState({'tab': tab}, null, url);
-                    }
-                });
-            };
-
         });
-
 
 
     </script>
