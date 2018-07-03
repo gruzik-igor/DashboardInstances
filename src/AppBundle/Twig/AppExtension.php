@@ -29,7 +29,7 @@ class AppExtension extends AbstractExtension
 //            $curl->get($apiUrl);
 //
 //            $result = $curl->response;
-            $result = json_decode(file_get_contents($apiUrl))['businessesCount'];
+            $result = json_decode(file_get_contents($instance->getDomain().$apiUrl))['businessesCount'];
 
             return $result;
         }
