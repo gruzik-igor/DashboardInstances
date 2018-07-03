@@ -27,117 +27,116 @@
 
 {% endblock %}
 <!-- Bootstrap core JavaScript-->
-<script src="vendor/jquery/jquery.min.js"></script>
-<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+<script src="{{ asset('js/bootstrap-tab-history.js') }}"></script>
 <!-- Core plugin JavaScript-->
-<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+<script src="{{ asset('vendor/jquery-easing/jquery.easing.min.js') }}"></script>
 <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-<script type="text/javascript" src="https://www.google.com/jsapi"></script>
 
 <script type="text/javascript">
-    $(function () {
+$(function () {
 
-        $('#myTab li:last-child a').tab({event: "onclick"});
+$('#myTab li:last-child a').tab({event: "onclick"});
 
 
 // Load Charts and the corechart package.
-        google.charts.load('current', {'packages': ['corechart']});
+google.charts.load('current', {'packages': ['corechart']});
 
-        // Draw the pie chart for Sarah's pizza when Charts is loaded.
-        google.charts.setOnLoadCallback(drawCPUChart);
-        google.charts.setOnLoadCallback(drawRAMChart);
-        google.charts.setOnLoadCallback(drawHDDChart);
-        google.charts.setOnLoadCallback(drawSarahChartc);
-        google.charts.setOnLoadCallback(drawSarahChartd);
+// Draw the pie chart for Sarah's pizza when Charts is loaded.
+google.charts.setOnLoadCallback(drawCPUChart);
+google.charts.setOnLoadCallback(drawRAMChart);
+google.charts.setOnLoadCallback(drawHDDChart);
+google.charts.setOnLoadCallback(drawSarahChartc);
+google.charts.setOnLoadCallback(drawSarahChartd);
 
 
-        // Callback that draws the pie chart for Sarah's pizza.
-        function drawCPUChart() {
-            var jsonData = $.ajax({
-                url: "http://cubereviews.com/reports/reportCPU.json",
-                dataType: "json",
-                async: false
-            }).responseText;
-            var data = new google.visualization.DataTable(jsonData);
+// Callback that draws the pie chart for Sarah's pizza.
+function drawCPUChart() {
+var jsonData = $.ajax({
+url: "http://cubereviews.com/reports/reportCPU.json",
+dataType: "json",
+async: false
+}).responseText;
+var data = new google.visualization.DataTable(jsonData);
 
-            var chart = new google.visualization.AreaChart(document.getElementById('CPU_chart_div'));
-            chart.draw(data);
-        }
+var chart = new google.visualization.AreaChart(document.getElementById('CPU_chart_div'));
+chart.draw(data);
+}
 
-        function drawRAMChart() {
-            var jsonData = $.ajax({
-                url: "http://cubereviews.com/reports/reportRAM.json",
-                dataType: "json",
-                async: false
-            }).responseText;
-            var data = new google.visualization.DataTable(jsonData);
+function drawRAMChart() {
+var jsonData = $.ajax({
+url: "http://cubereviews.com/reports/reportRAM.json",
+dataType: "json",
+async: false
+}).responseText;
+var data = new google.visualization.DataTable(jsonData);
 
-            var chart = new google.visualization.AreaChart(document.getElementById('RAM_chart_div'));
-            chart.draw(data, {width: 400, height: 240});
-        }
+var chart = new google.visualization.AreaChart(document.getElementById('RAM_chart_div'));
+chart.draw(data, {width: 400, height: 240});
+}
 
-        function drawHDDChart() {
-            var jsonData = $.ajax({
-                url: "http://cubereviews.com/reports/reportHDD.json",
-                dataType: "json",
-                async: false
-            }).responseText;
-            var data = new google.visualization.DataTable(jsonData);
+function drawHDDChart() {
+var jsonData = $.ajax({
+url: "http://cubereviews.com/reports/reportHDD.json",
+dataType: "json",
+async: false
+}).responseText;
+var data = new google.visualization.DataTable(jsonData);
 
-            var chart = new google.visualization.AreaChart(document.getElementById('HDD_chart_div'));
-            chart.draw(data);
-        }
+var chart = new google.visualization.AreaChart(document.getElementById('HDD_chart_div'));
+chart.draw(data);
+}
 
-        function drawSarahChartc() {
+function drawSarahChartc() {
 
-            // Create the data table for Sarah's pizza.
-            var data = google.visualization.arrayToDataTable([
-                ['Year', 'Sales', 'Expenses'],
-                ['2013', 1000, 400],
-                ['2014', 1170, 460],
-                ['2015', 660, 1120],
-                ['2016', 1030, 1340]
-            ]);
+// Create the data table for Sarah's pizza.
+var data = google.visualization.arrayToDataTable([
+['Year', 'Sales', 'Expenses'],
+['2013', 1000, 400],
+['2014', 1170, 460],
+['2015', 660, 1120],
+['2016', 1030, 1340]
+]);
 
-            var options = {
-                title: 'Company Performance3',
-                height: 300,
-                hAxis: {title: 'Year', titleTextStyle: {color: '#333'}},
-                vAxis: {minValue: 0}
-            };
-            // Instantiate and draw the chart for Sarah's pizza.
-            var chart = new google.visualization.AreaChart(document.getElementById('Sarah_chart_div_c'));
-            chart.draw(data, options);
-        }
+var options = {
+title: 'Company Performance3',
+height: 300,
+hAxis: {title: 'Year', titleTextStyle: {color: '#333'}},
+vAxis: {minValue: 0}
+};
+// Instantiate and draw the chart for Sarah's pizza.
+var chart = new google.visualization.AreaChart(document.getElementById('Sarah_chart_div_c'));
+chart.draw(data, options);
+}
 
-        function drawSarahChartd() {
+function drawSarahChartd() {
 
-            // Create the data table for Sarah's pizza.
-            var data = google.visualization.arrayToDataTable([
-                ['Year', 'Sales', 'Expenses'],
-                ['2013', 1000, 400],
-                ['2014', 1170, 460],
-                ['2015', 660, 1120],
-                ['2016', 1030, 1340]
-            ]);
+// Create the data table for Sarah's pizza.
+var data = google.visualization.arrayToDataTable([
+['Year', 'Sales', 'Expenses'],
+['2013', 1000, 400],
+['2014', 1170, 460],
+['2015', 660, 1120],
+['2016', 1030, 1340]
+]);
 
-            var options = {
-                title: 'Company Performance4',
-                height: 300,
-                hAxis: {title: 'Year', titleTextStyle: {color: '#333'}},
-                vAxis: {minValue: 0}
-            };
-            // Instantiate and draw the chart for Sarah's pizza.
-            var chart = new google.visualization.AreaChart(document.getElementById('Sarah_chart_div_d'));
-            chart.draw(data, options);
-        }
-    });
+var options = {
+title: 'Company Performance4',
+height: 300,
+hAxis: {title: 'Year', titleTextStyle: {color: '#333'}},
+vAxis: {minValue: 0}
+};
+// Instantiate and draw the chart for Sarah's pizza.
+var chart = new google.visualization.AreaChart(document.getElementById('Sarah_chart_div_d'));
+chart.draw(data, options);
+}
+});
 </script>
 
-<script src="{{ asset('js/bootstrap-tab-history.js') }}"></script>
 {% block javascripts %}
 {% endblock %}
 
