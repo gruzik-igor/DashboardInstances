@@ -5,11 +5,11 @@ namespace AppBundle\Twig;
 
 
 
-use AppBundle\Controller\BaseController;
+
 use AppBundle\Entity\Instance;
 use Twig\TwigFilter;
 
-class AppExtension extends BaseController
+class AppExtension
 {
     public function getFilters()
     {
