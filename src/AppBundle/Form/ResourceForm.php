@@ -20,9 +20,9 @@ class ResourceForm extends AbstractType
     {
         $builder
             ->add('name', TextType::class, ['attr' => ['placeholder' => 'Enter resource name']])
-            ->add('CPU', NumberType::class, ['attr' => ['placeholder' => 'Enter CPU values']])
-            ->add('RAM', NumberType::class, ['attr' => ['placeholder' => 'Enter RAM values']])
-            ->add('HDD', NumberType::class, ['attr' => ['placeholder' => 'Enter HDD values']])
+            ->add('type', NumberType::class, ['attr' => ['placeholder' => 'Enter CPU values']])
+            ->add('type', NumberType::class, ['attr' => ['placeholder' => 'Enter RAM values']])
+            ->add('type', NumberType::class, ['attr' => ['placeholder' => 'Enter HDD values']])
             ->add('submit', SubmitType::class);
 
 
