@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Resource;
+use AppBundle\Form\ResourceForm;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -43,6 +44,28 @@ class ResourceController extends BaseController
             $em->flush();
 
             $response = $this->redirectToRoute('dashboard');
+        }
+
+        return $response;
+    }
+
+    /**
+     * @Route("/resources/new", name="add-resources")
+     */
+    public function addAction( Request $request)
+    {
+        $resources = new Resources();
+        $form = $this->createForm(ResourceForm::class,$resources);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid() && $request->getMethod() === 'POST') {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($resources);
+            $em->flush();
+
+            $response = $this->redirectToRoute('dashboard');
+        }else {
+            $response = $this->render('@App/resources/index.html.twig', ['form' => $form->createView()]);
         }
 
         return $response;
