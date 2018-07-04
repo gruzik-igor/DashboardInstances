@@ -6,7 +6,7 @@
             <div class="col-md-12">
                 <h3>Resource configuration by default:</h3>
                 <hr>
-                {%  if resources  %}
+                {#{%  if resources  %}#}
                     <form action="/resources" method="POST">
                         <div class="form-row">
                                 {%  for resource in resources %}
@@ -29,7 +29,7 @@
                                 </div>
                         </div>
                     </form>
-                {% else %}
+                {#{% else %}#}
                 <form action="/resources/new" method="POST">
                     <div class="form-row">
                         <div class="col-xl-12 col-sm-12 mb-2">
@@ -54,7 +54,7 @@
 
                     </div>
                 </form>
-                {% endif %}
+                {#{% endif %}#}
             </div>
         </div>
     </div>
