@@ -54,7 +54,7 @@ class ResourceController extends BaseController
      */
     public function addAction( Request $request)
     {
-        $resources = new Resources();
+        $resources = new Resource();
         $form = $this->createForm(ResourceForm::class,$resources);
         $form->handleRequest($request);
 
