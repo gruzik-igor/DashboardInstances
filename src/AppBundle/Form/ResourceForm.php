@@ -27,7 +27,7 @@ class ResourceForm extends AbstractType
                     'Percentage' => 'percentage',
                 ),])
             ->add('defaultValue', TextType::class, ['attr' => ['placeholder' => 'Enter resource values']])
-            ->add('submit', SubmitType::class);
+            ->add('Add resource values', SubmitType::class);
 
 
     }
