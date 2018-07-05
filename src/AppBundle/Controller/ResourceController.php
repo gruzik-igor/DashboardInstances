@@ -61,18 +61,19 @@ class ResourceController extends BaseController
      */
     public function addAction( Request $request)
     {
-        $resources = new Resource();
-        $form = $this->createForm(ResourceForm::class,$resources);
+        $resources = $this->findBy('AppBundle:Resource', []);
+        $resource = new Resource();
+        $form = $this->createForm(ResourceForm::class,$resource);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid() && $request->getMethod() === 'POST') {
             $em = $this->getDoctrine()->getManager();
-            $em->persist($resources);
+            $em->persist($resource);
             $em->flush();
 
             $response = $this->redirectToRoute('resources');
         }else {
-            $response = $this->render('@App/resources/index.html.twig', ['form' => $form->createView()]);
+            $response = $this->render('@App/resources/index.html.twig', ['form' => $form->createView(),'resources'=> $resources]);
         }
 
         return $response;
