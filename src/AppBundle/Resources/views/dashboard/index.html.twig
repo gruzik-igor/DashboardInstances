@@ -302,8 +302,8 @@
                                             {% endfor %}
                                         </td>
                                         <td>
-                                            <a class="btn btn-primary btn-block" href="{{ url('change-status', {'instance': instance.id, 'status': 'pending'}) }}">Suspended</a>
-                                            <a class="btn btn-primary btn-block" href="{{ url('change-status', {'instance': instance.id, 'status': 'active'}) }}">Terminate</a>
+                                            <a class="btn btn-danger btn-block" href="{{ url('change-status', {'instance': instance.id, 'status': 'suspended'}) }}">Suspended</a>
+                                            <a class="btn btn-success btn-block" href="{{ url('change-status', {'instance': instance.id, 'status': 'activated'}) }}">Activated</a>
                                         </td>
                                     </tr>
 
