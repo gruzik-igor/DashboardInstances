@@ -19,32 +19,39 @@ class ResourceController extends BaseController
      */
     public function resourcesAction(Request $request)
     {
-        $response = $this->render('@App/resources/index.html.twig',
-            [
-                'resources' => $this->findBy('AppBundle:Resource', [])
-            ]);
+        $resources = $this->findBy('AppBundle:Resource', []);
 
-        if ($request->getMethod() === 'POST') {
-            $em = $this->getDoctrine()->getManager();
+        if ($resources){
+            $response = $this->render('@App/resources/index.html.twig',
+                [
+                    'resources' => $resources
+                ]);
 
-            $repository = $this->getRepository('AppBundle:Resource');
+            if ($request->getMethod() === 'POST') {
+                $em = $this->getDoctrine()->getManager();
 
-            $resources = $request->request->get('resources');
+                $repository = $this->getRepository('AppBundle:Resource');
 
-            foreach ($resources as $item) {
-                $resource = $repository->findOneBy(['name' => $item['resourceName']]);
+                $resources = $request->request->get('resources');
 
-                if ($resource instanceof Resource) {
-                    $resource->setDefaultValue($item['defaultValue']);
+                foreach ($resources as $item) {
+                    $resource = $repository->findOneBy(['name' => $item['resourceName']]);
 
-                    $em->persist($resource);
+                    if ($resource instanceof Resource) {
+                        $resource->setDefaultValue($item['defaultValue']);
+
+                        $em->persist($resource);
+                    }
                 }
+
+                $em->flush();
+
+                $response = $this->redirectToRoute('dashboard');
             }
-
-            $em->flush();
-
-            $response = $this->redirectToRoute('dashboard');
         }
+         else {
+            $response = $this->redirectToRoute('add-resources');
+         }
 
         return $response;
     }
