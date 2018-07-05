@@ -37,7 +37,7 @@
                 {% else %}
                 <form action="/resources/new" method="POST">
                     <div class="form-row">
-                        {% if resources = '' %}
+                        {% if resources is empty %}
                             <div class="col-xl-12 col-sm-12 mb-2">
                                 <div class="card-body alert alert-warning" role="alert">
                                     <span> Resources did not set by default !</span>
