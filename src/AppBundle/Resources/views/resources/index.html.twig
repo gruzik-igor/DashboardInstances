@@ -34,12 +34,22 @@
                                 </div>
                         </div>
                     </form>
-                {% elseif resources is empty %}
+                {% else %}
                 <form action="/resources/new" method="POST">
                     <div class="form-row">
+                        {% if resource is empty %}
                             <div class="col-xl-12 col-sm-12 mb-2">
                                 <div class="card-body alert alert-warning" role="alert">
                                     <span> Resources did not set by default !</span>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        {{ form_start(form) }}
+                                        {{ form_widget(form)}}
+                                        {{ form_end(form) }}
+                                    </div>
                                 </div>
                             </div>
                         {% else %}
@@ -52,7 +62,7 @@
                                     </div>
                                 </div>
                             </div>
-
+                        {% endif %}
                     </div>
                 </form>
                 {% endif %}
