@@ -15,7 +15,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 class StatusController extends BaseController
 {
     /**
-     * @Route("/status/{instance}?status={status}", name="change-status")
+     * @Route("/status", name="change-status")  //{id}?status={status}
      * @Security("has_role('ROLE_SUPER_ADMIN')")
      */
     public function statusAction( Instance $status, Request $request)
