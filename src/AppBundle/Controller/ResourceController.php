@@ -70,7 +70,7 @@ class ResourceController extends BaseController
             $em->persist($resources);
             $em->flush();
 
-            $response = $this->redirectToRoute('dashboard');
+            $response = $this->redirectToRoute('resources');
         }else {
             $response = $this->render('@App/resources/index.html.twig', ['form' => $form->createView()]);
         }
