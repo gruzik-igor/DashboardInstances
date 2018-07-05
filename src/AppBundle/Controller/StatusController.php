@@ -3,13 +3,10 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Instance;
-use AppBundle\Form\InstanceForm;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use AppBundle\Form\UserForm;
-use AppBundle\Entity\User;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 class StatusController extends BaseController
@@ -18,7 +15,7 @@ class StatusController extends BaseController
      * @Route("/status", name="change-status")  //{id}?status={status}
      * @Security("has_role('ROLE_SUPER_ADMIN')")
      */
-    public function statusAction( Instance $status, Request $request)
+    public function statusAction( Instance $instance, Request $request)
     {
         $em = $this->getDoctrine()->getManager();
         $repository = $em->getRepository('AppBundle:Instance');
