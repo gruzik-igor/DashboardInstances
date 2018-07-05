@@ -29,7 +29,7 @@ class InstanceController extends BaseController
             $em->persist($instance);
             $em->flush();
 
-            $response = $this->redirectToRoute('instance');
+            $response = $this->redirectToRoute('instances');
         }else {
             $response = $this->render('@App/instance/add.html.twig', ['form' => $form->createView()]);
         }
