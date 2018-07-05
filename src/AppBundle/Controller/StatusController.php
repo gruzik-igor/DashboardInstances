@@ -17,9 +17,14 @@ class StatusController extends BaseController
      */
     public function statusAction(Request $request)
     {
+        $instance = new Instance();
         $em = $this->getDoctrine()->getManager();
         $repository = $em->getRepository('AppBundle:Instance');
-        var_dump($repository->findBy(["status" => 'active'])); die;
+        $instance->setStatus('acvive');
+        $em->persist($instance);
+        $em->flush();
+        return new Response('good');
+        //var_dump($repository->findBy(["status" => 'active'])); die;
 //        $instance = new Instance();
 //        $form = $this->createForm(InstanceForm::class,$instance);
 //        $form->handleRequest($request);
