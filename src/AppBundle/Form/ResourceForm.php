@@ -3,6 +3,7 @@
 namespace AppBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -20,9 +21,12 @@ class ResourceForm extends AbstractType
     {
         $builder
             ->add('name', TextType::class, ['attr' => ['placeholder' => 'Enter resource name']])
-            ->add('type', NumberType::class, ['attr' => ['placeholder' => 'Enter CPU values']])
-            ->add('type', NumberType::class, ['attr' => ['placeholder' => 'Enter RAM values']])
-            ->add('type', NumberType::class, ['attr' => ['placeholder' => 'Enter HDD values']])
+            ->add('type', ChoiceType::class, [
+                'choices'  => array(
+                    'Size' => 'size',
+                    'Percentage' => 'percentage',
+                ),])
+            ->add('defaultValue', TextType::class, ['attr' => ['placeholder' => 'Enter resource values']])
             ->add('submit', SubmitType::class);
 
 
