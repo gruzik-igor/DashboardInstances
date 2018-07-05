@@ -52,7 +52,7 @@ class Instance
      * @Assert\NotBlank()
      * @Assert\Length(max="255")
      */
-    protected $status = 'pending';
+    protected $status;
 
     /**
      * @Assert\NotBlank()
