@@ -20,10 +20,11 @@ class StatusController extends BaseController
         $instance = new Instance();
         $em = $this->getDoctrine()->getManager();
         $repository = $em->getRepository('AppBundle:Instance');
-        $instance->setStatus('acvive');
+        $instance->setStatus('active');
         $em->persist($instance);
         $em->flush();
-        return new Response('good');
+        $response = $this->render('@App/dashboard/index.html.twig');
+        return $response;
         //var_dump($repository->findBy(["status" => 'active'])); die;
 //        $instance = new Instance();
 //        $form = $this->createForm(InstanceForm::class,$instance);
