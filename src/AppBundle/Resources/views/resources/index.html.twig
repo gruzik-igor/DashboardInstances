@@ -9,6 +9,7 @@
                 {%  if app.request.attributes.get('_route') == 'resources' %}
                     <form action="/resources" method="POST">
                         <div class="form-row">
+                            {% if resources %}
                                 {%  for resource in resources %}
                                     <div class="col-md-4">
                                         <div class="form-group">
@@ -22,26 +23,29 @@
                                                    id="defaultValue" value="{{ resource.defaultValue }}" class="form-control">
                                         </div>
                                     </div>
-
                                 {% endfor %}
-                                <div class="col-md-12 form-row">
-                                    <div class="col-md-2 ">
-                                        <button type="submit" class="btn btn-success btn-block">Save</button>
+                                <div class="col-md-2 ">
+                                    <button type="submit" class="btn btn-success btn-block">Save</button>
+                                </div>
+                            {% else %}
+                                <div class="col-xl-12 col-sm-12 mb-2">
+                                    <div class="card-body alert alert-warning" role="alert">
+                                        <span> Resources did not set by default !</span>
                                     </div>
+                                </div>
+                                <div class="col-md-12 form-row">
+
                                     <div class="col-md-2 ">
                                         <a href="/resources/new" class="btn btn-primary btn-block">Add values </a>
                                     </div>
                                 </div>
+                            {% endif %}
                         </div>
                     </form>
                 {% else %}
                 <form action="/resources/new" method="POST">
                     <div class="form-row">
-                        <div class="col-xl-12 col-sm-12 mb-2">
-                            <div class="card-body alert alert-warning" role="alert">
-                                <span> Resources did not set by default !</span>
-                            </div>
-                        </div>
+
 
                         <div class="col-md-12">
                             <div class="row">
