@@ -36,4 +36,19 @@ class InstanceController extends BaseController
 
         return $response;
     }
+
+    /**
+     * @Route("/instance/{instance}", name="change-status")
+     * @Security("has_role('ROLE_SUPER_ADMIN')")
+     */
+    public function statusAction(Instance $instance, Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $instance->setStatus($request->query->get('status'));
+        $em->persist($instance);
+        $em->flush();
+
+        return $this->redirect($this->generateUrl('dashboard').'#instances');
+    }
 }
