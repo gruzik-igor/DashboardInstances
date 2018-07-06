@@ -40,13 +40,4 @@ class LicenseController extends BaseRestController
         $lirequest = $this->handleForm($request, LicenseRequestForm::class, new LicenseRequest());
         return $lirequest;
     }
-
-    public function indexAction(Request $request)
-    {
-
-        return $this->render('@App/layouts/navigation.html.twig', [
-            'licenseRequest' => $this->findBy('AppBundle:LicenseRequest', [])
-
-        ]);
-    }
 }
