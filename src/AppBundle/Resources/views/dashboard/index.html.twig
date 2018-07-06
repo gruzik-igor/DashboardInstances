@@ -301,9 +301,9 @@
                                                 </div>
                                             {% else %}
                                                 {% for invoice in instance.invoice %}
-                                                    {{ invoice.price }}$ @ {{ invoice.creationDate|date("Y-m-d") }}<br>
-                                                    Status: {{ invoice.status }}<br>
-                                                    Next invoice: {{ invoice.expirationDate|date("Y-m-d") }}
+                                                    {{ invoice.invoice.price }}$ @ {{ invoice.invoice.creationDate|date("Y-m-d") }}<br>
+                                                    Status: {{ invoice.invoice.status }}<br>
+                                                    Next invoice: {{ invoice.invoice.expirationDate|date("Y-m-d") }}
                                                 {% endfor %}
                                             {% endif %}
                                         </td>
