@@ -295,14 +295,17 @@
                                             {% endif %}
                                         </td>
                                         <td>
-                                            {% for invoice in instance.invoice %}
-                                                <pre>
-                                                    {{ dump(instance) }}
-                                                </pre>
-                                                {{ invoice.price }}$ @ {{ invoice.creationDate|date("Y-m-d") }}<br>
-                                                Status: {{ invoice.status }}<br>
-                                                Next invoice: {{ invoice.expirationDate|date("Y-m-d") }}
-                                            {% endfor %}
+                                            {% if instance.license is empty %}
+                                                <div class="alert alert-warning" role="alert">
+                                                    Sorry! This instance has no license!
+                                                </div>
+                                            {% else %}
+                                                {% for invoice in instance.invoice %}
+                                                    {{ invoice.price }}$ @ {{ invoice.creationDate|date("Y-m-d") }}<br>
+                                                    Status: {{ invoice.status }}<br>
+                                                    Next invoice: {{ invoice.expirationDate|date("Y-m-d") }}
+                                                {% endfor %}
+                                            {% endif %}
                                         </td>
                                         <td>
                                             <a class="btn btn-danger btn-block" href="{{ url('change-status', {'instance': instance.id, 'status': 'suspended'}) }}">Suspended</a>
