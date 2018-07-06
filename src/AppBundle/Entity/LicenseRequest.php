@@ -26,6 +26,7 @@ class LicenseRequest
     /**
      * @ORM\ManyToOne(targetEntity="Instance", inversedBy="LicenseRequest")
      * @ORM\JoinColumn(name="instance_id", referencedColumnName="id")
+     * @Assert\NotBlank()
      */
     protected $instance;
 

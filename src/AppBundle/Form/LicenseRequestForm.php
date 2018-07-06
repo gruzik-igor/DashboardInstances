@@ -19,10 +19,20 @@ class LicenseRequestForm extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('licenseRequest', NumberType::class, ['attr' => ['placeholder' => 'Enter quantity of licenses']])
-            ->add('Send request', SubmitType::class);
+            ->add('instance')
+            ->add('requestedLicenses');
 
+    }
 
+    /**
+     * {@inheritdoc}
+     */
+    public function configureOptions(OptionsResolver $resolver)
+    {
+        $resolver->setDefaults(array(
+            'data_class' => 'AppBundle\Entity\LicenseRequest',
+            'allow_extra_fields' => true,
+        ));
     }
 
     /**
