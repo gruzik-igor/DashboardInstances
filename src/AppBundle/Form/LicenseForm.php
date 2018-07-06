@@ -15,7 +15,7 @@ class LicenseForm extends AbstractType
     {
         $builder
             ->add('issued')
-            ->add('usage')
+            ->add('used')
             ->add('rate');
  
     }
