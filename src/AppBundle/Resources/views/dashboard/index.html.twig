@@ -296,7 +296,9 @@
                                         </td>
                                         <td>
                                             {% for invoice in instance.invoice %}
-                                                {{ dump(invoice)}}
+                                                <pre>
+                                                    {{ dump(invoice) }}
+                                                </pre>
                                                 {{ invoice.price }}$ @ {{ invoice.creationDate|date("Y-m-d") }}<br>
                                                 Status: {{ invoice.status }}<br>
                                                 Next invoice: {{ invoice.expirationDate|date("Y-m-d") }}
