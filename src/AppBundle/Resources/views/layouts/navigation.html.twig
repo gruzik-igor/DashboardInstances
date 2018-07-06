@@ -132,17 +132,17 @@
                 <div class="dropdown-menu" aria-labelledby="alertsDropdown">
                     <h6 class="dropdown-header">New Alerts:</h6>
                     <div class="dropdown-divider"></div>
+                    {% for request in licenseRequest %}
                     <a class="dropdown-item" href="#">
                           <span class="text-success">
                             <strong>
                               <i class="fa fa-long-arrow-down fa-fw"></i>License request</strong>
                           </span>
-                          <span class="small float-right text-muted">11:21 AM</span>
-                        {% for request in licenseRequest %}
+                          <span class="small float-right text-muted">{{ request.requestionDate }}</span>
                           <div class="dropdown-message small">Instance send request on {{ request.requestedLicenses }}lienses.</div>
-                        {% endfor %}
                     </a>
                     <div class="dropdown-divider"></div>
+                    {% endfor %}
                     <a class="dropdown-item" href="#">
               <span class="text-danger">
                 <strong>

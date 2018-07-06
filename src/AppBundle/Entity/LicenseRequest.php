@@ -36,6 +36,11 @@ class LicenseRequest
      */
     protected $requestedLicenses;
 
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     *
+     */
+    protected $requestionDate;
 
     /**
      * Get id
@@ -93,5 +98,29 @@ class LicenseRequest
     public function getInstance()
     {
         return $this->instance;
+    }
+
+
+    /**
+     * Set requestionDate
+     *
+     * @ORM\PrePersist()
+     *
+     */
+    public function setRequestionDate($requestionDate = null)
+    {
+        $this->requestionDate = new \DateTime('now');
+
+        return $this;
+    }
+
+    /**
+     * Get requestionDate
+     *
+     * @return \DateTime
+     */
+    public function getRequestionDate()
+    {
+        return $this->requestionDate;
     }
 }
