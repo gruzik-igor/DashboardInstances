@@ -138,7 +138,9 @@
                               <i class="fa fa-long-arrow-down fa-fw"></i>License request</strong>
                           </span>
                           <span class="small float-right text-muted">11:21 AM</span>
-                          <div class="dropdown-message small">Instance send request on {{ licenseRequest.requestedLicenses }}lienses.</div>
+                        {% for request in licenseRequest %}
+                          <div class="dropdown-message small">Instance send request on {{ request.requestedLicenses }}lienses.</div>
+                        {% endfor %}
                     </a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="#">

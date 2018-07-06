@@ -37,7 +37,8 @@ class LicenseController extends BaseRestController
      */
     public function requestAction(Request $request)
     {
-        return $this->handleForm($request, LicenseRequestForm::class, new LicenseRequest());
+        $lirequest = $this->handleForm($request, LicenseRequestForm::class, new LicenseRequest());
+        return $lirequest;
     }
 
     public function indexAction(Request $request)
