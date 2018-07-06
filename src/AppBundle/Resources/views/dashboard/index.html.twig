@@ -295,12 +295,12 @@
                                             {% endif %}
                                         </td>
                                         <td>
-                                            {% if invoices is empty %}
+                                            {% if instances.invoices is empty %}
                                                 <div class="alert alert-warning" role="alert">
                                                     Sorry! This instance has no last invoice!
                                                 </div>
                                             {% else %}
-                                                {% for invoice in invoices %}
+                                                {% for invoice in instances.invoices %}
                                                     {{ invoice.price }}$ @ {{ invoice.creationDate|date("Y-m-d") }}<br>
                                                     Status: {{ invoice.status }}<br>
                                                     Next invoice: {{ invoice.expirationDate|date("Y-m-d") }}
