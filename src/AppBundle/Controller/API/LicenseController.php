@@ -40,10 +40,6 @@ class LicenseController extends BaseRestController
         return $this->handleForm($request, LicenseRequestForm::class, new LicenseRequest());
     }
 
-    /**
-     * @Route("/", name="dashboard")
-     * @Security("has_role('ROLE_SUPER_ADMIN')")
-     */
     public function indexAction(Request $request)
     {
 
