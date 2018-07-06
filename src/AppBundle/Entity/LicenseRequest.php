@@ -30,25 +30,67 @@ class LicenseRequest
     protected $instance;
 
     /**
+     * @ORM\Column(type="integer")
      * @Assert\NotBlank()
      */
     protected $requestedLicenses;
 
+
     /**
-     * @return mixed
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set requestedLicenses
+     *
+     * @param integer $requestedLicenses
+     *
+     * @return LicenseRequest
+     */
+    public function setRequestedLicenses($requestedLicenses)
+    {
+        $this->requestedLicenses = $requestedLicenses;
+
+        return $this;
+    }
+
+    /**
+     * Get requestedLicenses
+     *
+     * @return integer
+     */
+    public function getRequestedLicenses()
+    {
+        return $this->requestedLicenses;
+    }
+
+    /**
+     * Set instance
+     *
+     * @param \AppBundle\Entity\Instance $instance
+     *
+     * @return LicenseRequest
+     */
+    public function setInstance(\AppBundle\Entity\Instance $instance = null)
+    {
+        $this->instance = $instance;
+
+        return $this;
+    }
+
+    /**
+     * Get instance
+     *
+     * @return \AppBundle\Entity\Instance
      */
     public function getInstance()
     {
         return $this->instance;
     }
-
-    /**
-     * @param mixed $instance
-     */
-    public function setInstance($instance)
-    {
-        $this->instance = $instance;
-    }
-
-
 }
