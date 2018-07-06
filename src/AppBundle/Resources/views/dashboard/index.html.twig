@@ -300,11 +300,11 @@
                                                     Sorry! This instance has no last invoice!
                                                 </div>
                                             {% else %}
-                                                {% for invoices in instance.invoice %}
-                                                    {{ instance.invoices.price }}$ @ {{ invoices.creationDate|date("Y-m-d") }}<br>
-                                                    Status: {{ invoices.status }}<br>
-                                                    Next invoice: {{ invoices.expirationDate|date("Y-m-d") }}
-                                                {% endfor %}
+                                                {#{% for invoices in instance.invoice %}#}
+                                                    {{ instance.invoice.price }}$ @ {{ instance.invoice.creationDate|date("Y-m-d") }}<br>
+                                                    Status: {{ instance.invoice.status }}<br>
+                                                    Next invoice: {{ instance.invoice.expirationDate|date("Y-m-d") }}
+                                                {#{% endfor %}#}
                                             {% endif %}
                                         </td>
                                         <td>
