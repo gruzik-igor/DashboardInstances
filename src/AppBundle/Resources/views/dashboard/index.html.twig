@@ -295,7 +295,7 @@
                                             {% endif %}
                                         </td>
                                         <td>
-                                            {% for invoice in instance.invoice %}
+                                            {% for invoice in instance.invoices %}
                                                 {{ invoice.price }}$ @ {{ invoice.creationDate|date("Y-m-d") }}<br>
                                                 Status: {{ invoice.status }}<br>
                                                 Next invoice: {{ invoice.expirationDate|date("Y-m-d") }}
@@ -336,7 +336,7 @@
                                 {% else %}
                                     <p id="licenses-issued">Licenses issued: <span
                                                 id="license-issued">0</span></p>
-                                    <p>Licenses used: <span id="license-usage">{{ instance|getUsageLicenseCount }}</span></p>
+                                    <p>Licenses used: <span id="license-usage">0</span></p>
                                 {% endif %}
 
                                 <button type="button" class="btn btn-primary btn-block" data-toggle="modal"
