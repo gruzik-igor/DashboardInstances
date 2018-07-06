@@ -78,6 +78,7 @@ class Instance
     {
         $this->resources = new \Doctrine\Common\Collections\ArrayCollection();
         $this->licenses = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->invoices = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**

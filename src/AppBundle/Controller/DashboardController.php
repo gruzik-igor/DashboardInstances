@@ -31,7 +31,7 @@ class DashboardController extends BaseController
             'servinfo' => $serverInfoService->getSystemInfo(),
             'instances' => $this->findBy('AppBundle:Instance', []),
             'licenses' => $this->findBy('AppBundle:License', []),
-            'invoice' => $this->findBy('AppBundle:Invoice', [])
+            'invoices' => $this->findBy('AppBundle:Invoice', [])
             ]);
     }
 
