@@ -336,7 +336,7 @@
                                 {% else %}
                                     <p id="licenses-issued">Licenses issued: <span
                                                 id="license-issued">0</span></p>
-                                    <p>Licenses used: <span id="license-usage">0</span></p>
+                                    <p>Licenses used: <span id="license-usage">{{ instance|getUsageLicenseCount }}</span></p>
                                 {% endif %}
 
                                 <button type="button" class="btn btn-primary btn-block" data-toggle="modal"
