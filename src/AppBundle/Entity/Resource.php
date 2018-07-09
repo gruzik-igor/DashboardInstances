@@ -4,10 +4,11 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use JMS\Serializer\Annotation as JMS;
 
 /**
  * Invoices.
- *
+ * @JMS\ExclusionPolicy("all")
  * @ORM\Entity()
  * @ORM\HasLifecycleCallbacks()
  */
@@ -15,7 +16,8 @@ class Resource
 {
     /**
      * @var int
-     *
+     * @JMS\Expose
+     * @JMS\Groups({"default"})
      * @ORM\Id
      * @ORM\Column(name="id", type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -23,6 +25,8 @@ class Resource
     protected $id;
 
     /**
+     * @JMS\Expose
+     * @JMS\Groups({"default"})
      * @ORM\Column(type="string", length=255, nullable=false)
      * @Assert\Length(max="255")
      * @Assert\NotBlank()
@@ -30,11 +34,15 @@ class Resource
     protected $name;
 
     /**
+     * @JMS\Expose
+     * @JMS\Groups({"default"})
      * @ORM\Column(type="string",  length=255, nullable=true)
      */
     protected $type;
 
     /**
+     * @JMS\Expose
+     * @JMS\Groups({"default"})
      * @ORM\Column(type="string", length=255, nullable=false)
      * @Assert\NotBlank()
      * @Assert\Length(max="255")
