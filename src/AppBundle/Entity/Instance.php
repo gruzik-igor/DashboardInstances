@@ -4,10 +4,11 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use JMS\Serializer\Annotation as JMS;
 
 /**
  * Instance.
- *
+ * @JMS\ExclusionPolicy("all")
  * @ORM\Entity()
  * @ORM\HasLifecycleCallbacks()
  * @ORM\EntityListeners({"AppBundle\EventListener\InstanceEntityListener"})
@@ -16,7 +17,8 @@ class Instance
 {
     /**
      * @var int
-     *
+     * @JMS\Expose
+     * @JMS\Groups({"default"})
      * @ORM\Id
      * @ORM\Column(name="id", type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -24,6 +26,8 @@ class Instance
     protected $id;
 
     /**
+     * @JMS\Expose
+     * @JMS\Groups({"default"})
      * @ORM\Column(type="string", length=255, nullable=false)
      * @Assert\Length(max="255")
      * @Assert\NotBlank()
@@ -31,23 +35,31 @@ class Instance
     protected $name;
 
     /**
+     * @JMS\Expose
+     * @JMS\Groups({"default"})
      * @ORM\OneToMany(targetEntity="InstanceResource", mappedBy="instance")
      */
     protected $resources;
 
     /**
+     * @JMS\Expose
+     * @JMS\Groups({"default"})
      * @ORM\OneToOne(targetEntity="License", inversedBy="instance")
      * @ORM\JoinColumn(name="license_id", referencedColumnName="id")
      */
     protected $license;
 
     /**
+     * @JMS\Expose
+     * @JMS\Groups({"default"})
      * @ORM\OneToOne(targetEntity="Invoice", inversedBy="instance")
      * @ORM\JoinColumn(name="invoice_id", referencedColumnName="id")
      */
     protected $invoice;
 
     /**
+     * @JMS\Expose
+     * @JMS\Groups({"default"})
      * @ORM\Column(type="string", length=255, nullable=false)
      * @Assert\NotBlank()
      * @Assert\Length(max="255")

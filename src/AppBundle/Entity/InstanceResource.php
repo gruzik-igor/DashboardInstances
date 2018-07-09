@@ -4,10 +4,11 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use JMS\Serializer\Annotation as JMS;
 
 /**
  * InstanceResource.
- *
+ * @JMS\ExclusionPolicy("all")
  * @ORM\Entity()
  * @ORM\HasLifecycleCallbacks()
  */
@@ -15,7 +16,8 @@ class InstanceResource
 {
     /**
      * @var int
-     *
+     * @JMS\Expose
+     * @JMS\Groups({"default"})
      * @ORM\Id
      * @ORM\Column(name="id", type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -23,18 +25,24 @@ class InstanceResource
     protected $id;
 
     /**
+     * @JMS\Expose
+     * @JMS\Groups({"default"})
      * @ORM\ManyToOne(targetEntity="Instance")
      * @ORM\JoinColumn(name="instance_id", referencedColumnName="id")
      */
     protected $instance;
 
     /**
+     * @JMS\Expose
+     * @JMS\Groups({"default"})
      * @ORM\ManyToOne(targetEntity="Resource")
      * @ORM\JoinColumn(name="resource_id", referencedColumnName="id")
      */
     protected $resource;
 
     /**
+     * @JMS\Expose
+     * @JMS\Groups({"default"})
      * @ORM\Column(type="string", length=255, nullable=false)
      * @Assert\NotBlank()
      * @Assert\Length(max="255")
