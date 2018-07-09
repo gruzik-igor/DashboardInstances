@@ -138,7 +138,7 @@
                             <strong>
                               <i class="fa fa-long-arrow-down fa-fw"></i>License request</strong>
                           </span>
-                          <span class="small float-right text-muted">{{ request.requestionDate|date("Y-m-d H:i:s") }}</span>
+                          <span class="small float-right text-muted">{{ request.requestionDate|date("d-m-Y H:i")|time_ago }}</span>
                           <div class="dropdown-message small">Instance send request on {{ request.requestedLicenses }}lienses.</div>
                     </a>
                     <div class="dropdown-divider"></div>
