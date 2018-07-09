@@ -225,7 +225,7 @@
 
                     </div>
                 </div>
-                <div class="tab-pane fade" id="instances">
+                <div class="tab-pane container-t fade" id="instances" data-infinite-scroll='{ "path": ".pagination__next", "append": ".table", "history": false }'>
                     <div class="col-xl-12 col-sm-12 mb-12">
 
                         <div class="card-body">
@@ -237,7 +237,7 @@
                                     <a class="btn btn-primary btn-block" href="/resources"> Change default Resources</a>
                                 </div>
                             </div>
-                            <table class="table table-bordered" id="marketing_masters" width="100%" cellspacing="0">
+                            <table class="table table-bordered"   id="marketing_masters" width="100%" cellspacing="0">
                                 {% for instance in instances %}
 
                                     <thead>
@@ -586,6 +586,12 @@
                 });
 
 
+            });
+            $('.container').infiniteScroll({
+                // options
+                path: '.pagination__next',
+                append: '.post',
+                history: false,
             });
         });
 
