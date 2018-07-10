@@ -596,10 +596,7 @@
             var $container = $('#instances').infiniteScroll({
                 // options
 
-                path: function() {
-                    var pageNumber = ( this.loadCount + 1 ) * 10;
-                    return '/api/instances?_limit=' + pageNumber;
-                },
+                path: '/api/instances?_limit=',
                 append: '.table',
                 status: '.page-load-status',
             });
