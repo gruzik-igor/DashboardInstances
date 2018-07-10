@@ -17,7 +17,7 @@ $(function () {
                     url: url + '?_limit=' + (currentLimit + 1),
                     type: method,
                     success: function (data, status, reqeust) {
-                        infiniteScrollBody.attr('data-current-limit', (currentLimit + 1);
+                        infiniteScrollBody.attr('data-current-limit', (currentLimit + 1));
 
                         infiniteScrollBody.append(data);
 
