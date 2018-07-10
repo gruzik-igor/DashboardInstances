@@ -18,7 +18,7 @@ $(function () {
                     type: method,
                     success: function (data, status, reqeust) {
                         infiniteScrollBody.attr('data-current-limit', (currentLimit + 1));
-
+                        console.log(data);
                         infiniteScrollBody.append(data);
 
 
