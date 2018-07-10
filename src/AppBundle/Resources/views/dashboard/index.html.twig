@@ -236,7 +236,9 @@
                                     <a class="btn btn-primary btn-block" href="/resources"> Change default Resources</a>
                                 </div>
                             </div>
-                            <table class="table table-bordered"   id="marketing_masters" width="100%" cellspacing="0">
+                            <table class="table table-bordered"   data-current-limit="1" id="infiniteScrollBody"
+                                   data-url="{{ url('api_get_instances') }}"
+                                   data-method="GET" width="100%" cellspacing="0">
                                 {% for instance in instances %}
                                     <thead>
                                     <tr>
@@ -558,8 +560,8 @@
 {% endblock %}
 
 {% block javascripts %}
+    <script src="/js/infiniteScroll.js"></script>
     <script>
-
         $('document').ready(function () {
             $('#select-instance').change(function (e) {
                 $.get('/api/licenses/' + e.target.value, function (data) {
@@ -592,19 +594,7 @@
                 });
 
 
-            });
-            var $container = $('#instances').infiniteScroll({
-                // options
-
-                path: '/api/instances?_limit=',
-                append: '.table',
-                status: '.page-load-status',
-            });
-            var infScroll = $container.data('infiniteScroll');
-
-        });
-
-
+            })
     </script>
 {% endblock %}
 {% block stylesheets %}
