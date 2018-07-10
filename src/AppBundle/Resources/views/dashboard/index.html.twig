@@ -225,9 +225,8 @@
 
                     </div>
                 </div>
-                <div class="tab-pane container-t fade" id="instances" data-infinite-scroll='{ "path": "/api/instances", "append": ".table", "history": false }'>
+                <div class="tab-pane container-t fade" id="instances">
                     <div class="col-xl-12 col-sm-12 mb-12">
-
                         <div class="card-body">
                             <div class="row padd">
                                 <div class="col-lg-2 ">
@@ -239,7 +238,6 @@
                             </div>
                             <table class="table table-bordered"   id="marketing_masters" width="100%" cellspacing="0">
                                 {% for instance in instances %}
-
                                     <thead>
                                     <tr>
                                         <th>Instance</th>
@@ -319,7 +317,15 @@
                             </table>
                         </div>
                     </div>
-                    <div>
+                    <div class="page-load-status">
+                        <div class="loader-ellips infinite-scroll-request">
+                            <span class="loader-ellips__dot"></span>
+                            <span class="loader-ellips__dot"></span>
+                            <span class="loader-ellips__dot"></span>
+                            <span class="loader-ellips__dot"></span>
+                        </div>
+                        <p class="infinite-scroll-last">End of content</p>
+                        <p class="infinite-scroll-error">No more pages to load</p>
                     </div>
                 </div>
                 <div class="tab-pane fade" id="licenses">
@@ -587,12 +593,18 @@
 
 
             });
-            $('.container').infiniteScroll({
+            var $container = $('#instances').infiniteScroll({
                 // options
-                path: '.pagination__next',
-                append: '.post',
-                history: false,
+
+                path: function() {
+                    var pageNumber = ( this.loadCount + 1 ) * 10;
+                    return '/api/instances?_limit=' + pageNumber;
+                },
+                append: '.table',
+                status: '.page-load-status',
             });
+            var infScroll = $container.data('infiniteScroll');
+
         });
 
 
