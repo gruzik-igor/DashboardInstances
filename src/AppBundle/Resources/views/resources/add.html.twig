@@ -1,0 +1,122 @@
+{% extends '@App/layouts/base.html.twig' %}
+
+{% block body %}
+    <div class="content-wrapper">
+        <div class="container-fluid">
+            <div class="col-md-12">
+                <h3>Change instance resource configuration:</h3>
+                <hr>
+                {%  if app.request.attributes.get('_route') == 'instance-resources' %}
+                    <form action="/instance_resources" method="POST">
+                        <div class="form-row">
+                            {#{%  for ins in instance %}#}
+                            {#<div class="col-md-3">#}
+                                {#<div class="form-group form-row">#}
+                                    {#<label for="instanceName">Instance name:</label>#}
+                                    {#<input name="instances[{{ loop.index }}][instanceName]" type="text" readonly#}
+                                           {#value="{{ ins.name }}" id="instanceName" class="form-control">#}
+                                {#</div>#}
+                            {#</div>#}
+                            {#{% endfor %}#}
+                            {#{%  for resource in resources %}#}
+                                {#<div class="col-md-2">#}
+                                    {#<div class="form-group">#}
+                                        {#<label for="resourceName">Resource name:</label>#}
+                                        {#<input name="resources[{{ loop.index }}][resourceName]" type="text" readonly#}
+                                               {#value="{{ resource.name }}" id="resourceName" class="form-control">#}
+                                    {#</div>#}
+                                {#</div>#}
+                            {#{% endfor %}#}
+                                {#{%  for ins_res in instance_resource %}#}
+                                    {#{{ dump(ins_res.resource) }}#}
+                                    {#{%  for  ins in ins_res.resource %}#}
+                                    {#<div class="col-md-2">#}
+                                        {#<div class="form-group">#}
+                                            {#<label for="defaultValue">Resource value:</label>#}
+                                            {#<input type="text" name="resources[{{ loop.index }}][value]"#}
+                                                   {#id="value" value="{{ ins.value }}" class="form-control">#}
+                                        {#</div>#}
+                                    {#</div>#}
+
+                                {#{% endfor %}#}
+                            {#{% endfor %}#}
+                        </div>
+                            {%  for ins_res in instance_resource %}
+                            <div class="form-row">
+                                {% if ins_res.instance.id > 0 %}
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="resourceName">Instance name:</label>
+                                            <input name="resources[{{ loop.index }}][resourceName]" type="text" readonly
+                                                   value="{{ ins_res.instance.name }}" id="resourceName" class="form-control">
+                                        </div>
+                                     </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="resourceName">Resource name:</label>
+                                            <input name="resources[{{ loop.index }}][resourceName]" type="text" readonly
+                                                   value="{{ ins_res.resource.name }}" id="resourceName" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="resourceName">Value name:</label>
+                                            <input name="resources[{{ loop.index }}][resourceName]" type="text"
+                                                   value="{{ ins_res.value }}" id="resourceName" class="form-control">
+                                        </div>
+                                    </div>
+                                {% endif %}
+
+                            </div>
+                            {% endfor %}
+
+                            <div class="col-md-12 form-row">
+                                <div class="col-md-2 ">
+                                    <button type="submit" class="btn btn-success btn-block">Save</button>
+                                </div>
+                                <div class="col-md-2 ">
+                                    <a href="/resources/new" class="btn btn-primary btn-block">Add values </a>
+                                </div>
+                            </div>
+
+                    </form>
+                {% else %}
+                    <form action="/instance_resources/add" method="POST">
+                        <div class="form-row">
+                            {% if resources is empty %}
+                                <div class="col-xl-12 col-sm-12 mb-2">
+                                    <div class="card-body alert alert-warning" role="alert">
+                                        <span> Resources did not set by default !</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            {{ form_start(form) }}
+                                            {{ form_widget(form)}}
+                                            {{ form_end(form) }}
+                                        </div>
+                                    </div>
+                                </div>
+                            {% else %}
+                                <div class="col-md-12">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            {{ form_start(form) }}
+                                            {{ form_widget(form)}}
+                                            {{ form_end(form) }}
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </form>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block stylesheets %}
+
+{% endblock %}

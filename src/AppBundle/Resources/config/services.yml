@@ -1,3 +1,5 @@
+imports:
+    - { resource: jms.yml }
 services:
     app.user.entity_listener:
         class: AppBundle\EventListener\UserEntityListener

@@ -21,7 +21,9 @@
 </head>
 
 <body class="fixed-nav sticky-footer bg-dark">
-{% include '@App/layouts/navigation.html.twig' %}
+{% if  app.request.attributes.get('_route') in ['sign-in', 'registration'] == false %}
+    {% include '@App/layouts/navigation.html.twig' %}
+{% endif %}
 
 {% block body %}
 
@@ -61,7 +63,7 @@
 // Callback that draws the pie chart for Sarah's pizza.
         function drawCPUChart() {
             var jsonData = $.ajax({
-                url: "http://cubereviews.com/reports/reportCPU.json",
+                url: "/reports/reportCPU.json",
                 dataType: "json",
                 async: false
             }).responseText;
@@ -73,7 +75,7 @@
 
         function drawRAMChart() {
             var jsonData = $.ajax({
-                url: "http://cubereviews.com/reports/reportRAM.json",
+                url: "/reports/reportRAM.json",
                 dataType: "json",
                 async: false
             }).responseText;
@@ -85,7 +87,7 @@
 
         function drawHDDChart() {
             var jsonData = $.ajax({
-                url: "http://cubereviews.com/reports/reportHDD.json",
+                url: "/reports/reportHDD.json",
                 dataType: "json",
                 async: false
             }).responseText;

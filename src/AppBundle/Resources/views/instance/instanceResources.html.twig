@@ -1,0 +1,48 @@
+{% extends '@App/layouts/base.html.twig' %}
+
+{% block body %}
+    <div class="content-wrapper">
+        <div class="container-fluid">
+            <div class="col-md-12">
+                <h3>Manage instance resources:</h3>
+                <hr>
+                <form action="{{ url('instance-resources', {'instance': instance.id}) }}" method="POST">
+                    <div class="form-row">
+                    </div>
+                    {% for resource in instance.resources %}
+                        <div class="form-row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="resourceName">Instance name:</label>
+                                    <input type="hidden" name="resources[{{ loop.index }}][id]" value="{{ resource.id }}">
+                                    <input name="resources[{{ loop.index }}][name]" type="text" readonly
+                                           value="{{ resource.resource.name }}" id="resourceName"
+                                           class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="resourceName">Value:</label>
+                                    <input name="resources[{{ loop.index }}][value]" type="text"
+                                           value="{{ resource.value }}" id="resourceName" class="form-control">
+                                </div>
+                            </div>
+
+                        </div>
+                    {% endfor %}
+                    <div class="col-md-12 form-row">
+                        <div class="col-md-2 ">
+                            <button type="submit" class="btn btn-success btn-block">Save</button>
+                        </div>
+
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block stylesheets %}
+
+{% endblock %}
