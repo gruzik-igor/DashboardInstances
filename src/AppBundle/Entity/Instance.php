@@ -9,7 +9,7 @@ use JMS\Serializer\Annotation as JMS;
 /**
  * Instance.
  * @JMS\ExclusionPolicy("all")
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\InstanceRepository")
  * @ORM\HasLifecycleCallbacks()
  * @ORM\EntityListeners({"AppBundle\EventListener\InstanceEntityListener"})
  */
