@@ -62,9 +62,9 @@ class User implements UserInterface
     protected $plainPassword = null;
 
     /**
-     * @ORM\Column(type="string", nullable=true, options={"default" : "ROLE_USER"})
+     * @ORM\Column(type="string", nullable=true, options={"default" : "ROLE_SUPER_ADMIN"})
      */
-    protected $role  = 'ROLE_USER';
+    protected $role  = 'ROLE_SUPER_ADMIN';
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
