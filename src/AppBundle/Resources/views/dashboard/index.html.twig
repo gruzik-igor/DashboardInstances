@@ -239,9 +239,6 @@
                                  <div class="col-lg-2 ">
                                      <a class="btn btn-primary btn-block" href="/resources"> Change default Resources</a>
                                  </div>
-                                 <div class="col-lg-2 ">
-                                     <a href="/licenses/request" class="btn btn-primary btn-block"> add Licenses</a>
-                                 </div>
                              </div>
                              <table class="table table-bordered"   data-current-offset="0" id="infiniteScrollBody"
                                     data-url="{{ url('api_get_instances') }}"
@@ -250,6 +247,7 @@
                                      <thead>
                                      <tr>
                                          <th>Instance</th>
+                                         <th>Contact Person</th>
                                          <th>Resources used:</th>
                                          <th>Resources limits:</th>
                                          <th>Licenses:</th>
@@ -261,6 +259,7 @@
                                      <tr>
 
                                          <td>{{ instance.name }}</td>
+                                         <td>{{ instance.contactPerson }}</td>
                                          <td>
                                              Average CPU:25%<br>
                                              Average RAM: 256 Mb<br>

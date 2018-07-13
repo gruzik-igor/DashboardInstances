@@ -70,6 +70,7 @@ $(function () {
                                 '<thead>' +
                                 '<tr>' +
                                 '<th>Instance</th>' +
+                                '<th>Contact Person</th>' +
                                 '<th>Resources used:</th>' +
                                 '<th>Resources limits:</th>' +
                                 '<th>Licenses:</th>' +
@@ -80,6 +81,7 @@ $(function () {
                                 '<tbody>' +
                                 '<tr>' +
                                 '<td>' + item.name + '</td>' +
+                                '<td>' + item.contactPerson + '</td>' +
                                 '<td>Average CPU:25% <br>' + 'Average RAM: 256 Mb <br>' + 'Average HDD: 2345 Mb' +
                                 '</td>' +
                                 '<td>' +
@@ -92,6 +94,7 @@ $(function () {
                                 invoiceHtml +
                                 '</td>' +
                                 '<td>' +
+                                '<a class="btn btn-primary btn-block" href="/instance-resources/' + item.id +'">Resources</a>' +
                                 '<a class="btn btn-danger btn-block" href="/instance/' + item.id + '?status=suspended">Suspended</a>' +
                                 '<a class="btn btn-success btn-block" href="/instance/' + item.id + '?status=activated">Activated</a>' +
                                 '</td>' +

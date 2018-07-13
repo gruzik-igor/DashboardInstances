@@ -37,6 +37,15 @@ class Instance
     /**
      * @JMS\Expose
      * @JMS\Groups({"default"})
+     * @ORM\Column(type="string", length=255, nullable=false)
+     * @Assert\Length(max="255")
+     * @Assert\NotBlank()
+     */
+    protected $contactPerson;
+
+    /**
+     * @JMS\Expose
+     * @JMS\Groups({"default"})
      * @ORM\OneToMany(targetEntity="InstanceResource", mappedBy="instance")
      */
     protected $resources;
@@ -126,6 +135,29 @@ class Instance
         return $this->name;
     }
 
+    /**
+     * Set contactPerson
+     *
+     * @param string $name
+     *
+     * @return Instance
+     */
+    public function setContactPerson($contactPerson)
+    {
+        $this->contactPerson= $contactPerson;
+
+        return $this;
+    }
+
+    /**
+     * Get contactPerson
+     *
+     * @return string
+     */
+    public function getContactPerson()
+    {
+        return $this->contactPerson;
+    }
     /**
      * Set status
      *
