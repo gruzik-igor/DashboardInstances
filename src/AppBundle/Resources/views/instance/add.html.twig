@@ -10,6 +10,10 @@
                     <div class="col-md-6">
                         {{ form_start(form) }}
                         {{ form_widget(form)}}
+                        <button class="btn btn-success text-right" type="submit">Create </button>
+                        {#<button class="btn btn-primary text-right" onklick="window.history.(go-1);return false;">Cancel </button>#}
+                        <a href="{{ url('dashboard') }}" class="btn btn-primary text-right" onklick="window.history.(go-1);return false;">Cancel </a>
+
                         {{ form_end(form) }}
                     </div>
                 </div>

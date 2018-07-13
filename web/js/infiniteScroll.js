@@ -95,8 +95,8 @@ $(function () {
                                 '</td>' +
                                 '<td>' +
                                 '<a class="btn btn-primary btn-block" href="/instance-resources/' + item.id +'">Resources</a>' +
-                                '<a class="btn btn-danger btn-block" href="/instance/' + item.id + '?status=suspended">Suspended</a>' +
-                                '<a class="btn btn-success btn-block" href="/instance/' + item.id + '?status=activated">Activated</a>' +
+                                '<a class="btn btn-danger btn-block" href="/instance/' + item.id + '?status=suspended">Suspend</a>' +
+                                '<a class="btn btn-success btn-block" href="/instance/' + item.id + '?status=activated">Activate</a>' +
                                 '</td>' +
                                 '</tr>' +
                                 '</tbody>'

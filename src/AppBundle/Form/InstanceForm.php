@@ -3,6 +3,7 @@
 namespace AppBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ButtonType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
@@ -21,9 +22,10 @@ class InstanceForm extends AbstractType
     {
         $builder
             ->add('name', TextType::class, ['attr' => ['placeholder' => 'Enter instance name']])
+            ->add('contactPerson', TextType::class, ['attr' => ['placeholder' => 'Enter name of contact person with space']])
             ->add('licenseRate', MoneyType::class, ['attr' => ['placeholder' => 'Enter license rate']])
-            ->add('licenseIssued', NumberType::class, ['attr' => ['placeholder' => 'Enter license issued']])
-            ->add('submit', SubmitType::class);
+            ->add('licenseIssued', NumberType::class, ['attr' => ['placeholder' => 'Enter license issued']]);
+            //->add('submit', SubmitType::class, ['attr' => [ 'class' => 'btn btn-success text-right'],'label' => 'Create']);
 
 
     }
