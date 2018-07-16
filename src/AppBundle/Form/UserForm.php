@@ -39,8 +39,6 @@ class UserForm extends AbstractType
     {
         $resolver->setDefaults(array(
             'data_class' => 'AppBundle\Entity\User',
-            'csrf_protection' => true,
-            'csrf_field_name' => '_token',
             'allow_extra_fields' => true,
         ));
     }
