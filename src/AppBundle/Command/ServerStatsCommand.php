@@ -109,8 +109,8 @@ class ServerStatsCommand extends EndlessContainerAwareCommand
         $inp = file_get_contents($filePath.'/reportHDD.json');
         $tempArray = json_decode($inp, true);
         $tempArray['rows'][] = $hddInfoArray;
-        
-        file_put_contents($filePath.'/reportHDD.json', json_encode($tempArray));        
+
+        file_put_contents($filePath.'/reportHDD.json', json_encode($tempArray));
     }
 
     // Convert from bytes
