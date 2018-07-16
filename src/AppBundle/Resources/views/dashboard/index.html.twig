@@ -86,7 +86,7 @@
                                      <div class="card-header">
                                          <i class="fa fa-area-chart"></i> HDD, GB usage:
                                      </div>
-                                     <div id="HDD_chart_div" style="height:100%;"></div>
+                                     <div id="HDD_chart_div"></div>
                                      <div class="card-footer small text-muted">Updated yesterday at 12:48 PM</div>
                                  </div>
                              </div>
@@ -162,52 +162,76 @@
                                          </tr>
                                          </tfoot>
                                          <tbody>
+                                         {% for instance in instances %}
+                                         {#<tr>#}
+                                             {#<td>Marketing Masters</td>#}
+                                             {#<td>Tiger Nixon</td>#}
+                                             {#<td>37</td>#}
+                                             {#<td>12</td>#}
+                                             {#<td>444</td>#}
+                                             {#<td>RAM: 10% - HDD: 8% - CPU: 15%</td>#}
+                                             {#<td>Active</td>#}
+                                         {#</tr>#}
+                                         {#<tr>#}
+                                             {#<td>SEO Agency</td>#}
+                                             {#<td>Garrett Winters</td>#}
+                                             {#<td>12</td>#}
+                                             {#<td>10</td>#}
+                                             {#<td>120</td>#}
+                                             {#<td>RAM: 8% - HDD: 3% - CPU: 12%</td>#}
+                                             {#<td>Active</td>#}
+                                         {#</tr>#}
+                                         {#<tr>#}
+                                             {#<td>YourBiz</td>#}
+                                             {#<td>Ashton Cox</td>#}
+                                             {#<td>20</td>#}
+                                             {#<td>15</td>#}
+                                             {#<td>300</td>#}
+                                             {#<td>RAM: 8% - HDD: 3% - CPU: 12%</td>#}
+                                             {#<td>Suspended</td>#}
+                                         {#</tr>#}
+                                         {#<tr>#}
+                                             {#<td>Market Plus</td>#}
+                                             {#<td>Cedric Kelly</td>#}
+                                             {#<td>5</td>#}
+                                             {#<td>20</td>#}
+                                             {#<td>100</td>#}
+                                             {#<td>RAM: 25% - HDD: 4% - CPU: 16%</td>#}
+                                             {#<td>Active</td>#}
+                                         {#</tr>#}
                                          <tr>
-                                             <td>Marketing Masters</td>
-                                             <td>Tiger Nixon</td>
-                                             <td>37</td>
-                                             <td>12</td>
-                                             <td>444</td>
-                                             <td>RAM: 10% - HDD: 8% - CPU: 15%</td>
-                                             <td>Active</td>
+                                             <td>{{ instance.name }}</td>
+                                             <td>{{ instance.contactPerson }}</td>
+                                             <td>{{ instance.license.issued }}</td>
+                                             <td>{{ instance.license.rate }}</td>
+                                             <td>{{ instance.invoice.price }}</td>
+                                             <td>
+                                             {% for resource in instance.resources %}
+                                                 {% if resource.value %}
+                                                     {% if resource.resource.name == 'RAM' %}
+                                                         {{ resource.resource.name }}: {{ resource.value }} MB
+                                                     {% elseif resource.resource.name == 'CPU' %}
+                                                         {{ resource.resource.name }}: {{ resource.value }} % -
+                                                     {% elseif resource.resource.name == 'HDD' %}
+                                                         {{ resource.resource.name }}: {{ resource.value }} GB -
+                                                     {% endif %}
+                                                 {% else %}
+                                                     {% if resource.resource.name == 'RAM' %}
+                                                         {{ resource.resource.name }}: {{ resource.resource.defaultValue }} MB
+                                                         -
+                                                     {% elseif resource.resource.name == 'CPU' %}
+                                                         {{ resource.resource.name }}: {{ resource.resource.defaultValue }} %
+                                                         -
+                                                     {% elseif resource.resource.name == 'HDD' %}
+                                                         {{ resource.resource.name }}: {{ resource.resource.defaultValue }} GB
+                                                         -
+                                                     {% endif %}
+                                                 {% endif %}
+                                             {%  endfor %}
+                                             </td>
+                                             <td>{{ instance.status }}</td>
                                          </tr>
-                                         <tr>
-                                             <td>SEO Agency</td>
-                                             <td>Garrett Winters</td>
-                                             <td>12</td>
-                                             <td>10</td>
-                                             <td>120</td>
-                                             <td>RAM: 8% - HDD: 3% - CPU: 12%</td>
-                                             <td>Active</td>
-                                         </tr>
-                                         <tr>
-                                             <td>YourBiz</td>
-                                             <td>Ashton Cox</td>
-                                             <td>20</td>
-                                             <td>15</td>
-                                             <td>300</td>
-                                             <td>RAM: 8% - HDD: 3% - CPU: 12%</td>
-                                             <td>Suspended</td>
-                                         </tr>
-                                         <tr>
-                                             <td>Market Plus</td>
-                                             <td>Cedric Kelly</td>
-                                             <td>5</td>
-                                             <td>20</td>
-                                             <td>100</td>
-                                             <td>RAM: 25% - HDD: 4% - CPU: 16%</td>
-                                             <td>Active</td>
-                                         </tr>
-                                         <tr>
-                                             <td>Jack LTD</td>
-                                             <td>Airi Satou</td>
-                                             <td>4</td>
-                                             <td>15</td>
-                                             <td>60</td>
-                                             <td>RAM: 25% - HDD: 4% - CPU: 16%</td>
-                                             <td>Suspended</td>
-                                         </tr>
-
+                                         {% endfor %}
                                          </tbody>
                                      </table>
                                  </div>
@@ -313,8 +337,9 @@
 
                                 {% endfor %}
                             </table>
-                             <p class="infinite-scroll-last">End of content</p>
-                             <p class="infinite-scroll-error">No more pages to load</p>
+                             <div class="col-lg-12">
+                                <p class="infinite-scroll-last">End of content</p>
+                             </div>
                         </div>
                     </div>
                 </div>

@@ -28,9 +28,16 @@
                                     <div class="col-md-2 ">
                                         <button type="submit" class="btn btn-success btn-block">Save</button>
                                     </div>
-                                    <div class="col-md-2 ">
+                                    {% if resources|length == 3 %}
+                                        {% set class = 'hidden' %}
+                                    <div class="col-md-2" {{ class }}>
                                         <a href="/resources/new" class="btn btn-primary btn-block">Add values </a>
                                     </div>
+                                        {% else %}
+                                            <div class="col-md-2">
+                                                <a href="/resources/new" class="btn btn-primary btn-block">Add values </a>
+                                            </div>
+                                    {% endif %}
                                 </div>
                         </div>
                     </form>
