@@ -31,4 +31,15 @@ class InstanceRepository extends \Doctrine\ORM\EntityRepository
 
         return $result;
     }
+
+    public function search($query)
+    {
+        $qb = $this->createQueryBuilder('entity');
+
+        $result = $qb
+            ->where($qb->expr()->like('entity.name', $qb->expr()->literal('%'.$query.'%')))
+            ->getQuery()->getResult();
+
+        return $result;
+    }
 }

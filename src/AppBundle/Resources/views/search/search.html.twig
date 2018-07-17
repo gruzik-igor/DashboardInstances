@@ -1,0 +1,76 @@
+{% extends '@App/layouts/base.html.twig' %}
+
+{% block body %}
+
+    <div class="content-wrapper">
+        <div class="container-fluid">
+            <div class="col-xl-12 col-sm-12 mb-12">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                            <tr>
+                                <th>Instance</th>
+                                <th>Contact person</th>
+                                <th>Licenses issued</th>
+                                <th>Rate</th>
+                                <th>Monthly revenue $</th>
+                                <th>Resources used</th>
+                                <th>Status</th>
+                            </tr>
+                            </thead>
+                            <tfoot>
+                            <tr>
+                                <th>Instance</th>
+                                <th>Contact person</th>
+                                <th>Licenses issued</th>
+                                <th>Rate</th>
+                                <th>Monthly revenue $</th>
+                                <th>Resources used</th>
+                                <th>Status</th>
+                            </tr>
+                            </tfoot>
+                            <tbody>
+                            {% for instance in instances %}
+                                <tr>
+                                    <td ><span style="background-color: rgba(76,153,230,0.5);padding:2px; ">{{ instance.name }}</span></td>
+                                    <td>{{ instance.contactPerson }}</td>
+                                    <td>{{ instance.license.issued }}</td>
+                                    <td>{{ instance.license.rate }}</td>
+                                    <td>{{ instance.invoice.price }}</td>
+                                    <td>
+                                        {% for resource in instance.resources %}
+                                            {% if resource.value %}
+                                                {% if resource.resource.name == 'RAM' %}
+                                                    {{ resource.resource.name }}: {{ resource.value }} MB
+                                                {% elseif resource.resource.name == 'CPU' %}
+                                                    {{ resource.resource.name }}: {{ resource.value }} % -
+                                                {% elseif resource.resource.name == 'HDD' %}
+                                                    {{ resource.resource.name }}: {{ resource.value }} GB -
+                                                {% endif %}
+                                            {% else %}
+                                                {% if resource.resource.name == 'RAM' %}
+                                                    {{ resource.resource.name }}: {{ resource.resource.defaultValue }} MB
+                                                    -
+                                                {% elseif resource.resource.name == 'CPU' %}
+                                                    {{ resource.resource.name }}: {{ resource.resource.defaultValue }} %
+                                                    -
+                                                {% elseif resource.resource.name == 'HDD' %}
+                                                    {{ resource.resource.name }}: {{ resource.resource.defaultValue }} GB
+                                                    -
+                                                {% endif %}
+                                            {% endif %}
+                                        {%  endfor %}
+                                    </td>
+                                    <td>{{ instance.status }}</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <div>
+
+{% endblock %}
