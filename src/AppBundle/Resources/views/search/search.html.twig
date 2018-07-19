@@ -4,7 +4,30 @@
 
     <div class="content-wrapper">
         <div class="container-fluid">
-            <div class="col-xl-12 col-sm-12 mb-12">
+            <div class="card">
+
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-md-2 col-lg-2 ">
+                            <h4>Search resaults:</h4>
+                        </div>
+                        <div class="col-md-10 col-lg-10 text-right">
+                            <a class="btn btn-primary" href="{{ url('dashboard') }}">
+                                <i class="fa fa-fw fa-arrow-left"></i>
+                                <span class="nav-link-text">Back</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                {#<div class="row">#}
+                    {#<div class="col-md-11 col-lg-11">#}
+                        {#<h4>Search resaults:</h4>#}
+                    {#</div>#}
+                    {##}
+
+                    {#<hr>#}
+                {#</div>#}
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -72,6 +95,7 @@
                         </table>
                     </div>
                 </div>
+
             </div>
         </div>
     <div>
