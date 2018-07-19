@@ -34,14 +34,10 @@
                        data-tab-history-update-url="true">Licenses</a>
                 </li>
                 <li class="nav-item">
-                    {#<a class="nav-link" id="reports-tab" data-toggle="tab" href="#reports"#}
-                       {#data-tab-history="true"#}
-                       {#data-tab-history-changer="push"#}
-                       {#data-tab-history-update-url="true">Reports</a>#}
-                    <a class="nav-link" id="reports-tab" data-toggle="tab" href="#"
-                        data-tab-history="true"
-                        data-tab-history-changer="push"
-                        data-tab-history-update-url="true">Reports</a>
+                    <a class="nav-link" id="reports-tab" data-toggle="tab" href="#reports"
+                       data-tab-history="true"
+                       data-tab-history-changer="push"
+                       data-tab-history-update-url="true">Reports</a>
                  </li>
                  <li class="nav-item">
                      <a class="nav-link" id="server_health-tab" data-toggle="tab" href="#server_health"
@@ -141,6 +137,7 @@
                                      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                          <thead>
                                          <tr>
+                                             <th>№</th>
                                              <th>Instance</th>
                                              <th>Contact person</th>
                                              <th>Licenses issued</th>
@@ -152,6 +149,7 @@
                                          </thead>
                                          <tfoot>
                                          <tr>
+                                             <th>№</th>
                                              <th>Instance</th>
                                              <th>Contact person</th>
                                              <th>Licenses issued</th>
@@ -200,6 +198,7 @@
                                              {#<td>Active</td>#}
                                          {#</tr>#}
                                          <tr>
+                                             <td>{{ loop.index }}</td>
                                              <td>{{ instance.name }}</td>
                                              <td>{{ instance.contactPerson }}</td>
                                              <td>{{ instance.license.issued }}</td>
@@ -407,7 +406,7 @@
                                     <i class="fa fa-area-chart"></i> Active instances / month
                                 </div>
                                 <div class="card-body">
-                                    <div id="Sarah_chart_div_a"></div>
+                                    <div id="Active_chart"></div>
                                 </div>
                                 <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
                             </div>
@@ -418,7 +417,7 @@
                                     <i class="fa fa-area-chart"></i> Suspended instances / month
                                 </div>
                                 <div class="card-body">
-                                    <div id="Sarah_chart_div_b"></div>
+                                    <div id="Suspended_chart"></div>
                                 </div>
                                 <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
                             </div>
@@ -429,7 +428,7 @@
                                     <i class="fa fa-area-chart"></i> Issued licenses / month
                                 </div>
                                 <div class="card-body">
-                                    <div id="Sarah_chart_div_c"></div>
+                                    <div id="Issued_chart"></div>
                                 </div>
                                 <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
                             </div>
@@ -440,7 +439,7 @@
                                     <i class="fa fa-area-chart"></i> Total revenues / month
                                 </div>
                                 <div class="card-body">
-                                    <div id="Sarah_chart_div_d"></div>
+                                    <div id="Price_chart"></div>
                                 </div>
                                 <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
                             </div>
@@ -496,7 +495,7 @@
             <footer class="sticky-footer">
                 <div class="container">
                     <div class="text-center">
-                        <small>Copyright © Your Website 2018</small>
+                        <small>Copyright © Boom Reviews 2018</small>
                     </div>
                 </div>
             </footer>
@@ -569,7 +568,7 @@
 
 {% block javascripts %}
     <script src="/js/infiniteScroll.js"></script>
-    <script>
+    <script type="text/javascript">
         $('document').ready(function () {
             $('#select-instance').change(function (e) {
                 $.get('/api/licenses/' + e.target.value, function (data) {

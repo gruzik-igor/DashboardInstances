@@ -59,9 +59,9 @@ $(function () {
                             var invoiceHtml = '';
 
                             if(item.invoice){
-                                invoiceHtml += + item.invoice.price +'$ @' + item.invoice.creationDate|date("Y-m-d")+'<br>';
+                                invoiceHtml += + item.invoice.price +'$ @' + item.invoice.creationDate +'<br>';
                                 invoiceHtml +=  'Status:'+ item.invoice.status + '<br>';
-                        invoiceHtml += 'Next invoice:'+ item.invoice.expirationDate|date("Y-m-d")+ '<br>';
+                        invoiceHtml += 'Next invoice:'+ item.invoice.expirationDate + '<br>';
                             } else {
                                 invoiceHtml += '<div class="alert alert-warning" role="alert">Sorry! This instance has no last invoice!</div>';
                             }

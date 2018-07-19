@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Repository\LicenseRepository;
 use Cronfig\Sysinfo\AbstractOs;
 use Cronfig\Sysinfo\System;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -18,6 +19,11 @@ class DashboardController extends BaseController
      */
     public function indexAction(Request $request)
     {
+        /**
+         * @var LicenseRepository $repository
+         */
+//       $repository = $this->getRepository('AppBundle:License');
+//       var_dump($repository->getIssuedLicenseCount()); die;
         $system = new System;
         $os = $system->getOs();
 

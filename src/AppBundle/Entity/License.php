@@ -8,7 +8,7 @@ use JMS\Serializer\Annotation as JMS;
 /**
  * Invoices.
  * @JMS\ExclusionPolicy("all")
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\LicenseRepository")
  * @ORM\HasLifecycleCallbacks()
  */
 class License 
@@ -50,6 +50,11 @@ class License
      * @Assert\Length(max="255")
      */
     protected $rate;
+
+    /**
+     * @ORM\Column(type="date", nullable=true)
+     */
+    protected $requestDate;
 
     /**
      * Get id
@@ -133,6 +138,30 @@ class License
     public function getRate()
     {
         return $this->rate;
+    }
+
+    /**
+     * Set requestDate
+     *
+     * @param \DateTime $requestDate
+     *
+     * @return Invoice
+     */
+    public function setRequestDate($requestDate)
+    {
+        $this->creationDate = $requestDate;
+
+        return $this;
+    }
+
+    /**
+     * Get requestDate
+     *
+     * @return \DateTime
+     */
+    public function getRequestDate()
+    {
+        return $this->requestDate;
     }
 
     /**

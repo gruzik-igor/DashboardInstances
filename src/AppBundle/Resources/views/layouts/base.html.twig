@@ -52,15 +52,16 @@
 // Load Charts and the corechart package.
         google.charts.load('current', {'packages': ['corechart']});
 
-// Draw the pie chart for Sarah's pizza when Charts is loaded.
         google.charts.setOnLoadCallback(drawCPUChart);
         google.charts.setOnLoadCallback(drawRAMChart);
         google.charts.setOnLoadCallback(drawHDDChart);
-        google.charts.setOnLoadCallback(drawSarahChartc);
-        google.charts.setOnLoadCallback(drawSarahChartd);
+        google.charts.setOnLoadCallback(drawIssuedChart);
+        google.charts.setOnLoadCallback(drawPriceChart);
+        google.charts.setOnLoadCallback(drawActiveChart);
+        google.charts.setOnLoadCallback(drawSuspendedChart);
 
 
-// Callback that draws the pie chart for Sarah's pizza.
+
         function drawCPUChart() {
             var jsonData = $.ajax({
                 url: "/reports/reportCPU.json",
@@ -69,8 +70,17 @@
             }).responseText;
             var data = new google.visualization.DataTable(jsonData);
 
+            var options = {
+                height: 240,
+                legend:'none',
+                hAxis: {},
+                pointSize:5,
+                pointShape:'circle',
+                vAxis: {minValue: 0}
+            };
+
             var chart = new google.visualization.AreaChart(document.getElementById('CPU_chart_div'));
-            chart.draw(data,{width: 400, height: 240});
+            chart.draw(data,options);
         }
 
         function drawRAMChart() {
@@ -81,8 +91,17 @@
             }).responseText;
             var data = new google.visualization.DataTable(jsonData);
 
+            var options = {
+                height: 240,
+                legend:'none',
+                hAxis: {},
+                pointSize:5,
+                pointShape:'circle',
+                vAxis: {minValue: 0}
+            };
+
             var chart = new google.visualization.AreaChart(document.getElementById('RAM_chart_div'));
-            chart.draw(data, {width: 400, height: 240});
+            chart.draw(data, options);
         }
 
         function drawHDDChart() {
@@ -93,52 +112,105 @@
             }).responseText;
             var data = new google.visualization.DataTable(jsonData);
 
+            var options = {
+                height: 240,
+                legend:'none',
+                hAxis: {},
+                pointSize:5,
+                pointShape:'circle',
+                vAxis: {minValue: 0}
+            };
+
             var chart = new google.visualization.AreaChart(document.getElementById('HDD_chart_div'));
-            chart.draw(data,{width: 400, height: 240});
+            chart.draw(data,options);
         }
 
-        function drawSarahChartc() {
-
-// Create the data table for Sarah's pizza.
-            var data = google.visualization.arrayToDataTable([
-                ['Year', 'Sales', 'Expenses'],
-                ['2013', 1000, 400],
-                ['2014', 1170, 460],
-                ['2015', 660, 1120],
-                ['2016', 1030, 1340]
-            ]);
+        function drawIssuedChart() {
+            var jsonData = $.ajax({
+                url: "/charts/issuedLicense.json",
+                dataType: "json",
+                async: false
+            }).responseText;
+            var data = new google.visualization.DataTable(jsonData);
 
             var options = {
-                title: 'Company Performance3',
                 height: 300,
-                hAxis: {title: 'Year', titleTextStyle: {color: '#333'}},
-                vAxis: {minValue: 0}
+                legend:'none',
+                hAxis: { title: 'Issued', titleTextStyle: {color: '#ccc'}},
+                colors:['green'],
+                pointSize:5,
+                pointShape:'circle',
+                vAxis: {minValue:0}
             };
-// Instantiate and draw the chart for Sarah's pizza.
-            var chart = new google.visualization.AreaChart(document.getElementById('Sarah_chart_div_c'));
-            chart.draw(data, options);
+
+            var chart = new google.visualization.AreaChart(document.getElementById('Issued_chart'));
+            chart.draw(data,options);
         }
 
-        function drawSarahChartd() {
-
-// Create the data table for Sarah's pizza.
-            var data = google.visualization.arrayToDataTable([
-                ['Year', 'Sales', 'Expenses'],
-                ['2013', 1000, 400],
-                ['2014', 1170, 460],
-                ['2015', 660, 1120],
-                ['2016', 1030, 1340]
-            ]);
+        function drawPriceChart() {
+            var jsonData = $.ajax({
+                url: "/charts/priceInvoice.json",
+                dataType: "json",
+                async: false
+            }).responseText;
+            var data = new google.visualization.DataTable(jsonData);
 
             var options = {
-                title: 'Company Performance4',
                 height: 300,
-                hAxis: {title: 'Year', titleTextStyle: {color: '#333'}},
+                legend:'none',
+                hAxis: {title: 'Revenue', titleTextStyle: {color: '#ccc'}},
+                colors:['gray'],
+                pointSize:5,
+                pointShape:'circle',
                 vAxis: {minValue: 0}
             };
-// Instantiate and draw the chart for Sarah's pizza.
-            var chart = new google.visualization.AreaChart(document.getElementById('Sarah_chart_div_d'));
-            chart.draw(data, options);
+
+            var chart = new google.visualization.AreaChart(document.getElementById('Price_chart'));
+            chart.draw(data,options);
+        }
+
+        function drawActiveChart() {
+            var jsonData = $.ajax({
+                url: "/charts/activeInstance.json",
+                dataType: "json",
+                async: false
+            }).responseText;
+            var data = new google.visualization.DataTable(jsonData);
+
+            var options = {
+                height: 300,
+                legend:'none',
+                hAxis: {title: 'Active Instances', titleTextStyle: {color: '#ccc'}},
+                colors:['orange'],
+                pointSize:5,
+                pointShape:'circle',
+                vAxis: {minValue: 0}
+            };
+
+            var chart = new google.visualization.AreaChart(document.getElementById('Active_chart'));
+            chart.draw(data,options);
+        }
+
+        function drawSuspendedChart() {
+            var jsonData = $.ajax({
+                url: "/charts/suspendedInstance.json",
+                dataType: "json",
+                async: false
+            }).responseText;
+            var data = new google.visualization.DataTable(jsonData);
+
+            var options = {
+                height: 300,
+                legend:'none',
+                hAxis: {title: 'Active Instances', titleTextStyle: {color: '#ccc'}},
+                colors:['red'],
+                pointSize:5,
+                pointShape:'circle',
+                vAxis: {minValue: 0}
+            };
+
+            var chart = new google.visualization.AreaChart(document.getElementById('Suspended_chart'));
+            chart.draw(data,options);
         }
     });
 </script>

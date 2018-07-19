@@ -10,7 +10,7 @@ namespace AppBundle\Repository;
  */
 class InstanceRepository extends \Doctrine\ORM\EntityRepository
 {
-    public function getActiveInstanceCount ()
+    public function getActiveInstanceCount()
     {
         $qb = $this->createQueryBuilder('entity');
 
@@ -21,7 +21,7 @@ class InstanceRepository extends \Doctrine\ORM\EntityRepository
         return $result;
     }
 
-    public function getSuspendedInstanceCount ()
+    public function getSuspendedInstanceCount()
     {
         $qb = $this->createQueryBuilder('entity');
 

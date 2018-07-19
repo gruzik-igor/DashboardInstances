@@ -1,1 +1,1 @@
-{"cols":[{"id":"","label":"Load","pattern":"","type":"string"},{"id":"","label":"CPU","pattern":"","type":"number"}],"rows":[]}
+{"cols":[{"id":"","label":"Load","pattern":"","type":"string"},{"id":"","label":"CPU","pattern":"","type":"number"}],"rows":[{"c":[{"v":"17:53:52","f":null},{"v":1,"f":null}]},{"c":[{"v":"17:53:57","f":null},{"v":1,"f":null}]},{"c":[{"v":"17:54:02","f":null},{"v":1,"f":null}]},{"c":[{"v":"17:54:08","f":null},{"v":0,"f":null}]},{"c":[{"v":"17:54:13","f":null},{"v":0,"f":null}]}]}

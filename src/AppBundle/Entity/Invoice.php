@@ -8,7 +8,7 @@ use JMS\Serializer\Annotation as JMS;
 /**
  * Invoice.
  * @JMS\ExclusionPolicy("all")
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\InvoiceRepository")
  * @ORM\HasLifecycleCallbacks()
  */
 class Invoice 
