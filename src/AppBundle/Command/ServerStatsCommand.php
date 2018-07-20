@@ -2,6 +2,7 @@
 
 namespace AppBundle\Command;
 
+use AppBundle\Services\ServerInfoService;
 use Cronfig\Sysinfo\AbstractOs;
 
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
@@ -54,15 +55,17 @@ class ServerStatsCommand extends ContainerAwareCommand
     // RAM resourses usage 
     protected function reportRAM()
     {
-        $system = new System;
-        $os = $system->getOs();
+        /**
+         * @var ServerInfoService $serverInfoService
+         */
+        $serverInfoService = $this->getContainer()->get('app.server_info.service');
 
         $filePath = $this->getContainer()->get('kernel')->getRootDir() . '/../web/reports';
 
         $today = new \DateTime();
         $today = $today->format('H:i:s');
 
-        $ramUsage = $this->formatBytes($os->getCurrentMemoryUsage());
+        $ramUsage = $serverInfoService->getSystemMemInfo()['MemUsed'];
         
         $ramInfoArray = ['c' => [['v' => $today, 'f' => null], ['v' => $ramUsage, 'f' => null]]];
 
