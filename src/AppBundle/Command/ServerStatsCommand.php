@@ -3,12 +3,13 @@
 namespace AppBundle\Command;
 
 use Cronfig\Sysinfo\AbstractOs;
-use Wrep\Daemonizable\Command\EndlessContainerAwareCommand;
+
+use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Input\InputInterface;
 use Cronfig\Sysinfo\System;
 
-class ServerStatsCommand extends EndlessContainerAwareCommand
+class ServerStatsCommand extends ContainerAwareCommand
 
 {
 	// This is just a normal Command::configure() method
