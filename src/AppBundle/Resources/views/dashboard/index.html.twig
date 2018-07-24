@@ -326,9 +326,11 @@
                                             {% endif %}
                                         </td>
                                         <td>
+                                            <a class="btn btn-info btn-block" href="{{ url('deploy-instance', {'instance': instance.id}) }}">Deploy</a>
                                             <a class="btn btn-primary btn-block" href="{{ url('instance-resources', {'instance': instance.id }) }}"> Resources</a>
-                                            <a class="btn btn-danger btn-block" href="{{ url('change-status', {'instance': instance.id, 'status': 'suspended'}) }}">Suspended</a>
+                                            <a class="btn btn-warning btn-block" href="{{ url('change-status', {'instance': instance.id, 'status': 'suspended'}) }}">Suspended</a>
                                             <a class="btn btn-success btn-block" href="{{ url('change-status', {'instance': instance.id, 'status': 'active'}) }}">Activated</a>
+
                                         </td>
                                     </tr>
 

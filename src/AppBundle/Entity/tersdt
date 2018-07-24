@@ -1,0 +1,45 @@
+mysql -uroot -proot -e "CREATE USER '$new_user'@'$host' IDENTIFIED BY '$new_db_pw'"
+
+mysql -uroot -proot -e "GRANT USAGE ON *.* TO '$new_user'@'$host' IDENTIFIED BY '$new_db_pw'"
+
+
+#!/bin/bash
+sudo su
+
+chown root:root /home/vagrant/db.details
+
+OUT=$(cat /home/vagrant/db.details)
+IFS=* read NEW_DB NEW_USER NEW_DB_PW SQL_FILE DOMAIN_NAME <<< $OUT
+HOST='%'
+commands="CREATE DATABASE \`${NEW_DB}\`;CREATE USER '${NEW_USER}'@'${HOST}' IDENTIFIED BY '${NEW_DB_PW}';GRANT USAGE ON *.* TO '${NEW_USER}'@'${HOST}' IDENTIFIED BY '${NEW_DB_PW}';GRANT ALL privileges ON \`${NEW_DB}\`.*
+TO '${NEW_USER}'@'${HOST}';FLUSH PRIVILEGES;"
+
+yum install -y --skip-broken httpd mariadb-server mariadb php php-* git
+cd /var/www/
+chmod -R 755 /var/www
+git clone https://github.com/yarko686/alvx.co.uk.git
+mkdir /etc/httpd/sites-available
+mkdir /etc/httpd/sites-enabled
+echo 'IncludeOptional sites-enabled/*.conf' >> /etc/httpd/conf/httpd.conf
+echo "<VirtualHost *:80>
+        ServerName www.$DOMAIN_NAME
+        ServerAlias $DOMAIN_NAME
+        DocumentRoot /var/www/alvx.co.uk/
+</VirtualHost>" >> /etc/httpd/sites-available/$DOMAIN_NAME.conf
+ln -s /etc/httpd/sites-available/$DOMAIN_NAME.conf /etc/httpd/sites-enabled/$DOMAIN_NAME.conf
+systemctl start httpd
+systemctl start mariadb
+
+mysql --user=root <<_EOF_
+UPDATE mysql.user SET Password=PASSWORD('${NEW_DB_PW}') WHERE User='root';
+DELETE FROM mysql.user WHERE User='';
+DELETE FROM mysql.user WHERE User='root' AND Host NOT IN ('localhost', '127.0.0.1', '::1');
+DROP DATABASE IF EXISTS test;
+DELETE FROM mysql.db WHERE Db='test' OR Db='test\\_%';
+FLUSH PRIVILEGES;
+_EOF_
+
+echo "${commands}" | mysql -u root -p$NEW_DB_PW
+
+mysql --user=$NEW_USER -p$NEW_DB_PW $NEW_DB < /var/www/alvx.co.uk/$SQL_FILE
+sed -i 's/NNN/'$NEW_DB'/g; s/UUU/'$NEW_USER'/g; s/PPP/'$NEW_DB_PW'/g' /var/www/alvx.co.uk/wp-config.php

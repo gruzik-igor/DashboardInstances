@@ -1,5 +1,8 @@
 imports:
     - { resource: jms.yml }
+parameters:
+    web_dir: '%kernel.root_dir%/../web'
+
 services:
     app.user.entity_listener:
         class: AppBundle\EventListener\UserEntityListener
