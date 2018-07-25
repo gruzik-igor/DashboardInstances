@@ -1,6 +1,56 @@
+
+   . $instanceName . ' ' . $dbname . ' '. $new_user . ' ' .$host.' '.$new_db_pw.' '
+
+instanceName=$6
+
+db_name=$2
+
+new_user=$3
+
+host=$4
+
+new_db_pw=$5
+
+
+
+mkdir $instanceName
+
+cd $instanceName
+
+git clone git@github.com:gruzik-igor/DashboardInstances.git .
+
+mysql -uroot -proot -e "CREATE DATABASE $db_name"
+
 mysql -uroot -proot -e "CREATE USER '$new_user'@'$host' IDENTIFIED BY '$new_db_pw'"
 
 mysql -uroot -proot -e "GRANT USAGE ON *.* TO '$new_user'@'$host' IDENTIFIED BY '$new_db_pw'"
+
+mysql -uroot -proot -e "GRANT ALL privileges ON $db_name.* TO '$new_user'@'$host'"
+
+mysql -uroot -proot -e "FLUSH PRIVILEGES"
+
+mysql -uroot -proot -e "CREATE USER '$new_user'@'$host' IDENTIFIED BY '$new_db_pw'"
+
+mysql -uroot -proot -e "GRANT USAGE ON *.* TO '$new_user'@'$host' IDENTIFIED BY '$new_db_pw'"
+
+
+
+while IFS='' read -r line || [[ -n "$line" ]]; do
+    echo "Text read from file: $line"
+done < "$1"
+
+--------------------------------------------------------
+file='/home/igor/Projects/Symfony/test/data.text'
+
+user='tony'
+
+ls -i "$file"
+
+printf '%s\n' H ",g/^database_user:*/s//$user/" wq | ed -s "$file"
+
+ls -i "$file"
+
+
 
 
 #!/bin/bash

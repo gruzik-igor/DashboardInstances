@@ -22,8 +22,10 @@ class DeployInstanceController extends BaseController
         $new_user = strtolower($instance->getName()).'_admin';
         $host = '%';
         $new_db_pw = strtolower($instance->getName()).$instance->getId().'QxY37f';
+        $path = $this->getParameter('kernel.root_dir').'/config/parameters.yml';
 
-        $output = shell_exec($this->getParameter('web_dir') . '/deploy/./deploy.sh ' . $instanceName . ' ' . $dbname . ' '. $new_user . ' ' .$host.' '.$new_db_pw.'> /dev/null 2>&1 &');
+        //var_dump($path);die;
+        $output = shell_exec($this->getParameter('web_dir') . '/deploy/./deploy.sh ' . $instanceName . ' ' . $dbname . ' '. $new_user . ' ' .$host.' '.$new_db_pw.' '.$path. '> /dev/null 2>&1 &');
 
         return $this->redirectToRoute('dashboard');
     }

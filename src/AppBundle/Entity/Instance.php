@@ -75,6 +75,19 @@ class Instance
     protected $status = 'active';
 
     /**
+     * @JMS\Expose
+     * @JMS\Groups({"default"})
+     * @ORM\Column(type="string", length=255, nullable=false)
+     * @Assert\Length(max="255")
+     */
+    protected $deploingStatus = 'pending';
+
+    /**
+     * @ORM\Column(type="date", nullable=true)
+     */
+    protected $deploingDate;
+
+    /**
      * @Assert\NotBlank()
      */
     protected $licenseRate;
@@ -181,6 +194,56 @@ class Instance
     {
         return $this->status;
     }
+
+    /**
+     * Set deploingStatus
+     *
+     * @param string $deploingStatus
+     *
+     * @return Instance
+     */
+    public function setDeploingStatus($deploingStatus)
+    {
+        $this->deploingStatus = $deploingStatus;
+
+        return $this;
+    }
+
+    /**
+     * Get deploingStatus
+     *
+     * @return string
+     */
+    public function getDeployingStatus()
+    {
+        return $this->deploingStatus;
+    }
+
+    /**
+     * Set deploingDate
+     *
+     * @param \DateTime $deploingDate
+     *
+     * @return Invoice
+     */
+    public function setDeploingDate($deploingDate)
+    {
+        $this->deploingDate = $deploingDate;
+
+        return $this;
+    }
+
+    /**
+     * Get creationDate
+     *
+     * @return \DateTime
+     */
+    public function getDeploingDate()
+    {
+        return $this->deploingDate;
+    }
+
+
     /**
      * Set domain
      *
