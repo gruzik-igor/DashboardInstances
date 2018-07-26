@@ -17,17 +17,25 @@ class DeployInstanceController extends BaseController
      */
     public function deployInstanceAction(Instance $instance)
     {
-        $instanceName = $instance->getName() .'_'. $instance->getId();
+        $instanceName = $instance->getName() . '_' . $instance->getId();
         $dbname = 'sf_' . strtolower($instance->getName());
-        $new_user = strtolower($instance->getName()).'_admin';
+        $new_user = strtolower($instance->getName()) . '_admin';
         $host = '%';
-        $new_db_pw = strtolower($instance->getName()).$instance->getId().'QxY37f';
-        $path = $this->getParameter('kernel.root_dir').'/config/parameters.yml';
+        $new_db_pw = strtolower($instance->getName()) . $instance->getId() . 'QxY37f';
+        $path = $this->getParameter('kernel.root_dir') . '/config/parameters.yml';
 
         //var_dump($path);die;
-        $output = shell_exec($this->getParameter('web_dir') . '/deploy/./deploy.sh ' . $instanceName . ' ' . $dbname . ' '. $new_user . ' ' .$host.' '.$new_db_pw.' '.$path. '> /dev/null 2>&1 &');
+        $output = shell_exec($this->getParameter('web_dir') . '/deploy/./deploy.sh ' . $instanceName . ' ' . $dbname . ' ' . $new_user . ' ' . $host . ' ' . $new_db_pw  . ' ' . $instance->getId() . ' > /dev/null 2>&1 &');
 
-        return $this->redirectToRoute('dashboard');
+
+        $instance->setDeployingStatus('deploying');
+
+        $em = $this->getDoctrine()->getManager();
+
+        $em->persist($instance);
+        $em->flush();
+
+        return $this->redirect($this->generateUrl('dashboard').'#instances');
     }
 
 

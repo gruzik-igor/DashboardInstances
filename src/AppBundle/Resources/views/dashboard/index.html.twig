@@ -38,298 +38,312 @@
                        data-tab-history="true"
                        data-tab-history-changer="push"
                        data-tab-history-update-url="true">Reports</a>
-                 </li>
-                 <li class="nav-item">
-                     <a class="nav-link" id="server_health-tab" data-toggle="tab" href="#server_health"
-                        data-tab-history="true"
-                        data-tab-history-changer="push"
-                        data-tab-history-update-url="true">Server Health</a>
-                 </li>
-             </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="server_health-tab" data-toggle="tab" href="#server_health"
+                       data-tab-history="true"
+                       data-tab-history-changer="push"
+                       data-tab-history-update-url="true">Server Health</a>
+                </li>
+            </ul>
 
-             <div class="tab-content" id="myTabContent">
+            <div class="tab-content" id="myTabContent">
 
-                 <div class="tab-pane fade active show" id="summary">
+                <div class="tab-pane fade active show" id="summary">
 
-                     <div class="col-xl-12 col-sm-12 mb-2">
-                         <div class="card-body alert alert-info" role="alert">
-                             <span>You have {{ instances|length }}  instances, {{ activeInstanceCount() }} activeted instances and {{ suspendedInstanceCount() }} suspended instances </span>
-                         </div>
-                     </div>
+                    <div class="col-xl-12 col-sm-12 mb-2">
+                        <div class="card-body alert alert-info" role="alert">
+                            <span>You have {{ instances|length }} instances, {{ activeInstanceCount() }} activeted instances and {{ suspendedInstanceCount() }}
+                                suspended instances </span>
+                        </div>
+                    </div>
 
-                     <div class="col-xl-12 col-sm-12 mb-12">
-                         <div class="row">
-                             <div class="col-lg-4">
-                                 <div class="card padd">
-                                     <div class="card-header">
-                                         <i class="fa fa-area-chart"></i> CPU, % usage:
-                                     </div>
-                                     <div id="CPU_chart_div"></div>
-                                     <div class="card-footer small text-muted">Updated yesterday at 12:48 PM</div>
-                                 </div>
-                             </div>
-                             <div class="col-lg-4">
-                                 <div class="card padd">
-                                     <div class="card-header">
-                                         <i class="fa fa-area-chart"></i> RAM, MB usage:
-                                     </div>
-                                     <div id="RAM_chart_div"></div>
-                                     <div class="card-footer small text-muted">Updated yesterday at 12:48 PM</div>
-                                 </div>
-                             </div>
-                             <div class="col-lg-4">
-                                 <div class="card padd">
-                                     <div class="card-header">
-                                         <i class="fa fa-area-chart"></i> HDD, GB usage:
-                                     </div>
-                                     <div id="HDD_chart_div"></div>
-                                     <div class="card-footer small text-muted">Updated yesterday at 12:48 PM</div>
-                                 </div>
-                             </div>
-                             <div class="col-lg-12">
-                                 <!--  Chart Card-->
-                                 <div class="card mb-3">
-                                     <div class="card-header">
-                                         <i class="fa fa-bar-chart"></i> Instance usage:
-                                     </div>
-                                     <div class="card-body">
-                                         <div class="row">
-                                             <div class="col-sm-3 text-center my-auto">
-                                                 <div class="h5 mb-0 text-primary">{{ cpuinfo }} %</div>
-                                                 <div class="small text-muted">CPU</div>
-                                                 <hr>
-                                             </div>
-                                             <div class="col-sm-3 text-center my-auto">
-                                                 <div class="h5 mb-0 text-warning">{{ meminfo.MemUsed }} MB
-                                                     of {{ meminfo.MemTotal  }} MBs
-                                                 </div>
-                                                 <div class="small text-muted">RAM</div>
-                                                 <hr>
-                                             </div>
-                                             <div class="col-sm-3 text-center my-auto">
-                                                 <div class="h5 mb-0 text-success">{{ diskinfo.DisckUsed }} GB
-                                                     of {{ diskinfo.DisckTotal }} GBs
-                                                 </div>
-                                                 <div class="small text-muted">HDD Spaces</div>
-                                                 <hr>
-                                             </div>
-                                             <div class="col-sm-3 text-center my-auto">
-                                                 <div class="h5 mb-0 text-success">100 GB of 250 GBs</div>
-                                                 <div class="small text-muted">HDD Backup Spaces</div>
-                                                 <hr>
-                                             </div>
-                                         </div>
-                                     </div>
-                                     <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
-                                 </div>
-                             </div>
+                    <div class="col-xl-12 col-sm-12 mb-12">
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <div class="card padd">
+                                    <div class="card-header">
+                                        <i class="fa fa-area-chart"></i> CPU, % usage:
+                                    </div>
+                                    <div id="CPU_chart_div"></div>
+                                    <div class="card-footer small text-muted">Updated yesterday at 12:48 PM</div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="card padd">
+                                    <div class="card-header">
+                                        <i class="fa fa-area-chart"></i> RAM, MB usage:
+                                    </div>
+                                    <div id="RAM_chart_div"></div>
+                                    <div class="card-footer small text-muted">Updated yesterday at 12:48 PM</div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="card padd">
+                                    <div class="card-header">
+                                        <i class="fa fa-area-chart"></i> HDD, GB usage:
+                                    </div>
+                                    <div id="HDD_chart_div"></div>
+                                    <div class="card-footer small text-muted">Updated yesterday at 12:48 PM</div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <!--  Chart Card-->
+                                <div class="card mb-3">
+                                    <div class="card-header">
+                                        <i class="fa fa-bar-chart"></i> Instance usage:
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-sm-3 text-center my-auto">
+                                                <div class="h5 mb-0 text-primary">{{ cpuinfo }} %</div>
+                                                <div class="small text-muted">CPU</div>
+                                                <hr>
+                                            </div>
+                                            <div class="col-sm-3 text-center my-auto">
+                                                <div class="h5 mb-0 text-warning">{{ meminfo.MemUsed }} MB
+                                                    of {{ meminfo.MemTotal }} MBs
+                                                </div>
+                                                <div class="small text-muted">RAM</div>
+                                                <hr>
+                                            </div>
+                                            <div class="col-sm-3 text-center my-auto">
+                                                <div class="h5 mb-0 text-success">{{ diskinfo.DisckUsed }} GB
+                                                    of {{ diskinfo.DisckTotal }} GBs
+                                                </div>
+                                                <div class="small text-muted">HDD Spaces</div>
+                                                <hr>
+                                            </div>
+                                            <div class="col-sm-3 text-center my-auto">
+                                                <div class="h5 mb-0 text-success">100 GB of 250 GBs</div>
+                                                <div class="small text-muted">HDD Backup Spaces</div>
+                                                <hr>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+                                </div>
+                            </div>
 
-                         </div>
-                     </div>
-                     <div class="col-lg-12">
-                         <!-- Example DataTables Card-->
-                         <div class="card mb-3">
-                             <div class="card-header">
-                                 <i class="fa fa-table"></i> Instances summary
-                             </div>
-                             <div class="card-body">
-                                 <div class="table-responsive">
-                                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                         <thead>
-                                         <tr>
-                                             <th>№</th>
-                                             <th>Instance</th>
-                                             <th>Contact person</th>
-                                             <th>Licenses issued</th>
-                                             <th>Rate</th>
-                                             <th>Monthly revenue $</th>
-                                             <th>Resources used</th>
-                                             <th>Status</th>
-                                         </tr>
-                                         </thead>
-                                         <tfoot>
-                                         <tr>
-                                             <th>№</th>
-                                             <th>Instance</th>
-                                             <th>Contact person</th>
-                                             <th>Licenses issued</th>
-                                             <th>Rate</th>
-                                             <th>Monthly revenue $</th>
-                                             <th>Resources used</th>
-                                             <th>Status</th>
-                                         </tr>
-                                         </tfoot>
-                                         <tbody>
-                                         {% for instance in instances %}
-                                         {#<tr>#}
-                                             {#<td>Marketing Masters</td>#}
-                                             {#<td>Tiger Nixon</td>#}
-                                             {#<td>37</td>#}
-                                             {#<td>12</td>#}
-                                             {#<td>444</td>#}
-                                             {#<td>RAM: 10% - HDD: 8% - CPU: 15%</td>#}
-                                             {#<td>Active</td>#}
-                                         {#</tr>#}
-                                         {#<tr>#}
-                                             {#<td>SEO Agency</td>#}
-                                             {#<td>Garrett Winters</td>#}
-                                             {#<td>12</td>#}
-                                             {#<td>10</td>#}
-                                             {#<td>120</td>#}
-                                             {#<td>RAM: 8% - HDD: 3% - CPU: 12%</td>#}
-                                             {#<td>Active</td>#}
-                                         {#</tr>#}
-                                         {#<tr>#}
-                                             {#<td>YourBiz</td>#}
-                                             {#<td>Ashton Cox</td>#}
-                                             {#<td>20</td>#}
-                                             {#<td>15</td>#}
-                                             {#<td>300</td>#}
-                                             {#<td>RAM: 8% - HDD: 3% - CPU: 12%</td>#}
-                                             {#<td>Suspended</td>#}
-                                         {#</tr>#}
-                                         {#<tr>#}
-                                             {#<td>Market Plus</td>#}
-                                             {#<td>Cedric Kelly</td>#}
-                                             {#<td>5</td>#}
-                                             {#<td>20</td>#}
-                                             {#<td>100</td>#}
-                                             {#<td>RAM: 25% - HDD: 4% - CPU: 16%</td>#}
-                                             {#<td>Active</td>#}
-                                         {#</tr>#}
-                                         <tr>
-                                             <td>{{ loop.index }}</td>
-                                             <td>{{ instance.name }}</td>
-                                             <td>{{ instance.contactPerson }}</td>
-                                             <td>{{ instance.license.issued }}</td>
-                                             <td>{{ instance.license.rate }}</td>
-                                             <td>{{ instance.invoice.price }}</td>
-                                             <td>
-                                             {% for resource in instance.resources %}
-                                                 {% if resource.value %}
-                                                     {% if resource.resource.name == 'RAM' %}
-                                                         {{ resource.resource.name }}: {{ resource.value }} MB
-                                                     {% elseif resource.resource.name == 'CPU' %}
-                                                         {{ resource.resource.name }}: {{ resource.value }} % -
-                                                     {% elseif resource.resource.name == 'HDD' %}
-                                                         {{ resource.resource.name }}: {{ resource.value }} GB -
-                                                     {% endif %}
-                                                 {% else %}
-                                                     {% if resource.resource.name == 'RAM' %}
-                                                         {{ resource.resource.name }}: {{ resource.resource.defaultValue }} MB
-                                                         -
-                                                     {% elseif resource.resource.name == 'CPU' %}
-                                                         {{ resource.resource.name }}: {{ resource.resource.defaultValue }} %
-                                                         -
-                                                     {% elseif resource.resource.name == 'HDD' %}
-                                                         {{ resource.resource.name }}: {{ resource.resource.defaultValue }} GB
-                                                         -
-                                                     {% endif %}
-                                                 {% endif %}
-                                             {%  endfor %}
-                                             </td>
-                                             <td>{{ instance.status }}</td>
-                                         </tr>
-                                         {% endfor %}
-                                         </tbody>
-                                     </table>
-                                 </div>
-                             </div>
-                             <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
-                         </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <!-- Example DataTables Card-->
+                        <div class="card mb-3">
+                            <div class="card-header">
+                                <i class="fa fa-table"></i> Instances summary
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                        <thead>
+                                        <tr>
+                                            <th>№</th>
+                                            <th>Instance</th>
+                                            <th>Contact person</th>
+                                            <th>Licenses issued</th>
+                                            <th>Rate</th>
+                                            <th>Monthly revenue $</th>
+                                            <th>Resources used</th>
+                                            <th>Status</th>
+                                        </tr>
+                                        </thead>
+                                        <tfoot>
+                                        <tr>
+                                            <th>№</th>
+                                            <th>Instance</th>
+                                            <th>Contact person</th>
+                                            <th>Licenses issued</th>
+                                            <th>Rate</th>
+                                            <th>Monthly revenue $</th>
+                                            <th>Resources used</th>
+                                            <th>Status</th>
+                                        </tr>
+                                        </tfoot>
+                                        <tbody>
+                                        {% for instance in instances %}
+                                            {#<tr>#}
+                                            {#<td>Marketing Masters</td>#}
+                                            {#<td>Tiger Nixon</td>#}
+                                            {#<td>37</td>#}
+                                            {#<td>12</td>#}
+                                            {#<td>444</td>#}
+                                            {#<td>RAM: 10% - HDD: 8% - CPU: 15%</td>#}
+                                            {#<td>Active</td>#}
+                                            {#</tr>#}
+                                            {#<tr>#}
+                                            {#<td>SEO Agency</td>#}
+                                            {#<td>Garrett Winters</td>#}
+                                            {#<td>12</td>#}
+                                            {#<td>10</td>#}
+                                            {#<td>120</td>#}
+                                            {#<td>RAM: 8% - HDD: 3% - CPU: 12%</td>#}
+                                            {#<td>Active</td>#}
+                                            {#</tr>#}
+                                            {#<tr>#}
+                                            {#<td>YourBiz</td>#}
+                                            {#<td>Ashton Cox</td>#}
+                                            {#<td>20</td>#}
+                                            {#<td>15</td>#}
+                                            {#<td>300</td>#}
+                                            {#<td>RAM: 8% - HDD: 3% - CPU: 12%</td>#}
+                                            {#<td>Suspended</td>#}
+                                            {#</tr>#}
+                                            {#<tr>#}
+                                            {#<td>Market Plus</td>#}
+                                            {#<td>Cedric Kelly</td>#}
+                                            {#<td>5</td>#}
+                                            {#<td>20</td>#}
+                                            {#<td>100</td>#}
+                                            {#<td>RAM: 25% - HDD: 4% - CPU: 16%</td>#}
+                                            {#<td>Active</td>#}
+                                            {#</tr>#}
+                                            <tr>
+                                                <td>{{ loop.index }}</td>
+                                                <td>{{ instance.name }}</td>
+                                                <td>{{ instance.contactPerson }}</td>
+                                                <td>{{ instance.license.issued }}</td>
+                                                <td>{{ instance.license.rate }}</td>
+                                                <td>{{ instance.invoice.price }}</td>
+                                                <td>
+                                                    {% for resource in instance.resources %}
+                                                        {% if resource.value %}
+                                                            {% if resource.resource.name == 'RAM' %}
+                                                                {{ resource.resource.name }}: {{ resource.value }} MB
+                                                            {% elseif resource.resource.name == 'CPU' %}
+                                                                {{ resource.resource.name }}: {{ resource.value }} % -
+                                                            {% elseif resource.resource.name == 'HDD' %}
+                                                                {{ resource.resource.name }}: {{ resource.value }} GB -
+                                                            {% endif %}
+                                                        {% else %}
+                                                            {% if resource.resource.name == 'RAM' %}
+                                                                {{ resource.resource.name }}: {{ resource.resource.defaultValue }} MB
+                                                                -
+                                                            {% elseif resource.resource.name == 'CPU' %}
+                                                                {{ resource.resource.name }}: {{ resource.resource.defaultValue }} %
+                                                                -
+                                                            {% elseif resource.resource.name == 'HDD' %}
+                                                                {{ resource.resource.name }}: {{ resource.resource.defaultValue }} GB
+                                                                -
+                                                            {% endif %}
+                                                        {% endif %}
+                                                    {% endfor %}
+                                                </td>
+                                                <td>{{ instance.status }}</td>
+                                            </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+                        </div>
 
-                     </div>
-                 </div>
-                 <div class="tab-pane container-t fade" id="instances">
-                     <div class="col-xl-12 col-sm-12 mb-12">
-                         <div class="card-body">
-                             <div class="row padd">
-                                 <div class="col-lg-2 ">
-                                     <a href="/instance/new" class="btn btn-primary btn-block"> Add new instance</a>
-                                 </div>
-                                 <div class="col-lg-2 ">
-                                     <a class="btn btn-primary btn-block" href="/resources"> Change default Resources</a>
-                                 </div>
-                             </div>
-                             <table class="table table-bordered"   data-current-offset="0" id="infiniteScrollBody"
-                                    data-url="{{ url('api_get_instances') }}"
-                                    data-method="GET" width="100%" cellspacing="0">
-                                 {% for instance in instances %}
-                                     <thead>
-                                     <tr>
-                                         <th>Instance</th>
-                                         <th>Contact Person</th>
-                                         <th>Resources used:</th>
-                                         <th>Resources limits:</th>
-                                         <th>Licenses:</th>
-                                         <th>Latest invoice:</th>
-                                         <th>Instance status: {{ instance.status }} </th>
-                                     </tr>
-                                     </thead>
-                                     <tbody>
-                                     <tr>
+                    </div>
+                </div>
+                <div class="tab-pane container-t fade" id="instances">
+                    <div class="col-xl-12 col-sm-12 mb-12">
+                        <div class="card-body">
+                            <div class="row padd">
+                                <div class="col-lg-2 ">
+                                    <a href="/instance/new" class="btn btn-primary btn-block"> Add new instance</a>
+                                </div>
+                                <div class="col-lg-2 ">
+                                    <a class="btn btn-primary btn-block" href="/resources"> Change default Resources</a>
+                                </div>
+                            </div>
+                            <table class="table table-bordered" data-current-offset="0" id="infiniteScrollBody"
+                                   data-url="{{ url('api_get_instances') }}"
+                                   data-method="GET" width="100%" cellspacing="0">
+                                {% for instance in instances %}
+                                    <thead>
+                                    <tr>
+                                        <th>Instance</th>
+                                        <th>Contact Person</th>
+                                        <th>Resources used:</th>
+                                        <th>Resources limits:</th>
+                                        <th>Licenses:</th>
+                                        <th>Latest invoice:</th>
+                                        <th>Instance status: {{ instance.status }} </th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
 
-                                         <td>{{ instance.name }}</td>
-                                         <td>{{ instance.contactPerson }}</td>
-                                         <td>
-                                             Average CPU:25%<br>
-                                             Average RAM: 256 Mb<br>
-                                             Average HDD: 2345 Mb
-                                         </td>
-                                         <td>
+                                        <td>{{ instance.name }}</td>
+                                        <td>{{ instance.contactPerson }}</td>
+                                        <td>
+                                            Average CPU:25%<br>
+                                            Average RAM: 256 Mb<br>
+                                            Average HDD: 2345 Mb
+                                        </td>
+                                        <td>
 
-                                             {% for resource in instance.resources %}
-                                                 {% if resource.value %}
-                                                     {% if resource.resource.name == 'RAM' %}
-                                                         {{ resource.resource.name }}: {{ resource.value }} MB  <br>
-                                                     {% elseif resource.resource.name == 'CPU' %}
-                                                         {{ resource.resource.name }}: {{ resource.value }} %  <br>
-                                                     {% elseif resource.resource.name == 'HDD' %}
-                                                         {{ resource.resource.name }}: {{ resource.value }} GB  <br>
-                                                     {% endif %}
-                                                 {% else %}
-                                                     {% if resource.resource.name == 'RAM' %}
-                                                         {{ resource.resource.name }}: {{ resource.resource.defaultValue }} MB
-                                                         <br>
-                                                     {% elseif resource.resource.name == 'CPU' %}
-                                                         {{ resource.resource.name }}: {{ resource.resource.defaultValue }} %
-                                                         <br>
-                                                     {% elseif resource.resource.name == 'HDD' %}
-                                                         {{ resource.resource.name }}: {{ resource.resource.defaultValue }} GB
-                                                         <br>
-                                                     {% endif %}
-                                                 {% endif %}
-                                             {% endfor %}
-                                         </td>
-                                         <td>
-                                             {% if instance.license is empty %}
-                                                 <div class="alert alert-warning" role="alert">
-                                                     Sorry! This instance has no license!
-                                                 </div>
-                                             {% else %}
-                                                 Issued: {{ instance.license.issued }} <br>
-                                                 Usage: {{ instance|getUsageLicenseCount }} <br>
-                                                 Rate: {{ instance.license.rate }}$/license/month <br>
-                                             {% endif %}
-                                         </td>
-                                         <td>
-                                             {% if instance.invoice is empty %}
-                                                 <div class="alert alert-warning" role="alert">
-                                                     Sorry! This instance has no last invoice!
-                                                 </div>
-                                             {% else %}
-                                                 {#{% for invoices in instance.invoice %}#}
-                                                    {{ instance.invoice.price }}$ @ {{ instance.invoice.creationDate|date("Y-m-d") }}<br>
-                                                    Status: {{ instance.invoice.status }}<br>
-                                                    Next invoice: {{ instance.invoice.expirationDate|date("Y-m-d") }}
+                                            {% for resource in instance.resources %}
+                                                {% if resource.value %}
+                                                    {% if resource.resource.name == 'RAM' %}
+                                                        {{ resource.resource.name }}: {{ resource.value }} MB  <br>
+                                                    {% elseif resource.resource.name == 'CPU' %}
+                                                        {{ resource.resource.name }}: {{ resource.value }} %  <br>
+                                                    {% elseif resource.resource.name == 'HDD' %}
+                                                        {{ resource.resource.name }}: {{ resource.value }} GB  <br>
+                                                    {% endif %}
+                                                {% else %}
+                                                    {% if resource.resource.name == 'RAM' %}
+                                                        {{ resource.resource.name }}: {{ resource.resource.defaultValue }} MB
+                                                        <br>
+                                                    {% elseif resource.resource.name == 'CPU' %}
+                                                        {{ resource.resource.name }}: {{ resource.resource.defaultValue }} %
+                                                        <br>
+                                                    {% elseif resource.resource.name == 'HDD' %}
+                                                        {{ resource.resource.name }}: {{ resource.resource.defaultValue }} GB
+                                                        <br>
+                                                    {% endif %}
+                                                {% endif %}
+                                            {% endfor %}
+                                        </td>
+                                        <td>
+                                            {% if instance.license is empty %}
+                                                <div class="alert alert-warning" role="alert">
+                                                    Sorry! This instance has no license!
+                                                </div>
+                                            {% else %}
+                                                Issued: {{ instance.license.issued }} <br>
+                                                Usage: {{ instance|getUsageLicenseCount }} <br>
+                                                Rate: {{ instance.license.rate }}$/license/month <br>
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            {% if instance.invoice is empty %}
+                                                <div class="alert alert-warning" role="alert">
+                                                    Sorry! This instance has no last invoice!
+                                                </div>
+                                            {% else %}
+                                                {#{% for invoices in instance.invoice %}#}
+                                                {{ instance.invoice.price }}$ @ {{ instance.invoice.creationDate|date("Y-m-d") }}
+                                                <br>
+                                                Status: {{ instance.invoice.status }}<br>
+                                                Next invoice: {{ instance.invoice.expirationDate|date("Y-m-d") }}
                                                 {#{% endfor %}#}
                                             {% endif %}
                                         </td>
                                         <td>
-                                            <a class="btn btn-info btn-block" href="{{ url('deploy-instance', {'instance': instance.id}) }}">Deploy</a>
-                                            <a class="btn btn-primary btn-block" href="{{ url('instance-resources', {'instance': instance.id }) }}"> Resources</a>
-                                            <a class="btn btn-warning btn-block" href="{{ url('change-status', {'instance': instance.id, 'status': 'suspended'}) }}">Suspended</a>
-                                            <a class="btn btn-success btn-block" href="{{ url('change-status', {'instance': instance.id, 'status': 'active'}) }}">Activated</a>
+                                            {% if instance.deployingStatus == 'pending' %}
+                                                <a class="btn btn-info btn-block"
+                                                   href="{{ url('deploy-instance', {'instance': instance.id}) }}">Deploy</a>
+                                            {% elseif instance.deployingStatus == 'deploying' %}
+                                                <a class="btn btn-warning btn-block" href="#"><i
+                                                            class="fas fa-spinner fa-spin"></i> Deploying</a>
+                                            {% else %}
+                                                <a class="btn btn-success btn-block" href="#">Deployed</a>
+                                            {% endif %}
+                                            <a class="btn btn-primary btn-block"
+                                               href="{{ url('instance-resources', {'instance': instance.id }) }}">
+                                                Resources</a>
+                                            <a class="btn btn-warning btn-block"
+                                               href="{{ url('change-status', {'instance': instance.id, 'status': 'suspended'}) }}">Suspended</a>
+                                            <a class="btn btn-success btn-block"
+                                               href="{{ url('change-status', {'instance': instance.id, 'status': 'active'}) }}">Activated</a>
 
                                         </td>
                                     </tr>
@@ -338,9 +352,9 @@
 
                                 {% endfor %}
                             </table>
-                             <div class="col-lg-12">
+                            <div class="col-lg-12">
                                 <p class="infinite-scroll-last">End of content</p>
-                             </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -352,13 +366,14 @@
                                 <select class="form-control" id="select-instance">
                                     {% for instance in instances %}
 
-                                        <option value="{{  instance.id }}">{{ instance.name }}</option>
+                                        <option value="{{ instance.id }}">{{ instance.name }}</option>
                                     {% endfor %}
                                 </select>
                             </div>
                             <div class="col-lg-3">
                                 {% if instances|length > 0 and instances[0].license is not empty %}
-                                    <p id="licenses-issued">Licenses issued: <span id="license-issued">{{ instances[0].license.issued }}</span></p>
+                                    <p id="licenses-issued">Licenses issued: <span
+                                                id="license-issued">{{ instances[0].license.issued }}</span></p>
                                     <p>Licenses used: <span id="license-usage">{{ instances[0].license.used }}</span>
                                     </p>
                                 {% else %}
@@ -483,7 +498,7 @@
                                     <li>{{ servinfo['model name'] }}</li>
                                     <li>cpu cores:{{ servinfo['cpu cores'] }}</li>
                                     <li> {{ meminfo.MemTotalGb }} GB DDR 3 RAM</li>
-                                    <li>{{ diskinfo.DisckTotalTb }} TB HDD </li>
+                                    <li>{{ diskinfo.DisckTotalTb }} TB HDD</li>
                                 </ul>
                             </div>
                         </div>
@@ -552,7 +567,8 @@
                                             <button id="btn-cancel" type="button" class="btn btn-secondary"
                                                     data-dismiss="modal">Cancel
                                             </button>
-                                            <button type="submit" class="btn btn-success btn-block">Save changes</button>
+                                            <button type="submit" class="btn btn-success btn-block">Save changes
+                                            </button>
                                         </div>
                                     </div>
                                 </form>

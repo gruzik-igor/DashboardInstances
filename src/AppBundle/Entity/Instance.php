@@ -80,12 +80,12 @@ class Instance
      * @ORM\Column(type="string", length=255, nullable=false)
      * @Assert\Length(max="255")
      */
-    protected $deploingStatus = 'pending';
+    protected $deployingStatus = 'pending';
 
     /**
      * @ORM\Column(type="date", nullable=true)
      */
-    protected $deploingDate;
+    protected $deployingDate;
 
     /**
      * @Assert\NotBlank()
@@ -196,39 +196,39 @@ class Instance
     }
 
     /**
-     * Set deploingStatus
+     * Set deployingStatus
      *
-     * @param string $deploingStatus
+     * @param string $deployingStatus
      *
      * @return Instance
      */
-    public function setDeploingStatus($deploingStatus)
+    public function setDeployingStatus($deployingStatus)
     {
-        $this->deploingStatus = $deploingStatus;
+        $this->deployingStatus = $deployingStatus;
 
         return $this;
     }
 
     /**
-     * Get deploingStatus
+     * Get deployingStatus
      *
      * @return string
      */
     public function getDeployingStatus()
     {
-        return $this->deploingStatus;
+        return $this->deployingStatus;
     }
 
     /**
-     * Set deploingDate
+     * Set deployingDate
      *
-     * @param \DateTime $deploingDate
+     * @param \DateTime $deployingDate
      *
      * @return Invoice
      */
-    public function setDeploingDate($deploingDate)
+    public function setDeployingDate($deployingDate)
     {
-        $this->deploingDate = $deploingDate;
+        $this->deployingDate = $deployingDate;
 
         return $this;
     }
@@ -238,9 +238,9 @@ class Instance
      *
      * @return \DateTime
      */
-    public function getDeploingDate()
+    public function getDeployingDate()
     {
-        return $this->deploingDate;
+        return $this->deployingDate;
     }
 
 

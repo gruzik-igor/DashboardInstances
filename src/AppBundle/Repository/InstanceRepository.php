@@ -42,4 +42,14 @@ class InstanceRepository extends \Doctrine\ORM\EntityRepository
 
         return $result;
     }
+
+    public function getDeployingStatus()
+    {
+        $qb = $this->createQueryBuilder('entity');
+        $result = $qb->select($qb->expr()->count('entity.id'))
+            ->where($qb->expr()->eq('entity.deployingStatus', $qb->expr()->literal('pending')))
+            ->getQuery()->getSingleScalarResult();
+
+        return $result;
+    }
 }
