@@ -21,8 +21,8 @@ class InstanceForm extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', TextType::class, ['attr' => ['placeholder' => 'Enter instance name']])
-            ->add('contactPerson', TextType::class, ['attr' => ['placeholder' => 'Enter name of contact person with space']])
+            ->add('name', TextType::class, ['attr' => ['placeholder' => 'Enter instance name without spaces']])
+            ->add('contactPerson', TextType::class, ['attr' => ['placeholder' => 'Enter name of contact person ']])
             ->add('licenseRate', MoneyType::class, ['attr' => ['placeholder' => 'Enter license rate']])
             ->add('licenseIssued', NumberType::class, ['attr' => ['placeholder' => 'Enter license issued']]);
             //->add('submit', SubmitType::class, ['attr' => [ 'class' => 'btn btn-success text-right'],'label' => 'Create']);
