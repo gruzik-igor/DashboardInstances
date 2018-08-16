@@ -42,6 +42,8 @@ class DashboardController extends BaseController
             ]);
     }
 
+
+    // test routes
     /**
      * @Route("/user/info")
      */

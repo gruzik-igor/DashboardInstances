@@ -31,7 +31,7 @@ class UserController extends Controller
         ]);
     }
 
-
+    //test route
     /**
      * @Route("/user/{user}", name="user")
      */

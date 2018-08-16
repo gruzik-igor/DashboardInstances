@@ -12,7 +12,7 @@ class SecurityController extends Controller
     /**
      * @Route("/sign-in", name="sign-in")
      */
-    public function indexAction(Request $request)
+    public function indexAction()
     {
         $form = $this->createForm(SignInForm::class);
 
@@ -24,7 +24,7 @@ class SecurityController extends Controller
      *
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function logoutActiot(Request $request)
+    public function logoutActiot()
     {
         return $this->redirectToRoute('sign-in');
     }
