@@ -39,8 +39,8 @@ class UserController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $repository = $em->getRepository('AppBundle:User');
-        var_dump($repository->findBy(["username" => 'igor'])); die;
-        var_dump($user); die;
+//        var_dump($repository->findBy(["username" => 'igor'])); die;
+//        var_dump($user); die;
     }
 
 }
