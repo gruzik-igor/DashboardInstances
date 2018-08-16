@@ -65,11 +65,11 @@ class ReportsChartsCommand extends ContainerAwareCommand
         $price = $em->getRepository('AppBundle:Invoice')->getPriceInvoiceCount();
 
 
-        $issued = ['c' => [['v' => $today, 'f' => null], ['v' => $price , 'f' => null]]];
+        $price = ['c' => [['v' => $today, 'f' => null], ['v' => $price , 'f' => null]]];
 
         $inp = file_get_contents($filePath.'/priceInvoice.json');
         $tempArray = json_decode($inp, true);
-        $tempArray['rows'][] = $issued;
+        $tempArray['rows'][] = $price;
 
         file_put_contents($filePath.'/priceInvoice.json', json_encode($tempArray));
 
@@ -89,11 +89,11 @@ class ReportsChartsCommand extends ContainerAwareCommand
         $active = $em->getRepository('AppBundle:Instance')->getActiveInstanceCount();
 
 
-        $issued = ['c' => [['v' => $today, 'f' => null], ['v' => $active , 'f' => null]]];
+        $active = ['c' => [['v' => $today, 'f' => null], ['v' => $active , 'f' => null]]];
 
         $inp = file_get_contents($filePath.'/activeInstance.json');
         $tempArray = json_decode($inp, true);
-        $tempArray['rows'][] = $issued;
+        $tempArray['rows'][] = $active;
 
         file_put_contents($filePath.'/activeInstance.json', json_encode($tempArray));
 
@@ -110,14 +110,14 @@ class ReportsChartsCommand extends ContainerAwareCommand
         $today = $today->format('d-m-Y');
 
         $em = $this->getContainer()->get('doctrine.orm.entity_manager');
-        $active = $em->getRepository('AppBundle:Instance')->getSuspendedInstanceCount();
+        $suspended = $em->getRepository('AppBundle:Instance')->getSuspendedInstanceCount();
 
 
-        $issued = ['c' => [['v' => $today, 'f' => null], ['v' => $active , 'f' => null]]];
+        $suspended = ['c' => [['v' => $today, 'f' => null], ['v' => $suspended , 'f' => null]]];
 
         $inp = file_get_contents($filePath.'/suspendedInstance.json');
         $tempArray = json_decode($inp, true);
-        $tempArray['rows'][] = $issued;
+        $tempArray['rows'][] = $suspended;
 
         file_put_contents($filePath.'/suspendedInstance.json', json_encode($tempArray));
 

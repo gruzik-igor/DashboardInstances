@@ -27,8 +27,7 @@ class InstanceController extends BaseRestController
      */
     public function cgetAction(ParamFetcher $paramFetcher)
     {
-        /** @var EntityRepository $repository */
-        $repository = $this->getRepository('AppBundle:Instance');
+        /** @var EntityRepository $repository */        $repository = $this->getRepository('AppBundle:Instance');
         $paramFetcher = $paramFetcher->all();
 
         return $this->matching($repository, $paramFetcher, null, ['default']);
