@@ -61,14 +61,6 @@ class Instance
     /**
      * @JMS\Expose
      * @JMS\Groups({"default"})
-     * @ORM\OneToOne(targetEntity="Invoice", inversedBy="instance")
-     * @ORM\JoinColumn(name="invoice_id", referencedColumnName="id")
-     */
-    protected $invoice;
-
-    /**
-     * @JMS\Expose
-     * @JMS\Groups({"default"})
      * @ORM\Column(type="string", length=255, nullable=false)
      * @Assert\Length(max="255")
      */
