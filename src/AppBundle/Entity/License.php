@@ -24,7 +24,10 @@ class License
     protected $id;
 
     /**
-     * @ORM\OneToOne(targetEntity="Instance", mappedBy="license")
+     * @JMS\Expose
+     * @JMS\Groups({"default"})
+     * @ORM\OneToOne(targetEntity="Instance", inversedBy="license")
+     * @ORM\JoinColumn(name="instance_id", referencedColumnName="id")
      */
     protected $instance;
 
@@ -41,20 +44,7 @@ class License
      * @ORM\Column(type="integer", length=255, nullable=true)
      * @Assert\Length(max="255")
      */
-    protected $used = 0;
-
-    /**
-     * @JMS\Expose
-     * @JMS\Groups({"default"})
-     * @ORM\Column(type="integer", length=255, nullable=true)
-     * @Assert\Length(max="255")
-     */
     protected $rate;
-
-    /**
-     * @ORM\Column(type="date", nullable=true)
-     */
-    protected $requestDate;
 
     /**
      * Get id

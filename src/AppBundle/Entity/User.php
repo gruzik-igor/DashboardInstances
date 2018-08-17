@@ -77,30 +77,6 @@ class User implements UserInterface
      */
     protected $registrationDate;
 
-    /**
-     * @ORM\Column(type="smallint", nullable=true)
-     */
-    protected $listings;
-
-    /**
-     * @ORM\Column(type="smallint", nullable=true)
-     */
-    protected $reviews;
-
-    /**
-     * @ORM\Column(type="smallint", nullable=true)
-     */
-    protected $seoRank;
-
-    /**
-     * @ORM\Column(type="smallint", nullable=true)
-     */
-    protected $messages;
-
-    /**
-     * @ORM\Column(type="smallint", nullable=true)
-     */
-    protected $instagram;
 
     /**
      * Returns the roles granted to the user.
@@ -445,7 +421,7 @@ class User implements UserInterface
         return $this->messages;
     }
 
-   
+
 
     /**
      * Set instagram

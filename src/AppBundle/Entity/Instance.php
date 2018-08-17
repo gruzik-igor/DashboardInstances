@@ -53,14 +53,6 @@ class Instance
     /**
      * @JMS\Expose
      * @JMS\Groups({"default"})
-     * @ORM\OneToOne(targetEntity="License", inversedBy="instance")
-     * @ORM\JoinColumn(name="license_id", referencedColumnName="id")
-     */
-    protected $license;
-
-    /**
-     * @JMS\Expose
-     * @JMS\Groups({"default"})
      * @ORM\Column(type="string", length=255, nullable=false)
      * @Assert\Length(max="255")
      */
