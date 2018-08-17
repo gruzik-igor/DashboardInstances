@@ -31,67 +31,75 @@
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                            <thead>
-                            <tr>
-                                <th>№</th>
-                                <th>Instance</th>
-                                <th>Contact person</th>
-                                <th>Licenses issued</th>
-                                <th>Rate</th>
-                                <th>Monthly revenue $</th>
-                                <th>Resources used</th>
-                                <th>Status</th>
-                            </tr>
-                            </thead>
-                            <tfoot>
-                            <tr>
-                                <th>№</th>
-                                <th>Instance</th>
-                                <th>Contact person</th>
-                                <th>Licenses issued</th>
-                                <th>Rate</th>
-                                <th>Monthly revenue $</th>
-                                <th>Resources used</th>
-                                <th>Status</th>
-                            </tr>
-                            </tfoot>
-                            <tbody>
-                            {% for instance in instances %}
-                                <tr>
-                                    <td>{{ loop.index }}</td>
-                                    <td ><span style="background-color: rgba(76,153,230,0.5);padding:2px; ">{{ instance.name }}</span></td>
-                                    <td>{{ instance.contactPerson }}</td>
-                                    <td>{{ instance.license.issued }}</td>
-                                    <td>{{ instance.license.rate }}</td>
-                                    <td>{{ instance.invoice.price }}</td>
-                                    <td>
-                                        {% for resource in instance.resources %}
-                                            {% if resource.value %}
-                                                {% if resource.resource.name == 'RAM' %}
-                                                    {{ resource.resource.name }}: {{ resource.value }} MB
-                                                {% elseif resource.resource.name == 'CPU' %}
-                                                    {{ resource.resource.name }}: {{ resource.value }} % -
-                                                {% elseif resource.resource.name == 'HDD' %}
-                                                    {{ resource.resource.name }}: {{ resource.value }} GB -
+                            {% if instances is not empty %}
+                                <thead>
+                                    <tr>
+                                        <th>№</th>
+                                        <th>Instance</th>
+                                        <th>Contact person</th>
+                                        <th>Licenses issued</th>
+                                        <th>Rate</th>
+                                        <th>Monthly revenue $</th>
+                                        <th>Resources used</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {% for instance in instances %}
+                                    <tr>
+                                        <td>{{ loop.index }}</td>
+                                        <td ><span style="background-color: rgba(76,153,230,0.5);padding:2px; ">{{ instance.name }}</span></td>
+                                        <td>{{ instance.contactPerson }}</td>
+                                        <td>{{ instance.license.issued }}</td>
+                                        <td>{{ instance.license.rate }}</td>
+                                        <td>{{ instance.invoice.price }}</td>
+                                        <td>
+                                            {% for resource in instance.resources %}
+                                                {% if resource.value %}
+                                                    {% if resource.resource.name == 'RAM' %}
+                                                        {{ resource.resource.name }}: {{ resource.value }} MB
+                                                    {% elseif resource.resource.name == 'CPU' %}
+                                                        {{ resource.resource.name }}: {{ resource.value }} % -
+                                                    {% elseif resource.resource.name == 'HDD' %}
+                                                        {{ resource.resource.name }}: {{ resource.value }} GB -
+                                                    {% endif %}
+                                                {% else %}
+                                                    {% if resource.resource.name == 'RAM' %}
+                                                        {{ resource.resource.name }}: {{ resource.resource.defaultValue }} MB
+                                                        -
+                                                    {% elseif resource.resource.name == 'CPU' %}
+                                                        {{ resource.resource.name }}: {{ resource.resource.defaultValue }} %
+                                                        -
+                                                    {% elseif resource.resource.name == 'HDD' %}
+                                                        {{ resource.resource.name }}: {{ resource.resource.defaultValue }} GB
+                                                        -
+                                                    {% endif %}
                                                 {% endif %}
-                                            {% else %}
-                                                {% if resource.resource.name == 'RAM' %}
-                                                    {{ resource.resource.name }}: {{ resource.resource.defaultValue }} MB
-                                                    -
-                                                {% elseif resource.resource.name == 'CPU' %}
-                                                    {{ resource.resource.name }}: {{ resource.resource.defaultValue }} %
-                                                    -
-                                                {% elseif resource.resource.name == 'HDD' %}
-                                                    {{ resource.resource.name }}: {{ resource.resource.defaultValue }} GB
-                                                    -
-                                                {% endif %}
-                                            {% endif %}
-                                        {%  endfor %}
-                                    </td>
-                                    <td>{{ instance.status }}</td>
-                                </tr>
-                            {% endfor %}
+                                            {%  endfor %}
+                                        </td>
+                                        <td>{{ instance.status }}</td>
+                                    </tr>
+                                {% endfor %}
                             </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th>№</th>
+                                    <th>Instance</th>
+                                    <th>Contact person</th>
+                                    <th>Licenses issued</th>
+                                    <th>Rate</th>
+                                    <th>Monthly revenue $</th>
+                                    <th>Resources used</th>
+                                    <th>Status</th>
+                                </tr>
+                            </tfoot>
+                            {% else %}
+                                <div class="col-xl-12 col-sm-12 mb-2">
+                                    <div class="card-body alert alert-warning" role="alert">
+                                        Sorry, but we have no results for these keywords search !
+                                    </div>
+                                </div>
+                            {% endif %}
                         </table>
                     </div>
                 </div>
