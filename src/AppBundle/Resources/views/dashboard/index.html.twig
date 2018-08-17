@@ -304,10 +304,13 @@
                                             <a class="btn btn-primary btn-block"
                                                href="{{ url('instance-resources', {'instance': instance.id }) }}">
                                                 Resources</a>
-                                            <a class="btn btn-warning btn-block"
-                                               href="{{ url('change-status', {'instance': instance.id, 'status': 'suspended'}) }}">Suspended</a>
-                                            <a class="btn btn-success btn-block"
-                                               href="{{ url('change-status', {'instance': instance.id, 'status': 'active'}) }}">Activated</a>
+                                            {% if instance.status == 'suspended' %}
+                                                <a class="btn btn-success btn-block" href="{{ url('change-status', {'instance': instance.id, 'status': 'active'}) }}">Activated</a>
+
+                                            {% else %}
+                                                <a class="btn btn-warning btn-block" href="{{ url('change-status', {'instance': instance.id, 'status': 'suspended'}) }}">Suspended</a>
+
+                                            {% endif %}
                                         </td>
                                     </tr>
                                     </tbody>
