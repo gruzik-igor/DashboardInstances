@@ -28,9 +28,7 @@ class LicenseController extends BaseController
             $em->persist($license);
             $em->flush();
         }
-
-
-
+        
         return $this->redirect($this->generateUrl('dashboard').'#licenses');
     }
 

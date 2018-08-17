@@ -24,6 +24,7 @@ class Instance
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
+    
 
     /**
      * @JMS\Expose
