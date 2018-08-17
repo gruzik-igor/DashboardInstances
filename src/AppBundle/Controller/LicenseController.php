@@ -31,6 +31,7 @@ class LicenseController extends BaseController
 
 
 
-        return $this->redirectToRoute('dashboard');
+        return $this->redirect($this->generateUrl('dashboard').'#licenses');
     }
+
 }
