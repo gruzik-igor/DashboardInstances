@@ -26,7 +26,7 @@ class License
     /**
      * @JMS\Expose
      * @JMS\Groups({"default"})
-     * @ORM\OneToOne(targetEntity="Instance", inversedBy="license")
+     * @ORM\OneToOne(targetEntity="Instance", inversedBy="licence")
      * @ORM\JoinColumn(name="instance_id", referencedColumnName="id")
      */
     protected $instance;
