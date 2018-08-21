@@ -1,0 +1,61 @@
+{% extends '@App/layouts/base.html.twig' %}
+
+{% block body %}
+    <div class="content-wrapper">
+        <div class="container-fluid">
+            <div class="col-md-12">
+                <h3>Manage instance license count:</h3>
+                <hr>
+                <form action="{{ url('instance-resources', {'instance': instance.id}) }}" method="POST">
+                    <div class="form-row">
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="instanceName">Instance name:</label>
+                                <input type="hidden" name="instance[id]" value="{{ instance.id }}">
+                                <input name="instance[name]" type="text" readonly
+                                       value="{{ instance.name }}" id="instanceName"
+                                       class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="instanceContactPerson">Contact Person:</label>
+                                <input name="instance[contactPerson]" type="text" readonly
+                                       value="{{ instance.contactPerson }}" id="instanceContactPerson"
+                                       class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="licenseIssued">License Issued:</label>
+                                <input name="instance[licenseIssued]" type="text"
+                                       value="{{ instance.licenseIssued }}" id="licenseIssued" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="licenseRate">License Rate:</label>
+                                <input name="instance[licenseRate]" type="text"
+                                       value="{{ instance.licenseRate }}" id="licenseRate" class="form-control">
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-md-12 form-row">
+                        <div class="col-md-2 ">
+                            <button type="submit" class="btn btn-success btn-block">Save</button>
+                        </div>
+
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block stylesheets %}
+
+{% endblock %}

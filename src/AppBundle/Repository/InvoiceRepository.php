@@ -29,5 +29,12 @@ class InvoiceRepository extends \Doctrine\ORM\EntityRepository
 
         return $sum;
     }
+    public function getInvoices()
+    {
+        $qb = $this->createQueryBuilder('entity');
+
+
+        return $result;
+    }
 
 }

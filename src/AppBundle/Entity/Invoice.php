@@ -26,7 +26,7 @@ class Invoice
     /**
      * @JMS\Expose
      * @JMS\Groups({"default"})
-     * @ORM\OneToOne(targetEntity="Instance", inversedBy="invoice")
+     * @ORM\ManyToOne(targetEntity="Instance", inversedBy="invoice")
      * @ORM\JoinColumn(name="instance_id", referencedColumnName="id")
      */
     protected $instance;

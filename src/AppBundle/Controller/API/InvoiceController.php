@@ -23,6 +23,6 @@ class InvoiceController extends FOSRestController
      */
     public function getAction(Instance $instance)
     {
-        return $instance->getInvoice();
+        return [];
     }
 }

@@ -162,22 +162,27 @@
                                         </tfoot>
                                         <tbody>
                                         {% for instance in instances %}
+                                            {% set instanceInvoices = findBy('AppBundle:Invoice', {'instance': instance.id}) %}
+                                            {% set instanceLicenses = findOneBy('AppBundle:License', {'instance': instance.id}) %}
                                             <tr>
                                                 <td>{{ loop.index }}</td>
                                                 <td>{{ instance.name }}</td>
                                                 <td>{{ instance.contactPerson }}</td>
-                                                <td>{{ instance.license.issued }}</td>
-                                                <td>{{ instance.license.rate }}</td>
-                                                {#<td>{{ instance.invoice.price }}</td>#}
+                                                <td>{{ instance.licenseIssued }}</td>
+                                                <td>{{ instance.licenseRate }}</td>
+                                                <td></td>
+                                                {% for invoice in instanceInvoices %}
+                                                   {#<td><span>{{ invoice.instance.status }}</span></td>#}
+                                                {% endfor %}
                                                 <td>
                                                     {% for resource in instance.resources %}
                                                         {% if resource.value %}
                                                             {% if resource.resource.name == 'RAM' %}
-                                                                {{ resource.resource.name }}: {{ resource.value }} MB
+                                                                {{ resource.resource.name }}: {{ resource.value }} MB -
                                                             {% elseif resource.resource.name == 'CPU' %}
                                                                 {{ resource.resource.name }}: {{ resource.value }} % -
                                                             {% elseif resource.resource.name == 'HDD' %}
-                                                                {{ resource.resource.name }}: {{ resource.value }} GB -
+                                                                {{ resource.resource.name }}: {{ resource.value }} GB
                                                             {% endif %}
                                                         {% else %}
                                                             {% if resource.resource.name == 'RAM' %}
@@ -242,7 +247,6 @@
                                             Average HDD: 2345 Mb
                                         </td>
                                         <td>
-
                                             {% for resource in instance.resources %}
                                                 {% if resource.value %}
                                                     {% if resource.resource.name == 'RAM' %}
@@ -267,18 +271,18 @@
                                             {% endfor %}
                                         </td>
                                         <td>
-                                            {% if instance.license is empty %}
+                                            {% if instance.licenseIssued and instance.licenseRate is empty %}
                                                 <div class="alert alert-warning" role="alert">
                                                     Sorry! This instance has no license!
                                                 </div>
                                             {% else %}
-                                                Issued: {{ instance.license.issued }} <br>
+                                                Issued: {{ instance.licenseIssued }} <br>
                                                 Usage: {{ instance|getUsageLicenseCount }} <br>
-                                                Rate: {{ instance.license.rate }}$/license/month <br>
+                                                Rate: {{ instance.licenseRate }}$/license/month <br>
                                             {% endif %}
                                         </td>
                                         <td>
-                                            {% if instance.invoice is empty %}
+                                            {% if true %}
                                                 <div class="alert alert-warning" role="alert">
                                                     Sorry! This instance has no last invoice!
                                                 </div>
@@ -302,8 +306,7 @@
                                                 <a class="btn btn-success btn-block" href="#">Deployed</a>
                                             {% endif %}
                                             <a class="btn btn-primary btn-block"
-                                               href="{{ url('instance-resources', {'instance': instance.id }) }}">
-                                                Resources</a>
+                                               href="{{ url('instance-resources', {'instance': instance.id }) }}"> Resources</a>
                                             {% if instance.status == 'suspended' %}
                                                 <a class="btn btn-success btn-block" href="{{ url('change-status', {'instance': instance.id, 'status': 'active'}) }}">Activated</a>
 
@@ -325,59 +328,86 @@
                 <div class="tab-pane fade" id="licenses">
                     <div class="card-body">
                         <div class="row padd">
-                            <div class="col-lg-2">
+                                <table class="table table-bordered" data-current-offset="0" id="infiniteScrollBody"
+                                       data-url="{{ url('api_get_instances') }}"
+                                       data-method="GET" width="100%" cellspacing="0">
 
-                                <label>Select instance:</label><br>
-                                <select class="form-control" id="select-instance">
+                                    <thead>
+                                    <tr>
+                                        <th>№ </th>
+                                        <th>Instance</th>
+                                        <th>Contact Person</th>
+                                        <th>License Issued:</th>
+                                        <th>License Rate:</th>
+                                        <th></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
                                     {% for instance in instances %}
-
-                                        <option value="{{ instance.id }}">{{ instance.name }}</option>
+                                    <tr>
+                                        <td>{{ loop.index }}</td>
+                                        <td>{{ instance.name }}</td>
+                                        <td>{{ instance.contactPerson }}</td>
+                                        <td>{{ instance.licenseIssued }}</td>
+                                        <td>{{ instance.licenseRate }}</td>
+                                        <td>
+                                            <a class="btn btn-primary btn-block" href="{{ url('edit-instance-license', {'instance': instance.id }) }}"> Change license</a>
+                                        </td>
+                                    </tr>
+                                    </tbody>
                                     {% endfor %}
-                                </select>
+                                </table>
+                                {#<label>Select instance:</label><br>#}
+                                {#<select class="form-control" id="select-instance">#}
+                                    {#{% for instance in instances %}#}
+
+                                        {#<option value="{{ instance.id }}">{{ instance.name }}</option>#}
+                                    {#{% endfor %}#}
+                                {#</select>#}
                             </div>
-                            <div class="col-lg-3">
-                                {% if instances|length > 0 and instances[0].license is not empty %}
-                                    <p id="licenses-issued">Licenses issued: <span
-                                                id="license-issued">{{ instances[0].license.issued }}</span></p>
-                                    <p>Licenses used: <span id="license-usage">{{ instances[0].license.used }}</span>
-                                    </p>
-                                {% else %}
-                                    <p id="licenses-issued">Licenses issued: <span id="license-issued">0</span></p>
-                                    <p>Licenses used: <span id="license-usage">0</span></p>
-                                {% endif %}
+                            {#<div class="col-lg-3">#}
+                                {#{% if instances|length > 0 and instances[0].licenseIssued is not empty  %}#}
+                                    {#<p id="licenses-issued">Licenses issued: <span#}
+                                                {#id="license-issued">{{ instances[0].licenseIssued }}</span></p>#}
+                                    {#<p>Licenses used: <span id="license-usage"></span>#}
+                                    {#</p>#}
+                                {#{% else %}#}
+                                    {#<p id="licenses-issued">Licenses issued: <span id="license-issued">0</span></p>#}
+                                    {#<p>Licenses used: <span id="license-usage">0</span></p>#}
+                                {#{% endif %}#}
 
-                                <button type="button" class="btn btn-primary btn-block" data-toggle="modal"
-                                        data-target="#changeLicense-count">Change license count
-                                </button>
+                                {#<button type="button" class="btn btn-primary btn-block" data-toggle="modal"#}
+                                        {#data-target="#changeLicense-count">Change license count#}
+                                {#</button>#}
 
-                            </div>
-                            <div class="col-lg-3">
-                                {% if instances|length > 0 and instances[0].license is not empty %}
-                                    <p>Monthly rate, $ <span id="license-rate">{{ instances[0].license.rate }}</span>
-                                    </p>
-                                    <br>
-                                    <p></p>
-                                {% else %}
-                                    <p>Monthly rate, $ <span id="license-rate">0</span></p><br>
-                                    <p></p>
-                                {% endif %}
-                                <button type="button" class="btn btn-primary btn-block" data-toggle="modal"
-                                        data-target="#changeLicense-rate">Change license rate
-                                </button>
-                            </div>
-                            <div class="col-lg-3">
-                                {% if instances|length > 0 and instances[0].invoice is not empty %}
+                            {#</div>#}
+                            {#<div class="col-lg-3">#}
+                                {#{% if instances|length > 0 and instances[0].licenseRate is not empty %}#}
+                                    {#<p>Monthly rate, $ <span id="license-rate">{{ instances[0].licenseRate }}</span>#}
+                                    {#</p>#}
+                                    {#<br>#}
+                                    {#<p></p>#}
+                                {#{% else %}#}
+                                    {#<p>Monthly rate, $ <span id="license-rate">0</span></p><br>#}
+                                    {#<p></p>#}
+                                {#{% endif %}#}
+                                {#<button type="button" class="btn btn-primary btn-block" data-toggle="modal"#}
+                                        {#data-target="#changeLicense-rate">Change license rate#}
+                                {#</button>#}
+                            {#</div>#}
+                            {#<div class="col-lg-3">#}
+                                {#{% if instances|length > 0%}#}
 
-                                    <p>This month revenue: $<span
-                                                class="invoice-price">{{ instances[0].invoice.price }}</span></p>
-                                    <p>Next month revenue: $<span
-                                                class="invoice-price">{{ instances[0].invoice.price }}</span></p>
-                                {% else %}
-                                    <p>This month revenue: $<span class="invoice-price">0</span></p>
-                                    <p>Next month revenue: $<span class="invoice-price">0</span></p>
-                                {% endif %}
+                                    {#<p>This month revenue: $<span#}
+                                                {#class="invoice-price"></span></p>#}
+                                    {#<p>Next month revenue: $<span#}
+                                                {#class="invoice-price"></span></p>#}
+                                {#{% else %}#}
+                                    {#<p>This month revenue: $<span class="invoice-price">0</span></p>#}
+                                    {#<p>Next month revenue: $<span class="invoice-price">0</span></p>#}
+                                {#{% endif %}#}
 
-                                <button class=" btn btn-primary btn-block"> Generate invoice</button>
+                                {#<button class=" btn btn-primary btn-block"> Generate invoice</button>#}
                             </div>
                         </div>
                     </div>
@@ -495,7 +525,7 @@
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         {% if instances is defined and instances is not empty %}
-                            <form action="/licenses/{{ instances[0].license.id }}" method="POST"
+                            <form action="/instance/" method="POST"
                                   id="change-licenses-value">
                                 <div class="modal-header">
                                     <h5 class="modal-title" id="exampleModalLabel">Change licenses count</h5>
@@ -509,7 +539,7 @@
                                             <div class="form-group">
                                                 <label for="issuedValue">License issued:</label>
                                                 <input name="appbundle_license[issued]" type="text"
-                                                       value="{{ instances[0].license.issued }}" id="issuedValue"
+                                                       value="{{ instances[0].licenseIssued }}" id="issuedValue"
                                                        class="form-control">
                                             </div>
                                         </div>
@@ -535,7 +565,7 @@
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         {% if instances is defined and instances is not empty %}
-                            <form action="/licenses/{{ instances[0].license.id }}" method="POST"
+                            <form action="/licenses/" method="POST"
                                   id="change-license-rate">
                                 <div class="modal-header">
                                     <h5 class="modal-title" id="exampleModalLabel">Change licenses rate</h5>
@@ -549,7 +579,7 @@
                                             <div class="form-group">
                                                 <label for="rateValue">License rate:</label>
                                                 <input type="text" name="appbundle_license[rate]"
-                                                       id="rateValue" value="{{ instances[0].license.rate }}"
+                                                       id="rateValue" value=""
                                                        class="form-control">
                                             </div>
                                         </div>

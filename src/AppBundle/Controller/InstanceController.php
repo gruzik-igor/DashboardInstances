@@ -24,6 +24,7 @@ class InstanceController extends BaseController
 {
     /**
      * @Route("/instance/new", name="add-instance")
+     * @Security("has_role('ROLE_SUPER_ADMIN')")
      */
     public function addAction( Request $request)
     {
@@ -39,6 +40,37 @@ class InstanceController extends BaseController
         $response = $this->redirectToRoute('dashboard');
         }else {
             $response = $this->render('@App/instance/add.html.twig', ['form' => $form->createView()]);
+        }
+
+        return $response;
+    }
+
+    /**
+     * @Route("/instance/{instance}", name="edit-instance-license")
+     * @Security("has_role('ROLE_SUPER_ADMIN')")
+     */
+    public function instanceResourcesAction(Instance $instance, Request $request)
+    {
+        if ($request->getMethod() === 'POST') {
+            $em = $this->getDoctrine()->getManager();
+
+            //$instances = $request->get('instances');
+            $repository = $em->getRepository('AppBundle:Instance');
+
+
+                $instanceIssued = $repository->findOneById($instance['id']);
+
+                if ($instanceIssued instanceof Instance) {
+                    $instanceIssued->setLicenseIssued($instance['licenseIssued']);
+
+                }
+
+
+            $em->flush();
+
+            $response = $this->redirect($this->generateUrl('dashboard') . '#instances');
+        } else {
+            $response = $this->render('@App/instance/instanceLicense.html.twig', ['instance' => $instance]);
         }
 
         return $response;

@@ -43,28 +43,4 @@ class InstanceEntityListener
         $em->flush();
     }
 
-    /**
-     *
-     * @param Instance      $instance
-     * @param LifecycleEventArgs $args
-     *
-     * @ORM\PostPersist
-     */
-    public function createLicense(Instance $instance, LifecycleEventArgs $args)
-    {
-        $em = $args->getObjectManager();
-
-        $license = new License();
-        $license->setRate($instance->getLicenseRate());
-        $license->setIssued($instance->getLicenseIssued());
-        $license->setInstance($instance);
-
-        $em->persist($license);
-        $em->flush();
-
-        $instance->setLicense($license);
-
-        $em->persist($instance);
-        $em->flush();
-    }
 }

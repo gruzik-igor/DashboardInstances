@@ -30,4 +30,5 @@ class LicenseRepository extends \Doctrine\ORM\EntityRepository
         return $sum;
     }
 
+
 }

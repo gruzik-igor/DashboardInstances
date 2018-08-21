@@ -20,7 +20,6 @@ class User implements UserInterface
 {
     /**
      * @var int
-     *
      * @ORM\Id
      * @ORM\Column(name="id", type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")

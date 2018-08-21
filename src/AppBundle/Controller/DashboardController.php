@@ -36,7 +36,6 @@ class DashboardController extends BaseController
             'uptime' => $serverInfoService->getServerUptime(),
             'servinfo' => $serverInfoService->getSystemInfo(),
             'instances' => $this->findBy('AppBundle:Instance', [], []),
-            'licenses' => $this->findBy('AppBundle:License', []),
             'invoices' => $this->findBy('AppBundle:Invoice', []),
             'licenseRequest' => $this->findBy('AppBundle:LicenseRequest', [])
             ]);
