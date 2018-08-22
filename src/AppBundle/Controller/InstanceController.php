@@ -3,14 +3,11 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Instance;
-use AppBundle\Entity\Resource;
 use AppBundle\Form\InstanceForm;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use AppBundle\Form\UserForm;
-use AppBundle\Entity\User;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 use Docker\Stream\DockerRawStream;
@@ -46,29 +43,28 @@ class InstanceController extends BaseController
     }
 
     /**
-     * @Route("/instance/{instance}", name="edit-instance-license")
+     * @Route("/license/edit/{instance}", name="edit-instance-license")
      * @Security("has_role('ROLE_SUPER_ADMIN')")
      */
     public function instanceResourcesAction(Instance $instance, Request $request)
     {
         if ($request->getMethod() === 'POST') {
+
             $em = $this->getDoctrine()->getManager();
 
-            //$instances = $request->get('instances');
+            $instNew = $request->request->all();
+
             $repository = $em->getRepository('AppBundle:Instance');
+            $instance = $repository->findOneBy(['id' => $instNew['instance']['id']]);
 
-
-                $instanceIssued = $repository->findOneById($instance['id']);
-
-                if ($instanceIssued instanceof Instance) {
-                    $instanceIssued->setLicenseIssued($instance['licenseIssued']);
-
-                }
-
+            if ($instance instanceof Instance) {
+                $instance->setLicenseIssued($instNew['instance']['licenseIssued']);
+                $instance->setLicenseRate($instNew['instance']['licenseRate']);
+            }
 
             $em->flush();
 
-            $response = $this->redirect($this->generateUrl('dashboard') . '#instances');
+            $response = $this->redirect($this->generateUrl('dashboard') . '#licenses');
         } else {
             $response = $this->render('@App/instance/instanceLicense.html.twig', ['instance' => $instance]);
         }
