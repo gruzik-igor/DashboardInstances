@@ -9,7 +9,7 @@
                 <div class="card-header">
                     <div class="row">
                         <div class="col-md-2 col-lg-2 ">
-                            <h4>Search resaults:</h4>
+                            <h4>Search results:</h4>
                         </div>
                         <div class="col-md-10 col-lg-10 text-right">
                             <a class="btn btn-primary" href="{{ url('dashboard') }}">
@@ -19,15 +19,6 @@
                         </div>
                     </div>
                 </div>
-
-                {#<div class="row">#}
-                    {#<div class="col-md-11 col-lg-11">#}
-                        {#<h4>Search resaults:</h4>#}
-                    {#</div>#}
-                    {##}
-
-                    {#<hr>#}
-                {#</div>#}
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -48,11 +39,24 @@
                                 {% for instance in instances %}
                                     <tr>
                                         <td>{{ loop.index }}</td>
-                                        <td ><span style="background-color: rgba(76,153,230,0.5);padding:2px; ">{{ instance.name }}</span></td>
+                                        <td ><span class="p-1 bg-info">{{ instance.name }}</span></td>
                                         <td>{{ instance.contactPerson }}</td>
-                                        <td>{{ instance.license.issued }}</td>
-                                        <td>{{ instance.license.rate }}</td>
-                                        <td>{{ instance.invoice.price }}</td>
+                                        <td>{{ instance.licenseIssued }}</td>
+                                        <td>{{ instance.licenseRate }}</td>
+                                        <td>
+                                            {% if invoices is not defined %}
+                                                <div class="alert alert-warning" role="alert">
+                                                    Sorry! This instance has no last invoice!
+                                                </div>
+                                            {% else %}
+                                                {% for invoice in invoices %}
+                                                    {{ invoice.price }}$ @ {{ invoice.creationDate|date("Y-m-d") }}
+                                                    <br>
+                                                    Status: {{ invoice.status }}<br>
+                                                    Next invoice: {{ invoice.expirationDate|date("Y-m-d") }}
+                                                {% endfor %}
+                                            {% endif %}
+                                        </td>
                                         <td>
                                             {% for resource in instance.resources %}
                                                 {% if resource.value %}

@@ -282,17 +282,17 @@
                                             {% endif %}
                                         </td>
                                         <td>
-                                            {% if true %}
+                                            {% if invoices is not defined %}
                                                 <div class="alert alert-warning" role="alert">
                                                     Sorry! This instance has no last invoice!
                                                 </div>
                                             {% else %}
-                                                {#{% for invoices in instance.invoice %}#}
-                                                {{ instance.invoice.price }}$ @ {{ instance.invoice.creationDate|date("Y-m-d") }}
+                                                {% for invoice in invoices %}
+                                                {{ invoice.price }}$ @ {{ invoice.creationDate|date("Y-m-d") }}
                                                 <br>
-                                                Status: {{ instance.invoice.status }}<br>
-                                                Next invoice: {{ instance.invoice.expirationDate|date("Y-m-d") }}
-                                                {#{% endfor %}#}
+                                                Status: {{ invoice.status }}<br>
+                                                Next invoice: {{ invoice.expirationDate|date("Y-m-d") }}
+                                                {% endfor %}
                                             {% endif %}
                                         </td>
                                         <td>
