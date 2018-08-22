@@ -170,10 +170,27 @@
                                                 <td>{{ instance.contactPerson }}</td>
                                                 <td>{{ instance.licenseIssued }}</td>
                                                 <td>{{ instance.licenseRate }}</td>
-                                                <td></td>
-                                                {% for invoice in instanceInvoices %}
-                                                   {#<td><span>{{ invoice.instance.status }}</span></td>#}
-                                                {% endfor %}
+                                                <td>
+                                                    {% if invoices is not empty %}
+                                                        {{ dump(invoices) }}
+                                                        {% for invoice in invoices %}
+                                                            {% if invoice.instance.id == instance.id %}
+
+                                                                {{ invoice.price }}$ @ {{ invoice.creationDate|date("Y-m-d") }}
+                                                                <br>
+                                                                Status: {{ invoice.status }}<br>
+                                                                Next invoice: {{ invoice.expirationDate|date("Y-m-d") }}
+                                                                <br>
+                                                            {% endif %}
+                                                        {% endfor %}
+
+                                                    {% else %}
+                                                        <div class="alert alert-warning" role="alert">
+                                                            Sorry! This instance has no last invoice!
+                                                        </div>
+                                                    {% endif %}
+                                                </td>
+
                                                 <td>
                                                     {% for resource in instance.resources %}
                                                         {% if resource.value %}

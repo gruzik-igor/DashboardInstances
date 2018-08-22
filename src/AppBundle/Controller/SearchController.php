@@ -16,10 +16,9 @@ class SearchController extends BaseController
     public function searchAction(Request $request){
 
         $data = $request->get('query');
-
         $repository = $this->getDoctrine()->getRepository('AppBundle:Instance');
         $invoices = $this->getDoctrine()->getRepository('AppBundle:Invoice');
-        return $this->render('@App/search/search.html.twig', array( 'instances' => $repository->search($data),'invoices' => $invoices->findAll() ));
+        return $this->render('@App/search/search.html.twig', array( 'instances' => $repository->search($data)));
     }
 
 
