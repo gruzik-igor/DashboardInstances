@@ -45,6 +45,14 @@ class ReportsChartsCommand extends ContainerAwareCommand
 
         $inp = file_get_contents($filePath.'/issuedLicense.json');
         $tempArray = json_decode($inp, true);
+        $count =  count($tempArray['rows']);
+
+        if ($count >= 10)
+        {
+            array_shift($tempArray['rows']);
+
+        }
+
         $tempArray['rows'][] = $issued;
 
         file_put_contents($filePath.'/issuedLicense.json', json_encode($tempArray));
@@ -69,6 +77,14 @@ class ReportsChartsCommand extends ContainerAwareCommand
 
         $inp = file_get_contents($filePath.'/priceInvoice.json');
         $tempArray = json_decode($inp, true);
+        $count =  count($tempArray['rows']);
+
+        if ($count >= 15)
+        {
+            array_shift($tempArray['rows']);
+
+        }
+
         $tempArray['rows'][] = $price;
 
         file_put_contents($filePath.'/priceInvoice.json', json_encode($tempArray));
@@ -93,6 +109,13 @@ class ReportsChartsCommand extends ContainerAwareCommand
 
         $inp = file_get_contents($filePath.'/activeInstance.json');
         $tempArray = json_decode($inp, true);
+        $count =  count($tempArray['rows']);
+
+        if ($count >= 15)
+        {
+            array_shift($tempArray['rows']);
+
+        }
         $tempArray['rows'][] = $active;
 
         file_put_contents($filePath.'/activeInstance.json', json_encode($tempArray));
@@ -117,6 +140,13 @@ class ReportsChartsCommand extends ContainerAwareCommand
 
         $inp = file_get_contents($filePath.'/suspendedInstance.json');
         $tempArray = json_decode($inp, true);
+        $count =  count($tempArray['rows']);
+
+        if ($count >= 15)
+        {
+            array_shift($tempArray['rows']);
+
+        }
         $tempArray['rows'][] = $suspended;
 
         file_put_contents($filePath.'/suspendedInstance.json', json_encode($tempArray));

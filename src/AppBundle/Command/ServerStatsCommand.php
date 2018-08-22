@@ -46,10 +46,20 @@ class ServerStatsCommand extends ContainerAwareCommand
 
         $inp = file_get_contents($filePath.'/reportCPU.json');
         $tempArray = json_decode($inp, true);
+
+        $count =  count($tempArray['rows']);
+
+        if ($count >= 15)
+        {
+            array_shift($tempArray['rows']);
+
+        }
+
         $tempArray['rows'][] = $cpuInfoArray;
         
-        file_put_contents($filePath.'/reportCPU.json', json_encode($tempArray)); 
-             
+        file_put_contents($filePath.'/reportCPU.json', json_encode($tempArray));
+
+
     }
 
     // RAM resourses usage 
@@ -71,6 +81,14 @@ class ServerStatsCommand extends ContainerAwareCommand
 
         $inp = file_get_contents($filePath.'/reportRAM.json');
         $tempArray = json_decode($inp, true);
+        $count =  count($tempArray['rows']);
+
+        if ($count >= 15)
+        {
+            array_shift($tempArray['rows']);
+
+        }
+
         $tempArray['rows'][] = $ramInfoArray;
         
         file_put_contents($filePath.'/reportRAM.json', json_encode($tempArray));        
@@ -97,21 +115,20 @@ class ServerStatsCommand extends ContainerAwareCommand
         // calculate the disk space used (in bytes)
         $disk_used = $disk_total - $disk_free;
 
-        // percentage of disk used
-        //$disk_used_p = sprintf('%.2f',($disk_used / $disk_total) * 100);
-        
-        // $disk_free = $this->formatBytes($disk_free);
-        // $disk_used = $this->convertSize($disk_used);
-        // $disk_total = $this->formatBytes($disk_total);
-
         $hddUsage = $this->formatBytes($disk_used);
-        //var_dump($hddUsage);die;
-        //$hddUsage = $this->$os->$disk_used;
-        
+
         $hddInfoArray = ['c' => [['v' => $today, 'f' => null], ['v' => $hddUsage, 'f' => null]]];
 
         $inp = file_get_contents($filePath.'/reportHDD.json');
         $tempArray = json_decode($inp, true);
+
+        $count =  count($tempArray['rows']);
+
+        if ($count >= 15)
+        {
+            array_shift($tempArray['rows']);
+
+        }
         $tempArray['rows'][] = $hddInfoArray;
         
         file_put_contents($filePath.'/reportHDD.json', json_encode($tempArray));        
