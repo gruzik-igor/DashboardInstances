@@ -48,7 +48,7 @@ class ServerInfoService
         $days = explode(".",(($time % 31556926) / 86400));
         $hours = explode(".",((($time % 31556926) % 86400) / 3600));
         $minutes = explode(".",(((($time % 31556926) % 86400) % 3600) / 60));
-        $seconds = explode(".",((((($time % 31556926) % 86400) % 3600) / 60) / 60));
+
     
         $uptime = $days[0]." days, ".$hours[0]." hours, ".$minutes[0]." minutes ";
     
@@ -63,8 +63,7 @@ class ServerInfoService
         
         $sysinfo = explode("\n", $free);
 
-        $new_array = [];
-        
+
         foreach($sysinfo as $val) {
             $valArray = explode(':', $val);
             
