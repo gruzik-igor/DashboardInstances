@@ -28,7 +28,6 @@ class UserForm extends AbstractType
             ->add('fullName', TextType::class, ['attr' => ['placeholder' => 'Enter your fullName', 'class' => 'form-control border-input'], 'label' => 'fullName: '])
             ->add('email', EmailType::class, ['attr' => ['placeholder' => 'Please enter your email', 'class' => 'form-control border-input'], 'label' => 'E-mail: '])
             ->add('password', PasswordType::class, [ 'property_path' => 'plainPassword', 'attr' => ['placeholder' => 'Enter password', 'class' => 'form-control border-input'], 'label' => 'Password: '])
-//            ->add('submit', SubmitType::class, ['attr' => [ 'class' => 'btn btn-success text-right'], 'label' => 'Register'])
             ;
  
     }
