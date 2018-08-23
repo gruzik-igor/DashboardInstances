@@ -26,7 +26,7 @@ class GetIssuedLicenseCount extends \Twig_Extension
 
     public function issuedLicenseCount()
     {
-        return $this->em->getRepository('AppBundle:License')->getIssuedLicenseCount();
+        return $this->em->getRepository('AppBundle:Instance')->getIssuedLicenseCount();
     }
 
 }

@@ -24,7 +24,6 @@ class ReportsChartsCommand extends ContainerAwareCommand
         $this->activeInstance();
         $this->suspendedInstance();
 
-
     }
 
     // Issued License Count
