@@ -34,7 +34,7 @@ class InstanceController extends BaseController
             $em->persist($instance);
             $em->flush();
 
-            $response = $this->redirect($this->generateUrl('dashboard') . '#licenses');
+            $response = $this->redirect($this->generateUrl('dashboard') . '#instances');
         }else {
             $response = $this->render('@App/instance/add.html.twig', ['form' => $form->createView()]);
         }
@@ -46,7 +46,7 @@ class InstanceController extends BaseController
      * @Route("/license/edit/{instance}", name="edit-instance-license")
      * @Security("has_role('ROLE_SUPER_ADMIN')")
      */
-    public function instanceResourcesAction(Instance $instance, Request $request)
+    public function instanceLicenseAction(Instance $instance, Request $request)
     {
         if ($request->getMethod() === 'POST') {
 

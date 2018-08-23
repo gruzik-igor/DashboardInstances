@@ -15,14 +15,14 @@ class LicenseRepository extends \Doctrine\ORM\EntityRepository
     {
         $qb = $this->createQueryBuilder('entity');
 
-        $result = $qb->select('entity.issued')
+        $result = $qb->select('entity.licenseIssued')
             ->getQuery()->getResult();
 
         if (is_array($result)) {
             $sum = 0;
             foreach ($result as $item){
 
-                $sum += $item['issued'];
+                $sum += $item['licenseIssued'];
 
             }
         }

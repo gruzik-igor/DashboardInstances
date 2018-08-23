@@ -3,7 +3,6 @@
 namespace AppBundle\Controller\API;
 
 use AppBundle\Entity\Instance;
-use AppBundle\Entity\License;
 use AppBundle\Entity\LicenseRequest;
 use AppBundle\Entity\Resource;
 use AppBundle\Form\LicenseRequestForm;

@@ -28,6 +28,10 @@ class ReportsChartsCommand extends ContainerAwareCommand
     }
 
     // Issued License Count
+
+    /**
+     *
+     */
     protected function issuedLicense()
     {
 
@@ -38,7 +42,7 @@ class ReportsChartsCommand extends ContainerAwareCommand
         $today = $today->format('d-m-Y');
 
          $em = $this->getContainer()->get('doctrine.orm.entity_manager');
-         $iss = $em->getRepository('AppBundle:License')->getIssuedLicenseCount();
+         $iss = $em->getRepository('AppBundle:Instance')->getIssuedLicenseCount();
 
 
         $issued = ['c' => [['v' => $today, 'f' => null], ['v' => $iss , 'f' => null]]];
