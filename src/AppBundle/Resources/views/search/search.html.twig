@@ -46,18 +46,18 @@
                                             {% for resource in instance.resources %}
                                                 {% if resource.value %}
                                                     {% if resource.resource.name == 'RAM' %}
-                                                        {{ resource.resource.name }}: {{ resource.value }} MB
+                                                        {{ resource.resource.name }}: {{ resource.value }} MB -
                                                     {% elseif resource.resource.name == 'CPU' %}
                                                         {{ resource.resource.name }}: {{ resource.value }} % -
                                                     {% elseif resource.resource.name == 'HDD' %}
-                                                        {{ resource.resource.name }}: {{ resource.value }} GB -
+                                                        {{ resource.resource.name }}: {{ resource.value }} GB
                                                     {% endif %}
                                                 {% else %}
                                                     {% if resource.resource.name == 'RAM' %}
-                                                        {{ resource.resource.name }}: {{ resource.resource.defaultValue }} MB
+                                                        {{ resource.resource.name }}: {{ resource.resource.defaultValue }} MB -
                                                         -
                                                     {% elseif resource.resource.name == 'CPU' %}
-                                                        {{ resource.resource.name }}: {{ resource.resource.defaultValue }} %
+                                                        {{ resource.resource.name }}: {{ resource.resource.defaultValue }} % -
                                                         -
                                                     {% elseif resource.resource.name == 'HDD' %}
                                                         {{ resource.resource.name }}: {{ resource.resource.defaultValue }} GB

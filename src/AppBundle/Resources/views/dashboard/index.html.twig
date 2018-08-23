@@ -172,7 +172,6 @@
                                                 <td>{{ instance.licenseRate }}</td>
                                                 <td>
                                                     {% if invoices is not empty %}
-                                                        {{ dump(invoices) }}
                                                         {% for invoice in invoices %}
                                                             {% if invoice.instance.id == instance.id %}
 
@@ -299,17 +298,22 @@
                                             {% endif %}
                                         </td>
                                         <td>
-                                            {% if invoices is not defined %}
+                                            {% if invoices is not empty %}
+                                                {% for invoice in invoices %}
+                                                    {% if invoice.instance.id == instance.id %}
+
+                                                        {{ invoice.price }}$ @ {{ invoice.creationDate|date("Y-m-d") }}
+                                                        <br>
+                                                        Status: {{ invoice.status }}<br>
+                                                        Next invoice: {{ invoice.expirationDate|date("Y-m-d") }}
+                                                        <br>
+                                                    {% endif %}
+                                                {% endfor %}
+
+                                            {% else %}
                                                 <div class="alert alert-warning" role="alert">
                                                     Sorry! This instance has no last invoice!
                                                 </div>
-                                            {% else %}
-                                                {% for invoice in invoices %}
-                                                {{ invoice.price }}$ @ {{ invoice.creationDate|date("Y-m-d") }}
-                                                <br>
-                                                Status: {{ invoice.status }}<br>
-                                                Next invoice: {{ invoice.expirationDate|date("Y-m-d") }}
-                                                {% endfor %}
                                             {% endif %}
                                         </td>
                                         <td>
