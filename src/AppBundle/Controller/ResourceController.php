@@ -46,7 +46,7 @@ class ResourceController extends BaseController
 
                 $em->flush();
 
-                $response = $this->redirectToRoute('dashboard');
+                $response = $this->redirect($this->generateUrl('dashboard') . '#instances');
             }
         }
          else {
@@ -71,7 +71,7 @@ class ResourceController extends BaseController
             $em->persist($resource);
             $em->flush();
 
-            $response = $this->redirectToRoute('resources');
+            $response = $this->redirect($this->generateUrl('dashboard') . '#instances');
         }else {
             $response = $this->render('@App/resources/index.html.twig', ['form' => $form->createView(),'resources'=> $resources]);
         }
