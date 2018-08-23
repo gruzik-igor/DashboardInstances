@@ -4,6 +4,7 @@ namespace AppBundle\Form;
 
 use AppBundle\Form\DataTransformer\IntToBoolean;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ButtonType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
@@ -25,9 +26,9 @@ class UserForm extends AbstractType
         $builder
             ->add('username', TextType::class, ['attr' => ['placeholder' => 'Enter your name', 'class' => 'form-control border-input'], 'label' => 'Username: '])
             ->add('fullName', TextType::class, ['attr' => ['placeholder' => 'Enter your fullName', 'class' => 'form-control border-input'], 'label' => 'fullName: '])
-            ->add('email', TextareaType::class, ['attr' => ['placeholder' => 'Please enter your email', 'class' => 'form-control border-input'], 'label' => 'E-mail: '])
+            ->add('email', EmailType::class, ['attr' => ['placeholder' => 'Please enter your email', 'class' => 'form-control border-input'], 'label' => 'E-mail: '])
             ->add('password', PasswordType::class, [ 'property_path' => 'plainPassword', 'attr' => ['placeholder' => 'Enter password', 'class' => 'form-control border-input'], 'label' => 'Password: '])
-            ->add('submit', SubmitType::class, ['attr' => [ 'class' => 'btn btn-befault text-right'], 'label' => 'Register'])
+//            ->add('submit', SubmitType::class, ['attr' => [ 'class' => 'btn btn-success text-right'], 'label' => 'Register'])
             ;
  
     }

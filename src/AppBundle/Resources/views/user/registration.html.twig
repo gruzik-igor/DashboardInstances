@@ -8,6 +8,14 @@
             <div class="card-body">
             {{ form_start(form) }}
             {{ form_widget(form)}}
+                <div class="row">
+                    <div class="col-md-4">
+                        <button class="btn btn-success text-left" type="submit">Register </button>
+                    </div>
+                    <div class="col-md-4">
+                        <a class="btn btn-primary text-right" href="{{ asset('sign-in') }}">Return </a>
+                    </div>
+                </div>
             {{ form_end(form) }}
             </div>
         </div>
