@@ -23,7 +23,7 @@ class InstanceForm extends AbstractType
         $builder
             ->add('name', TextType::class, ['attr' => ['placeholder' => 'Enter instance name without spaces']])
             ->add('contactPerson', TextType::class, ['attr' => ['placeholder' => 'Enter name of contact person ']])
-            ->add('licenseRate', MoneyType::class, ['attr' => ['placeholder' => 'Enter license rate']])
+            ->add('licenseRate', MoneyType::class, ['attr' => ['placeholder' => 'Enter license rate'],'currency' => 'USD'])
             ->add('licenseIssued', NumberType::class, ['attr' => ['placeholder' => 'Enter license issued']]);
             //->add('submit', SubmitType::class, ['attr' => [ 'class' => 'btn btn-success text-right'],'label' => 'Create']);
 

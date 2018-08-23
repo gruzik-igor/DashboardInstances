@@ -34,7 +34,7 @@ class InstanceController extends BaseController
             $em->persist($instance);
             $em->flush();
 
-        $response = $this->redirectToRoute('dashboard');
+            $response = $this->redirect($this->generateUrl('dashboard') . '#licenses');
         }else {
             $response = $this->render('@App/instance/add.html.twig', ['form' => $form->createView()]);
         }
