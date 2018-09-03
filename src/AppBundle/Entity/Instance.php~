@@ -4,25 +4,31 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use JMS\Serializer\Annotation as JMS;
 
 /**
  * Instance.
- *
- * @ORM\Entity()
+ * @JMS\ExclusionPolicy("all")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\InstanceRepository")
  * @ORM\HasLifecycleCallbacks()
+ * @ORM\EntityListeners({"AppBundle\EventListener\InstanceEntityListener"})
  */
 class Instance 
 {
     /**
      * @var int
-     *
+     * @JMS\Expose
+     * @JMS\Groups({"default"})
      * @ORM\Id
      * @ORM\Column(name="id", type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
+    
 
     /**
+     * @JMS\Expose
+     * @JMS\Groups({"default"})
      * @ORM\Column(type="string", length=255, nullable=false)
      * @Assert\Length(max="255")
      * @Assert\NotBlank()
@@ -30,35 +36,65 @@ class Instance
     protected $name;
 
     /**
+     * @JMS\Expose
+     * @JMS\Groups({"default"})
+     * @ORM\Column(type="integer", nullable=false)
+     * @Assert\NotBlank()
+     */
+    protected $userMA;
+
+    /**
      * @ORM\OneToMany(targetEntity="InstanceResource", mappedBy="instance")
      */
     protected $resources;
 
     /**
-     * @ORM\OneToOne(targetEntity="License", inversedBy="instance")
-     * @ORM\JoinColumn(name="license_id", referencedColumnName="id")
+     * @JMS\Expose
+     * @JMS\Groups({"default"})
+     * @ORM\Column(type="integer", nullable=true)
      */
-    protected $license;
+    protected $licenseIssued;
 
     /**
-     * @ORM\OneToOne(targetEntity="Invoice", inversedBy="instance")
-     * @ORM\JoinColumn(name="invoice_id", referencedColumnName="id")
+     * @JMS\Expose
+     * @JMS\Groups({"default"})
+     * @ORM\Column(type="integer", nullable=true)
      */
-    protected $invoice;
+    protected $licenseRate;
+
+    /**
+     * @JMS\Expose
+     * @JMS\Groups({"default"})
+     * @ORM\Column(type="string", length=255, nullable=false)
+     * @Assert\Length(max="255")
+     */
+    protected $status = 'active';
+
+    /**
+     * @JMS\Expose
+     * @JMS\Groups({"default"})
+     * @ORM\Column(type="string", length=255, nullable=false)
+     * @Assert\Length(max="255")
+     */
+    protected $deployingStatus = 'pending';
+
+    /**
+     * @ORM\Column(type="date", nullable=true)
+     */
+    protected $deployingDate;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=false)
      * @Assert\NotBlank()
      * @Assert\Length(max="255")
      */
-    protected $status;  
+    protected $domain = 'localhost:8000';
     /**
      * Constructor
      */
     public function __construct()
     {
         $this->resources = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->licenses = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -96,6 +132,76 @@ class Instance
     }
 
     /**
+     * Get userMA
+     *
+     * @return string
+     */
+    public function getUserMA()
+    {
+        return $this->userMA;
+    }
+
+    /**
+     * Set userMA
+     *
+     * @param string $userMA
+     *
+     * @return Instance
+     */
+    public function setUserMA($userMA)
+    {
+        $this->userMA = $userMA;
+        return $this;
+    }
+    /**
+     * Set licenseIssued
+     *
+     * @param integer $licenseIssued
+     *
+     * @return Instance
+     */
+    public function setLicenseIssued($licenseIssued)
+    {
+        $this->licenseIssued = $licenseIssued;
+
+        return $this;
+    }
+
+    /**
+     * Get licenseIssued
+     *
+     * @return integer
+     */
+    public function getLicenseIssued()
+    {
+        return $this->licenseIssued;
+    }
+
+    /**
+     * Set licenseRate
+     *
+     * @param integer $licenseRate
+     *
+     * @return Instance
+     */
+    public function setLicenseRate($licenseRate)
+    {
+        $this->licenseRate = $licenseRate;
+
+        return $this;
+    }
+
+    /**
+     * Get licenseRate
+     *
+     * @return integer
+     */
+    public function getLicenseRate()
+    {
+        return $this->licenseRate;
+    }
+
+    /**
      * Set status
      *
      * @param string $status
@@ -117,6 +223,78 @@ class Instance
     public function getStatus()
     {
         return $this->status;
+    }
+
+    /**
+     * Set deployingStatus
+     *
+     * @param string $deployingStatus
+     *
+     * @return Instance
+     */
+    public function setDeployingStatus($deployingStatus)
+    {
+        $this->deployingStatus = $deployingStatus;
+
+        return $this;
+    }
+
+    /**
+     * Get deployingStatus
+     *
+     * @return string
+     */
+    public function getDeployingStatus()
+    {
+        return $this->deployingStatus;
+    }
+
+    /**
+     * Set deployingDate
+     *
+     * @param \DateTime $deployingDate
+     *
+     * @return Instance
+     */
+    public function setDeployingDate($deployingDate)
+    {
+        $this->deployingDate = $deployingDate;
+
+        return $this;
+    }
+
+    /**
+     * Get deployingDate
+     *
+     * @return \DateTime
+     */
+    public function getDeployingDate()
+    {
+        return $this->deployingDate;
+    }
+
+    /**
+     * Set domain
+     *
+     * @param string $domain
+     *
+     * @return Instance
+     */
+    public function setDomain($domain)
+    {
+        $this->domain = $domain;
+
+        return $this;
+    }
+
+    /**
+     * Get domain
+     *
+     * @return string
+     */
+    public function getDomain()
+    {
+        return $this->domain;
     }
 
     /**
@@ -151,63 +329,5 @@ class Instance
     public function getResources()
     {
         return $this->resources;
-    }
-
-    /**
-     * Add invoice
-     *
-     * @param \AppBundle\Entity\Invoice $invoice
-     *
-     * @return Instance
-     */
-    public function addInvoice(\AppBundle\Entity\Invoice $invoice)
-    {
-        $this->invoices[] = $invoice;
-
-        return $this;
-    }
-
-    /**
-     * Remove invoice
-     *
-     * @param \AppBundle\Entity\Invoice $invoice
-     */
-    public function removeInvoice(\AppBundle\Entity\Invoice $invoice)
-    {
-        $this->invoices->removeElement($invoice);
-    }
-
-    /**
-     * Get invoices
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getInvoices()
-    {
-        return $this->invoices;
-    }
-
-    /**
-     * Set license
-     *
-     * @param \AppBundle\Entity\License $license
-     *
-     * @return Instance
-     */
-    public function setLicense(\AppBundle\Entity\License $license = null)
-    {
-        $this->license = $license;
-
-        return $this;
-    }
-
-    /**
-     * Get license
-     *
-     * @return \AppBundle\Entity\License
-     */
-    public function getLicense()
-    {
-        return $this->license;
     }
 }

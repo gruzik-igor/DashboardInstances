@@ -38,11 +38,10 @@ class Instance
     /**
      * @JMS\Expose
      * @JMS\Groups({"default"})
-     * @ORM\Column(type="string", length=255, nullable=false)
-     * @Assert\Length(max="255")
+     * @ORM\Column(type="integer", nullable=false)
      * @Assert\NotBlank()
      */
-    protected $contactPerson;
+    protected $userMA;
 
     /**
      * @ORM\OneToMany(targetEntity="InstanceResource", mappedBy="instance")
@@ -133,29 +132,27 @@ class Instance
     }
 
     /**
-     * Set contactPerson
-     *
-     * @param string $contactPerson
-     *
-     * @return Instance
-     */
-    public function setContactPerson($contactPerson)
-    {
-        $this->contactPerson = $contactPerson;
-
-        return $this;
-    }
-
-    /**
-     * Get contactPerson
+     * Get userMA
      *
      * @return string
      */
-    public function getContactPerson()
+    public function getUserMA()
     {
-        return $this->contactPerson;
+        return $this->userMA;
     }
 
+    /**
+     * Set userMA
+     *
+     * @param string $userMA
+     *
+     * @return Instance
+     */
+    public function setUserMA($userMA)
+    {
+        $this->userMA = $userMA;
+        return $this;
+    }
     /**
      * Set licenseIssued
      *

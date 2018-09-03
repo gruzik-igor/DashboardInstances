@@ -2,21 +2,21 @@
 
 namespace AppBundle\Form;
 
-use AppBundle\Form\DataTransformer\IntToBoolean;
+
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\ButtonType;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class UserForm extends AbstractType
-{
 
-    
+class CreateUserForm extends AbstractType
+{
     /**
      * {@inheritdoc}
      */
@@ -26,9 +26,18 @@ class UserForm extends AbstractType
             ->add('username', TextType::class, ['attr' => ['placeholder' => 'Enter your name', 'class' => 'form-control border-input'], 'label' => 'Username: '])
             ->add('fullName', TextType::class, ['attr' => ['placeholder' => 'Enter your fullName', 'class' => 'form-control border-input'], 'label' => 'fullName: '])
             ->add('email', EmailType::class, ['attr' => ['placeholder' => 'Please enter your email', 'class' => 'form-control border-input'], 'label' => 'E-mail: '])
-            ->add('password', PasswordType::class, [ 'property_path' => 'plainPassword', 'attr' => ['placeholder' => 'Enter password', 'class' => 'form-control border-input'], 'label' => 'Password: '])
-            ;
- 
+            ->add('contactPhone', NumberType::class, ['attr' => ['placeholder' => 'Enter phone number in format +1(111)111-11-11','class' => 'form-control border-input'],'label' => 'Contact phone: '])
+            ->add('domainName', TextType::class, ['attr' => ['placeholder' => 'Enter domain name for marketing agency', 'class' => 'form-control border-input'], 'label' => 'Domain name: '])
+            ->add('fullName', TextType::class, ['attr' => ['placeholder' => 'Enter your fullName', 'class' => 'form-control border-input'], 'label' => 'fullName: '])
+            ->add('primaryLanguage', ChoiceType::class, [
+                'choices'  => array(
+                    'English' => 'english',
+                    'Germany' => 'germany',
+                    'Ukraine' => 'ukrainian',
+                ),])
+            ->add('Create', SubmitType::class);
+
+
     }
 
     /**

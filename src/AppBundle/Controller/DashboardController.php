@@ -10,35 +10,70 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Symfony\Component\Security\Core\Authorization\AuthorizationChecker;
+use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
+use Symfony\Component\Security\Core\Authentication\AuthenticationManagerInterface;
+use Symfony\Component\Security\Core\Authorization\AccessDecisionManagerInterface;
+
 
 class DashboardController extends BaseController
 {
     /**
      * @Route("/", name="dashboard")
-     * @Security("has_role('ROLE_SUPER_ADMIN')")
      */
+
+
+
+
+
     public function indexAction(Request $request)
     {
         /**
          * @var LicenseRepository $repository
          */
 //       $repository = $this->getRepository('AppBundle:License');
-//       var_dump($repository->getIssuedLicenseCount()); die;
-        $system = new System;
-        $os = $system->getOs();
+//        var_dump($request); di
+        $userRole = $this->getUser()->getRole();
+      //var_dump($this->getUser());die;
+        if($userRole == 'ROLE_SUPER_ADMIN')
+        {
+            $system = new System;
+            $os = $system->getOs();
 
-        $serverInfoService = $this->get('app.server_info.service');
+            $serverInfoService = $this->get('app.server_info.service');
 
-        return $this->render('@App/dashboard/index.html.twig', [
-            'meminfo'=> $serverInfoService->getSystemMemInfo(),
-            'diskinfo' => $serverInfoService->getSystemHddInfo(),
-            'cpuinfo' => $os->getLoadPercentage(AbstractOs::TIMEFRAME_1_MIN),
-            'uptime' => $serverInfoService->getServerUptime(),
-            'servinfo' => $serverInfoService->getSystemInfo(),
-            'instances' => $this->findBy('AppBundle:Instance', [], []),
-            'invoices' => $this->findBy('AppBundle:Invoice', []),
-            'licenseRequest' => $this->findBy('AppBundle:LicenseRequest', [])
+            return $this->render('@App/dashboard/admin.html.twig', [
+                'meminfo'=> $serverInfoService->getSystemMemInfo(),
+                'diskinfo' => $serverInfoService->getSystemHddInfo(),
+                'cpuinfo' => $os->getLoadPercentage(AbstractOs::TIMEFRAME_1_MIN),
+                'uptime' => $serverInfoService->getServerUptime(),
+                'servinfo' => $serverInfoService->getSystemInfo(),
+                'instances' => $this->findBy('AppBundle:Instance', [], []),
+                'invoices' => $this->findBy('AppBundle:Invoice', []),
+                'licenseRequest' => $this->findBy('AppBundle:LicenseRequest', [])
             ]);
+        }
+        elseif ($userRole == 'ROLE_MA')
+        {
+            $system = new System;
+            $os = $system->getOs();
+
+            $serverInfoService = $this->get('app.server_info.service');
+
+            return $this->render('@App/dashboard/ma.html.twig', [
+                'meminfo'=> $serverInfoService->getSystemMemInfo(),
+                'diskinfo' => $serverInfoService->getSystemHddInfo(),
+                'cpuinfo' => $os->getLoadPercentage(AbstractOs::TIMEFRAME_1_MIN),
+                'uptime' => $serverInfoService->getServerUptime(),
+                'servinfo' => $serverInfoService->getSystemInfo(),
+                'instances' => $this->findBy('AppBundle:Instance', [], []),
+                'invoices' => $this->findBy('AppBundle:Invoice', []),
+                'licenseRequest' => $this->findBy('AppBundle:LicenseRequest', [])
+            ]);
+        }
+
     }
 
 

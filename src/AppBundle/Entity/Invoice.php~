@@ -8,7 +8,7 @@ use JMS\Serializer\Annotation as JMS;
 /**
  * Invoice.
  * @JMS\ExclusionPolicy("all")
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\InvoiceRepository")
  * @ORM\HasLifecycleCallbacks()
  */
 class Invoice 
@@ -24,11 +24,16 @@ class Invoice
     protected $id;
 
     /**
-     * @ORM\OneToOne(targetEntity="Instance", mappedBy="invoice")
+     * @JMS\Expose
+     * @JMS\Groups({"default"})
+     * @ORM\ManyToOne(targetEntity="Instance", inversedBy="invoice")
+     * @ORM\JoinColumn(name="instance_id", referencedColumnName="id")
      */
     protected $instance;
 
     /**
+     * @JMS\Expose
+     * @JMS\Groups({"default"})
      * @ORM\Column(type="float", length=255, nullable=false)
      * @Assert\Length(max="255")
      * @Assert\NotBlank()
@@ -159,4 +164,28 @@ class Invoice
         return $this->expirationDate;
     }
 
+
+    /**
+     * Set instance
+     *
+     * @param \AppBundle\Entity\Instance $instance
+     *
+     * @return Invoice
+     */
+    public function setInstance(\AppBundle\Entity\Instance $instance = null)
+    {
+        $this->instance = $instance;
+
+        return $this;
+    }
+
+    /**
+     * Get instance
+     *
+     * @return \AppBundle\Entity\Instance
+     */
+    public function getInstance()
+    {
+        return $this->instance;
+    }
 }

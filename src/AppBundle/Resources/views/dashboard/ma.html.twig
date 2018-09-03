@@ -7,7 +7,7 @@
             <!-- Breadcrumbs-->
             <ol class="breadcrumb">
                 <li class="breadcrumb-item">
-                    <a href="#">Dashboard instances</a>
+                    <a href="#">Marketing Agency</a>
                 </li>
                 <li class="breadcrumb-item active">My Dashboard</li>
             </ol>
@@ -16,16 +16,22 @@
             <ul class="nav nav-tabs mb-3" id="myTab" role="tablist">
 
                 <li class="nav-item">
+                    <a class="nav-link active" id="branding-tab" data-toggle="tab" href="#branding"
+                       data-tab-history="true"
+                       data-tab-history-changer="push"
+                       data-tab-history-update-url="true">Branding</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link active" id="summary-tab" data-toggle="tab" href="#summary"
                        data-tab-history="true"
                        data-tab-history-changer="push"
                        data-tab-history-update-url="true">Summary</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="instances-tab" data-toggle="tab" href="#instances"
+                    <a class="nav-link" id="contractors-tab" data-toggle="tab" href="#contractors"
                        data-tab-history="true"
                        data-tab-history-changer="push"
-                       data-tab-history-update-url="true">Instances</a>
+                       data-tab-history-update-url="true">Contractors</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" id="licenses-tab" data-toggle="tab" href="#licenses"
@@ -34,99 +40,115 @@
                        data-tab-history-update-url="true">Licenses</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="reports-tab" data-toggle="tab" href="#reports"
+                    <a class="nav-link" id="direct-contacts-tab" data-toggle="tab" href="#direct-contacts"
                        data-tab-history="true"
                        data-tab-history-changer="push"
-                       data-tab-history-update-url="true">Reports</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="server_health-tab" data-toggle="tab" href="#server_health"
-                       data-tab-history="true"
-                       data-tab-history-changer="push"
-                       data-tab-history-update-url="true">Server Health</a>
+                       data-tab-history-update-url="true">Direct contacts</a>
                 </li>
             </ul>
 
             <div class="tab-content" id="myTabContent">
 
-                <div class="tab-pane fade active show" id="summary">
-
-                    <div class="col-xl-12 col-sm-12 mb-2">
-                        <div class="card-body alert alert-info" role="alert">
-                            <span>You have {{ activeInstanceCount() + suspendedInstanceCount() }} instances, {{ activeInstanceCount() }} activated instances and {{ suspendedInstanceCount() }}
-                                suspended instances </span>
+                <div class="tab-pane fade active show" id="branding">
+                    <div class="card mb-2">
+                        <div class="card-header">
+                            <i class="fa fa-fw fa-id-card" ></i> Marketing Agency information
                         </div>
-                    </div>
-
-                    <div class="col-xl-12 col-sm-12 mb-12">
-                        <div class="row">
-                            <div class="col-lg-4">
-                                <div class="card padd">
-                                    <div class="card-header">
-                                        <i class="fa fa-area-chart"></i> CPU, % usage:
+                        <div class="card-body row">
+                            <div class="col-md-8">
+                                <form action="#" method="POST">
+                                <div class="form-row">
+                                    <div class="col-md-2">
+                                        <label for="instanceName">Your company name:</label>
                                     </div>
-                                    <div id="CPU_chart_div"></div>
-                                    <div class="card-footer small text-muted">Updated yesterday at 12:48 PM</div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4">
-                                <div class="card padd">
-                                    <div class="card-header">
-                                        <i class="fa fa-area-chart"></i> RAM, MB usage:
-                                    </div>
-                                    <div id="RAM_chart_div"></div>
-                                    <div class="card-footer small text-muted">Updated yesterday at 12:48 PM</div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4">
-                                <div class="card padd">
-                                    <div class="card-header">
-                                        <i class="fa fa-area-chart"></i> HDD, GB usage:
-                                    </div>
-                                    <div id="HDD_chart_div"></div>
-                                    <div class="card-footer small text-muted">Updated yesterday at 12:48 PM</div>
-                                </div>
-                            </div>
-                            <div class="col-lg-12">
-                                <!--  Chart Card-->
-                                <div class="card mb-3">
-                                    <div class="card-header">
-                                        <i class="fa fa-bar-chart"></i> Instance usage:
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <div class="col-sm-3 text-center my-auto">
-                                                <div class="h5 mb-0 text-primary">{{ cpuinfo }} %</div>
-                                                <div class="small text-muted">CPU</div>
-                                                <hr>
-                                            </div>
-                                            <div class="col-sm-3 text-center my-auto">
-                                                <div class="h5 mb-0 text-warning">{{ meminfo.MemUsed }} MB
-                                                    of {{ meminfo.MemTotal }} MBs
-                                                </div>
-                                                <div class="small text-muted">RAM</div>
-                                                <hr>
-                                            </div>
-                                            <div class="col-sm-3 text-center my-auto">
-                                                <div class="h5 mb-0 text-success">{{ diskinfo.DisckUsed }} GB
-                                                    of {{ diskinfo.DisckTotal }} GBs
-                                                </div>
-                                                <div class="small text-muted">HDD Spaces</div>
-                                                <hr>
-                                            </div>
-                                            <div class="col-sm-3 text-center my-auto">
-                                                <div class="h5 mb-0 text-success">100 GB of 250 GBs</div>
-                                                <div class="small text-muted">HDD Backup Spaces</div>
-                                                <hr>
-                                            </div>
+                                    <div class="col-md-5">
+                                        <div class="form-group">
+                                            <input type="hidden" name="instance[id]" value="">
+                                            <input name="user[username]" type="text"
+                                                   value="" id="instanceName"
+                                                   class="form-control">
                                         </div>
                                     </div>
-                                    <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+                                    <div class="col-md-5">
+                                        <div class="form-group">
+                                            <input name="user[fullName]" type="text"
+                                                   value="" id="fullName"
+                                                   class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label for="companyLogo">Company logo:</label>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="form-group">
+                                            <input name="user[companyLogo]" type="text"
+                                                   value="" id="companyLogo"
+                                                   class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <button type="button" class="btn btn-primary btn-block">Browse</button>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label for="domainName">Domain name:</label>
+                                    </div>
+                                    <div class="col-md-10">
+                                        <div class="form-group">
+                                            <input name="user[domainName]" type="text"
+                                                   value="" id="domainName" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label for="contactPhone">Contact phone:</label>
+                                    </div>
+                                    <div class="col-md-10">
+                                        <div class="form-group">
+                                            <input name="user[contactPhone]" type="text"
+                                                   value="" id="contactPhone" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label for="email">Contact e-mail:</label>
+                                    </div>
+                                    <div class="col-md-10">
+                                        <div class="form-group">
+                                            <input name="user[email]" type="text"
+                                                   value="" id="email" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-md-4">
+                                        <button type="submit" class="btn btn-success btn-block">Apply changes</button>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <button type="submit" class="btn btn-success btn-block">Discard changes</button>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <button type="submit" class="btn btn-success btn-block">Factory reset</button>
+                                    </div>
+                                </div>
+                                </form>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-row text-center">
+                                    <label class="text-center" for="email">Logo preview:</label>
+                                    <img class="text-center"src="" alt="" width="300px" style="background-color:gray;">
+                                    <span><i class="fa fa-fw fa-circle"></i> Test spin
+                                        </span>
                                 </div>
                             </div>
-
                         </div>
                     </div>
+                </div>
+                <div class="tab-pane fade active show" id="summary">
+
+
+
+
+
                     <div class="col-lg-12">
                         <!-- Example DataTables Card-->
                         <div class="card mb-3">
@@ -140,7 +162,7 @@
                                         <tr>
                                             <th>№</th>
                                             <th>Instance</th>
-                                            <th>Contact person</th>
+                                            <th>User MA</th>
                                             <th>Licenses issued</th>
                                             <th>Rate</th>
                                             <th>Monthly revenue $</th>
@@ -152,7 +174,7 @@
                                         <tr>
                                             <th>№</th>
                                             <th>Instance</th>
-                                            <th>Contact person</th>
+                                            <th>User MA</th>
                                             <th>Licenses issued</th>
                                             <th>Rate</th>
                                             <th>Monthly revenue $</th>
@@ -166,7 +188,7 @@
                                             <tr>
                                                 <td>{{ loop.index }}</td>
                                                 <td>{{ instance.name }}</td>
-                                                <td>{{ instance.contactPerson }}</td>
+                                                <td>{{ instance.userMA }}</td>
                                                 <td>{{ instance.licenseIssued }}</td>
                                                 <td>{{ instance.licenseRate }}</td>
                                                 <td>
@@ -243,7 +265,7 @@
                                     <thead>
                                     <tr>
                                         <th>Instance</th>
-                                        <th>Contact Person</th>
+                                        <th>User MA</th>
                                         <th>Resources used:</th>
                                         <th>Resources limits:</th>
                                         <th>Licenses:</th>
@@ -255,7 +277,7 @@
                                     <tr>
 
                                         <td>{{ instance.name }}</td>
-                                        <td>{{ instance.contactPerson }}</td>
+                                        <td>{{ instance.userMA }}</td>
                                         <td>
                                             Average CPU:25%<br>
                                             Average RAM: 256 Mb<br>
@@ -356,7 +378,7 @@
                                     <tr>
                                         <th>№ </th>
                                         <th>Instance</th>
-                                        <th>Contact Person</th>
+                                        <th>User MA</th>
                                         <th>License Issued:</th>
                                         <th>License Rate:</th>
                                         <th></th>
@@ -367,7 +389,7 @@
                                     <tr>
                                         <td>{{ loop.index }}</td>
                                         <td>{{ instance.name }}</td>
-                                        <td>{{ instance.contactPerson }}</td>
+                                        <td>{{ instance.userMA }}</td>
                                         <td>{{ instance.licenseIssued }}</td>
                                         <td>{{ instance.licenseRate }}</td>
                                         <td>

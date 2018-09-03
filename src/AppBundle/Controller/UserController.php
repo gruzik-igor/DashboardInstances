@@ -26,12 +26,12 @@ class UserController extends Controller
             $em->persist($user);
             $em->flush();
         }
-        return $this->render('@App/user/registration.html.twig', [
+        return $this->render('@App/user/create.html.twig', [
             'form' => $form->createView(),
         ]);
     }
 
-    //test route
+     //test route
     /**
      * @Route("/user/{user}", name="user")
      */
@@ -42,5 +42,7 @@ class UserController extends Controller
 //        var_dump($repository->findBy(["username" => 'igor'])); die;
 //        var_dump($user); die;
     }
+
+
 
 }
