@@ -7,6 +7,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -35,6 +36,7 @@ class CreateUserForm extends AbstractType
                     'Germany' => 'germany',
                     'Ukraine' => 'ukrainian',
                 ),])
+            ->add('photo', FileType::class, ['label' => 'Avatars: '])
             ->add('Create', SubmitType::class);
 
 

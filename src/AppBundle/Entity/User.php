@@ -14,9 +14,11 @@ use Symfony\Component\Security\Core\User\UserInterface;
  * @ORM\HasLifecycleCallbacks()
  * @UniqueEntity("email", groups={"registration", "default"})
  * @UniqueEntity("username", groups={"registration", "default"})
- * @ORM\EntityListeners({"AppBundle\EventListener\UserEntityListener"})
+ * @ORM\EntityListeners({
+ *       "AppBundle\EventListener\UserEntityListener",
+ *       "AppBundle\EventListener\FileUploadListener"})
  */
-class User implements UserInterface
+class User implements UserInterface, FileUploadInterface
 {
     /**
      * @var int
@@ -101,6 +103,13 @@ class User implements UserInterface
     protected $primaryLanguage;
 
 
+    /**
+     * @ORM\Column(type="string", nullable=true))
+     * @Assert\File(
+     *     mimeTypes = {"image/png", "image/jpeg", "image/gif"}
+     * )
+     */
+    protected $photo;
 
     /**
      * Returns the roles granted to the user.
@@ -446,5 +455,41 @@ class User implements UserInterface
     public function getPrimaryLanguage()
     {
         return $this->primaryLanguage;
+    }
+
+    /**
+     * Set photo
+     *
+     * @param string $photo
+     *
+     * @return User
+     */
+    public function setPhoto($photo)
+    {
+        $this->photo = $photo;
+
+        return $this;
+    }
+
+    /**
+     * Get photo
+     *
+     * @return string
+     */
+    public function getPhoto()
+    {
+        return $this->photo;
+    }
+
+    public function getPath()
+    {
+        return $this->getPhoto();
+    }
+
+    public function setPath($path)
+    {
+        $this->setPath($path);
+
+        return $this;
     }
 }
