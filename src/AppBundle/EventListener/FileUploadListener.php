@@ -25,7 +25,8 @@ class FileUploadListener
 
             $file->move('photos', $fileName);
 
-            $entity->setPath('photos/'.$fileName);
+            $entity->setPath($fileName);
+
         }
     }
 

@@ -24,10 +24,6 @@ class DashboardController extends BaseController
      * @Route("/", name="dashboard")
      */
 
-
-
-
-
     public function indexAction(Request $request)
     {
         /**
@@ -76,6 +72,41 @@ class DashboardController extends BaseController
 
     }
 
+    /**
+     * @Route("/users", name="users")
+     */
+
+    public function usersAction(Request $request)
+    {
+        /**
+         * @var LicenseRepository $repository
+         */
+//       $repository = $this->getRepository('AppBundle:License');
+//        var_dump($request); di
+        $userRole = $this->getUser()->getRole();
+        //var_dump($this->getUser());die;
+        if($userRole == 'ROLE_SUPER_ADMIN')
+        {
+            $system = new System;
+            $os = $system->getOs();
+
+            $serverInfoService = $this->get('app.server_info.service');
+
+            return $this->render('@App/dashboard/users.html.twig', [
+                'users' => $this->findBy('AppBundle:User', []),
+                'meminfo'=> $serverInfoService->getSystemMemInfo(),
+                'diskinfo' => $serverInfoService->getSystemHddInfo(),
+                'cpuinfo' => $os->getLoadPercentage(AbstractOs::TIMEFRAME_1_MIN),
+                'uptime' => $serverInfoService->getServerUptime(),
+                'servinfo' => $serverInfoService->getSystemInfo(),
+                'instances' => $this->findBy('AppBundle:Instance', [], []),
+                'invoices' => $this->findBy('AppBundle:Invoice', []),
+                'licenseRequest' => $this->findBy('AppBundle:LicenseRequest', [])
+            ]);
+        }
+
+
+    }
 
     // test routes
     /**

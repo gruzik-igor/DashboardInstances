@@ -65,7 +65,7 @@ class User implements UserInterface, FileUploadInterface
     /**
      * @ORM\Column(type="string", nullable=true, options={"default" : "ROLE_SUPER_ADMIN"})
      */
-    protected $role  = 'ROLE_SUPER_ADMIN';
+    protected $role;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -77,12 +77,6 @@ class User implements UserInterface, FileUploadInterface
      *
      */
     protected $registrationDate;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Assert\Length(max="255")
-     */
-    protected $companyLogo;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -488,7 +482,7 @@ class User implements UserInterface, FileUploadInterface
 
     public function setPath($path)
     {
-        $this->setPath($path);
+        $this->setPhoto($path);
 
         return $this;
     }

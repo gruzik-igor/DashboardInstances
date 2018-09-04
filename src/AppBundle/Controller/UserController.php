@@ -26,7 +26,7 @@ class UserController extends Controller
             $em->persist($user);
             $em->flush();
         }
-        return $this->render('@App/user/create.html.twig', [
+        return $this->render('@App/user/registration.html.twig', [
             'form' => $form->createView(),
         ]);
     }

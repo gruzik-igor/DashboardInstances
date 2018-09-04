@@ -11,12 +11,11 @@ use AppBundle\Form\UserForm;
 use AppBundle\Entity\User;
 
 
+
 class CreateUserController extends BaseController
 {
-
-
     /**
-     * @Route("/user/new", name="new-user")
+     * @Route("/users/new", name="add-user")
      */
     public function newUser(Request $request)
     {
@@ -29,13 +28,57 @@ class CreateUserController extends BaseController
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
             $em->flush();
-            $response = $this->redirect($this->generateUrl('dashboard') . '#instances');
+            $response = $this->redirect($this->generateUrl('users'));
         }
         else {
-            $response = $this->render('@App/user/create.html.twig', [
+            $response = $this->render('@App/user/add.html.twig', [
                 'form' => $form->createView(),
             ]);
         }
+        return $response;
+    }
+
+    /**
+     * @Route("/users/edit/{user}", name="edit-user")
+     */
+
+    public function instanceLicenseAction(User $user, Request $request)
+    {
+        if ($request->getMethod() === 'POST') {
+
+            $em = $this->getDoctrine()->getManager();
+
+            $userNew = $request->request->all();
+
+
+            $repository = $em->getRepository('AppBundle:User');
+            $user = $repository->findOneBy(['id' => $userNew['user']['id']]);
+
+            if ($user instanceof User) {
+                //var_dump($userPhoto);die;
+                $user->setUsername($userNew['user']['username']);
+                //$user->setRole($userNew['user']['role']);
+                $user->setEmail($userNew['user']['email']);
+                $user->setDomainName($userNew['user']['domainName']);
+                $user->setContactPhone($userNew['user']['contactPhone']);
+                $user->setPrimaryLanguage($userNew['user']['primaryLanguage']);
+
+            }
+
+            $userPhoto = $request->files->all();
+
+            if ($userPhoto['user']['photo'] !== null)
+            {
+                $user->setPhoto($userPhoto['user']['photo']);
+            }
+
+            $em->flush();
+
+            $response = $this->redirect($this->generateUrl('users'));
+        } else {
+            $response = $this->render('@App/user/edit.html.twig', ['user' => $user]);
+        }
+
         return $response;
     }
 
