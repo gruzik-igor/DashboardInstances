@@ -33,7 +33,6 @@
                                             <th>№</th>
                                             <th>User MA</th>
                                             <th>Role</th>
-                                            <th>Domain name</th>
                                             <th>Contact phone</th>
                                             <th>Contact e-mail</th>
                                             <th>Primary language</th>
@@ -46,7 +45,6 @@
                                             <th>№</th>
                                             <th>User MA</th>
                                             <th>Role</th>
-                                            <th>Domain name</th>
                                             <th>Contact phone</th>
                                             <th>Contact e-mail</th>
                                             <th>Primary language</th>
@@ -60,7 +58,6 @@
                                                 <td>{{ loop.index }}</td>
                                                 <td>{{ user.username }}{{ user.fullname }}</td>
                                                 <td>{{ user.role }}</td>
-                                                <td>{{ user.domainName }}</td>
                                                 <td>{{ user.contactPhone }}</td>
                                                 <td>{{ user.email }}</td>
                                                 <td>{{ user.primaryLanguage }}</td>
@@ -71,33 +68,6 @@
                                                     <a class="btn btn-danger btn-block"
                                                        href="{{ url('delete-user', {'user': user.id}) }}"> Delete</a>
                                                 </td>
-                                                {% endfor %}
-                                                {% for instance in instances %}
-                                                <td>
-                                                    {% for resource in instance.resources %}
-                                                        {% if resource.value %}
-                                                            {% if resource.resource.name == 'RAM' %}
-                                                                {{ resource.resource.name }}: {{ resource.value }} MB -
-                                                            {% elseif resource.resource.name == 'CPU' %}
-                                                                {{ resource.resource.name }}: {{ resource.value }} % -
-                                                            {% elseif resource.resource.name == 'HDD' %}
-                                                                {{ resource.resource.name }}: {{ resource.value }} GB
-                                                            {% endif %}
-                                                        {% else %}
-                                                            {% if resource.resource.name == 'RAM' %}
-                                                                {{ resource.resource.name }}: {{ resource.resource.defaultValue }} MB
-                                                                -
-                                                            {% elseif resource.resource.name == 'CPU' %}
-                                                                {{ resource.resource.name }}: {{ resource.resource.defaultValue }} %
-                                                                -
-                                                            {% elseif resource.resource.name == 'HDD' %}
-                                                                {{ resource.resource.name }}: {{ resource.resource.defaultValue }} GB
-                                                                -
-                                                            {% endif %}
-                                                        {% endif %}
-                                                    {% endfor %}
-                                                </td>
-                                                <td>{{ instance.status }}</td>
                                             </tr>
                                         {% endfor %}
                                         </tbody>

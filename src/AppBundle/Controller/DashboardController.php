@@ -22,8 +22,8 @@ class DashboardController extends BaseController
 {
     /**
      * @Route("/", name="dashboard")
+     * @Security("has_role('ROLE_SUPER_ADMIN')")
      */
-
     public function indexAction(Request $request)
     {
         /**
@@ -31,9 +31,9 @@ class DashboardController extends BaseController
          */
 //       $repository = $this->getRepository('AppBundle:License');
 //        var_dump($request); di
-        $userRole = $this->getUser()->getRole();
-      //var_dump($this->getUser());die;
-        if($userRole == 'ROLE_SUPER_ADMIN')
+
+     //var_dump($this->getUser());die;
+        if($this->isGranted('ROLE_SUPER_ADMIN'))
         {
             $system = new System;
             $os = $system->getOs();
@@ -41,6 +41,7 @@ class DashboardController extends BaseController
             $serverInfoService = $this->get('app.server_info.service');
 
             return $this->render('@App/dashboard/admin.html.twig', [
+                'users' => $this->findBy('AppBundle:User', []),
                 'meminfo'=> $serverInfoService->getSystemMemInfo(),
                 'diskinfo' => $serverInfoService->getSystemHddInfo(),
                 'cpuinfo' => $os->getLoadPercentage(AbstractOs::TIMEFRAME_1_MIN),
@@ -51,7 +52,7 @@ class DashboardController extends BaseController
                 'licenseRequest' => $this->findBy('AppBundle:LicenseRequest', [])
             ]);
         }
-        elseif ($userRole == 'ROLE_MA')
+        elseif ($this->isGranted('ROLE_MA'))
         {
             $system = new System;
             $os = $system->getOs();
@@ -59,6 +60,7 @@ class DashboardController extends BaseController
             $serverInfoService = $this->get('app.server_info.service');
 
             return $this->render('@App/dashboard/ma.html.twig', [
+                'users' => $this->findBy('AppBundle:User', []),
                 'meminfo'=> $serverInfoService->getSystemMemInfo(),
                 'diskinfo' => $serverInfoService->getSystemHddInfo(),
                 'cpuinfo' => $os->getLoadPercentage(AbstractOs::TIMEFRAME_1_MIN),

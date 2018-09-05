@@ -9,8 +9,8 @@
                 <form action="{{ url('edit-user', {'user': user.id}) }}" method="POST" enctype="multipart/form-data">
                     <div class="form-row">
                     </div>
-                    <div class="form-row">
-                        <div class="col-md-3">
+                    <div>
+                        <div class="col-md-4">
                             <div class="form-group">
                                 <label for="userName">User name:</label>
                                 <input type="hidden" name="user[id]" value="{{ user.id }}">
@@ -19,7 +19,7 @@
                                        class="form-control">
                             </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <div class="form-group">
                                 <label for="userEmail">E-mail:</label>
                                 <input name="user[email]" type="text"
@@ -27,28 +27,21 @@
                                        class="form-control">
                             </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <div class="form-group">
                                 <label for="contactPhone">Contact phone:</label>
                                 <input name="user[contactPhone]" type="text"
                                        value="{{ user.contactPhone }}" id="contactPhone" class="form-control">
                             </div>
                         </div>
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label for="domainName">Domain name:</label>
-                                <input name="user[domainName]" type="text"
-                                       value="{{ user.domainName }}" id="domainName" class="form-control">
-                            </div>
-                        </div>
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <div class="form-group">
                                 <label for="primaryLanguage">Primary language:</label>
                                 <input name="user[primaryLanguage]" type="text"
                                        value="{{ user.primaryLanguage }}" id="primaryLanguage" class="form-control">
                             </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <div class="form-group">
                                 <label for="userPhoto">Logo:</label>
                                 <input type="file" name="user[photo]" id="userPhoto" class="form-control">
@@ -56,10 +49,12 @@
                         </div>
                     </div>
                     <div class="col-md-12 form-row">
-                        <div class="col-md-2 ">
+                        <div class="col-md-1 ">
                             <button type="submit" class="btn btn-success btn-block">Save</button>
                         </div>
-
+                        <div class="col-md-1 ">
+                            <a href="{{ asset('users') }}" class="btn btn-primary btn-block ">Cancel </a>
+                        </div>
                     </div>
 
                 </form>

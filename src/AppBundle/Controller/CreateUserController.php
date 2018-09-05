@@ -17,7 +17,7 @@ class CreateUserController extends BaseController
     /**
      * @Route("/users/new", name="add-user")
      */
-    public function newUser(Request $request)
+    public function newUserAction(Request $request)
     {
         $user = new User();
 
@@ -42,7 +42,7 @@ class CreateUserController extends BaseController
      * @Route("/users/edit/{user}", name="edit-user")
      */
 
-    public function instanceLicenseAction(User $user, Request $request)
+    public function editUserAction(User $user, Request $request)
     {
         if ($request->getMethod() === 'POST') {
 
@@ -80,6 +80,26 @@ class CreateUserController extends BaseController
         }
 
         return $response;
+    }
+
+    /**
+     * @Route("/users/delete/{user}", name="delete-user")
+     */
+
+    public function edeleteUserAction($user , Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        //$userNew = $request->request->all();
+        $repository = $em->getRepository('AppBundle:User');
+        $user = $repository->find($user);
+
+        if(!$user) {
+            return $this->redirect($this->generateUrl('users'));
+        }
+
+        $em->remove($user);
+        $em->flush();
+        return $this->redirect($this->generateUrl('users'));
     }
 
 }

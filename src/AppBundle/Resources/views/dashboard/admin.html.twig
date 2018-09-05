@@ -166,7 +166,7 @@
                                             <tr>
                                                 <td>{{ loop.index }}</td>
                                                 <td>{{ instance.name }}</td>
-                                                <td>{{ instance.userMA }}</td>
+                                                <td>{{ instance.user.username }}</td>
                                                 <td>{{ instance.licenseIssued }}</td>
                                                 <td>{{ instance.licenseRate }}</td>
                                                 <td>
@@ -255,7 +255,7 @@
                                     <tr>
 
                                         <td>{{ instance.name }}</td>
-                                        <td>{{ instance.userMA }}</td>
+                                        <td>{{ instance.user.username }}</td>
                                         <td>
                                             Average CPU:25%<br>
                                             Average RAM: 256 Mb<br>
@@ -367,7 +367,7 @@
                                     <tr>
                                         <td>{{ loop.index }}</td>
                                         <td>{{ instance.name }}</td>
-                                        <td>{{ instance.userMA }}</td>
+                                        <td>{{ instance.user.username }}</td>
                                         <td>{{ instance.licenseIssued }}</td>
                                         <td>{{ instance.licenseRate }}</td>
                                         <td>

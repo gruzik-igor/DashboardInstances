@@ -41,14 +41,13 @@ class Invoice
     protected $price;
 
     /**
+     *
      * @ORM\Column(type="date", nullable=true)
      */
     protected $creationDate;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=false)
-     * @Assert\NotBlank()
-     * @Assert\Length(max="255")
+     * @ORM\Column(type="enum_invoice_status_type", nullable=true)
      */
     protected $status;
 

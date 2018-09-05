@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Instance;
+use AppBundle\Entity\User;
 use AppBundle\Form\InstanceForm;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -23,7 +24,7 @@ class InstanceController extends BaseController
      * @Route("/instance/new", name="add-instance")
      * @Security("has_role('ROLE_SUPER_ADMIN')")
      */
-    public function addAction( Request $request)
+    public function addAction(Request $request)
     {
         $instance = new Instance();
         $form = $this->createForm(InstanceForm::class,$instance);

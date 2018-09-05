@@ -19,14 +19,14 @@
                                        class="form-control">
                             </div>
                         </div>
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label for="instanceContactPerson">User of Marketing agency:</label>
-                                <input name="instance[contactPerson]" type="text" readonly
-                                       value="{{ instance.userMA}}" id="instanceContactPerson"
-                                       class="form-control">
-                            </div>
-                        </div>
+                        {#<div class="col-md-3">#}
+                            {#<div class="form-group">#}
+                                {#<label for="instanceContactPerson">User of Marketing agency:</label>#}
+                                {#<input name="instance[contactPerson]" type="text" readonly#}
+                                       {#value="{{ instance.userMA}}" id="instanceContactPerson"#}
+                                       {#class="form-control">#}
+                            {#</div>#}
+                        {#</div>#}
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label for="licenseIssued">License Issued:</label>
@@ -44,10 +44,12 @@
 
                     </div>
                     <div class="col-md-12 form-row">
-                        <div class="col-md-2 ">
+                        <div class="col-md-1">
                             <button type="submit" class="btn btn-success btn-block">Save</button>
                         </div>
-
+                        <div class="col-md-1">
+                            <a href="{{ asset('#instances') }}" class="btn btn-primary btn-block">Cancel </a>
+                        </div>
                     </div>
 
                 </form>

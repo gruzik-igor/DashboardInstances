@@ -36,12 +36,10 @@ class Instance
     protected $name;
 
     /**
-     * @JMS\Expose
-     * @JMS\Groups({"default"})
-     * @ORM\Column(type="integer", nullable=false)
-     * @Assert\NotBlank()
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="Instance")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
-    protected $userMA;
+    protected $user;
 
     /**
      * @ORM\OneToMany(targetEntity="InstanceResource", mappedBy="instance")
@@ -65,16 +63,14 @@ class Instance
     /**
      * @JMS\Expose
      * @JMS\Groups({"default"})
-     * @ORM\Column(type="string", length=255, nullable=false)
-     * @Assert\Length(max="255")
+     * @ORM\Column(type="enum_instance_status_type", nullable=true)
      */
     protected $status = 'active';
 
     /**
      * @JMS\Expose
      * @JMS\Groups({"default"})
-     * @ORM\Column(type="string", length=255, nullable=false)
-     * @Assert\Length(max="255")
+     * @ORM\Column(type="enum_instance_deploying_status_type", nullable=true)
      */
     protected $deployingStatus = 'pending';
 
@@ -88,7 +84,7 @@ class Instance
      * @Assert\NotBlank()
      * @Assert\Length(max="255")
      */
-    protected $domain = 'localhost:8000';
+    protected $domainName = 'localhost:8000';
     /**
      * Constructor
      */
@@ -131,28 +127,6 @@ class Instance
         return $this->name;
     }
 
-    /**
-     * Get userMA
-     *
-     * @return string
-     */
-    public function getUserMA()
-    {
-        return $this->userMA;
-    }
-
-    /**
-     * Set userMA
-     *
-     * @param string $userMA
-     *
-     * @return Instance
-     */
-    public function setUserMA($userMA)
-    {
-        $this->userMA = $userMA;
-        return $this;
-    }
     /**
      * Set licenseIssued
      *
@@ -200,6 +174,31 @@ class Instance
     {
         return $this->licenseRate;
     }
+
+    /**
+     * Set domainName
+     *
+     * @param string $domainName
+     *
+     * @return User
+     */
+    public function setDomainName($domainName)
+    {
+        $this->domainName = $domainName;
+
+        return $this;
+    }
+
+    /**
+     * Get domainName
+     *
+     * @return string
+     */
+    public function getDomainName()
+    {
+        return $this->domainName;
+    }
+
 
     /**
      * Set status
@@ -329,5 +328,29 @@ class Instance
     public function getResources()
     {
         return $this->resources;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \AppBundle\Entity\User $user
+     *
+     * @return Instance
+     */
+    public function setUser(\AppBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \AppBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }
