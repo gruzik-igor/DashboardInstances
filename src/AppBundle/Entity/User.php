@@ -183,6 +183,16 @@ class User implements UserInterface, FileUploadInterface
     }
 
     /**
+     * Get role
+     *
+     * @return string
+     */
+    public function getRole()
+    {
+        return $this->role;
+    }
+
+    /**
      * Set registrationDate
      *
      * @ORM\PrePersist()
@@ -274,15 +284,6 @@ class User implements UserInterface, FileUploadInterface
         return $this->password;
     }
 
-    /**
-     * Get role
-     *
-     * @return string
-     */
-    public function getRole()
-    {
-        return $this->role;
-    }
 
     /**
      * Set salt

@@ -6,13 +6,16 @@ security:
           - ABILITY_USER_OWNER
           - ABILITY_USER_UPDATE
           - ABILITY_USER_DELETE
-        ROLE_SUPER_ADMIN: [ROLE_USER]
+        ROLE_MA: [ROLE_USER]
+        ROLE_EU: [ROLE_USER]
+        ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_MA, ROLE_EU]
     encoders:
         AppBundle\Entity\User: sha512
     # https://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
     providers:
         app_bundle.user_provider:
             id: app.user_provider
+
     firewalls:
 
         dev:
@@ -29,3 +32,10 @@ security:
             guard:
                 authenticators:
                     - form_authenticator
+            remember_me:
+                secret:   '%kernel.secret%'
+                lifetime: 604800 # 1 week in seconds
+                path:     /
+                always_remember_me: true
+        default:
+            anonymous: ~

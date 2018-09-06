@@ -16,24 +16,26 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Core\Authentication\AuthenticationManagerInterface;
 use Symfony\Component\Security\Core\Authorization\AccessDecisionManagerInterface;
+use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 
 
 class DashboardController extends BaseController
 {
     /**
      * @Route("/", name="dashboard")
-     * @Security("has_role('ROLE_SUPER_ADMIN')")
      */
+
     public function indexAction(Request $request)
     {
         /**
          * @var LicenseRepository $repository
          */
 //       $repository = $this->getRepository('AppBundle:License');
-//        var_dump($request); di
-
-     //var_dump($this->getUser());die;
-        if($this->isGranted('ROLE_SUPER_ADMIN'))
+//        var_dump($request); die;
+//        $this->isGranted('ROLE_SUPER_ADMIN');
+        $userRole = $this->getUser()->getRole();
+     //var_dump($userRole);die;
+        if($userRole == 'ROLE_SUPER_ADMIN')
         {
             $system = new System;
             $os = $system->getOs();
@@ -52,7 +54,7 @@ class DashboardController extends BaseController
                 'licenseRequest' => $this->findBy('AppBundle:LicenseRequest', [])
             ]);
         }
-        elseif ($this->isGranted('ROLE_MA'))
+        elseif ($userRole == 'ROLE_MA')
         {
             $system = new System;
             $os = $system->getOs();
@@ -131,4 +133,6 @@ class DashboardController extends BaseController
 
         return new Response('<html><body>User: ' . $name . '</body></html>');
     }
+
+
 }

@@ -22,7 +22,7 @@
                        data-tab-history-update-url="true">Branding</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" id="summary-tab" data-toggle="tab" href="#summary"
+                    <a class="nav-link" id="summary-tab" data-toggle="tab" href="#summary"
                        data-tab-history="true"
                        data-tab-history-changer="push"
                        data-tab-history-update-url="true">Summary</a>
@@ -54,446 +54,349 @@
                         <div class="card-header">
                             <i class="fa fa-fw fa-id-card" ></i> Marketing Agency information
                         </div>
-                        <div class="card-body row">
-                            <div class="col-md-8">
-                                <form action="#" method="POST">
-                                <div class="form-row">
-                                    <div class="col-md-2">
-                                        <label for="instanceName">Your company name:</label>
-                                    </div>
-                                    <div class="col-md-5">
-                                        <div class="form-group">
-                                            <input type="hidden" name="instance[id]" value="">
-                                            <input name="user[username]" type="text"
-                                                   value="" id="instanceName"
-                                                   class="form-control">
+                        <div class="card-body ">
+                        {% for instance in instances %}
+                            {#{% if instance.user.role == 'ROLE_MA' %}#}
+                            <form action="{{ url('edit-user', {'user': instance.user.id}) }}" method="POST" enctype="multipart/form-data">
+                                <div class="row">
+                                <div class="col-md-8">
+                                    <div class="form-row">
+                                        <div class="col-md-3">
+                                            <label for="instanceName">Your company name:</label>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <div class="form-group">
+                                                <input type="hidden" name="instance[id]" value="">
+                                                <input name="instance[name]" type="text"
+                                                       value="{{ instance.name }}" id="instanceName"
+                                                       class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label for="photo">Company logo:</label>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <div class="form-group">
+                                                <input type="file" class="form-control" name="upload img">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label for="domainName">Domain name:</label>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <div class="form-group">
+                                                <input name="instance[domainName]" type="text"
+                                                       value="{{ instance.domainName }}" id="domainName" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label for="contactPhone">Contact phone:</label>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <div class="form-group">
+                                                <input name="instance[user][contactPhone]" type="text"
+                                                       value="{{ instance.user.contactPhone }}" id="contactPhone" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label for="email">Contact e-mail:</label>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <div class="form-group">
+                                                <input name="instance[user][email]" type="text"
+                                                       value="{{ instance.user.email }}" id="email" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label for="contactPhone">Primary language:</label>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <input name="instance[user][primaryLanguage]" type="text" readonly
+                                                       value="{{ instance.user.primaryLanguage }}" id="primaryLanguage" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label for="change-on">Change on:</label>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <select class="form-control" name="change-primary-lang" id="change-on">
+                                                    <option value="english">English</option>
+                                                    <option value="germany">Germany</option>
+                                                    <option value="ukraine">Ukraine</option>
+                                                    <option value="poland">Poland</option>
+                                                </select>
+                                            </div>
+
                                         </div>
                                     </div>
-                                    <div class="col-md-5">
-                                        <div class="form-group">
-                                            <input name="user[fullName]" type="text"
-                                                   value="" id="fullName"
-                                                   class="form-control">
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="text-center">
+                                        <div class="col-md-12">
+                                            <label class="text-center" for="email">Logo preview:</label>
+                                        </div>
+                                        <div class="col-md-12">
+                                            {#<img class="img-thumbnail" src="https://www.pathwayteaching.com/wp-content/uploads/2018/05/PATHWAY-LOGO-FINAL-GREEN-2018-02-180x180.png" alt="" >#}
+                                            <img class="img-thumbnail" src="{{ asset('photos') }}/{{ instance.user.photo }}" alt="" >
                                         </div>
                                     </div>
-                                    <div class="col-md-2">
-                                        <label for="photo">Company logo:</label>
-                                    </div>
-                                    <div class="col-md-8">
-                                        <div class="form-group">
-                                            <input name="user[photo]" type="text"
-                                                   value="" id="photo"
-                                                   class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <div class="form-group">
-                                            <input type="file" class="form-control" name="upload img">
-                                            <button type="button" class="btn btn-primary btn-block">Browse</button>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <label for="domainName">Domain name:</label>
-                                    </div>
-                                    <div class="col-md-10">
-                                        <div class="form-group">
-                                            <input name="user[domainName]" type="text"
-                                                   value="" id="domainName" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <label for="contactPhone">Contact phone:</label>
-                                    </div>
-                                    <div class="col-md-10">
-                                        <div class="form-group">
-                                            <input name="user[contactPhone]" type="text"
-                                                   value="" id="contactPhone" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <label for="email">Contact e-mail:</label>
-                                    </div>
-                                    <div class="col-md-10">
-                                        <div class="form-group">
-                                            <input name="user[email]" type="text"
-                                                   value="" id="email" class="form-control">
-                                        </div>
-                                    </div>
+                                </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="col-md-4">
-                                        <button type="submit" class="btn btn-success btn-block">Apply changes</button>
+                                        <button type="submit" class="btn btn-success btn-lg ">Apply changes</button>
                                     </div>
-                                    <div class="col-md-4">
-                                        <button type="submit" class="btn btn-success btn-block">Discard changes</button>
+                                    <div class="col-md-4 text-center">
+                                        <button type="button" class="btn btn-success btn-lg ">Discard changes</button>
                                     </div>
-                                    <div class="col-md-4">
-                                        <button type="submit" class="btn btn-success btn-block">Factory reset</button>
+                                    <div class="col-md-4 text-right">
+                                        <button type="button" class="btn btn-success btn-lg ">Factory reset</button>
                                     </div>
                                 </div>
-                                </form>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-row text-center">
-                                    <label class="text-center" for="email">Logo preview:</label>
-                                    <img class="img-thumbnail text-center" src="" alt="" >
-                                    <span><i class="fa fa-fw fa-circle"></i> Test spin
-                                        </span>
-                                </div>
-                            </div>
+                            </form>
+                            {#{% endif %}#}
+                        {% endfor %}
                         </div>
                     </div>
                 </div>
-                <div class="tab-pane fade active show" id="summary">
 
 
 
+                <div class="tab-pane fade show" id="summary">
 
-
-                    <div class="col-lg-12">
-                        <!-- Example DataTables Card-->
-                        <div class="card mb-3">
-                            <div class="card-header">
-                                <i class="fa fa-table"></i> Instances summary
-                            </div>
-                            <div class="card-body">
-                                <div class="table-responsive">
-                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                        <thead>
-                                        <tr>
-                                            <th>№</th>
-                                            <th>Instance</th>
-                                            <th>User MA</th>
-                                            <th>Licenses issued</th>
-                                            <th>Rate</th>
-                                            <th>Monthly revenue $</th>
-                                            <th>Resources used</th>
-                                            <th>Status</th>
-                                        </tr>
-                                        </thead>
-                                        <tfoot>
-                                        <tr>
-                                            <th>№</th>
-                                            <th>Instance</th>
-                                            <th>User MA</th>
-                                            <th>Licenses issued</th>
-                                            <th>Rate</th>
-                                            <th>Monthly revenue $</th>
-                                            <th>Resources used</th>
-                                            <th>Status</th>
-                                        </tr>
-                                        </tfoot>
-                                        <tbody>
-                                        {% for instance in instances %}
-                                            {% set instanceInvoices = findBy('AppBundle:Invoice', {'instance': instance.id}) %}
-                                            <tr>
-                                                <td>{{ loop.index }}</td>
-                                                <td>{{ instance.name }}</td>
-                                                <td>{{ instance.userMA }}</td>
-                                                <td>{{ instance.licenseIssued }}</td>
-                                                <td>{{ instance.licenseRate }}</td>
-                                                <td>
-                                                    {% if invoices is not empty %}
-                                                        {% for invoice in invoices %}
-                                                            {% if invoice.instance.id == instance.id %}
-
-                                                                {{ invoice.price }}$ @ {{ invoice.creationDate|date("Y-m-d") }}
-                                                                <br>
-                                                                Status: {{ invoice.status }}<br>
-                                                                Next invoice: {{ invoice.expirationDate|date("Y-m-d") }}
-                                                                <br>
-                                                            {% endif %}
-                                                        {% endfor %}
-
-                                                    {% else %}
-                                                        <div class="alert alert-warning" role="alert">
-                                                            Sorry! This instance has no last invoice!
-                                                        </div>
-                                                    {% endif %}
-                                                </td>
-
-                                                <td>
-                                                    {% for resource in instance.resources %}
-                                                        {% if resource.value %}
-                                                            {% if resource.resource.name == 'RAM' %}
-                                                                {{ resource.resource.name }}: {{ resource.value }} MB -
-                                                            {% elseif resource.resource.name == 'CPU' %}
-                                                                {{ resource.resource.name }}: {{ resource.value }} % -
-                                                            {% elseif resource.resource.name == 'HDD' %}
-                                                                {{ resource.resource.name }}: {{ resource.value }} GB
-                                                            {% endif %}
-                                                        {% else %}
-                                                            {% if resource.resource.name == 'RAM' %}
-                                                                {{ resource.resource.name }}: {{ resource.resource.defaultValue }} MB
-                                                                -
-                                                            {% elseif resource.resource.name == 'CPU' %}
-                                                                {{ resource.resource.name }}: {{ resource.resource.defaultValue }} %
-                                                                -
-                                                            {% elseif resource.resource.name == 'HDD' %}
-                                                                {{ resource.resource.name }}: {{ resource.resource.defaultValue }} GB
-                                                                -
-                                                            {% endif %}
-                                                        {% endif %}
-                                                    {% endfor %}
-                                                </td>
-                                                <td>{{ instance.status }}</td>
-                                            </tr>
-                                        {% endfor %}
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                            <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+                    <div class="row col-md-8 mb-2">
+                        <div class="col-md-6">
+                            <label for="licensesPurchased">Licenses purchased:</label>
+                            <span id="licensesPurchased"> 35 </span>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="licensesPurchased">Individual contractors:</label>
+                            <span id="licensesPurchased"> 5 </span>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="licensesUsed">Licenses used:</label>
+                            <span id="licensesUsed"> 23 </span>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="businessAccounts">Business accounts:</label>
+                            <span id="businessAccounts"> 18 paid, 5 trial, 23 total </span>
+                        </div>
+                        <div class="col-md-12">
+                            <label for="licenseFree">License free:</label>
+                            <span id="licenseFree"> 20$ per user per month </span>
+                        </div>
+                        <div class="col-md-12">
+                            <label for="freeLicense">Free license used:</label>
+                            <span id="freeLicense"> 12        <a href="#">request more</a> </span>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="invoiceDue">Invoice due:</label>
+                            <span id="invoiceDue"> 700$, due date: 02/25/2018 </span>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="totalRevenue">Total revenue from business accounts this month:</label>
+                            <span id="totalRevenue"> 1523$</span>
                         </div>
 
                     </div>
-                </div>
-                <div class="tab-pane container-t fade" id="instances">
-                    <div class="col-xl-12 col-sm-12 mb-12">
-                        <div class="card-body">
-                            <div class="row padd">
-                                <div class="col-lg-2 ">
-                                    <a href="/instance/new" class="btn btn-primary btn-block"> Add new instance</a>
-                                </div>
-                                <div class="col-lg-2 ">
-                                    <a class="btn btn-primary btn-block" href="/resources"> Change default Resources</a>
-                                </div>
-                            </div>
-                            <table class="table table-bordered" data-current-offset="0" id="infiniteScrollBody"
-                                   data-url="{{ url('api_get_instances') }}"
-                                   data-method="GET" width="100%" cellspacing="0">
-                                {% for instance in instances %}
+
+                    <div class="card mb-2">
+                        <div class="card-header">
+                            <i class="fa fa-fw fa-briefcase" ></i> Business accounts summary:
+                        </div>
+                        <div class="card-body ">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                     <tr>
-                                        <th>Instance</th>
-                                        <th>User MA</th>
-                                        <th>Resources used:</th>
-                                        <th>Resources limits:</th>
-                                        <th>Licenses:</th>
-                                        <th>Latest invoice:</th>
-                                        <th>Instance status: {{ instance.status }} </th>
+                                        <th>№</th>
+                                        <th>Company name</th>
+                                        <th>Contact person</th>
+                                        <th>Revenue per month $</th>
+                                        <th>Invited by IC</th>
+                                        <th>Invoice Date</th>
+                                        <th>Status</th>
                                     </tr>
                                     </thead>
+                                    <tfoot>
+                                    <tr>
+                                        <th>№</th>
+                                        <th>Company name</th>
+                                        <th>Contact person</th>
+                                        <th>Revenue per month $</th>
+                                        <th>Invited by IC</th>
+                                        <th>Invoice Date</th>
+                                        <th>Status</th>
+                                    </tr>
+                                    </tfoot>
                                     <tbody>
                                     <tr>
-
-                                        <td>{{ instance.name }}</td>
-                                        <td>{{ instance.userMA }}</td>
-                                        <td>
-                                            Average CPU:25%<br>
-                                            Average RAM: 256 Mb<br>
-                                            Average HDD: 2345 Mb
-                                        </td>
-                                        <td>
-                                            {% for resource in instance.resources %}
-                                                {% if resource.value %}
-                                                    {% if resource.resource.name == 'RAM' %}
-                                                        {{ resource.resource.name }}: {{ resource.value }} MB  <br>
-                                                    {% elseif resource.resource.name == 'CPU' %}
-                                                        {{ resource.resource.name }}: {{ resource.value }} %  <br>
-                                                    {% elseif resource.resource.name == 'HDD' %}
-                                                        {{ resource.resource.name }}: {{ resource.value }} GB  <br>
-                                                    {% endif %}
-                                                {% else %}
-                                                    {% if resource.resource.name == 'RAM' %}
-                                                        {{ resource.resource.name }}: {{ resource.resource.defaultValue }} MB
-                                                        <br>
-                                                    {% elseif resource.resource.name == 'CPU' %}
-                                                        {{ resource.resource.name }}: {{ resource.resource.defaultValue }} %
-                                                        <br>
-                                                    {% elseif resource.resource.name == 'HDD' %}
-                                                        {{ resource.resource.name }}: {{ resource.resource.defaultValue }} GB
-                                                        <br>
-                                                    {% endif %}
-                                                {% endif %}
-                                            {% endfor %}
-                                        </td>
-                                        <td>
-                                            {% if instance.licenseIssued and instance.licenseRate is empty %}
-                                                <div class="alert alert-warning" role="alert">
-                                                    Sorry! This instance has no license!
-                                                </div>
-                                            {% else %}
-                                                Issued: {{ instance.licenseIssued }} <br>
-                                                Usage: {{ instance|getUsageLicenseCount }} <br>
-                                                Rate: {{ instance.licenseRate }}$/license/month <br>
-                                            {% endif %}
-                                        </td>
-                                        <td>
-                                            {% if invoices is not empty %}
-                                                {% for invoice in invoices %}
-                                                    {% if invoice.instance.id == instance.id %}
-
-                                                        {{ invoice.price }}$ @ {{ invoice.creationDate|date("Y-m-d") }}
-                                                        <br>
-                                                        Status: {{ invoice.status }}<br>
-                                                        Next invoice: {{ invoice.expirationDate|date("Y-m-d") }}
-                                                        <br>
-                                                    {% endif %}
-                                                {% endfor %}
-
-                                            {% else %}
-                                                <div class="alert alert-warning" role="alert">
-                                                    Sorry! This instance has no last invoice!
-                                                </div>
-                                            {% endif %}
-                                        </td>
-                                        <td>
-                                            {% if instance.deployingStatus == 'pending' %}
-                                                <a class="btn btn-info btn-block"
-                                                   href="{{ url('deploy-instance', {'instance': instance.id}) }}">Deploy</a>
-                                            {% elseif instance.deployingStatus == 'deploying' %}
-                                                <a class="btn btn-warning btn-block" href="#"><i
-                                                            class="fas fa-spinner fa-spin"></i> Deploying</a>
-                                            {% else %}
-                                                <a class="btn btn-success btn-block" href="#">Deployed</a>
-                                            {% endif %}
-                                            <a class="btn btn-primary btn-block"
-                                               href="{{ url('instance-resources', {'instance': instance.id }) }}"> Resources</a>
-                                            {% if instance.status == 'suspended' %}
-                                                <a class="btn btn-success btn-block" href="{{ url('change-status', {'instance': instance.id, 'status': 'active'}) }}">Activated</a>
-
-                                            {% else %}
-                                                <a class="btn btn-warning btn-block" href="{{ url('change-status', {'instance': instance.id, 'status': 'suspended'}) }}">Suspended</a>
-
-                                            {% endif %}
-                                        </td>
+                                        <td>1</td>
+                                        <td>SEO</td>
+                                        <td>igor</td>
+                                        <td>200</td>
+                                        <td>direct contact</td>
+                                        <td>01/20/2018</td>
+                                        <td>Trial</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>Marceting Monsters</td>
+                                        <td>John</td>
+                                        <td>185</td>
+                                        <td>Richard Roe</td>
+                                        <td>02/25/2018</td>
+                                        <td>Suspended</td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td>Surway</td>
+                                        <td>Zoe</td>
+                                        <td>50</td>
+                                        <td>Mark Coss</td>
+                                        <td>02/02/2018</td>
+                                        <td>Active</td>
                                     </tr>
                                     </tbody>
-                                {% endfor %}
-                            </table>
-                            <div class="col-lg-12">
-                                <p class="infinite-scroll-last">End of content</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="tab-pane fade" id="licenses">
-                    <div class="card-body">
-                        <div class="row padd">
-                                <table class="table table-bordered" data-current-offset="0" id="infiniteScrollBody"
-                                       data-url="{{ url('api_get_instances') }}"
-                                       data-method="GET" width="100%" cellspacing="0">
-
-                                    <thead>
-                                    <tr>
-                                        <th>№ </th>
-                                        <th>Instance</th>
-                                        <th>User MA</th>
-                                        <th>License Issued:</th>
-                                        <th>License Rate:</th>
-                                        <th></th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    {% for instance in instances %}
-                                    <tr>
-                                        <td>{{ loop.index }}</td>
-                                        <td>{{ instance.name }}</td>
-                                        <td>{{ instance.userMA }}</td>
-                                        <td>{{ instance.licenseIssued }}</td>
-                                        <td>{{ instance.licenseRate }}</td>
-                                        <td>
-                                            <a class="btn btn-primary btn-block" href="{{ url('edit-instance-license', {'instance': instance.id }) }}"> Change license</a>
-                                        </td>
-                                    </tr>
-                                    </tbody>
-                                    {% endfor %}
                                 </table>
-
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="tab-pane fade" id="reports">
+
+
+                <div class="tab-pane fade show" id="contractors">
+
                     <div class="row padd">
-                        <div class="col-lg-6">
-                            <div class="card mb-3">
-                                <div class="card-header">
-                                    <i class="fa fa-area-chart"></i> Active instances / month
+                        <div class="col-md-9 ">
+                            <div class="row mb-4">
+
+                                <div class="col-md-4">
+                                    <a href="#"> Request more licenses</a>
+                                 </div>
+                                <div class="col-md-4">
+                                    <select class="form-control" name="selectContractor" id="selectContractor">
+                                        <option selected disabled> select contractor </option>
+                                        <option value=""> Zoe </option>
+                                        <option value=""> Mark </option>
+                                    </select>
                                 </div>
-                                <div class="card-body">
-                                    <div id="Active_chart"></div>
+                                <div class="col-md-4">
+                                    <select class="form-control" name="selectContractor" id="selectContractor">
+                                        <option selected disabled> select contractor </option>
+                                        <option value=""> Zoe </option>
+                                        <option value=""> Mark </option>
+                                    </select>
                                 </div>
-                                <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <button class="btn btn-dark "> Add new contractor</button>
+                                </div>
+                                <div class="col-md-4">
+                                    <button class="btn btn-dark "> Add new contractor</button>
+                                </div>
+                                <div class="col-md-4">
+                                    <button class="btn btn-dark "> Add new contractor</button>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-lg-6">
-                            <div class="card mb-3">
-                                <div class="card-header">
-                                    <i class="fa fa-area-chart"></i> Suspended instances / month
-                                </div>
-                                <div class="card-body">
-                                    <div id="Suspended_chart"></div>
-                                </div>
-                                <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="card mb-3">
-                                <div class="card-header">
-                                    <i class="fa fa-area-chart"></i> Issued licenses / month
-                                </div>
+                        <div class="col-md-3">
                                 <div class="card-body">
                                     <div id="Issued_chart"></div>
                                 </div>
-                                <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="card mb-3">
-                                <div class="card-header">
-                                    <i class="fa fa-area-chart"></i> Total revenues / month
-                                </div>
-                                <div class="card-body">
-                                    <div id="Price_chart"></div>
-                                </div>
-                                <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="tab-pane fade" id="server_health">
-                    <div class="col-xl-12 col-sm-12 mb-12 row">
-                        <div class="card-body">
-                            <p>Server uptime: {{ uptime }}</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-3">
-                            <div class="card-body">
-                                <p>Latest backup: 02/03/2018</p>
-                            </div>
-                        </div>
-                        <div class="col-lg-2">
-                            <button class=" btn btn-primary btn-block"> Backup managment</button>
-                        </div>
-                        <div class="col-lg-2">
-                            <button class=" btn btn-primary btn-block"> Download backup</button>
-                        </div>
-                        <div class="col-lg-2">
-                            <button class=" btn btn-primary btn-block"> Restore backup</button>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="card-body">
-                                <p>HDD S.M.A.R.T status: OK</p>
-                            </div>
-                        </div>
-                        <div class="col-lg-4">
-                            <div class="card-body">
-                                <p>Server configuration:</p>
-                                <ul>
-                                    <li>{{ servinfo['model name'] }}</li>
-                                    <li>cpu cores:{{ servinfo['cpu cores'] }}</li>
-                                    <li> {{ meminfo.MemTotalGb }} GB DDR 3 RAM</li>
-                                    <li>{{ diskinfo.DisckTotalTb }} TB HDD</li>
-                                </ul>
-                            </div>
+
                         </div>
                     </div>
 
+                    <div class="card mb-2">
+                        <div class="card-header">
+                            <i class="fa fa-fw fa-users" ></i> Contractors summary:
+                        </div>
+                        <div class="card-body ">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                    <tr>
+                                        <th>№</th>
+                                        <th>Contractor name</th>
+                                        <th>License used</th>
+                                        <th>Licensed abaliable</th>
+                                        <th>Clients attracted</th>
+                                        <th>Status</th>
+                                    </tr>
+                                    </thead>
+                                    <tfoot>
+                                    <tr>
+                                        <th>№</th>
+                                        <th>Contractor name</th>
+                                        <th>License used</th>
+                                        <th>Licensed abaliable</th>
+                                        <th>Clients attracted</th>
+                                        <th>Status</th>
+                                    </tr>
+                                    </tfoot>
+                                    <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>Zoe Deshanel</td>
+                                        <td>12</td>
+                                        <td>10</td>
+                                        <td>2</td>
+                                        <td>Active</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>Mark Zedan</td>
+                                        <td>18</td>
+                                        <td>15</td>
+                                        <td>9</td>
+                                        <td>Suspended</td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td>Jacob Bowie</td>
+                                        <td>25</td>
+                                        <td>1</td>
+                                        <td>11</td>
+                                        <td>Active</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+
+                <div class="tab-pane fade show" id="licenses">
+
+                    <div class="row col-md-8 mb-2">
+                        <div class="col-md-6">
+                            <label for="licensesPurchased">Licenses purchased:</label>
+                            <span id="licensesPurchased"> 35 </span>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="licensesUsed">Licenses used:</label>
+                            <span id="licensesUsed"> 23 </span>
+                        </div>
+                        <div class="col-md-12">
+                            <label for="licenseFree">License free:</label>
+                            <span id="licenseFree"> 20$ per user per month </span>
+                        </div>
+                        <div class="col-md-12">
+                            <label for="freeLicense">Free license used:</label>
+                            <span id="freeLicense"> 12 </span>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="invoiceDue">Invoice due:</label>
+                            <span id="invoiceDue"> 700$, due date: 02/25/2018 </span>
+                        </div>
+
+                    </div>
+                </div>
+
             </div>
 
             <!-- /.container-fluid-->
